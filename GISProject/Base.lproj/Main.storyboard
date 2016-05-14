@@ -35,10 +35,35 @@
             </objects>
             <point key="canvasLocation" x="130.66666666666666" y="295.83333333333331"/>
         </scene>
+        <!--Select available battles-->
+        <scene sceneID="Vo5-Di-iVk">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchLocation" id="BTk-2C-boQ" customClass="SearchLocationTableViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2Is-2T-ebT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="tzi-tm-txX">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tzi-tm-txX" id="nwd-tf-Q63">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select available battles" id="ynu-WT-qBd"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bht-iP-jgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2476" y="1267"/>
+        </scene>
         <!--Item-->
         <scene sceneID="g55-YG-DHu">
             <objects>
-                <viewController id="nVO-O5-cgz" customClass="BattleScreenViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nVO-O5-cgz" customClass="SearchBattleViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ko4-Rw-jMn"/>
                         <viewControllerLayoutGuide type="bottom" id="gnC-1z-JuV"/>
@@ -50,7 +75,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hw-un-gnE">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="525"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nyp_static_img" translatesAutoresizingMaskIntoConstraints="NO" id="g9C-XQ-tBW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="you are here" translatesAutoresizingMaskIntoConstraints="NO" id="g9C-XQ-tBW">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="517"/>
                                     </imageView>
                                 </subviews>
@@ -77,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6FO-p5-0ib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="682" y="1031"/>
+            <point key="canvasLocation" x="1515" y="1267"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="6q2-45-hOS">
@@ -136,8 +161,26 @@
             </objects>
             <point key="canvasLocation" x="682" y="292"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wh7-uf-shA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qAo-H3-vI5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HQG-xb-GmW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BTk-2C-boQ" kind="relationship" relationship="rootViewController" id="ErA-IE-GL5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bk7-tn-qpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1944" y="1267"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="nyp_static_img" width="437" height="648"/>
+        <image name="you are here" width="528" height="635"/>
     </resources>
 </document>

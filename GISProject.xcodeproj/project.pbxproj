@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA130BFB1CE6D6BD003D0E6A /* SearchBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFA1CE6D6BD003D0E6A /* SearchBattleViewController.swift */; };
+		AA130BFF1CE6DE31003D0E6A /* SearchLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFE1CE6DE31003D0E6A /* SearchLocationTableViewController.swift */; };
 		AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB541CE3613800F8BA43 /* AppDelegate.swift */; };
 		AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB561CE3613800F8BA43 /* ViewController.swift */; };
 		AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB581CE3613900F8BA43 /* Main.storyboard */; };
 		AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */; };
 		AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */; };
-		AA8330FC1CE4B5210080DE9D /* BattleScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8330FB1CE4B5210080DE9D /* BattleScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA130BFA1CE6D6BD003D0E6A /* SearchBattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBattleViewController.swift; sourceTree = "<group>"; };
+		AA130BFE1CE6DE31003D0E6A /* SearchLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewController.swift; sourceTree = "<group>"; };
 		AA22DB511CE3613700F8BA43 /* GISProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GISProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA22DB541CE3613800F8BA43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA22DB561CE3613800F8BA43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,7 +26,6 @@
 		AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA22DB5E1CE3613900F8BA43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA22DB601CE3613900F8BA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA8330FB1CE4B5210080DE9D /* BattleScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
-				AA8330FB1CE4B5210080DE9D /* BattleScreenViewController.swift */,
+				AA130BFA1CE6D6BD003D0E6A /* SearchBattleViewController.swift */,
+				AA130BFE1CE6DE31003D0E6A /* SearchLocationTableViewController.swift */,
 				AA22DB581CE3613900F8BA43 /* Main.storyboard */,
 				AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */,
 				AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */,
@@ -139,8 +142,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA130BFF1CE6DE31003D0E6A /* SearchLocationTableViewController.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
-				AA8330FC1CE4B5210080DE9D /* BattleScreenViewController.swift in Sources */,
+				AA130BFB1CE6D6BD003D0E6A /* SearchBattleViewController.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
