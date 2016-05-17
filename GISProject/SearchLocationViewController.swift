@@ -9,12 +9,16 @@
 import UIKit
 
 protocol searchLocationProtocol {
-	func didTouchTableViewController(didTouch: Bool)
+	func sendNavigationImage(didSelectBattle: Bool)
 }
 
-class SearchLocationTableViewController: UITableViewController {
+class SearchLocationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-	var delegate: searchLocationProtocol!
+	@IBOutlet var mapImageView: UIImageView!
+	@IBOutlet var tableView: UITableView!
+
+	var delegate: searchLocationProtocol?
+
 	var availableBattle: NSMutableArray?
 
     override func viewDidLoad() {
@@ -29,10 +33,7 @@ class SearchLocationTableViewController: UITableViewController {
 		self.tableView.delegate = self
 		self.tableView.dataSource = self
 		
-		let tap = UITapGestureRecognizer.init(target: self, action: #selector(SearchLocationTableViewController.tap))
-		tap.numberOfTapsRequired = 1
-		tap.numberOfTouchesRequired = 1
-		self.parentViewController?.view.addGestureRecognizer(tap)
+		self.mapImageView.image = UIImage.init(named: "you are here")
 		
 		// possible retrieve from server
 		// but hardcode for now
@@ -40,8 +41,14 @@ class SearchLocationTableViewController: UITableViewController {
 		self.availableBattle = ["Nanyang Polytechnic"]
     }
 
-	func tap() {
-		self.delegate.didTouchTableViewController(true)
+	@IBAction func closeViewController() {
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	@IBAction func startNavigating() {
+		self.delegate?.sendNavigationImage(true)
+	
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
     override func didReceiveMemoryWarning() {
@@ -51,17 +58,17 @@ class SearchLocationTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return (self.availableBattle?.count)!
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
         // Configure the cell...
@@ -69,6 +76,15 @@ class SearchLocationTableViewController: UITableViewController {
 
         return cell
     }
+	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		let cell = tableView.cellForRowAtIndexPath(indexPath)
+		cell?.accessoryType = .Checkmark
+		
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		
+		self.mapImageView.image = UIImage.init(named: "nearby battles")
+	}
 
     /*
     // Override to support conditional editing of the table view.

@@ -12,35 +12,28 @@ class SearchBattleViewController: UIViewController, searchLocationProtocol {
 
 	@IBOutlet var mapImageView: UIImageView!
 	
-	var searchLocationTableViewController: SearchLocationTableViewController?
-	var navController: UINavigationController?
-	
-	var tabBarHeight: CGFloat!
-	var navControllerYPos: CGFloat!
-	var navControllerHeight: CGFloat!
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
-		self.searchLocationTableViewController = storyboard.instantiateViewControllerWithIdentifier("SearchLocation") as? SearchLocationTableViewController
-		self.searchLocationTableViewController!.delegate = self
-		self.navController = UINavigationController.init(rootViewController: searchLocationTableViewController!)
+		self.mapImageView.image = UIImage.init(named: "you are here")
 		
-		self.tabBarHeight = self.tabBarController?.tabBar.frame.size.height
-		self.navControllerYPos = self.view.frame.size.height - tabBarHeight! - navController!.navigationBar.frame.height
-		self.navControllerHeight = self.view.frame.size.height - tabBarHeight!
-	
-		self.navController!.view.frame = CGRectMake(0, self.navControllerYPos, self.view.frame.size.width, self.view.frame.height - 50)
-	
-		self.navController!.navigationBar.backgroundColor = UIColor.redColor()
-		self.view.addSubview((self.navController?.view)!)
+		let tap = UITapGestureRecognizer.init(target: self, action: #selector(SearchBattleViewController.tap))
+		tap.numberOfTapsRequired = 1
+		tap.numberOfTouchesRequired = 1
+		self.view.addGestureRecognizer(tap)
     }
 
-	func didTouchTableViewController(didTouch: Bool) {
-		if (didTouch) {
-			self.navController!.view.frame = CGRectMake(0, navControllerYPos - 200, self.view.frame.size.width, navControllerHeight - 50)
-		}
+	func tap() {
+		let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
+		let searchLocationVC = storyboard.instantiateViewControllerWithIdentifier("SearchLocationViewController") as? SearchLocationViewController
+		let navController = UINavigationController.init(rootViewController: searchLocationVC!)
+		searchLocationVC?.delegate = self
+		
+		self.presentViewController(navController, animated: true, completion: nil)
+	}
+	
+	func sendNavigationImage(didSelectBattle: Bool) {
+		self.mapImageView.image = UIImage.init(named: "navigation")
 	}
 
     override func didReceiveMemoryWarning() {

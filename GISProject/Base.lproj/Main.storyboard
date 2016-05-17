@@ -150,31 +150,6 @@
             </objects>
             <point key="canvasLocation" x="130" y="1003"/>
         </scene>
-        <!--Select available battles-->
-        <scene sceneID="Vo5-Di-iVk">
-            <objects>
-                <tableViewController storyboardIdentifier="SearchLocation" id="BTk-2C-boQ" customClass="SearchLocationTableViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2Is-2T-ebT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="tzi-tm-txX">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tzi-tm-txX" id="nwd-tf-Q63">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Select available battles" id="ynu-WT-qBd"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bht-iP-jgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2476" y="1267"/>
-        </scene>
         <!--Item-->
         <scene sceneID="g55-YG-DHu">
             <objects>
@@ -187,10 +162,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hw-un-gnE">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9hw-un-gnE">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="525"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="you are here" translatesAutoresizingMaskIntoConstraints="NO" id="g9C-XQ-tBW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9C-XQ-tBW">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="517"/>
                                     </imageView>
                                 </subviews>
@@ -217,7 +192,65 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6FO-p5-0ib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1515" y="1267"/>
+            <point key="canvasLocation" x="682" y="1397"/>
+        </scene>
+        <!--Available battle locations-->
+        <scene sceneID="TbJ-XD-vZS">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GDG-e0-s79" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="SearchLocationViewController" id="xqN-Zw-zHD" customClass="SearchLocationViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L2v-3G-0cp"/>
+                        <viewControllerLayoutGuide type="bottom" id="oxN-Oh-Nxi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jau-u0-OCu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pnm-1d-S5H">
+                                <rect key="frame" x="0.0" y="64" width="320" height="204"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W0k-Tg-nsD">
+                                <rect key="frame" x="0.0" y="268" width="320" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="CnM-Aa-R7l">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CnM-Aa-R7l" id="TNJ-SF-lus">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oxN-Oh-Nxi" firstAttribute="top" secondItem="W0k-Tg-nsD" secondAttribute="bottom" id="GA3-pA-7i4"/>
+                            <constraint firstItem="Pnm-1d-S5H" firstAttribute="width" secondItem="Jau-u0-OCu" secondAttribute="width" id="isp-xD-I0c"/>
+                            <constraint firstItem="W0k-Tg-nsD" firstAttribute="width" secondItem="Jau-u0-OCu" secondAttribute="width" id="olr-fm-H2i"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Available battle locations" id="edf-Oo-HSj">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="7oi-dy-YQ9">
+                            <connections>
+                                <action selector="closeViewController" destination="xqN-Zw-zHD" id="hyO-H4-XU6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Go" id="RwG-lk-WGh">
+                            <connections>
+                                <action selector="startNavigating" destination="xqN-Zw-zHD" id="XJy-5V-HqC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapImageView" destination="Pnm-1d-S5H" id="GdF-1q-a13"/>
+                        <outlet property="tableView" destination="W0k-Tg-nsD" id="p2q-WZ-ouY"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1598" y="1429"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="6q2-45-hOS">
@@ -300,25 +333,22 @@
             <point key="canvasLocation" x="1222" y="-34"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="wh7-uf-shA">
+        <scene sceneID="RHd-tb-rRl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qAo-H3-vI5" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eEb-ic-Qv3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HQG-xb-GmW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vEY-DV-sfc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BTk-2C-boQ" kind="relationship" relationship="rootViewController" id="ErA-IE-GL5"/>
+                        <segue destination="xqN-Zw-zHD" kind="relationship" relationship="rootViewController" id="u65-zQ-08s"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bk7-tn-qpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ufG-Q1-4ZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1944" y="1267"/>
+            <point key="canvasLocation" x="1136" y="1429"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="you are here" width="528" height="635"/>
-    </resources>
 </document>
