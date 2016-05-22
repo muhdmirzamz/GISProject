@@ -8,48 +8,62 @@
 
 import UIKit
 
-class SearchBattleViewController: UIViewController, searchLocationProtocol {
-
-	@IBOutlet var mapImageView: UIImageView!
+class SearchBattleViewController: UIViewController, searchLocation {
+	
+	@IBOutlet var cancelButton: UIBarButtonItem!
+	@IBOutlet var searchBattleButton: UIBarButtonItem!
+	@IBOutlet var imageView: UIImageView!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.mapImageView.image = UIImage.init(named: "you are here")
+		self.imageView.image = UIImage.init(named: "you are here")
 		
-		let tap = UITapGestureRecognizer.init(target: self, action: #selector(SearchBattleViewController.tap))
-		tap.numberOfTapsRequired = 1
-		tap.numberOfTouchesRequired = 1
-		self.view.addGestureRecognizer(tap)
-    }
+		self.navigationItem.leftBarButtonItems?.removeAll()
+	}
 
-	func tap() {
-		let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
-		let searchLocationVC = storyboard.instantiateViewControllerWithIdentifier("SearchLocationViewController") as? SearchLocationViewController
-		let navController = UINavigationController.init(rootViewController: searchLocationVC!)
-		searchLocationVC?.delegate = self
+	func changeToCurrentLocationImage() {
+		self.imageView.image = UIImage.init(named: "you are here")
 		
-		self.presentViewController(navController, animated: true, completion: nil)
+		let searchBattleButton = UIBarButtonItem.init(title: "See available battles", style: .Plain, target: self, action: #selector(SearchBattleViewController.goToLocationSearch))
+		self.navigationItem.rightBarButtonItem = searchBattleButton
+		
+		self.navigationItem.leftBarButtonItems?.removeAll()
+	}
+
+	func changeToNavigationImage() {
+		self.imageView.image = UIImage.init(named: "navigation")
+		
+		let cancelButton = UIBarButtonItem.init(title: "Cancel", style: .Plain, target: self, action: #selector(SearchBattleViewController.cancelNavigation))
+		self.navigationItem.leftBarButtonItem = cancelButton
+		
+		self.navigationItem.rightBarButtonItems?.removeAll()
 	}
 	
-	func sendNavigationImage(didSelectBattle: Bool) {
-		self.mapImageView.image = UIImage.init(named: "navigation")
+	func goToLocationSearch() {
+		self.performSegueWithIdentifier("locationSegue", sender: self)
+	}
+	
+	func cancelNavigation() {
+		self.changeToCurrentLocationImage()
+	}
+	
+	func startBattle() {
+		
 	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
+	
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+		if segue.identifier == "locationSegue" {
+			let navController = segue.destinationViewController as? UINavigationController
+			let searchLocationVC = navController?.topViewController as? SearchLocationViewController
+			searchLocationVC?.delegate = self
+		}
     }
-    */
 
 }
