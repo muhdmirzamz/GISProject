@@ -14,6 +14,17 @@ class BattleViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+		
+		let alert = UIAlertController.init(title: "Battle", message: "Battle over!", preferredStyle: .Alert)
+		let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (action: UIAlertAction) in
+			let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
+			let battleVC = storyboard.instantiateViewControllerWithIdentifier("BattleSummaryViewController")
+			
+			self.navigationController?.pushViewController(battleVC, animated: true)
+		}
+		alert.addAction(okAction)
+		
+		self.presentViewController(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -16,12 +16,18 @@
 		AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB581CE3613900F8BA43 /* Main.storyboard */; };
 		AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */; };
 		AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */; };
+		AA7815B11CF29D35003F947F /* BattleSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7815B01CF29D35003F947F /* BattleSummaryViewController.swift */; };
+		AA83D5821CF30B3E00D52F7C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */; };
 		AADC51CE1CF0DA7D0021BCFB /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADC51CD1CF0DA7D0021BCFB /* BattleViewController.swift */; };
+		D4A07F8CD0E5ECB803F63164 /* Pods_GISProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		027CAAD9DE2DC497261DB2FE /* Pods-GISProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.release.xcconfig"; sourceTree = "<group>"; };
+		0B061A809F4C2DBC68A79C9D /* Pods-GISProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.debug.xcconfig"; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
+		8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA130BFA1CE6D6BD003D0E6A /* SearchBattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBattleViewController.swift; sourceTree = "<group>"; };
 		AA130BFE1CE6DE31003D0E6A /* SearchLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		AA22DB511CE3613700F8BA43 /* GISProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GISProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,6 +37,8 @@
 		AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA22DB5E1CE3613900F8BA43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA22DB601CE3613900F8BA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA7815B01CF29D35003F947F /* BattleSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleSummaryViewController.swift; sourceTree = "<group>"; };
+		AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AADC51CD1CF0DA7D0021BCFB /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,17 +47,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A07F8CD0E5ECB803F63164 /* Pods_GISProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B6DD61972A537B4D2EB59FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AA22DB481CE3613600F8BA43 = {
 			isa = PBXGroup;
 			children = (
 				AA22DB531CE3613800F8BA43 /* GISProject */,
 				AA22DB521CE3613700F8BA43 /* Products */,
+				DD14F4F594CA50E6DBBC665C /* Pods */,
+				6B6DD61972A537B4D2EB59FF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,11 +83,13 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
+				AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
 				AA130BFA1CE6D6BD003D0E6A /* SearchBattleViewController.swift */,
 				AA130BFE1CE6DE31003D0E6A /* SearchLocationViewController.swift */,
 				AADC51CD1CF0DA7D0021BCFB /* BattleViewController.swift */,
+				AA7815B01CF29D35003F947F /* BattleSummaryViewController.swift */,
 				AA22DB581CE3613900F8BA43 /* Main.storyboard */,
 				AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */,
 				AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */,
@@ -79,6 +100,15 @@
 			path = GISProject;
 			sourceTree = "<group>";
 		};
+		DD14F4F594CA50E6DBBC665C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B061A809F4C2DBC68A79C9D /* Pods-GISProject.debug.xcconfig */,
+				027CAAD9DE2DC497261DB2FE /* Pods-GISProject.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +116,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA22DB631CE3613900F8BA43 /* Build configuration list for PBXNativeTarget "GISProject" */;
 			buildPhases = (
+				E425E6ABC80EF399CE7B013A /* 📦 Check Pods Manifest.lock */,
 				AA22DB4D1CE3613700F8BA43 /* Sources */,
 				AA22DB4E1CE3613700F8BA43 /* Frameworks */,
 				AA22DB4F1CE3613700F8BA43 /* Resources */,
+				8EDAA5DE36FBE0AF66966F43 /* 📦 Embed Pods Frameworks */,
+				A67C6F66058D5637EA2F85D0 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -139,12 +172,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
+				AA83D5821CF30B3E00D52F7C /* GoogleService-Info.plist in Resources */,
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8EDAA5DE36FBE0AF66966F43 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GISProject/Pods-GISProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A67C6F66058D5637EA2F85D0 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GISProject/Pods-GISProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E425E6ABC80EF399CE7B013A /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA22DB4D1CE3613700F8BA43 /* Sources */ = {
@@ -158,6 +240,7 @@
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* SearchBattleViewController.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
+				AA7815B11CF29D35003F947F /* BattleSummaryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,24 +353,26 @@
 		};
 		AA22DB641CE3613900F8BA43 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B061A809F4C2DBC68A79C9D /* Pods-GISProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = GISProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.nyp.GISProject;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		AA22DB651CE3613900F8BA43 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 027CAAD9DE2DC497261DB2FE /* Pods-GISProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = GISProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.nyp.GISProject;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

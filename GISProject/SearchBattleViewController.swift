@@ -38,6 +38,19 @@ class SearchBattleViewController: UIViewController, searchLocation {
 		self.navigationItem.leftBarButtonItem = cancelButton
 		
 		self.navigationItem.rightBarButtonItems?.removeAll()
+		
+		let alert = UIAlertController.init(title: "Battle", message: "Start battle?", preferredStyle: .Alert)
+		let noAction = UIAlertAction.init(title: "No", style: .Default, handler: nil)
+		let yesAction = UIAlertAction.init(title: "Yes", style: .Default) { (action: UIAlertAction) in
+			let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
+			let battleVC = storyboard.instantiateViewControllerWithIdentifier("BattleViewController")
+		
+			self.navigationController?.pushViewController(battleVC, animated: true)
+		}
+		alert.addAction(noAction)
+		alert.addAction(yesAction)
+		
+		self.presentViewController(alert, animated: true, completion: nil)
 	}
 	
 	func goToLocationSearch() {
