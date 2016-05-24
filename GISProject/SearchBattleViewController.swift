@@ -43,9 +43,9 @@ class SearchBattleViewController: UIViewController, searchLocation {
 		let noAction = UIAlertAction.init(title: "No", style: .Default, handler: nil)
 		let yesAction = UIAlertAction.init(title: "Yes", style: .Default) { (action: UIAlertAction) in
 			let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
-			let battleVC = storyboard.instantiateViewControllerWithIdentifier("BattleViewController")
+			let battleVC = storyboard.instantiateViewControllerWithIdentifier("JoinBattleViewController")
 		
-			self.navigationController?.pushViewController(battleVC, animated: true)
+			self.presentViewController(battleVC, animated: true, completion: nil)
 		}
 		alert.addAction(noAction)
 		alert.addAction(yesAction)
@@ -59,10 +59,6 @@ class SearchBattleViewController: UIViewController, searchLocation {
 	
 	func cancelNavigation() {
 		self.changeToCurrentLocationImage()
-	}
-	
-	func startBattle() {
-		
 	}
 
     override func didReceiveMemoryWarning() {
