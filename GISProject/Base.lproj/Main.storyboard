@@ -178,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="1214" y="624"/>
         </scene>
-        <!--Search Battle View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="g55-YG-DHu">
             <objects>
-                <viewController id="nVO-O5-cgz" customClass="SearchBattleViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nVO-O5-cgz" customClass="MapViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ko4-Rw-jMn"/>
                         <viewControllerLayoutGuide type="bottom" id="gnC-1z-JuV"/>
@@ -190,92 +190,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="you are here" translatesAutoresizingMaskIntoConstraints="NO" id="6T4-eu-YNM">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fgg-9e-RgV">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                            </imageView>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6T4-eu-YNM" firstAttribute="width" secondItem="Msj-jN-wd3" secondAttribute="width" id="J7P-Je-Q3Z"/>
+                            <constraint firstItem="Fgg-9e-RgV" firstAttribute="width" secondItem="Msj-jN-wd3" secondAttribute="width" id="DUi-bU-QkO"/>
+                            <constraint firstItem="gnC-1z-JuV" firstAttribute="top" secondItem="Fgg-9e-RgV" secondAttribute="bottom" id="dxD-bb-Dgm"/>
+                            <constraint firstItem="Fgg-9e-RgV" firstAttribute="top" secondItem="ko4-Rw-jMn" secondAttribute="bottom" id="tXZ-hr-tMz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8xR-QF-jex">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="50q-ds-T01"/>
-                        <barButtonItem key="rightBarButtonItem" title="See available battles" id="APe-R5-Anp">
-                            <connections>
-                                <segue destination="sbV-VS-ohf" kind="modal" identifier="locationSegue" id="VSd-go-a8Z"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="50q-ds-T01" id="4Bg-uX-FRV"/>
-                        <outlet property="imageView" destination="6T4-eu-YNM" id="FUK-PH-oFn"/>
-                        <outlet property="searchBattleButton" destination="APe-R5-Anp" id="K80-R3-Nck"/>
+                        <outlet property="map" destination="Fgg-9e-RgV" id="gyp-B6-kZl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6FO-p5-0ib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1214" y="1397"/>
-        </scene>
-        <!--Available battle locations-->
-        <scene sceneID="TbJ-XD-vZS">
-            <objects>
-                <viewController storyboardIdentifier="SearchLocationViewController" id="xqN-Zw-zHD" customClass="SearchLocationViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="L2v-3G-0cp"/>
-                        <viewControllerLayoutGuide type="bottom" id="oxN-Oh-Nxi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Jau-u0-OCu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pnm-1d-S5H">
-                                <rect key="frame" x="0.0" y="64" width="320" height="204"/>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W0k-Tg-nsD">
-                                <rect key="frame" x="0.0" y="268" width="320" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="CnM-Aa-R7l">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CnM-Aa-R7l" id="TNJ-SF-lus">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="oxN-Oh-Nxi" firstAttribute="top" secondItem="W0k-Tg-nsD" secondAttribute="bottom" id="GA3-pA-7i4"/>
-                            <constraint firstItem="Pnm-1d-S5H" firstAttribute="width" secondItem="Jau-u0-OCu" secondAttribute="width" id="isp-xD-I0c"/>
-                            <constraint firstItem="W0k-Tg-nsD" firstAttribute="width" secondItem="Jau-u0-OCu" secondAttribute="width" id="olr-fm-H2i"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Available battle locations" id="edf-Oo-HSj">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5S3-fD-Dls">
-                            <connections>
-                                <action selector="close" destination="xqN-Zw-zHD" id="eaH-qh-kZq"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Go" id="RwG-lk-WGh">
-                            <connections>
-                                <action selector="goToNavigation" destination="xqN-Zw-zHD" id="xY8-HO-ADW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="mapImageView" destination="Pnm-1d-S5H" id="GdF-1q-a13"/>
-                        <outlet property="tableView" destination="W0k-Tg-nsD" id="p2q-WZ-ouY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GDG-e0-s79" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1746" y="2155"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zaV-ny-uWh">
@@ -334,24 +270,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAD-dw-ub0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="682" y="1397"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="bMb-Gx-YRF">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sbV-VS-ohf" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pdd-f4-0UL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xqN-Zw-zHD" kind="relationship" relationship="rootViewController" id="DdX-V8-XGo"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kxp-QE-KGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1214" y="2155"/>
         </scene>
         <!--Join Battle View Controller-->
         <scene sceneID="cqS-KG-MMc">
@@ -561,6 +479,5 @@
         <image name="cancel" width="48" height="48"/>
         <image name="code" width="345" height="345"/>
         <image name="monster" width="178" height="178"/>
-        <image name="you are here" width="528" height="635"/>
     </resources>
 </document>

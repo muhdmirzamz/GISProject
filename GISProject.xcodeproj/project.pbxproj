@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
 		6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */; };
-		AA130BFB1CE6D6BD003D0E6A /* SearchBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFA1CE6D6BD003D0E6A /* SearchBattleViewController.swift */; };
-		AA130BFF1CE6DE31003D0E6A /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFE1CE6DE31003D0E6A /* SearchLocationViewController.swift */; };
+		AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */; };
 		AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB541CE3613800F8BA43 /* AppDelegate.swift */; };
 		AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB561CE3613800F8BA43 /* ViewController.swift */; };
 		AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB581CE3613900F8BA43 /* Main.storyboard */; };
@@ -20,6 +19,7 @@
 		AA83D5821CF30B3E00D52F7C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */; };
 		AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */; };
 		AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADEFED21CF4862800CB2E85 /* BattleViewController.swift */; };
+		AAE017D21CFA9ADB00F74A50 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE017D11CFA9ADB00F74A50 /* MapAnnotation.swift */; };
 		D4A07F8CD0E5ECB803F63164 /* Pods_GISProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,8 +29,7 @@
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA130BFA1CE6D6BD003D0E6A /* SearchBattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBattleViewController.swift; sourceTree = "<group>"; };
-		AA130BFE1CE6DE31003D0E6A /* SearchLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
+		AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AA22DB511CE3613700F8BA43 /* GISProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GISProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA22DB541CE3613800F8BA43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA22DB561CE3613800F8BA43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +41,7 @@
 		AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinBattleViewController.swift; sourceTree = "<group>"; };
 		AADEFED21CF4862800CB2E85 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
+		AAE017D11CFA9ADB00F74A50 /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +89,8 @@
 				AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
-				AA130BFA1CE6D6BD003D0E6A /* SearchBattleViewController.swift */,
-				AA130BFE1CE6DE31003D0E6A /* SearchLocationViewController.swift */,
+				AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */,
+				AAE017D11CFA9ADB00F74A50 /* MapAnnotation.swift */,
 				AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */,
 				AADEFED21CF4862800CB2E85 /* BattleViewController.swift */,
 				AA22DB581CE3613900F8BA43 /* Main.storyboard */,
@@ -238,10 +238,10 @@
 			files = (
 				6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */,
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
-				AA130BFF1CE6DE31003D0E6A /* SearchLocationViewController.swift in Sources */,
+				AAE017D21CFA9ADB00F74A50 /* MapAnnotation.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
-				AA130BFB1CE6D6BD003D0E6A /* SearchBattleViewController.swift in Sources */,
+				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
 				AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
 				AA7D197E1CF33B3F001F4618 /* TestViewController.swift in Sources */,
