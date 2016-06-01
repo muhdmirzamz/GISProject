@@ -178,7 +178,7 @@
             </objects>
             <point key="canvasLocation" x="1214" y="624"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Item-->
         <scene sceneID="g55-YG-DHu">
             <objects>
                 <viewController id="nVO-O5-cgz" customClass="MapViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -191,16 +191,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fgg-9e-RgV">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Fgg-9e-RgV" firstAttribute="width" secondItem="Msj-jN-wd3" secondAttribute="width" id="DUi-bU-QkO"/>
-                            <constraint firstItem="gnC-1z-JuV" firstAttribute="top" secondItem="Fgg-9e-RgV" secondAttribute="bottom" id="dxD-bb-Dgm"/>
-                            <constraint firstItem="Fgg-9e-RgV" firstAttribute="top" secondItem="ko4-Rw-jMn" secondAttribute="bottom" id="tXZ-hr-tMz"/>
+                            <constraint firstItem="gnC-1z-JuV" firstAttribute="top" secondItem="Fgg-9e-RgV" secondAttribute="bottom" id="FeN-81-YXD"/>
+                            <constraint firstItem="Fgg-9e-RgV" firstAttribute="top" secondItem="ko4-Rw-jMn" secondAttribute="bottom" constant="-20" id="ONL-Lf-cWk"/>
+                            <constraint firstItem="Fgg-9e-RgV" firstAttribute="width" secondItem="Msj-jN-wd3" secondAttribute="width" id="PsF-hk-xhB"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="rBM-9S-BaK"/>
                     <navigationItem key="navigationItem" id="8xR-QF-jex">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="50q-ds-T01"/>
                     </navigationItem>
@@ -211,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6FO-p5-0ib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1214" y="1397"/>
+            <point key="canvasLocation" x="682" y="1480"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zaV-ny-uWh">
@@ -226,7 +227,7 @@
                         <segue destination="ZFk-my-FLp" kind="relationship" relationship="viewControllers" id="ICp-eS-du4"/>
                         <segue destination="awS-or-eLU" kind="relationship" relationship="viewControllers" id="kdr-xY-S3U"/>
                         <segue destination="65a-Qt-GNg" kind="relationship" relationship="viewControllers" id="epl-kc-Te2"/>
-                        <segue destination="GtT-Nv-6vk" kind="relationship" relationship="viewControllers" id="Cjc-AT-TY8"/>
+                        <segue destination="nVO-O5-cgz" kind="relationship" relationship="viewControllers" id="QF4-bk-ygt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9P-mb-g0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -251,25 +252,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhO-S8-tfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1214" y="-755"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="OMa-wB-4Nr">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GtT-Nv-6vk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="YR3-0A-aIg"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ste-tK-7Te">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="nVO-O5-cgz" kind="relationship" relationship="rootViewController" id="MYW-Yd-Ccn"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VAD-dw-ub0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="682" y="1397"/>
         </scene>
         <!--Join Battle View Controller-->
         <scene sceneID="cqS-KG-MMc">
@@ -347,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpJ-6N-gw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="1415"/>
+            <point key="canvasLocation" x="1170" y="1480"/>
         </scene>
         <!--Battle View Controller-->
         <scene sceneID="qZi-Vf-6m8">
@@ -430,7 +412,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agC-Sn-Pmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2299" y="1425"/>
+            <point key="canvasLocation" x="1599" y="1480"/>
         </scene>
         <!--Item-->
         <scene sceneID="x6h-y1-xVm">
