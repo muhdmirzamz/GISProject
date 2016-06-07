@@ -6,7 +6,7 @@ target 'GISProject' do
   use_frameworks!
 
   # Pods for GISProject
-  pod 'Firebase'
+  pod 'Firebase/Auth'
   pod 'Alamofire'
 
 end

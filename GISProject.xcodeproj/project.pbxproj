@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */; };
+		6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */; };
+		6D5EF7D01D06CD3F00520CD9 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */; };
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
 		6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */; };
+		6D8CEC871D06D0D8005F9235 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D8CEC861D06D0D8005F9235 /* GoogleService-Info.plist */; };
 		AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */; };
 		AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB541CE3613800F8BA43 /* AppDelegate.swift */; };
 		AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB561CE3613800F8BA43 /* ViewController.swift */; };
@@ -16,7 +20,6 @@
 		AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */; };
 		AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */; };
 		AA7D197E1CF33B3F001F4618 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D197D1CF33B3F001F4618 /* TestViewController.swift */; };
-		AA83D5821CF30B3E00D52F7C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */; };
 		AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AA001CFF137F00D7FBD0 /* LocationModel.swift */; };
 		AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */; };
 		AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADEFED21CF4862800CB2E85 /* BattleViewController.swift */; };
@@ -27,8 +30,12 @@
 /* Begin PBXFileReference section */
 		027CAAD9DE2DC497261DB2FE /* Pods-GISProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.release.xcconfig"; sourceTree = "<group>"; };
 		0B061A809F4C2DBC68A79C9D /* Pods-GISProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.debug.xcconfig"; sourceTree = "<group>"; };
+		6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
+		6D8CEC861D06D0D8005F9235 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AA22DB511CE3613700F8BA43 /* GISProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GISProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +94,10 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
+				6D8CEC861D06D0D8005F9235 /* GoogleService-Info.plist */,
+				6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */,
+				6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */,
+				6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */,
 				AA7D197D1CF33B3F001F4618 /* TestViewController.swift */,
 				AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
@@ -177,8 +188,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D8CEC871D06D0D8005F9235 /* GoogleService-Info.plist in Resources */,
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
-				AA83D5821CF30B3E00D52F7C /* GoogleService-Info.plist in Resources */,
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
 			);
@@ -241,14 +252,17 @@
 			files = (
 				6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */,
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
+				6D5EF7D01D06CD3F00520CD9 /* DatabaseManager.swift in Sources */,
 				AAE017D21CFA9ADB00F74A50 /* Location.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
+				6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */,
 				AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
 				AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */,
 				AA7D197E1CF33B3F001F4618 /* TestViewController.swift in Sources */,
+				6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
