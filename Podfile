@@ -7,6 +7,6 @@ target 'GISProject' do
 
   # Pods for GISProject
   pod 'Firebase'
-  pod 'Firebase/Database'
+  pod 'Alamofire'
 
 end

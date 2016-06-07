@@ -7,41 +7,102 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2AE0ADF9EBA6EA4E109CC782F45B5EDD /* Pods-GISProject-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B21D819DE249E36CBC67AC0A30B95B47 /* Pods-GISProject-dummy.m */; };
-		D5AD25EF1354C81D9E20EBC028BBF7DF /* Pods-GISProject-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AD0F7F41399E92AF95E8B03F6E19A52B /* Pods-GISProject-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FC9C00EE872092E25C71272503D1B2E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		095406039B4D371E48D08B38A2975AC8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7A1B7AEF2BCB142ABC620F98067C8 /* Error.swift */; };
+		16102E4E35FAA0FC4161282FECE56469 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1E16DA5381DC3434029F4F3E7E57D5 /* Timeline.swift */; };
+		2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1277E50D2EDB152DB37C98D0432D5 /* Validation.swift */; };
+		34CCDCA848A701466256BC2927DA8856 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3864898035617065ED475F9EA247EA0 /* NetworkReachabilityManager.swift */; };
+		3EA8F215C9C1432D74E5CCA4834AA8C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C003543EF1AE0736558D98663ECBA /* ResponseSerialization.swift */; };
+		4081EA628AF0B73AC51FFB9D7AB3B89E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AF0DB8A2097AF780755364906FFB7F /* Manager.swift */; };
+		5BC19E6E0F199276003F0AF96838BCE5 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D664A621BE6840B470129E5B45201612 /* Upload.swift */; };
+		5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC461C9A4CD5DB1BB139919B758A744B /* Download.swift */; };
+		62E8346F03C03E7F4D631361F325689E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0238E823FA3694101C3FA39308B5148 /* Response.swift */; };
+		7B48852C4D848FA2DA416A98F6425869 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A034C33232C451B07382F42729BE789 /* ServerTrustPolicy.swift */; };
+		8EB11202167FCDDF1257AAAB1D1FB244 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A86A1C89372FCC59B8D4D120179E6 /* Alamofire.swift */; };
+		91C09AC2A52ED69A27C8D923139A006F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		9469DF81ECB494E84675969B5E13374C /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FA0D0C8117627EBA183FC46F94AE7F5 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D053B0176B35711284D5D41168DCAC /* Result.swift */; };
+		ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 302342AA1EC5E74D00F66343466BB7FF /* Alamofire-dummy.m */; };
+		AE4CF87C02C042DF13ED5B21C4FDC1E0 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870CAED5CF0E2A3B228E67EE62CE0515 /* Stream.swift */; };
+		B3B11D8E3E7CECE4F8B5421F74CE6FE2 /* Pods-GISProject-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AD0F7F41399E92AF95E8B03F6E19A52B /* Pods-GISProject-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B92798903A89DBFE8280E07C8354A083 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		BE41196F6A3903E59C3306FE3F8B43FE /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B77DDD8E078E489FEF656266F74A60F /* Notifications.swift */; };
+		C0DB70AB368765DC64BFB5FEA75E0696 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4826A9FF3CC4E3CC9498971CD4648 /* ParameterEncoding.swift */; };
+		C7B6DD7C0456C50289A2C381DFE9FA3F /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093D454046D3E5117118D925618CBFB7 /* MultipartFormData.swift */; };
+		EFE92E8D3813DD26E78E93EEAF6D7E7E /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5A8160F9E65B80EAD8109AF0DAE719 /* Request.swift */; };
+		FBBB2CDCA9BC972C1C9C16D26E5D7193 /* Pods-GISProject-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B21D819DE249E36CBC67AC0A30B95B47 /* Pods-GISProject-dummy.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		33C6758FD07729DB73B66919EAEED9AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79C040AFDDCE1BCBF6D8B5EB0B85887F;
+			remoteInfo = Alamofire;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		000B1A5FDA676898B9F5802B3355FEC8 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		014C003543EF1AE0736558D98663ECBA /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		07AAAD67C31B72D2BB22B75277AAA821 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Headers/Firebase.h; sourceTree = "<group>"; };
+		093D454046D3E5117118D925618CBFB7 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		0A034C33232C451B07382F42729BE789 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		0F267BD45F096A31CA10DFA6A0E537F6 /* Pods-GISProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GISProject.debug.xcconfig"; sourceTree = "<group>"; };
-		173BE3D5E7FD6884B2A5AF3236974771 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		169B82202C197D459CFE505043E09B1C /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		16FE80419C5C45F8050C9071CEFA1517 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
 		19CFE2969A0E574BE4F348075BF9AB8A /* Pods-GISProject.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-GISProject.modulemap"; sourceTree = "<group>"; };
+		1A74AD083C33B26193E9F8EA73878A64 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CB3C73A80F5D53671C45206F0032A24 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		302342AA1EC5E74D00F66343466BB7FF /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		39597E854B1EC48E3A4AFC5C5F0A6240 /* Pods-GISProject-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GISProject-frameworks.sh"; sourceTree = "<group>"; };
+		3D767C41CE93ADDD63A7EEEBCAE85765 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		3F1E16DA5381DC3434029F4F3E7E57D5 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		4AB7EE86BADE486A8D58E50BB726829F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CEDB9B31087D35711D648B9297551AF /* Pods-GISProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GISProject.release.xcconfig"; sourceTree = "<group>"; };
+		520EDC282C57CF9C3A407493920D913B /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
+		62B2A6CDC3FEBBC4DB7D8DA6A8513696 /* Pods_GISProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B77DDD8E078E489FEF656266F74A60F /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
+		6D406BB3D8C065D5AA6C9073C075F73A /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		6FA0D0C8117627EBA183FC46F94AE7F5 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		7225BD5B274FDEF75A08600A9C3EB2FD /* Pods-GISProject-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GISProject-acknowledgements.plist"; sourceTree = "<group>"; };
-		7BDBAD55E1A2761466841D5CE7EB5F11 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		739188B06DAF4C78A29273B290E0A45E /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		870CAED5CF0E2A3B228E67EE62CE0515 /* Stream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Source/Stream.swift; sourceTree = "<group>"; };
 		880580834D86D7AF75B42969345B6FFA /* Pods-GISProject-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GISProject-acknowledgements.markdown"; sourceTree = "<group>"; };
-		91BB9F3C4A33A191013B93DA921EF664 /* Pods_GISProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9EC2A979829F26A198D3459B48C5996B /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
-		A5741189EF84E5DE25E60A0E56BCF13F /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
+		95D053B0176B35711284D5D41168DCAC /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		9BC7A1B7AEF2BCB142ABC620F98067C8 /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
+		A3864898035617065ED475F9EA247EA0 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		A8A8424888BF5E4F41294F7C246D9073 /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		ABE1277E50D2EDB152DB37C98D0432D5 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		AC461C9A4CD5DB1BB139919B758A744B /* Download.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Source/Download.swift; sourceTree = "<group>"; };
 		AD0F7F41399E92AF95E8B03F6E19A52B /* Pods-GISProject-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GISProject-umbrella.h"; sourceTree = "<group>"; };
-		B20CBCA1505CBB0552A608007AD23A99 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = Frameworks/FirebaseDatabase.framework; sourceTree = "<group>"; };
+		AF102D71D2A53E7EE80F3BCA6EAF3840 /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Headers/Public/FIRInstanceID.h; sourceTree = "<group>"; };
 		B21D819DE249E36CBC67AC0A30B95B47 /* Pods-GISProject-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GISProject-dummy.m"; sourceTree = "<group>"; };
-		C3AA50E3FDE7B324B387837899C4C477 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Headers/Firebase.h; sourceTree = "<group>"; };
+		B66A86A1C89372FCC59B8D4D120179E6 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		C9A5E53CD67797B26607ABF4F8FF8111 /* Pods-GISProject-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GISProject-resources.sh"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D827FABFB248142840BCA00033329D89 /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Headers/Public/FIRInstanceID.h; sourceTree = "<group>"; };
+		D664A621BE6840B470129E5B45201612 /* Upload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Upload.swift; path = Source/Upload.swift; sourceTree = "<group>"; };
+		EAD4826A9FF3CC4E3CC9498971CD4648 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		EDE0723431E2BE18235D1B74E28EB610 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		EE5A8160F9E65B80EAD8109AF0DAE719 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		F0238E823FA3694101C3FA39308B5148 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		F0AF0DB8A2097AF780755364906FFB7F /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Source/Manager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		24B53343308C29CFD251FD7932495B1A /* Frameworks */ = {
+		B1729F851F648EC60EE93CDB3C8BAEAD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC9C00EE872092E25C71272503D1B2E8 /* Foundation.framework in Frameworks */,
+				91C09AC2A52ED69A27C8D923139A006F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFE25F6AD90A929650DC24B34D8FFBBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B92798903A89DBFE8280E07C8354A083 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,20 +127,35 @@
 			path = "Target Support Files/Pods-GISProject";
 			sourceTree = "<group>";
 		};
-		17F44D02479172F82D13993E1D3145FA /* FirebaseAnalytics */ = {
+		14E2622FC9097072C5F29B1525E3CCC1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				669016A870C13B9B7CA86A585DB3676F /* Frameworks */,
+				4DDACA627304F0B10BE5B3B6789D69A2 /* Alamofire */,
+				DE3E95568AFE89B6A93B44295B16AE2B /* Firebase */,
+				792271CCCD63A20F70539EBA40C3F858 /* FirebaseAnalytics */,
+				F3A32328D05E32017D5B3B158B561323 /* FirebaseInstanceID */,
+				364F786BF3FD7020CBE5538E200A3601 /* GoogleInterchangeUtilities */,
+				7687B2858AE52F527873101D101FD9A9 /* GoogleSymbolUtilities */,
+				91EF6CAFAC9914B48DF81713A7ECC2FF /* GoogleUtilities */,
 			);
-			path = FirebaseAnalytics;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		3715C1FD65FC43924AEE615C9BA949B5 /* Firebase */ = {
+		2F027DBAAD7093E88B2AB8EC17E10740 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				81C9A50E942732A55AAB07567D987531 /* Analytics */,
+				1CB3C73A80F5D53671C45206F0032A24 /* Alamofire.framework */,
+				62B2A6CDC3FEBBC4DB7D8DA6A8513696 /* Pods_GISProject.framework */,
 			);
-			path = Firebase;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		364F786BF3FD7020CBE5538E200A3601 /* GoogleInterchangeUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				BD70ED50F116437B92C31E2B0C844776 /* Frameworks */,
+			);
+			path = GoogleInterchangeUtilities;
 			sourceTree = "<group>";
 		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
@@ -90,6 +166,14 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		4371629B183E78B39C065BA5F340FDF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				520EDC282C57CF9C3A407493920D913B /* GoogleUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		48211883544779FEAFEF2B99BD559A10 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,59 +182,61 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		4A97192267D00D27B6965F755BFF626A /* Frameworks */ = {
+		4DDACA627304F0B10BE5B3B6789D69A2 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				7BDBAD55E1A2761466841D5CE7EB5F11 /* FirebaseInstanceID.framework */,
+				B66A86A1C89372FCC59B8D4D120179E6 /* Alamofire.swift */,
+				AC461C9A4CD5DB1BB139919B758A744B /* Download.swift */,
+				9BC7A1B7AEF2BCB142ABC620F98067C8 /* Error.swift */,
+				F0AF0DB8A2097AF780755364906FFB7F /* Manager.swift */,
+				093D454046D3E5117118D925618CBFB7 /* MultipartFormData.swift */,
+				A3864898035617065ED475F9EA247EA0 /* NetworkReachabilityManager.swift */,
+				6B77DDD8E078E489FEF656266F74A60F /* Notifications.swift */,
+				EAD4826A9FF3CC4E3CC9498971CD4648 /* ParameterEncoding.swift */,
+				EE5A8160F9E65B80EAD8109AF0DAE719 /* Request.swift */,
+				F0238E823FA3694101C3FA39308B5148 /* Response.swift */,
+				014C003543EF1AE0736558D98663ECBA /* ResponseSerialization.swift */,
+				95D053B0176B35711284D5D41168DCAC /* Result.swift */,
+				0A034C33232C451B07382F42729BE789 /* ServerTrustPolicy.swift */,
+				870CAED5CF0E2A3B228E67EE62CE0515 /* Stream.swift */,
+				3F1E16DA5381DC3434029F4F3E7E57D5 /* Timeline.swift */,
+				D664A621BE6840B470129E5B45201612 /* Upload.swift */,
+				ABE1277E50D2EDB152DB37C98D0432D5 /* Validation.swift */,
+				DF9F36132C73606BC19DDF4589B1CF5A /* Support Files */,
+			);
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		6C665FFD2D842742EA1738EC69D376CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D767C41CE93ADDD63A7EEEBCAE85765 /* FirebaseAnalytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		53B766708A83BA1A9712BB209BA238E3 /* Pods */ = {
+		6E03ADAFC81B67B46061F1A3DCFBFA6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3715C1FD65FC43924AEE615C9BA949B5 /* Firebase */,
-				17F44D02479172F82D13993E1D3145FA /* FirebaseAnalytics */,
-				A0312E391FAD27C57573DF24E02718A2 /* FirebaseDatabase */,
-				77A51F94615C587721C6F577BCB4E6E3 /* FirebaseInstanceID */,
-				80EEC67F754484ADF268A0844CB4211B /* GoogleInterchangeUtilities */,
-				B5741D6B1D1895BF37B98C326875D222 /* GoogleSymbolUtilities */,
-				7B45E2FBFA12606E601C184142189D7F /* GoogleUtilities */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		5B744589EB306B5B04C2178D4790756A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9EC2A979829F26A198D3459B48C5996B /* GoogleInterchangeUtilities.framework */,
+				739188B06DAF4C78A29273B290E0A45E /* GoogleSymbolUtilities.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		669016A870C13B9B7CA86A585DB3676F /* Frameworks */ = {
+		7687B2858AE52F527873101D101FD9A9 /* GoogleSymbolUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				000B1A5FDA676898B9F5802B3355FEC8 /* FirebaseAnalytics.framework */,
+				6E03ADAFC81B67B46061F1A3DCFBFA6B /* Frameworks */,
 			);
-			name = Frameworks;
+			path = GoogleSymbolUtilities;
 			sourceTree = "<group>";
 		};
-		77A51F94615C587721C6F577BCB4E6E3 /* FirebaseInstanceID */ = {
+		792271CCCD63A20F70539EBA40C3F858 /* FirebaseAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				D827FABFB248142840BCA00033329D89 /* FIRInstanceID.h */,
-				4A97192267D00D27B6965F755BFF626A /* Frameworks */,
+				6C665FFD2D842742EA1738EC69D376CF /* Frameworks */,
 			);
-			path = FirebaseInstanceID;
-			sourceTree = "<group>";
-		};
-		7B45E2FBFA12606E601C184142189D7F /* GoogleUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				90078067A3170139DC228D6ABFD06366 /* Frameworks */,
-			);
-			path = GoogleUtilities;
+			path = FirebaseAnalytics;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -158,58 +244,34 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				53B766708A83BA1A9712BB209BA238E3 /* Pods */,
-				E277EC12DC03F8DA0CD117440B9F58A7 /* Products */,
+				14E2622FC9097072C5F29B1525E3CCC1 /* Pods */,
+				2F027DBAAD7093E88B2AB8EC17E10740 /* Products */,
 				48211883544779FEAFEF2B99BD559A10 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		80EEC67F754484ADF268A0844CB4211B /* GoogleInterchangeUtilities */ = {
+		91EF6CAFAC9914B48DF81713A7ECC2FF /* GoogleUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				5B744589EB306B5B04C2178D4790756A /* Frameworks */,
+				4371629B183E78B39C065BA5F340FDF2 /* Frameworks */,
 			);
-			path = GoogleInterchangeUtilities;
+			path = GoogleUtilities;
 			sourceTree = "<group>";
 		};
-		81C9A50E942732A55AAB07567D987531 /* Analytics */ = {
+		A49D47C5A20C3FA99CFBF30968198272 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				C3AA50E3FDE7B324B387837899C4C477 /* Firebase.h */,
+				07AAAD67C31B72D2BB22B75277AAA821 /* Firebase.h */,
 			);
 			name = Analytics;
 			sourceTree = "<group>";
 		};
-		90078067A3170139DC228D6ABFD06366 /* Frameworks */ = {
+		B2E4947AFCAD1463D0FDDE0FB09AEAD5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A5741189EF84E5DE25E60A0E56BCF13F /* GoogleUtilities.framework */,
+				16FE80419C5C45F8050C9071CEFA1517 /* FirebaseInstanceID.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		949B9CD97B7207991D0232819128CB8F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				173BE3D5E7FD6884B2A5AF3236974771 /* GoogleSymbolUtilities.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A0312E391FAD27C57573DF24E02718A2 /* FirebaseDatabase */ = {
-			isa = PBXGroup;
-			children = (
-				CA0FCDCAC546F682AE5C60F5E9C42055 /* Frameworks */,
-			);
-			path = FirebaseDatabase;
-			sourceTree = "<group>";
-		};
-		B5741D6B1D1895BF37B98C326875D222 /* GoogleSymbolUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				949B9CD97B7207991D0232819128CB8F /* Frameworks */,
-			);
-			path = GoogleSymbolUtilities;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -220,51 +282,100 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CA0FCDCAC546F682AE5C60F5E9C42055 /* Frameworks */ = {
+		BD70ED50F116437B92C31E2B0C844776 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B20CBCA1505CBB0552A608007AD23A99 /* FirebaseDatabase.framework */,
+				A8A8424888BF5E4F41294F7C246D9073 /* GoogleInterchangeUtilities.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E277EC12DC03F8DA0CD117440B9F58A7 /* Products */ = {
+		DE3E95568AFE89B6A93B44295B16AE2B /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				91BB9F3C4A33A191013B93DA921EF664 /* Pods_GISProject.framework */,
+				A49D47C5A20C3FA99CFBF30968198272 /* Analytics */,
 			);
-			name = Products;
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		DF9F36132C73606BC19DDF4589B1CF5A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6D406BB3D8C065D5AA6C9073C075F73A /* Alamofire.modulemap */,
+				EDE0723431E2BE18235D1B74E28EB610 /* Alamofire.xcconfig */,
+				302342AA1EC5E74D00F66343466BB7FF /* Alamofire-dummy.m */,
+				169B82202C197D459CFE505043E09B1C /* Alamofire-prefix.pch */,
+				6FA0D0C8117627EBA183FC46F94AE7F5 /* Alamofire-umbrella.h */,
+				1A74AD083C33B26193E9F8EA73878A64 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
+		F3A32328D05E32017D5B3B158B561323 /* FirebaseInstanceID */ = {
+			isa = PBXGroup;
+			children = (
+				AF102D71D2A53E7EE80F3BCA6EAF3840 /* FIRInstanceID.h */,
+				B2E4947AFCAD1463D0FDDE0FB09AEAD5 /* Frameworks */,
+			);
+			path = FirebaseInstanceID;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		E6AA303BA771A39B5E023EE6636B9645 /* Headers */ = {
+		5BC847C808500942D43F55D9C73828F5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5AD25EF1354C81D9E20EBC028BBF7DF /* Pods-GISProject-umbrella.h in Headers */,
+				B3B11D8E3E7CECE4F8B5421F74CE6FE2 /* Pods-GISProject-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFDF3B631BBB965A372347705CA14854 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9469DF81ECB494E84675969B5E13374C /* Alamofire-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9B3FCCBA82BA60C1A2AE53F32CB8BFC5 /* Pods-GISProject */ = {
+		002390AED64D7B9D252C607F04998CB2 /* Pods-GISProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A486CAC84617CA117D8DB4AF74A3DBEF /* Build configuration list for PBXNativeTarget "Pods-GISProject" */;
+			buildConfigurationList = AF989A973C8E8A6E36441F220C6E1E21 /* Build configuration list for PBXNativeTarget "Pods-GISProject" */;
 			buildPhases = (
-				F56771C76A2386612250E7B2BE32A9A4 /* Sources */,
-				24B53343308C29CFD251FD7932495B1A /* Frameworks */,
-				E6AA303BA771A39B5E023EE6636B9645 /* Headers */,
+				11F32517AD6B15D7C6E0932259B5A0D1 /* Sources */,
+				EFE25F6AD90A929650DC24B34D8FFBBD /* Frameworks */,
+				5BC847C808500942D43F55D9C73828F5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF7FE7D517684B0A89C5CA3942FCB207 /* PBXTargetDependency */,
+			);
+			name = "Pods-GISProject";
+			productName = "Pods-GISProject";
+			productReference = 62B2A6CDC3FEBBC4DB7D8DA6A8513696 /* Pods_GISProject.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CFB42910790CF0BDBCCEBAACD6B9367 /* Build configuration list for PBXNativeTarget "Alamofire" */;
+			buildPhases = (
+				95CC2C7E06DC188A05DAAEE9CAA555A3 /* Sources */,
+				B1729F851F648EC60EE93CDB3C8BAEAD /* Frameworks */,
+				EFDF3B631BBB965A372347705CA14854 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-GISProject";
-			productName = "Pods-GISProject";
-			productReference = 91BB9F3C4A33A191013B93DA921EF664 /* Pods_GISProject.framework */;
+			name = Alamofire;
+			productName = Alamofire;
+			productReference = 1CB3C73A80F5D53671C45206F0032A24 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -284,27 +395,91 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = E277EC12DC03F8DA0CD117440B9F58A7 /* Products */;
+			productRefGroup = 2F027DBAAD7093E88B2AB8EC17E10740 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9B3FCCBA82BA60C1A2AE53F32CB8BFC5 /* Pods-GISProject */,
+				79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */,
+				002390AED64D7B9D252C607F04998CB2 /* Pods-GISProject */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F56771C76A2386612250E7B2BE32A9A4 /* Sources */ = {
+		11F32517AD6B15D7C6E0932259B5A0D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AE0ADF9EBA6EA4E109CC782F45B5EDD /* Pods-GISProject-dummy.m in Sources */,
+				FBBB2CDCA9BC972C1C9C16D26E5D7193 /* Pods-GISProject-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95CC2C7E06DC188A05DAAEE9CAA555A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */,
+				8EB11202167FCDDF1257AAAB1D1FB244 /* Alamofire.swift in Sources */,
+				5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */,
+				095406039B4D371E48D08B38A2975AC8 /* Error.swift in Sources */,
+				4081EA628AF0B73AC51FFB9D7AB3B89E /* Manager.swift in Sources */,
+				C7B6DD7C0456C50289A2C381DFE9FA3F /* MultipartFormData.swift in Sources */,
+				34CCDCA848A701466256BC2927DA8856 /* NetworkReachabilityManager.swift in Sources */,
+				BE41196F6A3903E59C3306FE3F8B43FE /* Notifications.swift in Sources */,
+				C0DB70AB368765DC64BFB5FEA75E0696 /* ParameterEncoding.swift in Sources */,
+				EFE92E8D3813DD26E78E93EEAF6D7E7E /* Request.swift in Sources */,
+				62E8346F03C03E7F4D631361F325689E /* Response.swift in Sources */,
+				3EA8F215C9C1432D74E5CCA4834AA8C0 /* ResponseSerialization.swift in Sources */,
+				AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */,
+				7B48852C4D848FA2DA416A98F6425869 /* ServerTrustPolicy.swift in Sources */,
+				AE4CF87C02C042DF13ED5B21C4FDC1E0 /* Stream.swift in Sources */,
+				16102E4E35FAA0FC4161282FECE56469 /* Timeline.swift in Sources */,
+				5BC19E6E0F199276003F0AF96838BCE5 /* Upload.swift in Sources */,
+				2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AF7FE7D517684B0A89C5CA3942FCB207 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */;
+			targetProxy = 33C6758FD07729DB73B66919EAEED9AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		32AD5F8918CA8B349E4671410FA624C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDE0723431E2BE18235D1B74E28EB610 /* Alamofire.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -342,39 +517,6 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
-		};
-		4A3E129AB7043122577FE2E85393C157 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F267BD45F096A31CA10DFA6A0E537F6 /* Pods-GISProject.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GISProject/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GISProject/Pods-GISProject.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_GISProject;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -418,7 +560,71 @@
 			};
 			name = Debug;
 		};
-		F9E3CA9EA20E2E99C50754A1D2AF883F /* Release */ = {
+		75218111E718FACE36F771E8ABECDB62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDE0723431E2BE18235D1B74E28EB610 /* Alamofire.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9412BBC909EBD365C52C845B0960205C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F267BD45F096A31CA10DFA6A0E537F6 /* Pods-GISProject.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-GISProject/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GISProject/Pods-GISProject.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GISProject;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C925FA9431EE3C4F2CF956F965E2FD5C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CEDB9B31087D35711D648B9297551AF /* Pods-GISProject.release.xcconfig */;
 			buildSettings = {
@@ -463,11 +669,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A486CAC84617CA117D8DB4AF74A3DBEF /* Build configuration list for PBXNativeTarget "Pods-GISProject" */ = {
+		3CFB42910790CF0BDBCCEBAACD6B9367 /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4A3E129AB7043122577FE2E85393C157 /* Debug */,
-				F9E3CA9EA20E2E99C50754A1D2AF883F /* Release */,
+				75218111E718FACE36F771E8ABECDB62 /* Debug */,
+				32AD5F8918CA8B349E4671410FA624C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF989A973C8E8A6E36441F220C6E1E21 /* Build configuration list for PBXNativeTarget "Pods-GISProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9412BBC909EBD365C52C845B0960205C /* Debug */,
+				C925FA9431EE3C4F2CF956F965E2FD5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
