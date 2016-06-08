@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class MapViewController: UIViewController, LocationsProtocol {
+class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate {
 	
 	@IBOutlet var cancelButton: UIBarButtonItem!
 	@IBOutlet var map: MKMapView!
@@ -29,39 +29,11 @@ class MapViewController: UIViewController, LocationsProtocol {
 		self.map.mapType = .Standard
 		self.map.zoomEnabled = true
 		self.map.scrollEnabled = true
+		self.map.delegate = self
 		
 		let location = Location()
 		location.delegate = self
 		location.downloadItems()
-		
-//		for i in 0 ..< 10 {
-//			var location = CLLocationCoordinate2D()
-//			
-//			// 1.383884, 103.843563
-//			// 1.376527, 103.850891
-//			
-//			// latitude 1.376527 -- 1.383884
-//			// longitude 103.843563 -- 103.850891
-//			
-//			var random = Double(arc4random()) % 0.007357
-//			let latitudeRange = 1.376527 + random
-//			
-//			random = Double(arc4random()) % 0.007328
-//			let longitudeRange = 103.843563 + random
-//			
-//			location.latitude = latitudeRange
-//			location.longitude = longitudeRange
-//			
-//			let userAnnotation = MapAnnotation.init(coordinate: location, title: "User location", subtitle: "Hello")
-//			userAnnotation
-//			self.map.addAnnotation(userAnnotation)
-//			
-//			locationArr.addObject(userAnnotation)
-//			
-//			print("\(location.latitude)")
-//			print("\(location.longitude)")
-//		}
-		
 	}
 	
 	func itemsDownloaded(items: NSArray) {
@@ -83,6 +55,32 @@ class MapViewController: UIViewController, LocationsProtocol {
 		region.span = span
 		
 		self.map.setRegion(region, animated: true)
+	}
+	
+	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+		if annotation is LocationModel {
+			var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin") as? MKPinAnnotationView
+			
+			if annotationView == nil {
+				annotationView = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "pin")
+				annotationView?.canShowCallout = true
+				annotationView?.pinTintColor = UIColor.redColor()
+				
+				let button = UIButton.init(type: .DetailDisclosure)
+				annotationView?.rightCalloutAccessoryView = button
+			} else {
+				annotationView?.annotation = annotation
+			}
+			
+			return annotationView
+		}
+		
+		return nil
+	}
+	
+	func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+		let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController")
+		self.presentViewController(joinBattleVC, animated: true, completion: nil)
 	}
 	
     override func didReceiveMemoryWarning() {

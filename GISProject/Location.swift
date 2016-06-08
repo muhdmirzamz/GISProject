@@ -69,8 +69,8 @@ class Location: NSObject, NSURLSessionDataDelegate {
 			   let longitude = jsonElement["longitude"] as? String {
 				print("Latitude \(Double(latitude)!)")
 				print("Latitude \(Double(longitude)!)")
-				
-				let location = LocationModel.init(latitude: Double(latitude)!, longitude: Double(longitude)!)
+
+				let location = LocationModel.init(latitude: Double(latitude)!, longitude: Double(longitude)!, title: "Test", subtitle: "This is a test")
 				locations.addObject(location)
 			}
 		}
