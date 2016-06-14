@@ -18,6 +18,7 @@
 		887A4C531D0D74A0000F4FE5 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887A4C521D0D74A0000F4FE5 /* FriendsDetailViewController.swift */; };
 		887A4C571D0D8226000F4FE5 /* FriendsChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887A4C561D0D8226000F4FE5 /* FriendsChatViewController.swift */; };
 		889619951D0B2BB5005FCE7F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889619941D0B2BB5005FCE7F /* FriendsTableViewController.swift */; };
+		88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */; };
 		88F1B1E51D0D6436005AF92F /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1B1E41D0D6436005AF92F /* FriendsCell.swift */; };
 		AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */; };
 		AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB541CE3613800F8BA43 /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		887A4C521D0D74A0000F4FE5 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDetailViewController.swift; sourceTree = "<group>"; };
 		887A4C561D0D8226000F4FE5 /* FriendsChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsChatViewController.swift; sourceTree = "<group>"; };
 		889619941D0B2BB5005FCE7F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88F1B1E41D0D6436005AF92F /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
+				88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */,
 				887A4C501D0D7300000F4FE5 /* Helpers.swift */,
 				6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */,
 				6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */,
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
+				88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */,
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
 			);
