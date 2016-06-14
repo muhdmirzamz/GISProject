@@ -12,7 +12,13 @@
 		6D5EF7D01D06CD3F00520CD9 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */; };
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
 		6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */; };
-		6D8CEC871D06D0D8005F9235 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D8CEC861D06D0D8005F9235 /* GoogleService-Info.plist */; };
+		88350DD21D0D169C00626859 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88350DD11D0D169C00626859 /* Friends.swift */; };
+		88350DD41D0D174B00626859 /* FriendsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88350DD31D0D174B00626859 /* FriendsDataManager.swift */; };
+		887A4C511D0D7300000F4FE5 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887A4C501D0D7300000F4FE5 /* Helpers.swift */; };
+		887A4C531D0D74A0000F4FE5 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887A4C521D0D74A0000F4FE5 /* FriendsDetailViewController.swift */; };
+		887A4C571D0D8226000F4FE5 /* FriendsChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887A4C561D0D8226000F4FE5 /* FriendsChatViewController.swift */; };
+		889619951D0B2BB5005FCE7F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889619941D0B2BB5005FCE7F /* FriendsTableViewController.swift */; };
+		88F1B1E51D0D6436005AF92F /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1B1E41D0D6436005AF92F /* FriendsCell.swift */; };
 		AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */; };
 		AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB541CE3613800F8BA43 /* AppDelegate.swift */; };
 		AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB561CE3613800F8BA43 /* ViewController.swift */; };
@@ -35,7 +41,13 @@
 		6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
-		6D8CEC861D06D0D8005F9235 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		88350DD11D0D169C00626859 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
+		88350DD31D0D174B00626859 /* FriendsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDataManager.swift; sourceTree = "<group>"; };
+		887A4C501D0D7300000F4FE5 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		887A4C521D0D74A0000F4FE5 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDetailViewController.swift; sourceTree = "<group>"; };
+		887A4C561D0D8226000F4FE5 /* FriendsChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsChatViewController.swift; sourceTree = "<group>"; };
+		889619941D0B2BB5005FCE7F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		88F1B1E41D0D6436005AF92F /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AA22DB511CE3613700F8BA43 /* GISProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GISProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,7 +58,6 @@
 		AA22DB5E1CE3613900F8BA43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA22DB601CE3613900F8BA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7D197D1CF33B3F001F4618 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAC7AA001CFF137F00D7FBD0 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinBattleViewController.swift; sourceTree = "<group>"; };
 		AADEFED21CF4862800CB2E85 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
@@ -94,12 +105,11 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
-				6D8CEC861D06D0D8005F9235 /* GoogleService-Info.plist */,
+				887A4C501D0D7300000F4FE5 /* Helpers.swift */,
 				6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */,
 				6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */,
 				6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */,
 				AA7D197D1CF33B3F001F4618 /* TestViewController.swift */,
-				AA83D5811CF30B3E00D52F7C /* GoogleService-Info.plist */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
 				AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */,
@@ -113,6 +123,12 @@
 				AA22DB601CE3613900F8BA43 /* Info.plist */,
 				6D611EB31CEB466500F99494 /* ActivityLog.swift */,
 				6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */,
+				889619941D0B2BB5005FCE7F /* FriendsTableViewController.swift */,
+				887A4C521D0D74A0000F4FE5 /* FriendsDetailViewController.swift */,
+				887A4C561D0D8226000F4FE5 /* FriendsChatViewController.swift */,
+				88350DD11D0D169C00626859 /* Friends.swift */,
+				88350DD31D0D174B00626859 /* FriendsDataManager.swift */,
+				88F1B1E41D0D6436005AF92F /* FriendsCell.swift */,
 			);
 			path = GISProject;
 			sourceTree = "<group>";
@@ -188,7 +204,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D8CEC871D06D0D8005F9235 /* GoogleService-Info.plist in Resources */,
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
@@ -253,6 +268,7 @@
 				6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */,
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
 				6D5EF7D01D06CD3F00520CD9 /* DatabaseManager.swift in Sources */,
+				88350DD41D0D174B00626859 /* FriendsDataManager.swift in Sources */,
 				AAE017D21CFA9ADB00F74A50 /* Location.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
@@ -261,8 +277,14 @@
 				AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
 				AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */,
+				887A4C531D0D74A0000F4FE5 /* FriendsDetailViewController.swift in Sources */,
 				AA7D197E1CF33B3F001F4618 /* TestViewController.swift in Sources */,
+				887A4C511D0D7300000F4FE5 /* Helpers.swift in Sources */,
+				889619951D0B2BB5005FCE7F /* FriendsTableViewController.swift in Sources */,
+				887A4C571D0D8226000F4FE5 /* FriendsChatViewController.swift in Sources */,
+				88350DD21D0D169C00626859 /* Friends.swift in Sources */,
 				6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */,
+				88F1B1E51D0D6436005AF92F /* FriendsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eyq-FP-3bD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FKT-JN-61o">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -71,34 +71,145 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="ZFk-my-FLp" kind="relationship" relationship="viewControllers" id="ICp-eS-du4"/>
                         <segue destination="awS-or-eLU" kind="relationship" relationship="viewControllers" id="kdr-xY-S3U"/>
                         <segue destination="65a-Qt-GNg" kind="relationship" relationship="viewControllers" id="epl-kc-Te2"/>
                         <segue destination="nVO-O5-cgz" kind="relationship" relationship="viewControllers" id="QF4-bk-ygt"/>
+                        <segue destination="C6M-lr-gim" kind="relationship" relationship="viewControllers" id="uc1-wF-F08"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9P-mb-g0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="682" y="292"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="a2a-dH-WLl">
+        <!--Friends-->
+        <scene sceneID="g9Y-OC-kzA">
             <objects>
-                <viewController id="ZFk-my-FLp" sceneMemberID="viewController">
+                <tableViewController id="shy-Zf-tQH" customClass="FriendsTableViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" id="aGJ-Va-cVi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendsCell" rowHeight="140" id="gm8-6f-ji0" customClass="FriendsCell" customModule="GISProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="140"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gm8-6f-ji0" id="CGo-Rn-Udj">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="139"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V24-5x-iXu">
+                                            <rect key="frame" x="18" y="11" width="80" height="118"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="bfY-9C-x4L"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1j-qJ-2kT">
+                                            <rect key="frame" x="114" y="17" width="173" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Of5-1B-niV">
+                                            <rect key="frame" x="114" y="59" width="165" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="level" destination="Of5-1B-niV" id="2y1-7f-CnW"/>
+                                    <outlet property="name" destination="r1j-qJ-2kT" id="TnI-Cx-0k3"/>
+                                    <outlet property="profileImg" destination="V24-5x-iXu" id="nqR-Cw-bhf"/>
+                                    <segue destination="tla-GI-Uo0" kind="push" identifier="ShowFriendsDetails" id="vEo-J4-u2M"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="shy-Zf-tQH" id="uiV-DM-Das"/>
+                            <outlet property="delegate" destination="shy-Zf-tQH" id="z1F-02-vvc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Friends" id="lNL-gf-haU"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sLY-Xk-bTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1670" y="-828"/>
+        </scene>
+        <!--Name-->
+        <scene sceneID="3X0-LH-Y0a">
+            <objects>
+                <viewController id="tla-GI-Uo0" customClass="FriendsDetailViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="b5A-Dx-cvU"/>
-                        <viewControllerLayoutGuide type="bottom" id="n5v-0x-rNP"/>
+                        <viewControllerLayoutGuide type="top" id="R58-gr-Yhk"/>
+                        <viewControllerLayoutGuide type="bottom" id="PDy-VG-Y9n"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5hS-Sk-uZU">
+                    <view key="view" contentMode="scaleToFill" id="ZMh-56-tzx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L5d-Pf-5yE">
+                                <rect key="frame" x="68" y="94" width="184" height="179"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFw-ur-Q28">
+                                <rect key="frame" x="118" y="460" width="84" height="30"/>
+                                <state key="normal" title="Chat"/>
+                                <connections>
+                                    <segue destination="0XV-cC-3B3" kind="push" identifier="ShowChatRoom" id="8zH-2z-a3O"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="L5d-Pf-5yE" firstAttribute="centerX" secondItem="ZMh-56-tzx" secondAttribute="centerX" id="0C4-d1-pdP"/>
+                            <constraint firstItem="L5d-Pf-5yE" firstAttribute="top" secondItem="R58-gr-Yhk" secondAttribute="bottom" constant="20" id="mjL-vG-ZqX"/>
+                            <constraint firstItem="xFw-ur-Q28" firstAttribute="centerX" secondItem="ZMh-56-tzx" secondAttribute="centerX" id="sMe-Zw-sAd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Name" id="6lx-Eu-joP"/>
+                    <connections>
+                        <outlet property="profileImg" destination="L5d-Pf-5yE" id="IpB-5T-9Dm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8s9-Pg-PeB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2086" y="-828"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="Jo0-bV-QXX">
+            <objects>
+                <viewController id="0XV-cC-3B3" customClass="FriendsChatViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="E4t-Fh-JoW"/>
+                        <viewControllerLayoutGuide type="bottom" id="tsz-By-1Nt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wbT-PW-123">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="IhQ-Xt-vn6"/>
+                    <navigationItem key="navigationItem" title="Chat" id="rCs-XH-SAn"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bhO-S8-tfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xv8-vN-mFJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1214" y="-755"/>
+            <point key="canvasLocation" x="2482" y="-828"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="wTB-xQ-f5O">
+            <objects>
+                <navigationController id="C6M-lr-gim" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="W8f-Iv-mN7"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dhc-Cv-bQu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="shy-Zf-tQH" kind="relationship" relationship="rootViewController" id="JFU-B5-WAs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ZU-oa-18l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1153" y="-828"/>
         </scene>
         <!--Join Battle View Controller-->
         <scene sceneID="cqS-KG-MMc">
