@@ -42,25 +42,29 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate 
 			for record in snapshot.children {
 				let latitude = record.value!["latitude"] as! NSNumber
 				let longitude = record.value!["longitude"] as! NSNumber
+				
+				print("ello")
+				print(latitude.doubleValue)
+				print(longitude.doubleValue)
 			
 				let location = LocationModel.init(latitude: latitude.doubleValue, longitude: longitude.doubleValue, title: "Test", subtitle: "This is a test")
 				self.map.addAnnotation(location)
 			}
-			
-			var span = MKCoordinateSpan()
-			span.latitudeDelta = 0.02
-			span.longitudeDelta = 0.02
-			
-			var locationTest = CLLocationCoordinate2D()
-			locationTest.latitude = (1.376527 + 1.383884) / 2
-			locationTest.longitude = (103.843563 + 103.850891) / 2
-			
-			var region = MKCoordinateRegion()
-			region.center = locationTest
-			region.span = span
-			
-			self.map.setRegion(region, animated: true)
 		})
+		
+		var span = MKCoordinateSpan()
+		span.latitudeDelta = 0.02
+		span.longitudeDelta = 0.02
+		
+		var locationTest = CLLocationCoordinate2D()
+		locationTest.latitude = (1.376527 + 1.383884) / 2
+		locationTest.longitude = (103.843563 + 103.850891) / 2
+		
+		var region = MKCoordinateRegion()
+		region.center = locationTest
+		region.span = span
+		
+		self.map.setRegion(region, animated: true)
 	}
 	
 	func itemsDownloaded(items: NSArray) {
