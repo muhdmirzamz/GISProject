@@ -7,8 +7,11 @@ PODS:
   - Firebase/Auth (3.2.0):
     - Firebase/Analytics (= 3.2.0)
     - FirebaseAuth (= 3.0.2)
+<<<<<<< Updated upstream
   - Firebase/Core (3.2.0):
     - Firebase/Analytics (= 3.2.0)
+=======
+>>>>>>> Stashed changes
   - Firebase/Database (3.2.0):
     - Firebase/Analytics (= 3.2.0)
     - FirebaseDatabase (= 3.0.1)
@@ -40,7 +43,10 @@ DEPENDENCIES:
   - Firebase (>= 2.5.1)
   - Firebase/Auth
   - Firebase/Database
+<<<<<<< Updated upstream
   - JSQMessagesViewController
+=======
+>>>>>>> Stashed changes
 
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
@@ -56,6 +62,10 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 3847120a97a7ab3bdc701f166c59f3955f7801c7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
 
+<<<<<<< Updated upstream
 PODFILE CHECKSUM: 2ea2337dab3300a7ac3f744e324860e2ad99997d
+=======
+PODFILE CHECKSUM: a8e0180ab417bbc97956990d16dd9a8ebd8266df
+>>>>>>> Stashed changes
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.1

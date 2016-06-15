@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Firebase
 
 class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate {
 	
@@ -31,9 +32,35 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate 
 		self.map.scrollEnabled = true
 		self.map.delegate = self
 		
-		let location = Location()
-		location.delegate = self
-		location.downloadItems()
+//		let location = Location()
+//		location.delegate = self
+//		location.downloadItems()
+		
+		let ref = FIRDatabase.database().reference().child("/Location")
+		
+		ref.observeEventType(.Value, withBlock: {(snapshot) in
+			for record in snapshot.children {
+				let latitude = record.value!["latitude"] as! NSNumber
+				let longitude = record.value!["longitude"] as! NSNumber
+			
+				let location = LocationModel.init(latitude: latitude.doubleValue, longitude: longitude.doubleValue, title: "Test", subtitle: "This is a test")
+				self.map.addAnnotation(location)
+			}
+			
+			var span = MKCoordinateSpan()
+			span.latitudeDelta = 0.02
+			span.longitudeDelta = 0.02
+			
+			var locationTest = CLLocationCoordinate2D()
+			locationTest.latitude = (1.376527 + 1.383884) / 2
+			locationTest.longitude = (103.843563 + 103.850891) / 2
+			
+			var region = MKCoordinateRegion()
+			region.center = locationTest
+			region.span = span
+			
+			self.map.setRegion(region, animated: true)
+		})
 	}
 	
 	func itemsDownloaded(items: NSArray) {
