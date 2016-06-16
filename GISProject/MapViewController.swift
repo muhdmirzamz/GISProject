@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import Firebase
 
-class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate {
+class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate, CLLocationManagerDelegate {
 	
 	@IBOutlet var cancelButton: UIBarButtonItem!
 	@IBOutlet var map: MKMapView!
@@ -22,6 +22,7 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate 
         super.viewDidLoad()
 		
 		self.locationManager = CLLocationManager()
+		self.locationManager?.delegate = self
 		self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
 		self.locationManager?.requestWhenInUseAuthorization()
 		self.locationManager?.startUpdatingLocation()
@@ -88,17 +89,33 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate 
 		self.map.setRegion(region, animated: true)
 	}
 	
+	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		let userLocation = locations.last!
+		
+		let location = LocationModel.init(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, title: "User", subtitle: "You are here")
+		self.map.addAnnotation(location)
+	}
+	
 	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+		if annotation as! String == mapView.userLocation {
+			return nil
+		}
+	
 		if annotation is LocationModel {
 			var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin") as? MKPinAnnotationView
 			
 			if annotationView == nil {
 				annotationView = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "pin")
 				annotationView?.canShowCallout = true
-				annotationView?.pinTintColor = UIColor.redColor()
 				
 				let button = UIButton.init(type: .DetailDisclosure)
 				annotationView?.rightCalloutAccessoryView = button
+				
+				if annotationView == mapView.userLocation {
+					annotationView?.pinTintColor = UIColor.redColor()
+				} else {
+					annotationView?.pinTintColor = UIColor.blueColor()
+				}
 			} else {
 				annotationView?.annotation = annotation
 			}
