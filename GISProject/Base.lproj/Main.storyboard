@@ -9,7 +9,7 @@
         <!--Item-->
         <scene sceneID="LO6-GB-rNG">
             <objects>
-                <viewController id="65a-Qt-GNg" sceneMemberID="viewController">
+                <viewController id="65a-Qt-GNg" customClass="ProfileViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OyP-FU-CbI"/>
                         <viewControllerLayoutGuide type="bottom" id="uMa-F8-EOa"/>
@@ -73,6 +73,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="5ld-Io-fde"/>
+                    <connections>
+                        <outlet property="levelLabel" destination="CxI-vr-5hV" id="j7h-JD-9FN"/>
+                        <outlet property="monstersLabel" destination="bB4-On-qrs" id="Kxq-xc-zzG"/>
+                        <outlet property="nameLabel" destination="TfZ-Wy-sBp" id="Dxj-7Z-kit"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v9E-vk-u3Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,10 +11,11 @@ import Alamofire
 
 class DatabaseManager: NSObject {
 
-    class func registerAccount (uid : String, name : String) -> Bool {
+    class func registerAccount (uid : String, name : String, monstersKilled : Int, level : Int) -> Bool {
         let result : Bool = true
 
-        Alamofire.request(.POST, "http://188.166.184.129/registerAccount.php", parameters: ["uid": uid, "name": name]).responseJSON {
+        Alamofire.request(.POST, "http://188.166.184.129/registerAccount.php",
+            parameters: ["uid": uid, "name": name, "monstersKilled": monstersKilled, "level": level]).responseJSON {
             response in
             print("@@@@@@@@@@ DEBUG START (DatabaseManager.swift) @@@@@@@@@@")
             print(response.request!)
