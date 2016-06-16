@@ -45,8 +45,8 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 		
 		ref.observeEventType(.Value, withBlock: {(snapshot) in
 			for record in snapshot.children {
-				let latitude = record.value!["latitude"] as! NSNumber
-				let longitude = record.value!["longitude"] as! NSNumber
+				let latitude = record.value!!["latitude"] as! NSNumber
+				let longitude = record.value!!["longitude"] as! NSNumber
 				
 				print("ello")
 				print(latitude.doubleValue)
