@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-protocol LocationsProtocol: class {
+protocol LocationsProtocol {
 	func itemsDownloaded(items: NSArray)
 }
 

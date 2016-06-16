@@ -18,6 +18,9 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 	
 	var locationManager: CLLocationManager?
 	
+	var userLat: Double?, userLong: Double?
+	var region: MKCoordinateRegion?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -25,6 +28,7 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 		self.locationManager?.delegate = self
 		self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
 		self.locationManager?.requestWhenInUseAuthorization()
+		
 		self.locationManager?.startUpdatingLocation()
 		
 		self.map.showsUserLocation = true
@@ -61,11 +65,11 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 		locationTest.latitude = (1.376527 + 1.383884) / 2
 		locationTest.longitude = (103.843563 + 103.850891) / 2
 		
-		var region = MKCoordinateRegion()
-		region.center = locationTest
-		region.span = span
+		self.region = MKCoordinateRegion()
+		self.region!.center = locationTest
+		self.region!.span = span
 		
-		self.map.setRegion(region, animated: true)
+		self.map.setRegion(self.region!, animated: true)
 	}
 	
 	func itemsDownloaded(items: NSArray) {
@@ -92,12 +96,18 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let userLocation = locations.last!
 		
-		let location = LocationModel.init(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, title: "User", subtitle: "You are here")
-		self.map.addAnnotation(location)
+		self.userLat = userLocation.coordinate.latitude
+		self.userLong = userLocation.coordinate.longitude
+		
+//		self.map.setCenterCoordinate(userLocation.coordinate, animated: true)
+	}
+	
+	func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+		print("Could not find location: \(error)");
 	}
 	
 	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-		if annotation as! String == mapView.userLocation {
+		if annotation.isKindOfClass(MKUserLocation) {
 			return nil
 		}
 	
@@ -107,15 +117,10 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 			if annotationView == nil {
 				annotationView = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "pin")
 				annotationView?.canShowCallout = true
+				annotationView?.pinTintColor = UIColor.redColor()
 				
 				let button = UIButton.init(type: .DetailDisclosure)
 				annotationView?.rightCalloutAccessoryView = button
-				
-				if annotationView == mapView.userLocation {
-					annotationView?.pinTintColor = UIColor.redColor()
-				} else {
-					annotationView?.pinTintColor = UIColor.blueColor()
-				}
 			} else {
 				annotationView?.annotation = annotation
 			}
@@ -126,9 +131,23 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 		return nil
 	}
 	
+	
+	
 	func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-		let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController")
-		self.presentViewController(joinBattleVC, animated: true, completion: nil)
+		let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
+		let boundaryLocation = CLLocation.init(latitude: (self.region?.center.latitude)!, longitude: (self.region?.center.longitude)!)
+		let distance = userLocation.distanceFromLocation(boundaryLocation)
+		
+		// follows meters
+		if distance > 50 {
+			let alert = UIAlertController.init(title: "Hold on", message: "You're too far", preferredStyle: .Alert)
+			let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+			alert.addAction(okAction)
+			self.presentViewController(alert, animated: true, completion: nil)
+		} else {
+			let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController")
+			self.presentViewController(joinBattleVC, animated: true, completion: nil)
+		}
 	}
 	
     override func didReceiveMemoryWarning() {
