@@ -7,15 +7,51 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
-
+    var name : String = ""
+    var monstersKilled : Int = 0
+    var level : Int = 0
+    
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var monstersLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.activityIndicator.startAnimating()
+        
+        var ref = FIRDatabase.database().reference().child("/Account")
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            ref.observeEventType(.Value, withBlock: {(snapshot) in
 
+                for record in snapshot.children {
+                    let level = record.value!!["Level"] as! NSNumber
+                    let monstersKilled = record.value!!["Monsters Killed"] as! NSNumber
+                    let name = record.value!!["Name"] as! String
+                    print(level.intValue)
+                    print(monstersKilled.intValue)
+                    print(name)
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.nameLabel.text = name
+                        self.monstersLabel.text = String(monstersKilled.intValue)
+                        self.levelLabel.text = String(level.intValue)
+                        
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicator.hidden = true
+                    })
+                }
+            })
+        }
+  
+        
+        
+ 
+        //DatabaseManager.retrieveAccount("XHPcy86H9gbGHsYYfs4FWqOtbvE")
         // Do any additional setup after loading the view.
     }
 

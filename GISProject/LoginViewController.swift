@@ -11,6 +11,7 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet var image: UIImageView!
     @IBOutlet weak var Email: UITextField!
     @IBOutlet weak var Password: UITextField!
     
@@ -18,8 +19,16 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        let tap = UITapGestureRecognizer.init(target: self, action: "changeView")
+        tap.numberOfTapsRequired = 4
+        tap.numberOfTouchesRequired = 1
+        self.view.addGestureRecognizer(tap)
     }
 
+    func changeView() {
+        self.image.image = UIImage.init(named: "loba")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
