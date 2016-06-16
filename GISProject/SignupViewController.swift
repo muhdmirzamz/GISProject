@@ -61,7 +61,7 @@ class SignupViewController: UIViewController {
                                     let uid = user.uid
                                     print(uid)
                                     
-                                    DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, level: 0)
+                                    DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!)
                                     self.activityIndicator.stopAnimating()
                                     print("Account creation OK!")
                                     self.dismiss()

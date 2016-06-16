@@ -11,7 +11,7 @@ import Alamofire
 
 class DatabaseManager: NSObject {
 
-    class func registerAccount (uid : String, name : String, level : Int) -> Bool {
+    class func registerAccount (uid : String, name : String) -> Bool {
         let result : Bool = true
 
         Alamofire.request(.POST, "http://188.166.184.129/registerAccount.php", parameters: ["uid": uid, "name": name, "level": level]).responseJSON {
