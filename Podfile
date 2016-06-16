@@ -12,5 +12,6 @@ target 'GISProject' do
   pod 'Firebase/Database'
   pod 'Alamofire', '3.2.1'
   pod 'JSQMessagesViewController'
+  pod 'SwiftyJSON'
 
 end

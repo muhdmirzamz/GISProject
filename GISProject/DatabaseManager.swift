@@ -28,7 +28,7 @@ class DatabaseManager: NSObject {
             
         }
         
-        
         return result;
     }
+        
 }
