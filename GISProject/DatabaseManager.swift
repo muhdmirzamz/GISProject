@@ -30,5 +30,10 @@ class DatabaseManager: NSObject {
         
         return result;
     }
+    
+    class func retrieveAccount (uid : String, name : String, monstersKilled : Int, level : Int) -> Void {
+        Alamofire.request(.GET, "http://188.166.184.129/registerAccount.php",
+            parameters: ["uid"])
+    }
         
 }
