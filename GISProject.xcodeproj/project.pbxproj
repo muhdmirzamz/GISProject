@@ -28,7 +28,6 @@
 		AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB581CE3613900F8BA43 /* Main.storyboard */; };
 		AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */; };
 		AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */; };
-		AA7D197E1CF33B3F001F4618 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D197D1CF33B3F001F4618 /* TestViewController.swift */; };
 		AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AA001CFF137F00D7FBD0 /* LocationModel.swift */; };
 		AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */; };
 		AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADEFED21CF4862800CB2E85 /* BattleViewController.swift */; };
@@ -63,7 +62,6 @@
 		AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA22DB5E1CE3613900F8BA43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA22DB601CE3613900F8BA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA7D197D1CF33B3F001F4618 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		AAC7AA001CFF137F00D7FBD0 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinBattleViewController.swift; sourceTree = "<group>"; };
 		AADEFED21CF4862800CB2E85 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 				6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */,
 				6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */,
 				6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */,
-				AA7D197D1CF33B3F001F4618 /* TestViewController.swift */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
 				AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */,
@@ -336,7 +333,6 @@
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
 				AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */,
 				887A4C531D0D74A0000F4FE5 /* FriendsDetailViewController.swift in Sources */,
-				AA7D197E1CF33B3F001F4618 /* TestViewController.swift in Sources */,
 				887A4C511D0D7300000F4FE5 /* Helpers.swift in Sources */,
 				889619951D0B2BB5005FCE7F /* FriendsTableViewController.swift in Sources */,
 				887A4C571D0D8226000F4FE5 /* FriendsChatViewController.swift in Sources */,

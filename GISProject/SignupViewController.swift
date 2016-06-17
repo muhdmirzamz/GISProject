@@ -18,7 +18,12 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
+        self.view.addGestureRecognizer(tapFunc2)
+    }
+    
+    func hideKeyboard() {
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +41,7 @@ class SignupViewController: UIViewController {
     }
     
     @IBAction func CreateAccount(sender: AnyObject) {
+        hideKeyboard()
         activityIndicator.startAnimating()
         
         FIRAuth.auth()?.createUserWithEmail(EmailLabel.text!, password: PasswordLabel.text!, completion: {
@@ -76,17 +82,4 @@ class SignupViewController: UIViewController {
         })
 
     }
- 
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

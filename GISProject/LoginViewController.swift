@@ -19,14 +19,24 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let tap = UITapGestureRecognizer.init(target: self, action: "changeView")
-        tap.numberOfTapsRequired = 4
-        tap.numberOfTouchesRequired = 1
-        self.view.addGestureRecognizer(tap)
+        
+        //easter egg :D
+        let tapFunc1 = UITapGestureRecognizer.init(target: self, action: "changeView")
+        tapFunc1.numberOfTapsRequired = 10
+        tapFunc1.numberOfTouchesRequired = 1
+        self.view.addGestureRecognizer(tapFunc1)
+        
+        //hide keyboard
+        let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
+        self.view.addGestureRecognizer(tapFunc2)
     }
 
     func changeView() {
         self.image.image = UIImage.init(named: "loba")
+    }
+    
+    func hideKeyboard() {
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,6 +50,7 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func Login(sender: AnyObject) {
+        hideKeyboard()
         FIRAuth.auth()?.signInWithEmail(Email.text!, password: Password.text!, completion: {
             user, error in
             
