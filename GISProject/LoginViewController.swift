@@ -55,13 +55,18 @@ class LoginViewController: UIViewController {
             user, error in
             
             if error != nil {
-                print("Login Error")
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let errorAlert = UIAlertController(title: "Login Failed", message: "Please ensure information given is correct!", preferredStyle: .Alert)
+                    errorAlert.addAction(UIAlertAction(title: "Fix it now!!!", style: .Default, handler: nil))
+                    self.presentViewController(errorAlert, animated: true, completion: nil)
+                })
+                self.Email.text! = ""
+                self.Password.text! = ""
             } else {
                 let tabBarController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain") as? UITabBarController
                     self.presentViewController(tabBarController!, animated: true, completion: nil)
                 self.Email.text! = ""
                 self.Password.text! = ""
-                print("Login OK!")
             }
         })
     }

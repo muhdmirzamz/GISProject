@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */; };
 		6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */; };
-		6D5EF7D01D06CD3F00520CD9 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */; };
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
 		6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */; };
 		8156447B1D126CA40028D162 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156447A1D126CA40028D162 /* Profile.swift */; };
 		819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AA1641D1266B30003FB8D /* ProfileViewController.swift */; };
+		81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */; };
 		88350DD21D0D169C00626859 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88350DD11D0D169C00626859 /* Friends.swift */; };
 		88350DD41D0D174B00626859 /* FriendsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88350DD31D0D174B00626859 /* FriendsDataManager.swift */; };
 		887A4C511D0D7300000F4FE5 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887A4C501D0D7300000F4FE5 /* Helpers.swift */; };
@@ -40,11 +40,11 @@
 		0B061A809F4C2DBC68A79C9D /* Pods-GISProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.debug.xcconfig"; sourceTree = "<group>"; };
 		6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
-		6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		8156447A1D126CA40028D162 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		819AA1641D1266B30003FB8D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		88350DD11D0D169C00626859 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		88350DD31D0D174B00626859 /* FriendsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDataManager.swift; sourceTree = "<group>"; };
 		887A4C501D0D7300000F4FE5 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -88,6 +88,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		81DA778D1D17B9DD00CB0EB6 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */,
+				8156447A1D126CA40028D162 /* Profile.swift */,
+				819AA1641D1266B30003FB8D /* ProfileViewController.swift */,
+				6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */,
+				6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
 		AA22DB481CE3613600F8BA43 = {
 			isa = PBXGroup;
 			children = (
@@ -109,11 +121,9 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
+				81DA778D1D17B9DD00CB0EB6 /* Account */,
 				88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */,
 				887A4C501D0D7300000F4FE5 /* Helpers.swift */,
-				6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */,
-				6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */,
-				6D5EF7CD1D06CD3F00520CD9 /* DatabaseManager.swift */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
 				AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */,
@@ -133,8 +143,6 @@
 				88350DD11D0D169C00626859 /* Friends.swift */,
 				88350DD31D0D174B00626859 /* FriendsDataManager.swift */,
 				88F1B1E41D0D6436005AF92F /* FriendsCell.swift */,
-				819AA1641D1266B30003FB8D /* ProfileViewController.swift */,
-				8156447A1D126CA40028D162 /* Profile.swift */,
 			);
 			path = GISProject;
 			sourceTree = "<group>";
@@ -322,13 +330,13 @@
 			files = (
 				6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */,
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
-				6D5EF7D01D06CD3F00520CD9 /* DatabaseManager.swift in Sources */,
 				88350DD41D0D174B00626859 /* FriendsDataManager.swift in Sources */,
 				AAE017D21CFA9ADB00F74A50 /* Location.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
 				6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */,
+				81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */,
 				AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
 				AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */,

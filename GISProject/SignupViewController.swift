@@ -28,7 +28,6 @@ class SignupViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
@@ -50,7 +49,6 @@ class SignupViewController: UIViewController {
             if error != nil {
                 self.activityIndicator.stopAnimating()
                 print("Account not created")
-                print(error)
             } else {
                 
                 FIRAuth.auth()?.signInWithEmail(self.EmailLabel.text!, password: self.PasswordLabel.text!, completion: {
@@ -67,7 +65,7 @@ class SignupViewController: UIViewController {
                                     let uid = user.uid
                                     print(uid)
                                     
-                                    DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, monstersKilled: 0, level: 1)
+//                                    DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, monstersKilled: 0, level: 1)
                                     self.activityIndicator.stopAnimating()
                                     print("Account creation OK!")
                                     self.dismiss()
@@ -80,6 +78,6 @@ class SignupViewController: UIViewController {
                 })
             }
         })
-
+        
     }
 }
