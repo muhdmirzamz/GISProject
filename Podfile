@@ -6,12 +6,8 @@ target 'GISProject' do
   use_frameworks!
 
   # Pods for GISProject
-  pod 'Firebase', '>= 2.5.1'
+  pod 'Firebase'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
-  pod 'Firebase/Database'
-  pod 'Alamofire', '3.2.1'
   pod 'JSQMessagesViewController'
-  pod 'SwiftyJSON'
-
 end
