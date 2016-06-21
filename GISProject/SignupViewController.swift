@@ -54,13 +54,11 @@ class SignupViewController: UIViewController {
             user, error in
             
             if error != nil {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.activityIndicator.stopAnimating()
                     self.dismiss()
-                    let errorAlert = UIAlertController(title: "Account Creation Failed", message: "Please ensure information given is correct and all fields are filled up!", preferredStyle: .Alert)
-                    errorAlert.addAction(UIAlertAction(title: "Retry Creation", style: .Default, handler: nil))
-                    self.presentViewController(errorAlert, animated: true, completion: nil)
-                })
+                    let errorFailed = UIAlertController(title: "Account Creation Failed", message: "Please ensure information given is correct and all fields are filled up!", preferredStyle: .Alert)
+                    errorFailed.addAction(UIAlertAction(title: "Retry Creation", style: .Default, handler: nil))
+                    self.presentViewController(errorFailed, animated: true, completion: nil)
                 print("Account not created")
             } else {
                 
@@ -88,17 +86,14 @@ class SignupViewController: UIViewController {
                                     let Account = ["Name": self.UsernameLabel.text!, "Base damage" : base, "Level" : level, "Monsters killed": monst, "Cards" : cards]
                                     let childUpdates = ["/Account/\(key)": Account]
                                     self.ref.updateChildValues(childUpdates)
-                                    //self.ref.child("Account").child(uid).setValue(["name" : self.UsernameLabel.text!])
                                     
-//                                    DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, monstersKilled: 0, level: 1)
-                                    
-                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//          DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, monstersKilled: 0, level: 1)
                                         self.activityIndicator.stopAnimating()
                                         self.dismiss()
-                                        let errorAlert = UIAlertController(title: "Account Successfully Created", message: "Enter your information you signed up with to enter the world of LOBA", preferredStyle: .Alert)
-                                        errorAlert.addAction(UIAlertAction(title: "Enter LOBA", style: .Default, handler: nil))
-                                        self.presentViewController(errorAlert, animated: true, completion: nil)
-                                    })
+                                        let errorSuccess = UIAlertController(title: "Account Successfully Created", message: "Enter your information you signed up with to enter the world of LOBA", preferredStyle: .Alert)
+                                        errorSuccess.addAction(UIAlertAction(title: "Enter LOBA!", style: .Default, handler: nil))
+                                        self.presentViewController(errorSuccess, animated: true, completion: nil)
+                                    
                                     print("Account creation OK!")
                                 }
                             } else {
