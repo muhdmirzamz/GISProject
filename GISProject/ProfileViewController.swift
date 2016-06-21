@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     var name : String = ""
     var monstersKilled : Int = 0
     var level : Int = 0
+    var uid : String = ""
     
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -23,9 +24,12 @@ class ProfileViewController: UIViewController {
         
         self.activityIndicator.startAnimating()
         
-        var ref = FIRDatabase.database().reference().child("/Account")
+        if let user = FIRAuth.auth()?.currentUser {
+            uid = user.uid
+            print(uid)
+        }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+  /*      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             ref.observeEventType(.Value, withBlock: {(snapshot) in
 
                 for record in snapshot.children {
@@ -48,7 +52,7 @@ class ProfileViewController: UIViewController {
             })
         }
   
-        
+        */
         
  
         //DatabaseManager.retrieveAccount("XHPcy86H9gbGHsYYfs4FWqOtbvE")

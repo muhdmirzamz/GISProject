@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var Email: UITextField!
     @IBOutlet weak var Password: UITextField!
     
+    var myid : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,6 +65,11 @@ class LoginViewController: UIViewController {
                 self.Email.text! = ""
                 self.Password.text! = ""
             } else {
+                if let user = FIRAuth.auth()?.currentUser {
+                    self.myid = user.uid
+                    setMyUID.AccountUID = self.myid
+                    print(self.myid)
+                }
                 let tabBarController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain") as? UITabBarController
                     self.presentViewController(tabBarController!, animated: true, completion: nil)
                 self.Email.text! = ""
@@ -70,5 +77,11 @@ class LoginViewController: UIViewController {
             }
         })
     }
+    
+    struct setMyUID {
+        static var AccountUID = ""
+    }
+
 
 }
+
