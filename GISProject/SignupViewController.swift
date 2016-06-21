@@ -11,6 +11,8 @@ import Firebase
 
 class SignupViewController: UIViewController {
     
+    var ref: FIRDatabaseReference!
+    
     @IBOutlet weak var UsernameLabel: UITextField!
     @IBOutlet weak var EmailLabel: UITextField!
     @IBOutlet weak var PasswordLabel: UITextField!
@@ -20,6 +22,7 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
         let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
         self.view.addGestureRecognizer(tapFunc2)
+        self.ref = FIRDatabase.database().reference()
     }
     
     func hideKeyboard() {
@@ -28,6 +31,10 @@ class SignupViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func didFinishLaunchingWithOptions(){
+        FIRApp.configure()
     }
     
 
@@ -64,6 +71,15 @@ class SignupViewController: UIViewController {
                                 if let user = FIRAuth.auth()?.currentUser {
                                     let uid = user.uid
                                     print(uid)
+                                    
+                                    //Creation of account
+                                    let base : NSNumber = 1
+                                    let level : NSNumber = 1
+                                    let key = self.ref.child("Account").childByAutoId().key
+                                    let Account = ["uid": uid, "name": self.UsernameLabel.text!, "base damage" : base, "level" : level]
+                                    let childUpdates = ["/Account/\(key)": Account]
+                                    self.ref.updateChildValues(childUpdates)
+                                    //self.ref.child("Account").child(uid).setValue(["name" : self.UsernameLabel.text!])
                                     
 //                                    DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, monstersKilled: 0, level: 1)
                                     self.activityIndicator.stopAnimating()
