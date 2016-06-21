@@ -55,7 +55,6 @@ class SignupViewController: UIViewController {
             
             if error != nil {
                     self.activityIndicator.stopAnimating()
-                    self.dismiss()
                     let errorFailed = UIAlertController(title: "Account Creation Failed", message: "Please ensure information given is correct and all fields are filled up!", preferredStyle: .Alert)
                     errorFailed.addAction(UIAlertAction(title: "Retry Creation", style: .Default, handler: nil))
                     self.presentViewController(errorFailed, animated: true, completion: nil)
@@ -89,11 +88,12 @@ class SignupViewController: UIViewController {
                                     
 //          DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, monstersKilled: 0, level: 1)
                                         self.activityIndicator.stopAnimating()
-                                        self.dismiss()
                                         let errorSuccess = UIAlertController(title: "Account Successfully Created", message: "Enter your information you signed up with to enter the world of LOBA", preferredStyle: .Alert)
                                         errorSuccess.addAction(UIAlertAction(title: "Enter LOBA!", style: .Default, handler: nil))
                                         self.presentViewController(errorSuccess, animated: true, completion: nil)
-                                    
+                                    self.EmailLabel.text! = ""
+                                    self.UsernameLabel.text! = ""
+                                    self.PasswordLabel.text! = ""
                                     print("Account creation OK!")
                                 }
                             } else {
