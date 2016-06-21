@@ -75,8 +75,10 @@ class SignupViewController: UIViewController {
                                     //Creation of account
                                     let base : NSNumber = 1
                                     let level : NSNumber = 1
+                                    let monst : NSNumber = 0
+                                    
                                     let key = self.ref.child("Account/\(uid)").key
-                                    let Account = ["name": self.UsernameLabel.text!, "base damage" : base, "level" : level]
+                                    let Account = ["Name": self.UsernameLabel.text!, "Base damage" : base, "Level" : level, "Monsters killed": monst]
                                     let childUpdates = ["/Account/\(key)": Account]
                                     self.ref.updateChildValues(childUpdates)
                                     //self.ref.child("Account").child(uid).setValue(["name" : self.UsernameLabel.text!])

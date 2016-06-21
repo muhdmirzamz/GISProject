@@ -28,13 +28,16 @@ class ProfileViewController: UIViewController {
             uid = user.uid
             print(uid)
         }
+        var ref = FIRDatabase.database().reference().child("Account")
         
-  /*      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+        ref.queryEqualToValue(uid)
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             ref.observeEventType(.Value, withBlock: {(snapshot) in
 
                 for record in snapshot.children {
                     let level = record.value!!["Level"] as! NSNumber
-                    let monstersKilled = record.value!!["Monsters Killed"] as! NSNumber
+                    let monstersKilled = record.value!!["Monsters killed"] as! NSNumber
                     let name = record.value!!["Name"] as! String
                     print(level.intValue)
                     print(monstersKilled.intValue)
@@ -52,7 +55,7 @@ class ProfileViewController: UIViewController {
             })
         }
   
-        */
+        
         
  
         //DatabaseManager.retrieveAccount("XHPcy86H9gbGHsYYfs4FWqOtbvE")
