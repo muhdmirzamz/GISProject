@@ -54,12 +54,15 @@ class ProfileViewController: UIViewController {
                 }
             })
         }
-  
-        
         
  
         //DatabaseManager.retrieveAccount("XHPcy86H9gbGHsYYfs4FWqOtbvE")
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        navigationItem.title = "Profile"
+        navigationItem.rightBarButtonItem?.title = "Activity Log"
     }
 
     override func didReceiveMemoryWarning() {
