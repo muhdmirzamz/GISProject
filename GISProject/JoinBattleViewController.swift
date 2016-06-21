@@ -8,7 +8,9 @@
 
 import UIKit
 
-class JoinBattleViewController: UIViewController {
+class JoinBattleViewController: UIViewController, BattleProtocol {
+
+	var selectedAnnotation: LocationModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +26,20 @@ class JoinBattleViewController: UIViewController {
 	@IBAction func dismiss() {
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
-
-    /*
+	
+	func backtoMap() {
+		self.dismiss()
+	}
+	
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+		if segue.identifier == "battleSegue" {
+			let battleVC = segue.destinationViewController as? BattleViewController
+			battleVC?.delegate = self
+			battleVC?.selectedAnnotation = self.selectedAnnotation
+		}
     }
-    */
 
 }

@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import Firebase
 
-class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 	
 	@IBOutlet var cancelButton: UIBarButtonItem!
 	@IBOutlet var map: MKMapView!
@@ -29,34 +29,40 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 		self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
 		self.locationManager?.requestWhenInUseAuthorization()
 		
-		self.locationManager?.startUpdatingLocation()
+		// you need this for user location
+		//self.locationManager?.startUpdatingLocation()
 		
 		self.map.showsUserLocation = true
 		self.map.mapType = .Standard
 		self.map.zoomEnabled = true
 		self.map.scrollEnabled = true
 		self.map.delegate = self
-		
-//		let location = Location()
-//		location.delegate = self
-//		location.downloadItems()
-		
+	}
+	
+	override func viewWillAppear(animated: Bool) {
+		if self.map.annotations.count > 0 {
+			self.map.removeAnnotations(self.map.annotations)
+		}
+	
 		let ref = FIRDatabase.database().reference().child("/Location")
 		
 		ref.observeEventType(.Value, withBlock: {(snapshot) in
 			for record in snapshot.children {
+				let key = record.key!!
+				var coordinate = CLLocationCoordinate2D()
+				
 				let latitude = record.value!!["latitude"] as! NSNumber
 				let longitude = record.value!!["longitude"] as! NSNumber
 				
-				print("ello")
-				print(latitude.doubleValue)
-				print(longitude.doubleValue)
-			
-				let location = LocationModel.init(latitude: latitude.doubleValue, longitude: longitude.doubleValue, title: "Test", subtitle: "This is a test")
-				self.map.addAnnotation(location)
+				coordinate.latitude = latitude.doubleValue
+				coordinate.longitude = longitude.doubleValue
+				
+				let locationModel = LocationModel.init(key: key, coordinate: coordinate, title: "Test", subtitle: "This is a test")
+				self.map.addAnnotation(locationModel)
 			}
 		})
 		
+		// center view within region
 		var span = MKCoordinateSpan()
 		span.latitudeDelta = 0.02
 		span.longitudeDelta = 0.02
@@ -70,27 +76,7 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 		self.region!.span = span
 		
 		self.map.setRegion(self.region!, animated: true)
-	}
-	
-	func itemsDownloaded(items: NSArray) {
-		for i in 0 ..< items.count {
-			let locationModel = items[i] as? LocationModel
-			self.map.addAnnotation(locationModel!)
-		}
-		
-		var span = MKCoordinateSpan()
-		span.latitudeDelta = 0.02
-		span.longitudeDelta = 0.02
-		
-		var locationTest = CLLocationCoordinate2D()
-		locationTest.latitude = (1.376527 + 1.383884) / 2
-		locationTest.longitude = (103.843563 + 103.850891) / 2
-		
-		var region = MKCoordinateRegion()
-		region.center = locationTest
-		region.span = span
-		
-		self.map.setRegion(region, animated: true)
+		self.map.setCenterCoordinate((self.region?.center)!, animated: true)
 	}
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -98,8 +84,6 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 		
 		self.userLat = userLocation.coordinate.latitude
 		self.userLong = userLocation.coordinate.longitude
-		
-//		self.map.setCenterCoordinate(userLocation.coordinate, animated: true)
 	}
 	
 	func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -132,22 +116,30 @@ class MapViewController: UIViewController, LocationsProtocol, MKMapViewDelegate,
 	}
 	
 	
-	
 	func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-		let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
-		let boundaryLocation = CLLocation.init(latitude: (self.region?.center.latitude)!, longitude: (self.region?.center.longitude)!)
-		let distance = userLocation.distanceFromLocation(boundaryLocation)
-		
+		// you need this for measuring distance between battle locations and you
+		//let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
+		//let boundaryLocation = CLLocation.init(latitude: (self.region?.center.latitude)!, longitude: (self.region?.center.longitude)!)
+		//let distance = userLocation.distanceFromLocation(boundaryLocation)
+
 		// follows meters
-		if distance > 50 {
-			let alert = UIAlertController.init(title: "Hold on", message: "You're too far", preferredStyle: .Alert)
-			let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
-			alert.addAction(okAction)
-			self.presentViewController(alert, animated: true, completion: nil)
-		} else {
-			let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController")
-			self.presentViewController(joinBattleVC, animated: true, completion: nil)
-		}
+//		if distance > 50 {
+//			let alert = UIAlertController.init(title: "Hold on", message: "You're too far", preferredStyle: .Alert)
+//			let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+//			alert.addAction(okAction)
+//			self.presentViewController(alert, animated: true, completion: nil)
+//		} else {
+//			let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController")
+//			self.presentViewController(joinBattleVC, animated: true, completion: nil)
+//		}
+		
+		let selectedAnnotation = mapView.selectedAnnotations.first as? LocationModel
+
+		let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController") as? JoinBattleViewController
+		joinBattleVC?.selectedAnnotation = selectedAnnotation
+		let navController = UINavigationController.init(rootViewController: joinBattleVC!)
+		navController.navigationBarHidden = true
+		self.presentViewController(navController, animated: true, completion: nil)
 	}
 	
     override func didReceiveMemoryWarning() {
