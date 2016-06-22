@@ -11,8 +11,6 @@ import Firebase
 import QRCode
 
 class QRViewController: UIViewController {
-
-    @IBOutlet weak var QRCodeImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +31,11 @@ class QRViewController: UIViewController {
         qrCode?.image
         qrCode?.size = CGSize(width: 300, height: 300)
         qrCode?.image
-    
-        QRCodeImageView = UIImageView(qrCode: qrCode!)
+        
+        let QRCodeImageView = UIImageView(qrCode: qrCode!)
+        self.view.addSubview(QRCodeImageView)
+        QRCodeImageView.frame = CGRectMake(100, 0, 250, 250)
+        
     }
 
 }
