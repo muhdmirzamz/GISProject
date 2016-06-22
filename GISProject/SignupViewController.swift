@@ -80,6 +80,7 @@ class SignupViewController: UIViewController {
                                     let level : NSNumber = 1
                                     let monst : NSNumber = 0
                                     let cards : NSNumber = 0
+                                    let 
                                     
                                     let key = self.ref.child("Account/\(uid)").key
                                     let Account = ["Name": self.UsernameLabel.text!, "Base damage" : base, "Level" : level, "Monsters killed": monst, "Cards" : cards]

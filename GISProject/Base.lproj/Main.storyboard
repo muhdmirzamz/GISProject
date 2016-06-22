@@ -93,7 +93,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="P0a-eN-zlq">
-                        <barButtonItem key="leftBarButtonItem" title="Change Picture" id="Q1Y-NZ-bsj"/>
+                        <barButtonItem key="leftBarButtonItem" title="Change Picture" id="Q1Y-NZ-bsj">
+                            <connections>
+                                <segue destination="oaN-E3-sex" kind="modal" id="3pi-hw-D9e"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Activity Log" id="yuG-1b-BQo">
                             <connections>
                                 <segue destination="k3R-cG-NEs" kind="modal" id="g8w-jY-Z6E"/>
@@ -113,10 +117,10 @@
             </objects>
             <point key="canvasLocation" x="1746.5" y="677.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Image Picker View Controller-->
         <scene sceneID="acn-DT-55C">
             <objects>
-                <viewController id="oaN-E3-sex" sceneMemberID="viewController">
+                <viewController id="oaN-E3-sex" customClass="ImagePickerViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DCU-Og-8gr"/>
                         <viewControllerLayoutGuide type="bottom" id="mal-E3-UId"/>
@@ -124,9 +128,27 @@
                     <view key="view" contentMode="scaleToFill" id="0Tm-IX-noY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FvG-I7-zEV">
+                                <rect key="frame" x="38" y="39" width="299" height="302"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftl-4n-hm0">
+                                <rect key="frame" x="105" y="587" width="165" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Select Picture"/>
+                            </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CKb-OW-1GJ">
+                                <rect key="frame" x="0.0" y="349" width="375" height="216"/>
+                            </pickerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="PickerView" destination="CKb-OW-1GJ" id="31X-7Y-Xnj"/>
+                        <outlet property="buttonSelect" destination="ftl-4n-hm0" id="QEH-WZ-QDH"/>
+                        <outlet property="imageView" destination="FvG-I7-zEV" id="hsC-Xq-I56"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMs-uP-p9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

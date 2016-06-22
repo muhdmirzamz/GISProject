@@ -11,6 +11,7 @@
 		6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */; };
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
 		6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */; };
+		8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */; };
 		8156447B1D126CA40028D162 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156447A1D126CA40028D162 /* Profile.swift */; };
 		815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E6B621D1A64C700F2C961 /* QRViewController.swift */; };
 		819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AA1641D1266B30003FB8D /* ProfileViewController.swift */; };
@@ -42,6 +43,7 @@
 		6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
+		814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		8156447A1D126CA40028D162 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		815E6B621D1A64C700F2C961 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		819AA1641D1266B30003FB8D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		81DA778D1D17B9DD00CB0EB6 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */,
 				81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */,
 				8156447A1D126CA40028D162 /* Profile.swift */,
 				819AA1641D1266B30003FB8D /* ProfileViewController.swift */,
@@ -342,6 +345,7 @@
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
+				8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */,
 				6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */,
 				81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */,
 				AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */,
