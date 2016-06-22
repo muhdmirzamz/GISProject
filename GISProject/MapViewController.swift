@@ -46,7 +46,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	
 		let ref = FIRDatabase.database().reference().child("/Location")
 		
-		ref.observeEventType(.Value, withBlock: {(snapshot) in
+		ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
 			for record in snapshot.children {
 				let key = record.key!!
 				var coordinate = CLLocationCoordinate2D()

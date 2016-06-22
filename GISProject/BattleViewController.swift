@@ -62,7 +62,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		self.checkUserCardSwitch()
 		
 		// attach a selector to user card switch to listen for value change
-		self.userCardSwitch.addTarget(self, action: #selector(BattleViewController.userCardSwitchDidChange), forControlEvents: .ValueChanged)
+		self.userCardSwitch.addTarget(self, action: "userCardSwitchDidChange", forControlEvents: .ValueChanged)
 		
 		// get base damage, this becomaes initial calculated damage
 		// get amount of cards
@@ -80,7 +80,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		})
 		
 		// an addition to aid user to dismiss picker view
-		let tapDown = UITapGestureRecognizer.init(target: self, action: #selector(BattleViewController.pickerViewDown))
+		let tapDown = UITapGestureRecognizer.init(target: self, action: "pickerViewDown")
 		tapDown.numberOfTapsRequired = 1
 		tapDown.numberOfTouchesRequired = 1
 		self.view.addGestureRecognizer(tapDown)
@@ -131,7 +131,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 	
 		self.expectedMonsterHealth = self.monsterHealth! - Float(self.calculatedDamageLabel.text!)!
 	
-		self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(BattleViewController.decreaseMonsterHealth), userInfo: nil, repeats: true)
+		self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
 		
 		if (self.amountOfCardsToUse?.integerValue)! > 0 {
 			let userID = (FIRAuth.auth()?.currentUser?.uid)!
@@ -181,13 +181,13 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 				self.timer?.invalidate()
 				
 				self.timer = NSTimer()
-				timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(BattleViewController.handleNavController), userInfo: nil, repeats: false)
+				timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "handleNavController", userInfo: nil, repeats: false)
 			}// prevent health bar from having the glitch of going negative
 		} else {
 			self.timer?.invalidate()
 			
 			self.timer = NSTimer()
-			timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(BattleViewController.handleNavController), userInfo: nil, repeats: false)
+			timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "handleNavController", userInfo: nil, repeats: false)
 		}
 	}
 	
