@@ -10,4 +10,5 @@ target 'GISProject' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'JSQMessagesViewController'
+  pod 'QRCode'
 end

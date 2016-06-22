@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import QRCode
 
 class QRViewController: UIViewController {
 
+    @IBOutlet weak var QRCodeImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        generateQRCode()
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +25,16 @@ class QRViewController: UIViewController {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    func generateQRCode() {
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        var qrCode = QRCode(uid)
+        qrCode?.image
+        qrCode?.size = CGSize(width: 300, height: 300)
+        qrCode?.image
+    
+        QRCodeImageView = UIImageView(qrCode: qrCode!)
     }
 
 }
