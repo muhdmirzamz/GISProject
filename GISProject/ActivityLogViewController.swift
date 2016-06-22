@@ -48,4 +48,8 @@ class ActivityLogViewController: UIViewController, UITableViewDelegate, UITableV
         
         return cell
     }
+    
+    @IBAction func dismiss(){
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

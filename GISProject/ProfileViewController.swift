@@ -13,7 +13,6 @@ class ProfileViewController: UIViewController {
     var name : String = ""
     var monstersKilled : Int = 0
     var level : Int = 0
-    var uid : String = ""
     
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -24,21 +23,16 @@ class ProfileViewController: UIViewController {
         
         self.activityIndicator.startAnimating()
         
-        if let user = FIRAuth.auth()?.currentUser {
-            uid = user.uid
-            print(uid)
-        }
-        var ref = FIRDatabase.database().reference().child("Account")
-        
-        ref.queryEqualToValue(uid)
+        let ref = FIRDatabase.database().reference().child("/Account")
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        print(uid)
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            ref.observeEventType(.Value, withBlock: {(snapshot) in
-
-                for record in snapshot.children {
-                    let level = record.value!!["Level"] as! NSNumber
-                    let monstersKilled = record.value!!["Monsters killed"] as! NSNumber
-                    let name = record.value!!["Name"] as! String
+            ref.child("/\(uid)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                
+                    let level = snapshot.value!["Level"] as! NSNumber
+                    let monstersKilled = snapshot.value!["Monsters killed"] as! NSNumber
+                    let name = snapshot.value!["Name"] as! String
                     print(level.intValue)
                     print(monstersKilled.intValue)
                     print(name)
@@ -51,7 +45,7 @@ class ProfileViewController: UIViewController {
                         self.activityIndicator.stopAnimating()
                         self.activityIndicator.hidden = true
                     })
-                }
+                
             })
         }
         
