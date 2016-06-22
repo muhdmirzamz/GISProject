@@ -95,7 +95,7 @@
                     <navigationItem key="navigationItem" id="P0a-eN-zlq">
                         <barButtonItem key="leftBarButtonItem" title="Change Picture" id="Q1Y-NZ-bsj">
                             <connections>
-                                <segue destination="oaN-E3-sex" kind="modal" id="3pi-hw-D9e"/>
+                                <segue destination="oaN-E3-sex" kind="modal" id="bi7-t1-eND"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Activity Log" id="yuG-1b-BQo">
