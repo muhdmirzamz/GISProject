@@ -12,6 +12,7 @@
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
 		6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */; };
 		8156447B1D126CA40028D162 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156447A1D126CA40028D162 /* Profile.swift */; };
+		815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E6B621D1A64C700F2C961 /* QRViewController.swift */; };
 		819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AA1641D1266B30003FB8D /* ProfileViewController.swift */; };
 		81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */; };
 		88350DD21D0D169C00626859 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88350DD11D0D169C00626859 /* Friends.swift */; };
@@ -42,6 +43,7 @@
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		8156447A1D126CA40028D162 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		815E6B621D1A64C700F2C961 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		819AA1641D1266B30003FB8D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		88350DD11D0D169C00626859 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				88350DD11D0D169C00626859 /* Friends.swift */,
 				88350DD31D0D174B00626859 /* FriendsDataManager.swift */,
 				88F1B1E41D0D6436005AF92F /* FriendsCell.swift */,
+				815E6B621D1A64C700F2C961 /* QRViewController.swift */,
 			);
 			path = GISProject;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				887A4C571D0D8226000F4FE5 /* FriendsChatViewController.swift in Sources */,
 				88350DD21D0D169C00626859 /* Friends.swift in Sources */,
 				819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */,
+				815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */,
 				8156447B1D126CA40028D162 /* Profile.swift in Sources */,
 				6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */,
 				88F1B1E51D0D6436005AF92F /* FriendsCell.swift in Sources */,

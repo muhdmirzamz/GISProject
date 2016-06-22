@@ -541,10 +541,10 @@
             </objects>
             <point key="canvasLocation" x="1719" y="1480"/>
         </scene>
-        <!--Item-->
+        <!--QR-->
         <scene sceneID="x6h-y1-xVm">
             <objects>
-                <viewController id="awS-or-eLU" sceneMemberID="viewController">
+                <viewController id="awS-or-eLU" customClass="QRViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4CF-9W-HXw"/>
                         <viewControllerLayoutGuide type="bottom" id="nmp-Ta-j76"/>
@@ -553,25 +553,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IiF-uY-fsI">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Share with Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbN-MB-hsh">
-                                        <rect key="frame" x="97" y="113" width="208" height="46"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="code" translatesAutoresizingMaskIntoConstraints="NO" id="Fmj-jo-xoK">
-                                        <rect key="frame" x="58" y="237" width="259" height="276"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.18823529410000001" green="0.23137254900000001" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TrW-Y9-6DS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="335"/>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.2274509804" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Eg0-iP-An4"/>
+                    <tabBarItem key="tabBarItem" title="QR" image="ic_person_add" id="Eg0-iP-An4"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXh-kA-CDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -825,11 +814,11 @@
             </objects>
             <point key="canvasLocation" x="154.5" y="-500.5"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="ffR-i0-0R9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tvO-hd-nRe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="5ld-Io-fde"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="ic_person_2x" id="5ld-Io-fde"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LSr-eF-dHI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -851,7 +840,8 @@
     </scenes>
     <resources>
         <image name="cancel" width="48" height="48"/>
-        <image name="code" width="345" height="345"/>
+        <image name="ic_person_2x" width="24" height="24"/>
+        <image name="ic_person_add" width="24" height="24"/>
         <image name="loba" width="457" height="530"/>
         <image name="login" width="750" height="1334"/>
         <image name="monster" width="178" height="178"/>
