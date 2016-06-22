@@ -33,10 +33,10 @@ class SignupViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func didFinishLaunchingWithOptions(){
-        FIRApp.configure()
-    }
-    
+//    func didFinishLaunchingWithOptions(){
+//        FIRApp.configure()
+//    }
+	
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
@@ -67,44 +67,76 @@ class SignupViewController: UIViewController {
                     if error != nil {
                         print("Login Error")
                     } else {
-                        FIRAuth.auth()?.addAuthStateDidChangeListener {
-                            auth, user in
-                            
-                            if let user = user {
-                                if let user = FIRAuth.auth()?.currentUser {
-                                    let uid = user.uid
-                                    print(uid)
-                                    
-                                    //Creation of account
-                                    let base : NSNumber = 1
-                                    let level : NSNumber = 1
-                                    let monst : NSNumber = 0
-                                    let cards : NSNumber = 0
-                                    let pict : NSNumber = 6
-                                    print("HELLOW")
-                                    
-                                    let key = self.ref.child("Account/\(uid)").key
-                                    let Account = ["Name": self.UsernameLabel.text! as NSString, "Base damage" : base, "Level" : level, "Monsters killed": monst, "Cards" : cards, "Picture" : pict]
-                                    let childUpdates = ["/Account/\(key)": Account]
-                                    self.ref.updateChildValues(childUpdates)
-                                    
-//          DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, monstersKilled: 0, level: 1)
-                                        self.activityIndicator.stopAnimating()
-                                        try! FIRAuth.auth()!.signOut()
-                                        let errorSuccess = UIAlertController(title: "Account Successfully Created", message: "Enter your information you signed up with to enter the world of LOBA", preferredStyle: .Alert)
-                                        errorSuccess.addAction(UIAlertAction(title: "Enter LOBA!", style: .Default, handler: nil))
-                                        self.presentViewController(errorSuccess, animated: true, completion: nil)
-                                    self.EmailLabel.text! = ""
-                                    self.UsernameLabel.text! = ""
-                                    self.PasswordLabel.text! = ""
-                                    print("Account creation OK!")
-                                    exit(0)
-                                    
-                                }
-                            } else {
-                                
-                            }
-                        }
+						let uid = (FIRAuth.auth()?.currentUser?.uid)!
+					
+						let base : NSNumber = 1
+						let level : NSNumber = 1
+						let monst : NSNumber = 0
+						let cards : NSNumber = 0
+						let pict : NSNumber = 6
+						print("HELLOW")
+					
+						self.ref.child("/Account/\(uid)/Name").setValue(self.UsernameLabel.text!)
+						self.ref.child("/Account/\(uid)/Base Damage").setValue(base)
+						self.ref.child("/Account/\(uid)/Level").setValue(level)
+						self.ref.child("/Account/\(uid)/Monsters killed").setValue(monst)
+						self.ref.child("/Account/\(uid)/Picture").setValue(pict)
+					
+						self.activityIndicator.stopAnimating()
+						try! FIRAuth.auth()!.signOut()
+						let errorSuccess = UIAlertController(title: "Account Successfully Created", message: "Enter your information you signed up with to enter the world of LOBA", preferredStyle: .Alert)
+						errorSuccess.addAction(UIAlertAction(title: "Enter LOBA!", style: .Default, handler: nil))
+						self.presentViewController(errorSuccess, animated: true, completion: nil)
+						self.EmailLabel.text! = ""
+						self.UsernameLabel.text! = ""
+						self.PasswordLabel.text! = ""
+						print("Account creation OK!")
+					
+						
+						
+						
+					
+//                        FIRAuth.auth()?.addAuthStateDidChangeListener {
+//                            auth, user in
+//							
+//                            if let user = user {
+//                                if let user = FIRAuth.auth()?.currentUser {
+//                                    let uid = user.uid
+//                                    print(uid)
+//                                    
+//                                    //Creation of account
+//                                    let base : NSNumber = 1
+//                                    let level : NSNumber = 1
+//                                    let monst : NSNumber = 0
+//                                    let cards : NSNumber = 0
+//                                    let pict : NSNumber = 6
+//                                    print("HELLOW")
+//                                    
+////                                    let key = self.ref.child("Account/\(uid)").key
+////                                    let Account = ["Name": self.UsernameLabel.text! as NSString, "Base damage" : base, "Level" : level, "Monsters killed": monst, "Cards" : cards, "Picture" : pict]
+////                                    let childUpdates = ["/Account/\(key)": Account]
+////                                    self.ref.updateChildValues(childUpdates)
+//									self.ref.child("/Account/\(uid)/Name").setValue(self.UsernameLabel.text!)
+//									self.ref.child("/Account/\(uid)/Base Damage").setValue(base)
+//									self.ref.child("/Account/\(uid)/Level").setValue(level)
+//									self.ref.child("/Account/\(uid)/Monsters killed").setValue(monst)
+//									self.ref.child("/Account/\(uid)/Picture").setValue(pict)
+//									
+////          DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, monstersKilled: 0, level: 1)
+//                                        self.activityIndicator.stopAnimating()
+//                                        try! FIRAuth.auth()!.signOut()
+//                                        let errorSuccess = UIAlertController(title: "Account Successfully Created", message: "Enter your information you signed up with to enter the world of LOBA", preferredStyle: .Alert)
+//                                        errorSuccess.addAction(UIAlertAction(title: "Enter LOBA!", style: .Default, handler: nil))
+//                                        self.presentViewController(errorSuccess, animated: true, completion: nil)
+//                                    self.EmailLabel.text! = ""
+//                                    self.UsernameLabel.text! = ""
+//                                    self.PasswordLabel.text! = ""
+//                                    print("Account creation OK!")
+//                                }
+//                            } else {
+//                                
+//                            }
+//                        }
                     }
                 })
             }

@@ -62,13 +62,14 @@ class LoginViewController: UIViewController {
                     errorAlert.addAction(UIAlertAction(title: "Fix it now!!!", style: .Default, handler: nil))
                     self.presentViewController(errorAlert, animated: true, completion: nil)
                 })
+				
                 self.Email.text! = ""
                 self.Password.text! = ""
             } else {
-                if let user = FIRAuth.auth()?.currentUser {
-                    self.myid = user.uid
-                    print(self.myid)
-                }
+//                if let user = FIRAuth.auth()?.currentUser {
+//                    self.myid = user.uid
+//                    print(self.myid)
+//                }
                 let tabBarController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain") as? UITabBarController
                     self.presentViewController(tabBarController!, animated: true, completion: nil)
                 self.Email.text! = ""
