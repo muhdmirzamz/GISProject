@@ -67,7 +67,6 @@ class LoginViewController: UIViewController {
             } else {
                 if let user = FIRAuth.auth()?.currentUser {
                     self.myid = user.uid
-                    setMyUID.AccountUID = self.myid
                     print(self.myid)
                 }
                 let tabBarController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain") as? UITabBarController
@@ -78,9 +77,6 @@ class LoginViewController: UIViewController {
         })
     }
     
-    struct setMyUID {
-        static var AccountUID = ""
-    }
 
 
 }

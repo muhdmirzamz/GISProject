@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var monstersLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var imageProfile: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,17 +34,33 @@ class ProfileViewController: UIViewController {
                     let level = snapshot.value!["Level"] as! NSNumber
                     let monstersKilled = snapshot.value!["Monsters killed"] as! NSNumber
                     let name = snapshot.value!["Name"] as! String
-                    print(level.intValue)
-                    print(monstersKilled.intValue)
-                    print(name)
+                    let pict = snapshot.value!["Picture"] as! NSNumber
                     
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.nameLabel.text = name
                         self.monstersLabel.text = String(monstersKilled.intValue)
                         self.levelLabel.text = String(level.intValue)
+                        switch pict.intValue {
+                        case 0 :
+                            self.imageProfile.image = UIImage(named: "ProfileBlack")
+                        case 1 :
+                            self.imageProfile.image = UIImage(named: "ProfileBlue")
+                        case 2 :
+                            self.imageProfile.image = UIImage(named: "ProfileGreen")
+                        case 3 :
+                            self.imageProfile.image = UIImage(named: "ProfileOrange")
+                        case 4 :
+                            self.imageProfile.image = UIImage(named: "ProfilePurple")
+                        case 5 :
+                            self.imageProfile.image = UIImage(named: "ProfileRed")
+                        default:
+                            self.imageProfile.image = UIImage(named: "ProfileBlack")
+                        }
+
                         
                         self.activityIndicator.stopAnimating()
                         self.activityIndicator.hidden = true
+                        
                     })
                 
             })

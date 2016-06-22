@@ -80,14 +80,17 @@ class SignupViewController: UIViewController {
                                     let level : NSNumber = 1
                                     let monst : NSNumber = 0
                                     let cards : NSNumber = 0
+                                    let pict : NSNumber = 6
+                                    print("HELLOW")
                                     
                                     let key = self.ref.child("Account/\(uid)").key
-                                    let Account = ["Name": self.UsernameLabel.text!, "Base damage" : base, "Level" : level, "Monsters killed": monst, "Cards" : cards]
+                                    let Account = ["Name": self.UsernameLabel.text! as NSString, "Base damage" : base, "Level" : level, "Monsters killed": monst, "Cards" : cards, "Picture" : pict]
                                     let childUpdates = ["/Account/\(key)": Account]
                                     self.ref.updateChildValues(childUpdates)
                                     
 //          DatabaseManager.registerAccount(uid, name: self.UsernameLabel.text!, monstersKilled: 0, level: 1)
                                         self.activityIndicator.stopAnimating()
+                                        try! FIRAuth.auth()!.signOut()
                                         let errorSuccess = UIAlertController(title: "Account Successfully Created", message: "Enter your information you signed up with to enter the world of LOBA", preferredStyle: .Alert)
                                         errorSuccess.addAction(UIAlertAction(title: "Enter LOBA!", style: .Default, handler: nil))
                                         self.presentViewController(errorSuccess, animated: true, completion: nil)
@@ -95,6 +98,8 @@ class SignupViewController: UIViewController {
                                     self.UsernameLabel.text! = ""
                                     self.PasswordLabel.text! = ""
                                     print("Account creation OK!")
+                                    exit(0)
+                                    
                                 }
                             } else {
                                 
