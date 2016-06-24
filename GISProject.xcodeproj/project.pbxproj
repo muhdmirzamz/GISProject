@@ -93,6 +93,7 @@
 		81DA778D1D17B9DD00CB0EB6 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */,
 				814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */,
 				81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */,
 				8156447A1D126CA40028D162 /* Profile.swift */,
@@ -135,7 +136,6 @@
 				AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */,
 				AA22DB601CE3613900F8BA43 /* Info.plist */,
 				6D611EB31CEB466500F99494 /* ActivityLog.swift */,
-				6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */,
 				889619941D0B2BB5005FCE7F /* FriendsTableViewController.swift */,
 				887A4C521D0D74A0000F4FE5 /* FriendsDetailViewController.swift */,
 				887A4C561D0D8226000F4FE5 /* FriendsChatViewController.swift */,

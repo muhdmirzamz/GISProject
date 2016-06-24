@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     var name : String = ""
     var monstersKilled : Int = 0
     var level : Int = 0
+    var ref: FIRDatabaseReference!
     
 //    @IBOutlet var activityIndicator: UIActivityIndicatorView!
 //    @IBOutlet weak var nameLabel: UILabel!
@@ -132,5 +133,7 @@ class ProfileViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
+    
+
 
 }

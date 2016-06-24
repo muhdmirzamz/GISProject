@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class ActivityLogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var activityLog : [ActivityLog] = []
+    var ref: FIRDatabaseReference!
 
     @IBOutlet weak var tableView : UITableView!
 
@@ -28,7 +30,10 @@ class ActivityLogViewController: UIViewController, UITableViewDelegate, UITableV
             action: "Killed",
             value: "1",
             actionTime: "8 Mins Ago"))
+        
+        self.ref = FIRDatabase.database().reference()
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activityLog.count
