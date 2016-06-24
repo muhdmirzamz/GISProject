@@ -117,7 +117,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             
             if metadataObj.stringValue != nil {
                 messageLabel.text = metadataObj.stringValue
-                let addedAlert = UIAlertController(title: "", message: "Friend has been added", preferredStyle: .Alert)
+                let addedAlert = UIAlertController(title: "\(metadataObj.stringValue)", message: "Friend has been added", preferredStyle: .Alert)
                 addedAlert.addAction(UIAlertAction(title: "!!!", style: .Default, handler: nil))
                 self.presentViewController(addedAlert, animated: true, completion: nil)
             }
