@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerViewDelegate {
 
@@ -14,12 +15,15 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
     @IBOutlet weak var PickerView: UIPickerView!
     @IBOutlet weak var buttonSelect: UIButton!
     
+    var ref: FIRDatabaseReference!
+    
     var colour : String = ""
     let pickerData = ["Black","Blue","Green","Orange","Purple","Red"]
     override func viewDidLoad() {
         super.viewDidLoad()
         PickerView.dataSource = self
         PickerView.delegate = self
+        self.ref = FIRDatabase.database().reference()
 
         // Do any additional setup after loading the view.
     }
@@ -78,5 +82,39 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
             imageView.image = UIImage(named: "ProfileBlack")
         }
 
+    }
+    
+    @IBAction func dismiss(){
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func selectButton(){
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        switch colour {
+        case "Black" :
+            self.ref.child("/Account/\(uid)/Picture").setValue(0)
+            dismiss()
+        case "Blue" :
+            self.ref.child("/Account/\(uid)/Picture").setValue(1)
+            dismiss()
+        case "Green" :
+            self.ref.child("/Account/\(uid)/Picture").setValue(2)
+            dismiss()
+        case "Orange" :
+            self.ref.child("/Account/\(uid)/Picture").setValue(3)
+            dismiss()
+        case "Purple" :
+            self.ref.child("/Account/\(uid)/Picture").setValue(4)
+            dismiss()
+        case "Red" :
+            self.ref.child("/Account/\(uid)/Picture").setValue(5)
+            dismiss()
+        default:
+            self.ref.child("/Account/\(uid)/Picture").setValue(0)
+            dismiss()
+        }
+
+        
     }
 }
