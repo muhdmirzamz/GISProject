@@ -92,6 +92,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6DAE5EDD1D1E4E3A007CEF48 /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				815E6B621D1A64C700F2C961 /* QRViewController.swift */,
+				6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */,
+			);
+			name = QR;
+			sourceTree = "<group>";
+		};
+		6DAE5EDE1D1E4E50007CEF48 /* PLIST */ = {
+			isa = PBXGroup;
+			children = (
+				88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */,
+				AA22DB601CE3613900F8BA43 /* Info.plist */,
+			);
+			name = PLIST;
+			sourceTree = "<group>";
+		};
 		81DA778D1D17B9DD00CB0EB6 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,16 +145,16 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
+				6DAE5EDE1D1E4E50007CEF48 /* PLIST */,
+				6DAE5EDD1D1E4E3A007CEF48 /* QR */,
 				AAB38F6B1D199C8B00D1A20C /* Battle */,
 				81DA778D1D17B9DD00CB0EB6 /* Account */,
-				88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */,
+				AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */,
+				AA22DB581CE3613900F8BA43 /* Main.storyboard */,
+				AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */,
 				887A4C501D0D7300000F4FE5 /* Helpers.swift */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
-				AA22DB581CE3613900F8BA43 /* Main.storyboard */,
-				AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */,
-				AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */,
-				AA22DB601CE3613900F8BA43 /* Info.plist */,
 				6D611EB31CEB466500F99494 /* ActivityLog.swift */,
 				889619941D0B2BB5005FCE7F /* FriendsTableViewController.swift */,
 				887A4C521D0D74A0000F4FE5 /* FriendsDetailViewController.swift */,
@@ -144,8 +162,6 @@
 				88350DD11D0D169C00626859 /* Friends.swift */,
 				88350DD31D0D174B00626859 /* FriendsDataManager.swift */,
 				88F1B1E41D0D6436005AF92F /* FriendsCell.swift */,
-				815E6B621D1A64C700F2C961 /* QRViewController.swift */,
-				6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */,
 			);
 			path = GISProject;
 			sourceTree = "<group>";

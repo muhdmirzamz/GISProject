@@ -54,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMs-uP-p9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804.5" y="-69.5"/>
+            <point key="canvasLocation" x="1213.5" y="1529.5"/>
         </scene>
         <!--Activity Log View Controller-->
         <scene sceneID="bzr-vV-8Se">
@@ -127,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzl-ch-vK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809.5" y="729.5"/>
+            <point key="canvasLocation" x="1746.5" y="729.5"/>
         </scene>
         <!--Reader View Controller-->
         <scene sceneID="zrN-nD-HQO">
@@ -141,35 +141,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ur9-5z-KMk">
-                                <rect key="frame" x="0.0" y="612" width="375" height="55"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.88178604504930824" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismiss" destination="sZN-mH-ZeB" eventType="touchUpInside" id="rMV-0P-cl7"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpY-Tn-bl3">
-                                <rect key="frame" x="0.0" y="568" width="375" height="45"/>
+                                <rect key="frame" x="0.0" y="408" width="375" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.078005218161506074" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pmS-xh-69d">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="314"/>
+                                <color key="backgroundColor" red="0.99215686274509807" green="0.49411764705882355" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start scanning now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOV-CZ-qAE">
+                                <rect key="frame" x="47" y="496" width="280" height="50"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                <color key="textColor" red="0.99215686270000003" green="0.4941176471" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4OJ-Iq-1hB">
+                                <rect key="frame" x="20" y="28" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                <state key="normal" title="×">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss" destination="sZN-mH-ZeB" eventType="touchUpInside" id="wKn-4e-12i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="dismissButton" destination="Ur9-5z-KMk" id="FU5-gd-18A"/>
                         <outlet property="messageLabel" destination="EpY-Tn-bl3" id="Qtc-86-Qk3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVN-xf-rZz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="682.5" y="-423.5"/>
+            <point key="canvasLocation" x="1746.5" y="-69.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="g55-YG-DHu">
@@ -205,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6FO-p5-0ib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="682" y="1480"/>
+            <point key="canvasLocation" x="682" y="1068"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zaV-ny-uWh">
@@ -433,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpJ-6N-gw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1214" y="1480"/>
+            <point key="canvasLocation" x="682" y="1724"/>
         </scene>
         <!--Battle View Controller-->
         <scene sceneID="qZi-Vf-6m8">
@@ -531,7 +539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agC-Sn-Pmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1719" y="1480"/>
+            <point key="canvasLocation" x="682" y="2396"/>
         </scene>
         <!--QR-->
         <scene sceneID="x6h-y1-xVm">
@@ -560,9 +568,6 @@
                                     <segue destination="sZN-mH-ZeB" kind="modal" id="PLY-bx-jQx"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7No-Kx-EYl">
-                                <rect key="frame" x="62" y="157" width="250" height="250"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="???" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFf-1n-8C3">
                                 <rect key="frame" x="20" y="80" width="335" height="50"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>

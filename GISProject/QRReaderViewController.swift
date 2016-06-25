@@ -12,6 +12,7 @@
 
 import UIKit
 import AVFoundation
+import MaterialCard
 
 class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -23,7 +24,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     var qrCodeFrameView:UIView?
     
     // Added to support different barcodes
-    let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
+    let supportedBarCodes = [AVMetadataObjectTypeQRCode]
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
@@ -58,10 +59,19 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             // Detect all the supported bar code
             captureMetadataOutput.metadataObjectTypes = supportedBarCodes
             
+            // Add material card design
+            let qrCardScanner = MaterialCard(frame: CGRectMake(62.5, 157, 250, 250))
+            qrCardScanner.backgroundColor = UIColor.whiteColor()
+            qrCardScanner.shadowOpacity = 0.5
+            qrCardScanner.shadowOffsetHeight = 0
+            qrCardScanner.cornerRadius = 0
+            self.view.addSubview(qrCardScanner)
+            
             // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-            videoPreviewLayer?.frame = view.layer.bounds
+            //videoPreviewLayer?.frame = view.layer.bounds
+            videoPreviewLayer?.frame = CGRectMake(62, 157, 250, 250)
             view.layer.addSublayer(videoPreviewLayer!)
             
             // Start video capture
@@ -69,7 +79,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             
             // Move the message label to the top view
             view.bringSubviewToFront(messageLabel)
-            view.bringSubviewToFront(dismissButton)
             
             // Initialize QR Code Frame to highlight the QR code
             qrCodeFrameView = UIView()
