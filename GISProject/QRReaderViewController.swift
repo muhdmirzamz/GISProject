@@ -71,7 +71,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
             //videoPreviewLayer?.frame = view.layer.bounds
-            videoPreviewLayer?.frame = CGRectMake(62, 157, 250, 250)
+            videoPreviewLayer?.frame = CGRectMake(62.5, 157, 250, 250)
             view.layer.addSublayer(videoPreviewLayer!)
             
             // Start video capture
