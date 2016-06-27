@@ -46,15 +46,12 @@
     return self;
 }
 
-<<<<<<< Updated upstream
 - (void)dealloc
 {
     _fileURL = nil;
     _cachedVideoImageView = nil;
 }
 
-=======
->>>>>>> Stashed changes
 - (void)clearCachedMediaViews
 {
     [super clearCachedMediaViews];

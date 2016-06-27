@@ -1,14 +1,8 @@
 ![JSQMessagesViewController banner](https://raw.githubusercontent.com/jessesquires/JSQMessagesViewController/develop/Assets/jsq_messages_banner.png)
 
-<<<<<<< Updated upstream
 [![Build Status](https://secure.travis-ci.org/jessesquires/JSQMessagesViewController.svg)](http://travis-ci.org/jessesquires/JSQMessagesViewController) [![Version Status](http://img.shields.io/cocoapods/v/JSQMessagesViewController.png)][docsLink] [![license MIT](http://img.shields.io/badge/license-MIT-orange.png)][mitLink] [![codecov.io](https://img.shields.io/codecov/c/github/jessesquires/JSQMessagesViewController.svg)](http://codecov.io/github/jessesquires/JSQMessagesViewController) ![Platform](https://cocoapod-badges.herokuapp.com/p/JSQMessagesViewController/badge.png)
 
 ![Screenshot0][img0] &nbsp;&nbsp; ![Screenshot1][img1] &nbsp;&nbsp; 
-=======
-[![Build Status](https://secure.travis-ci.org/jessesquires/JSQMessagesViewController.svg)](https://travis-ci.org/jessesquires/JSQMessagesViewController) [![Version Status](https://img.shields.io/cocoapods/v/JSQMessagesViewController.svg)][podLink] [![license MIT](https://img.shields.io/cocoapods/l/JSQMessagesViewController.svg)][mitLink] [![codecov](https://codecov.io/gh/jessesquires/JSQMessagesViewController/branch/develop/graph/badge.svg)](https://codecov.io/gh/jessesquires/JSQMessagesViewController) [![Platform](https://img.shields.io/cocoapods/p/JSQMessagesViewController.svg)][docsLink]
-
-![Screenshot0][img0] &nbsp;&nbsp; ![Screenshot1][img1] &nbsp;&nbsp;
->>>>>>> Stashed changes
 
 ![Screenshot2][img2] &nbsp;&nbsp; ![Screenshot3][img3]
 
@@ -18,15 +12,6 @@
 
 See the [website](http://www.jessesquires.com/JSQMessagesViewController/) for the list of features.
 
-<<<<<<< Updated upstream
-=======
-## Design Goals
-
-- Closely mimic the [iOS Messages](http://www.apple.com/ios/messages/) style and behavior
-- [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) design
-- Easy customization and extension for clients
-
->>>>>>> Stashed changes
 ## Dependencies
 
 * [JSQSystemSoundPlayer][playerLink]
@@ -38,7 +23,6 @@ See the [website](http://www.jessesquires.com/JSQMessagesViewController/) for th
 
 ## Installation
 
-<<<<<<< Updated upstream
 From [CocoaPods](http://cocoapods.org):
 
 ````ruby
@@ -46,22 +30,12 @@ From [CocoaPods](http://cocoapods.org):
 pod 'JSQMessagesViewController'  
 
 # Feeling adventurous? Get the latest on develop
-=======
-### [CocoaPods](https://cocoapods.org/) (recommended)
-
-````ruby
-# For latest release in cocoapods
-pod 'JSQMessagesViewController'
-
-# Latest on develop
->>>>>>> Stashed changes
 pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
 
 # For version 5.3.2
 pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController', :branch => 'version_5.3.2_patch'
 ````
 
-<<<<<<< Updated upstream
 Without CocoaPods:
 
 1. *Why aren't you using CocoaPods?*
@@ -265,50 +239,6 @@ Feel free to read [my blog](http://bit.ly/jsqsf) and check out my work at [Hexed
 * [Bazar](https://itunes.apple.com/ru/app/bazar-talk-about-everything/id885453058)
 * [Roomie](https://itunes.apple.com/us/app/roomie-find-your-roomie/id962585201)
 * *Your app here*
-=======
-## Getting Started
-
-See the [Getting Started](https://github.com/jessesquires/JSQMessagesViewController/blob/develop/Documentation/getting_started.md) guide!
-
-## Questions & Help
-
-* Review the [FAQ](https://github.com/jessesquires/JSQMessagesViewController/blob/develop/Documentation/faq.md).
-* Search issues for previous and current [questions](https://github.com/jessesquires/JSQMessagesViewController/issues?utf8=✓&q=label%3A%22questions+%26+help%22+). *Do not open duplicates.*
-* [StackOverflow](http://stackoverflow.com/questions/tagged/jsqmessagesviewcontroller) is often the most appropriate place for questions and help. We have our own tag, `jsqmessagesviewcontroller`.
-* See the [Migration Guide](https://github.com/jessesquires/JSQMessagesViewController/blob/develop/Documentation/migration.md) for migrating between major versions of the library.
-* **Only ask questions that are _specific_ to this library.**
-* **Please avoid emailing questions.** I prefer to keep questions and their answers open-source.
-
-## Documentation
-
-Read the docs, [available here][docsLink] via [@CocoaDocs](https://twitter.com/CocoaDocs).
-
-## Core team
-
-- Jesse Squires ([**@jesse_squires**](https://twitter.com/jesse_squires))
-- Harlan Haskans ([**@harlanhaskins**](https://github.com/harlanhaskins))
-- Eli Burke ([**@eliburke**](https://github.com/eliburke))
-
-## Contributing
-
-Please follow these sweet [contribution guidelines](https://github.com/jessesquires/JSQMessagesViewController/blob/develop/.github/CONTRIBUTING.md).
-
-> **Interested in becoming a core contributor with push access? See our [onboarding guide](https://github.com/jessesquires/JSQMessagesViewController/blob/develop/Documentation/contributor_onboarding.md) for details.**
-
-## Donate
-
-Support the development of this **free** library! **[Donate](https://cash.me/$jsq)** via [Square Cash](https://cash.me/).
-
-## Credits
-
-* Created and maintained by [**@jesse_squires**](https://twitter.com/jesse_squires).
-* Many thanks to [**the contributors**](https://github.com/jessesquires/JSQMessagesViewController/graphs/contributors) of this project.
-* iOS assets extracted using [**@0xced**](https://github.com/0xced) / [iOS-Artwork-Extractor](https://github.com/0xced/iOS-Artwork-Extractor).
-
-## Apps using this library
-
-According to [CocoaPods stats](https://cocoapods.org/pods/JSQMessagesViewController), over **9,000 apps** are using `JSQMessagesViewController`. [Here are the ones](https://github.com/jessesquires/JSQMessagesViewController/blob/develop/Documentation/apps_using_this_library.md) that we know about. Please submit a [pull request](https://github.com/jessesquires/JSQMessagesViewController/compare) to add your app! :smile:
->>>>>>> Stashed changes
 
 ## License
 
@@ -318,12 +248,7 @@ According to [CocoaPods stats](https://cocoapods.org/pods/JSQMessagesViewControl
 
 *Please provide attribution, it is greatly appreciated.*
 
-<<<<<<< Updated upstream
 [docsLink]:http://cocoadocs.org/docsets/JSQMessagesViewController
-=======
-[docsLink]:http://cocoadocs.org/docsets/JSQMessagesViewController/
-[podLink]:https://cocoapods.org/pods/JSQMessagesViewController
->>>>>>> Stashed changes
 [mitLink]:http://opensource.org/licenses/MIT
 [playerLink]:https://github.com/jessesquires/JSQSystemSoundPlayer
 

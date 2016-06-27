@@ -24,20 +24,6 @@
 
 "load_earlier_messages" = "Messages précedents";
 
-<<<<<<< Updated upstream
 "send" = "Envoi";
 
 "new_message" = "Nouveau message";
-=======
-"send" = "Envoyer";
-
-"new_message" = "Nouveau message";
-
-"text_message_accessibility_label" = "%@: %@";
-
-"media_message_accessibility_label" = "%@: image";
-
-"accessory_button_accessibility_label" = "Partager fichier";
-
-"new_message_received_accessibility_announcement" = "Nouveau message reçu";
->>>>>>> Stashed changes

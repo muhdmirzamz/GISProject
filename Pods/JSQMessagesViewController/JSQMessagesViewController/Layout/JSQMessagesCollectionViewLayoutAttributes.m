@@ -18,7 +18,6 @@
 
 #import "JSQMessagesCollectionViewLayoutAttributes.h"
 
-<<<<<<< Updated upstream
 
 @interface JSQMessagesCollectionViewLayoutAttributes ()
 
@@ -36,19 +35,6 @@
 - (void)dealloc
 {
     _messageBubbleFont = nil;
-=======
-@implementation JSQMessagesCollectionViewLayoutAttributes
-
-#pragma mark - Init
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _messageBubbleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-        _messageBubbleContainerViewWidth = 320.0f;
-    }
-    return self;
->>>>>>> Stashed changes
 }
 
 #pragma mark - Setters

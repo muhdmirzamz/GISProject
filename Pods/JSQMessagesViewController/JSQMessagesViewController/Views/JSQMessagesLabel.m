@@ -18,7 +18,6 @@
 
 #import "JSQMessagesLabel.h"
 
-<<<<<<< Updated upstream
 
 @interface JSQMessagesLabel ()
 
@@ -27,8 +26,6 @@
 @end
 
 
-=======
->>>>>>> Stashed changes
 @implementation JSQMessagesLabel
 
 #pragma mark - Initialization

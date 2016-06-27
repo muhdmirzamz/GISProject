@@ -193,21 +193,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA22DB631CE3613900F8BA43 /* Build configuration list for PBXNativeTarget "GISProject" */;
 			buildPhases = (
-<<<<<<< Updated upstream
 				85826E740B87E15144E420BA /* 📦 Check Pods Manifest.lock */,
-=======
->>>>>>> Stashed changes
 				E425E6ABC80EF399CE7B013A /* [CP] Check Pods Manifest.lock */,
 				AA22DB4D1CE3613700F8BA43 /* Sources */,
 				AA22DB4E1CE3613700F8BA43 /* Frameworks */,
 				AA22DB4F1CE3613700F8BA43 /* Resources */,
 				8EDAA5DE36FBE0AF66966F43 /* [CP] Embed Pods Frameworks */,
 				A67C6F66058D5637EA2F85D0 /* [CP] Copy Pods Resources */,
-<<<<<<< Updated upstream
-				575B6FC391F632853624B2F3 /* 📦 Embed Pods Frameworks */,
+				575B6FC391F632853624B2F3 /* [CP] Embed Pods Frameworks */,
 				02B58F139041C3DD7AE3CA6B /* 📦 Copy Pods Resources */,
-=======
->>>>>>> Stashed changes
+				CB5C38D8CB2DF6C004FFC418 /* 📦 Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -267,7 +262,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-<<<<<<< Updated upstream
 		02B58F139041C3DD7AE3CA6B /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -283,10 +277,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GISProject/Pods-GISProject-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		575B6FC391F632853624B2F3 /* 📦 Embed Pods Frameworks */ = {
-=======
-		8EDAA5DE36FBE0AF66966F43 /* [CP] Embed Pods Frameworks */ = {
->>>>>>> Stashed changes
+		575B6FC391F632853624B2F3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -301,18 +292,13 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GISProject/Pods-GISProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-<<<<<<< Updated upstream
 		85826E740B87E15144E420BA /* 📦 Check Pods Manifest.lock */ = {
-=======
-		A67C6F66058D5637EA2F85D0 /* [CP] Copy Pods Resources */ = {
->>>>>>> Stashed changes
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-<<<<<<< Updated upstream
 			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
@@ -343,14 +329,27 @@
 			);
 			inputPaths = (
 			);
-=======
->>>>>>> Stashed changes
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GISProject/Pods-GISProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB5C38D8CB2DF6C004FFC418 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GISProject/Pods-GISProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E425E6ABC80EF399CE7B013A /* [CP] Check Pods Manifest.lock */ = {

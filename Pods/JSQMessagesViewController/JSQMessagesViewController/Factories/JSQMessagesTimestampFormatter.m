@@ -66,7 +66,6 @@
     return self;
 }
 
-<<<<<<< Updated upstream
 - (void)dealloc
 {
     _dateFormatter = nil;
@@ -74,8 +73,6 @@
     _timeTextAttributes = nil;
 }
 
-=======
->>>>>>> Stashed changes
 #pragma mark - Formatter
 
 - (NSString *)timestampForDate:(NSDate *)date

@@ -34,10 +34,6 @@
 #import "JSQMessagesCollectionViewFlowLayout.h"
 #import "JSQMessagesCollectionViewLayoutAttributes.h"
 #import "JSQMessagesCollectionViewFlowLayoutInvalidationContext.h"
-<<<<<<< Updated upstream
-=======
-#import "JSQAudioMediaViewAttributes.h"
->>>>>>> Stashed changes
 
 //  Toolbar
 #import "JSQMessagesComposerTextView.h"
@@ -48,10 +44,6 @@
 #import "JSQMessage.h"
 
 #import "JSQMediaItem.h"
-<<<<<<< Updated upstream
-=======
-#import "JSQAudioMediaItem.h"
->>>>>>> Stashed changes
 #import "JSQPhotoMediaItem.h"
 #import "JSQLocationMediaItem.h"
 #import "JSQVideoMediaItem.h"
@@ -59,11 +51,6 @@
 #import "JSQMessagesBubbleImage.h"
 #import "JSQMessagesAvatarImage.h"
 
-<<<<<<< Updated upstream
-=======
-#import "JSQAudioMediaViewAttributes.h"
-
->>>>>>> Stashed changes
 //  Protocols
 #import "JSQMessageData.h"
 #import "JSQMessageMediaData.h"

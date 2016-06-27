@@ -23,7 +23,6 @@
 #import "NSString+JSQMessages.h"
 
 
-<<<<<<< Updated upstream
 @interface JSQMessagesComposerTextView ()
 
 - (void)jsq_configureTextView;
@@ -38,8 +37,6 @@
 
 
 
-=======
->>>>>>> Stashed changes
 @implementation JSQMessagesComposerTextView
 
 #pragma mark - Initialization
@@ -47,20 +44,13 @@
 - (void)jsq_configureTextView
 {
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-<<<<<<< Updated upstream
     
     CGFloat cornerRadius = 6.0f;
     
-=======
-
-    CGFloat cornerRadius = 6.0f;
-
->>>>>>> Stashed changes
     self.backgroundColor = [UIColor whiteColor];
     self.layer.borderWidth = 0.5f;
     self.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.layer.cornerRadius = cornerRadius;
-<<<<<<< Updated upstream
     
     self.scrollIndicatorInsets = UIEdgeInsetsMake(cornerRadius, 0.0f, cornerRadius, 0.0f);
     
@@ -75,42 +65,17 @@
     self.textColor = [UIColor blackColor];
     self.textAlignment = NSTextAlignmentNatural;
     
-=======
-
-    self.scrollIndicatorInsets = UIEdgeInsetsMake(cornerRadius, 0.0f, cornerRadius, 0.0f);
-
-    self.textContainerInset = UIEdgeInsetsMake(4.0f, 2.0f, 4.0f, 2.0f);
-    self.contentInset = UIEdgeInsetsMake(1.0f, 0.0f, 1.0f, 0.0f);
-
-    self.scrollEnabled = YES;
-    self.scrollsToTop = NO;
-    self.userInteractionEnabled = YES;
-
-    self.font = [UIFont systemFontOfSize:16.0f];
-    self.textColor = [UIColor blackColor];
-    self.textAlignment = NSTextAlignmentNatural;
-
->>>>>>> Stashed changes
     self.contentMode = UIViewContentModeRedraw;
     self.dataDetectorTypes = UIDataDetectorTypeNone;
     self.keyboardAppearance = UIKeyboardAppearanceDefault;
     self.keyboardType = UIKeyboardTypeDefault;
     self.returnKeyType = UIReturnKeyDefault;
-<<<<<<< Updated upstream
     
     self.text = nil;
     
     _placeHolder = nil;
     _placeHolderTextColor = [UIColor lightGrayColor];
     
-=======
-
-    self.text = nil;
-
-    _placeHolder = nil;
-    _placeHolderTextColor = [UIColor lightGrayColor];
-
->>>>>>> Stashed changes
     [self jsq_addTextViewNotificationObservers];
 }
 
@@ -132,11 +97,8 @@
 - (void)dealloc
 {
     [self jsq_removeTextViewNotificationObservers];
-<<<<<<< Updated upstream
     _placeHolder = nil;
     _placeHolderTextColor = nil;
-=======
->>>>>>> Stashed changes
 }
 
 #pragma mark - Composer text view
@@ -153,11 +115,7 @@
     if ([placeHolder isEqualToString:_placeHolder]) {
         return;
     }
-<<<<<<< Updated upstream
     
-=======
-
->>>>>>> Stashed changes
     _placeHolder = [placeHolder copy];
     [self setNeedsDisplay];
 }
@@ -167,11 +125,7 @@
     if ([placeHolderTextColor isEqual:_placeHolderTextColor]) {
         return;
     }
-<<<<<<< Updated upstream
     
-=======
-
->>>>>>> Stashed changes
     _placeHolderTextColor = placeHolderTextColor;
     [self setNeedsDisplay];
 }
@@ -214,17 +168,10 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-<<<<<<< Updated upstream
     
     if ([self.text length] == 0 && self.placeHolder) {
         [self.placeHolderTextColor set];
         
-=======
-
-    if ([self.text length] == 0 && self.placeHolder) {
-        [self.placeHolderTextColor set];
-
->>>>>>> Stashed changes
         [self.placeHolder drawInRect:CGRectInset(rect, 7.0f, 5.0f)
                       withAttributes:[self jsq_placeholderTextAttributes]];
     }
@@ -238,20 +185,12 @@
                                              selector:@selector(jsq_didReceiveTextViewNotification:)
                                                  name:UITextViewTextDidChangeNotification
                                                object:self];
-<<<<<<< Updated upstream
     
-=======
-
->>>>>>> Stashed changes
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(jsq_didReceiveTextViewNotification:)
                                                  name:UITextViewTextDidBeginEditingNotification
                                                object:self];
-<<<<<<< Updated upstream
     
-=======
-
->>>>>>> Stashed changes
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(jsq_didReceiveTextViewNotification:)
                                                  name:UITextViewTextDidEndEditingNotification
@@ -263,19 +202,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UITextViewTextDidChangeNotification
                                                   object:self];
-<<<<<<< Updated upstream
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UITextViewTextDidBeginEditingNotification
                                                   object:self];
     
-=======
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UITextViewTextDidBeginEditingNotification
-                                                  object:self];
-
->>>>>>> Stashed changes
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UITextViewTextDidEndEditingNotification
                                                   object:self];
@@ -293,60 +224,10 @@
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     paragraphStyle.alignment = self.textAlignment;
-<<<<<<< Updated upstream
     
-=======
-
->>>>>>> Stashed changes
     return @{ NSFontAttributeName : self.font,
               NSForegroundColorAttributeName : self.placeHolderTextColor,
               NSParagraphStyleAttributeName : paragraphStyle };
 }
 
-<<<<<<< Updated upstream
-=======
-#pragma mark - UIMenuController
-
-- (BOOL)canBecomeFirstResponder
-{
-    return [super canBecomeFirstResponder];
-}
-
-- (BOOL)becomeFirstResponder
-{
-    return [super becomeFirstResponder];
-}
-
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
-{
-    [UIMenuController sharedMenuController].menuItems = nil;
-
-    if ([self.text length] == 0) {
-        if (action == @selector(paste:)) {
-            return YES;
-        }
-    } else  {
-        NSRange range = self.selectedRange;
-        if (range.length > 0) {
-            if (action == @selector(cut:)
-                || action == @selector(copy:)
-                || action == @selector(select:)
-                || action == @selector(selectAll:)
-                || action == @selector(paste:)
-                || action ==@selector(delete:)) {
-                return YES;
-            }
-        }
-        else {
-            if (action == @selector(select:)
-                || action == @selector(selectAll:)
-                || action == @selector(paste:)) {
-                return YES;
-            }
-        }
-    }
-    return NO;
-}
-
->>>>>>> Stashed changes
 @end

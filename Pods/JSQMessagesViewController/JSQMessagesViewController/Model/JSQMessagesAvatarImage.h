@@ -76,15 +76,6 @@
  */
 - (instancetype)initWithAvatarImage:(UIImage *)avatarImage
                    highlightedImage:(UIImage *)highlightedImage
-<<<<<<< Updated upstream
                    placeholderImage:(UIImage *)placeholderImage;
-=======
-                   placeholderImage:(UIImage *)placeholderImage NS_DESIGNATED_INITIALIZER;
-
-/**
- *  Not a valid initializer.
- */
-- (id)init NS_UNAVAILABLE;
->>>>>>> Stashed changes
 
 @end

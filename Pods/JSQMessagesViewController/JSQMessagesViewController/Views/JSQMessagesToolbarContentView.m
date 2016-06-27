@@ -64,7 +64,6 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     self.backgroundColor = [UIColor clearColor];
 }
 
-<<<<<<< Updated upstream
 - (void)dealloc
 {
     _textView = nil;
@@ -74,8 +73,6 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     _rightBarButtonContainerView = nil;
 }
 
-=======
->>>>>>> Stashed changes
 #pragma mark - Setters
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor

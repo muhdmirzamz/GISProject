@@ -29,11 +29,8 @@ const CGFloat kJSQMessagesLoadEarlierHeaderViewHeight = 32.0f;
 
 @property (weak, nonatomic) IBOutlet UIButton *loadButton;
 
-<<<<<<< Updated upstream
 - (IBAction)loadButtonPressed:(UIButton *)sender;
 
-=======
->>>>>>> Stashed changes
 @end
 
 

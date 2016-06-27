@@ -55,10 +55,7 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-<<<<<<< Updated upstream
     _cachedPlaceholderView = nil;
-=======
->>>>>>> Stashed changes
 }
 
 - (void)setAppliesMediaViewMaskAsOutgoing:(BOOL)appliesMediaViewMaskAsOutgoing

@@ -21,7 +21,6 @@
 #import "UIColor+JSQMessages.h"
 
 
-<<<<<<< Updated upstream
 @interface JSQMessagesAvatarImageFactory ()
 
 + (UIImage *)jsq_circularImage:(UIImage *)image
@@ -38,8 +37,6 @@
 
 
 
-=======
->>>>>>> Stashed changes
 @implementation JSQMessagesAvatarImageFactory
 
 #pragma mark - Public

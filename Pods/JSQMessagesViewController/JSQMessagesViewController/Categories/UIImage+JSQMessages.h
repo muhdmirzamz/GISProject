@@ -52,11 +52,7 @@
 /**
  *  @return The compact message bubble image. 
  *
-<<<<<<< Updated upstream
  *  @disscussion This is the default bubble image used by `JSQMessagesBubbleImageFactory`.
-=======
- *  @discussion This is the default bubble image used by `JSQMessagesBubbleImageFactory`.
->>>>>>> Stashed changes
  */
 + (UIImage *)jsq_bubbleCompactImage;
 
@@ -80,12 +76,4 @@
  */
 + (UIImage *)jsq_defaultPlayImage;
 
-<<<<<<< Updated upstream
-=======
-/**
- *  @return The default pause icon image.
- */
-+ (UIImage *)jsq_defaultPauseImage;
-
->>>>>>> Stashed changes
 @end

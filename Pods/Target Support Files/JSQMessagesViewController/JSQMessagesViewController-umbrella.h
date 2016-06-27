@@ -15,19 +15,11 @@
 #import "JSQMessagesTimestampFormatter.h"
 #import "JSQMessagesToolbarButtonFactory.h"
 #import "JSQMessages.h"
-<<<<<<< Updated upstream
-=======
-#import "JSQAudioMediaViewAttributes.h"
->>>>>>> Stashed changes
 #import "JSQMessagesBubbleSizeCalculating.h"
 #import "JSQMessagesBubblesSizeCalculator.h"
 #import "JSQMessagesCollectionViewFlowLayout.h"
 #import "JSQMessagesCollectionViewFlowLayoutInvalidationContext.h"
 #import "JSQMessagesCollectionViewLayoutAttributes.h"
-<<<<<<< Updated upstream
-=======
-#import "JSQAudioMediaItem.h"
->>>>>>> Stashed changes
 #import "JSQLocationMediaItem.h"
 #import "JSQMediaItem.h"
 #import "JSQMessage.h"

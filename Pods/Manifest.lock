@@ -37,10 +37,6 @@ PODS:
   - QRCode (0.5)
 
 DEPENDENCIES:
-<<<<<<< Updated upstream
-=======
-  - Alamofire (= 3.2.1)
->>>>>>> Stashed changes
   - Firebase
   - Firebase/Auth
   - Firebase/Database
@@ -63,10 +59,6 @@ SPEC CHECKSUMS:
   MaterialCard: d360bf995f48ee999643958dd1531bdfa8622e91
   QRCode: a249ed747aeb0f4bf5f9c58b5b001b6b3bc80073
 
-<<<<<<< Updated upstream
 PODFILE CHECKSUM: 9f2b6aab1b1589e57d07dc0bb3bc3de63b9575f5
-=======
-PODFILE CHECKSUM: 667174a3e880485f0fdd33d4101a289a0218ffad
->>>>>>> Stashed changes
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.0.0

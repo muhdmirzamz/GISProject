@@ -19,7 +19,6 @@
 #import "JSQMessage.h"
 
 
-<<<<<<< Updated upstream
 @interface JSQMessage ()
 
 - (instancetype)initWithSenderId:(NSString *)senderId
@@ -31,8 +30,6 @@
 
 
 
-=======
->>>>>>> Stashed changes
 @implementation JSQMessage
 
 #pragma mark - Initialization
@@ -104,7 +101,6 @@
     return self;
 }
 
-<<<<<<< Updated upstream
 - (id)init
 {
     NSAssert(NO, @"%s is not a valid initializer for %@.", __PRETTY_FUNCTION__, [self class]);
@@ -120,8 +116,6 @@
     _media = nil;
 }
 
-=======
->>>>>>> Stashed changes
 - (NSUInteger)messageHash
 {
     return self.hash;
