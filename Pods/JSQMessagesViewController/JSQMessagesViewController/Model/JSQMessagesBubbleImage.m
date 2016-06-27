@@ -35,6 +35,7 @@
     return self;
 }
 
+<<<<<<< Updated upstream
 - (id)init
 {
     NSAssert(NO, @"%s is not a valid initializer for %@. Use %@ instead.",
@@ -42,6 +43,8 @@
     return nil;
 }
 
+=======
+>>>>>>> Stashed changes
 #pragma mark - NSObject
 
 - (NSString *)description

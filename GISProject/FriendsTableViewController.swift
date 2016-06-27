@@ -11,9 +11,15 @@ import Firebase
 
 
 
-class FriendsTableViewController: UITableViewController {
+class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
     var friends:[Friends] = []
+    
+    var refreshDataControl : UIRefreshControl!
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var filteredFriends = [Friends]()
     
     
     // Attach a closure to read the data at our posts reference
@@ -22,9 +28,23 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        //refresh control
+        refreshDataControl = UIRefreshControl()
+        refreshDataControl.addTarget(self, action: #selector(FriendsTableViewController.refreshControlAction), forControlEvents: .ValueChanged)
+       refreshDataControl.backgroundColor = UIColor.purpleColor()
+       refreshDataControl.tintColor = UIColor.whiteColor()
+        tableView.addSubview(refreshDataControl)
         
-
+        
+        //search bar
+        searchController.searchResultsUpdater = self
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
+        
+      
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,6 +54,47 @@ class FriendsTableViewController: UITableViewController {
          loadFriends()
                 
     }
+    
+    
+    //UISearchBar Delegate
+    func updateSearchResultsForSearchController(searchController: UISearchController)
+    {
+        filterContentForSearchText(self.searchController.searchBar.text!)
+    }
+    
+    //filtered out the friends based on searchTxt
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredFriends = friends.filter { friend in
+            return friend.Name.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        
+        tableView.reloadData()
+    }
+    
+    
+    func refreshControlAction()
+    {
+        print("refresh")
+        
+        
+      
+        
+        
+        let currentDate = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM d,h:mm a"
+        var convertedDate = dateFormatter.stringFromDate(currentDate)
+        
+        
+        
+        self.refreshDataControl.attributedTitle = NSAttributedString(string: "Last update: \(convertedDate)")
+        loadFriends()
+        
+         refreshDataControl.endRefreshing()
+        print("refresh ended")
+    }
+    
+    
     
     func loadFriends()
     {
@@ -91,28 +152,40 @@ class FriendsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
+         refreshDataControl.endRefreshing()
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredFriends.count
+        }
+        
+        
         return friends.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : FriendsCell! = tableView.dequeueReusableCellWithIdentifier("FriendsCell") as! FriendsCell
-        
+        let friend : Friends
         
         if(cell == nil){
             
             cell = NSBundle.mainBundle().loadNibNamed("FriendsCell", owner: nil, options: nil)[0] as? FriendsCell
         }
 
-        let friend = friends[indexPath.row]
+        
+        if searchController.active && searchController.searchBar.text != "" {
+            friend = filteredFriends[indexPath.row]
+        } else {
+            friend = friends[indexPath.row]
+        }
+      //  let friend = friends[indexPath.row]
         
         
-        // cell.textLabel?.text="\(p.movieName) (\(p.runtime) mins)"
+        
         
         let levelDouble = friend.Level
         let levelString = String(levelDouble)
@@ -125,7 +198,8 @@ class FriendsTableViewController: UITableViewController {
         //load images
        //loadAndDisplayImage(cell.imageView!, url: friend.ThumbnailImgUrl)
         Helpers.loadAndDisplayImage(cell, imageView: cell.imageView!, url: friend.ThumbnailImgUrl)
-
+       
+        
         return cell
         
     }
@@ -177,15 +251,31 @@ class FriendsTableViewController: UITableViewController {
         if(segue.identifier == "ShowFriendsDetails") {
             let detailViewController = segue.destinationViewController as! FriendsDetailViewController
             let myIndexPath = self.tableView.indexPathForSelectedRow
+           // let friend = friends[myIndexPath!.row]
+           
+            let filteredfriend : Friends
+            
             if(myIndexPath != nil) {
                 // Set the movieItem field with the movie // object selected by the user.
-                //
-                let friend = friends[myIndexPath!.row]
-                detailViewController.friend = friend
+                
+                if searchController.active && searchController.searchBar.text != ""
+                {
+                    
+                    filteredfriend = filteredFriends[myIndexPath!.row]
+                    detailViewController.friend = filteredfriend
+                } else {
+                  filteredfriend = friends[myIndexPath!.row]
+                  detailViewController.friend = filteredfriend
+                }
+                
+                
+            }
+            
+            
                 detailViewController.hidesBottomBarWhenPushed = true
             }
         }
     }
  
 
-}
+

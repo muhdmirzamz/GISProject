@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
+
 
 class FriendsDataManager: NSObject {
     
     //load friends from Firebase and converts it into [Friends] array
     
+          
     static func loadFriends(onComplete: ([Friends]) -> Void)
     {
         
@@ -20,8 +22,9 @@ class FriendsDataManager: NSObject {
         
         var friendsList : [Friends] = []
         
-        let ref = FIRDatabase.database().reference().child("FriendsList/")
+        let ref = FIRDatabase.database().reference().child("FriendsModule/myFriend/Chats/FriendsList/")
         
+       
         
         ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             

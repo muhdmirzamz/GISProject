@@ -12,7 +12,7 @@ import Firebase
 class FriendsDetailViewController: UIViewController {
     
     var friend : Friends!
-
+    let sender : String = ""
 
     @IBOutlet weak var profileImg: UIImageView!
     
@@ -45,12 +45,14 @@ class FriendsDetailViewController: UIViewController {
         
         if(segue.identifier == "ShowChatRoom") {
             let chatViewController = segue.destinationViewController as! FriendsChatViewController
-            
+            chatViewController.friend = friend
             chatViewController.senderId = "2342342"
             chatViewController.senderDisplayName = friend.Name
             
         }
     }
+    
+    
  
 
 }

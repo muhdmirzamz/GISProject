@@ -8,13 +8,15 @@
 
 import UIKit
 import Foundation
+import JSQMessagesViewController
 
 public class Helpers
 {
     
     
     
-    
+    //var profileImg = JSQMessagesAvatarImageFactory.circularAvatarImage(<#T##image: UIImage!##UIImage!#>, withDiameter: <#T##UInt#>);
+
     
     
     
@@ -52,7 +54,8 @@ public class Helpers
             img = UIImage(data: imageBinary!)
         }
 
-        imageView.image = img
+        //imageView.image = img
+            imageView.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img!, withDiameter: 78)
         
         // Tells the cell, if available, to re-layout itself.
         // This is an update to the User Interface.

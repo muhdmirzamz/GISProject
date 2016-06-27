@@ -61,7 +61,11 @@
  *  @see JSQMessagesBubbleImageFactory.
  *  @see JSQMessagesBubbleImage.
  */
+<<<<<<< Updated upstream
 - (instancetype)initWithBubbleImageFactory:(JSQMessagesBubbleImageFactory *)bubbleImageFactory;
+=======
+- (instancetype)initWithBubbleImageFactory:(JSQMessagesBubbleImageFactory *)bubbleImageFactory NS_DESIGNATED_INITIALIZER;
+>>>>>>> Stashed changes
 
 /**
  *  Applies an outgoing bubble image mask to the specified mediaView.

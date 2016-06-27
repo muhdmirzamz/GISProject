@@ -100,4 +100,12 @@
     return [UIImage jsq_bubbleImageFromBundleWithName:@"play"];
 }
 
+<<<<<<< Updated upstream
+=======
++ (UIImage *)jsq_defaultPauseImage
+{
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"pause"];
+}
+
+>>>>>>> Stashed changes
 @end

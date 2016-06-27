@@ -33,12 +33,15 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 
 @property (assign, nonatomic) BOOL jsq_isObserving;
 
+<<<<<<< Updated upstream
 - (void)jsq_leftBarButtonPressed:(UIButton *)sender;
 - (void)jsq_rightBarButtonPressed:(UIButton *)sender;
 
 - (void)jsq_addObservers;
 - (void)jsq_removeObservers;
 
+=======
+>>>>>>> Stashed changes
 @end
 
 
@@ -86,7 +89,10 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 - (void)dealloc
 {
     [self jsq_removeObservers];
+<<<<<<< Updated upstream
     _contentView = nil;
+=======
+>>>>>>> Stashed changes
 }
 
 #pragma mark - Setters

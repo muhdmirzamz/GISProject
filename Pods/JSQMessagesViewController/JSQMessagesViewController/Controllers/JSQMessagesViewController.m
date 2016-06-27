@@ -34,20 +34,105 @@
 #import "JSQMessagesInputToolbar.h"
 #import "JSQMessagesComposerTextView.h"
 
+<<<<<<< Updated upstream
 #import "JSQMessagesTimestampFormatter.h"
 
+=======
+>>>>>>> Stashed changes
 #import "NSString+JSQMessages.h"
 #import "UIColor+JSQMessages.h"
 #import "UIDevice+JSQMessages.h"
 #import "NSBundle+JSQMessages.h"
 
+<<<<<<< Updated upstream
+=======
+#import <objc/runtime.h>
+
+
+// Fixes rdar://26295020
+// See issue #1247 and Peter Steinberger's comment:
+// https://github.com/jessesquires/JSQMessagesViewController/issues/1247#issuecomment-219386199
+// Gist with workaround: https://gist.github.com/steipete/b00fc02aa9f1c66c11d0f996b1ba1265
+// Forgive me
+static IMP JSQReplaceMethodWithBlock(Class c, SEL origSEL, id block) {
+    NSCParameterAssert(block);
+
+    // get original method
+    Method origMethod = class_getInstanceMethod(c, origSEL);
+    NSCParameterAssert(origMethod);
+
+    // convert block to IMP trampoline and replace method implementation
+    IMP newIMP = imp_implementationWithBlock(block);
+
+    // Try adding the method if not yet in the current class
+    if (!class_addMethod(c, origSEL, newIMP, method_getTypeEncoding(origMethod))) {
+        return method_setImplementation(origMethod, newIMP);
+    } else {
+        return method_getImplementation(origMethod);
+    }
+}
+
+static void JSQInstallWorkaroundForSheetPresentationIssue26295020(void) {
+    __block void (^removeWorkaround)(void) = ^{};
+    const void (^installWorkaround)(void) = ^{
+        const SEL presentSEL = @selector(presentViewController:animated:completion:);
+        __block IMP origIMP = JSQReplaceMethodWithBlock(UIViewController.class, presentSEL, ^(UIViewController *self, id vC, BOOL animated, id completion) {
+            UIViewController *targetVC = self;
+            while (targetVC.presentedViewController) {
+                targetVC = targetVC.presentedViewController;
+            }
+            ((void (*)(id, SEL, id, BOOL, id))origIMP)(targetVC, presentSEL, vC, animated, completion);
+        });
+        removeWorkaround = ^{
+            Method origMethod = class_getInstanceMethod(UIViewController.class, presentSEL);
+            NSCParameterAssert(origMethod);
+            class_replaceMethod(UIViewController.class,
+                                presentSEL,
+                                origIMP,
+                                method_getTypeEncoding(origMethod));
+        };
+    };
+
+    const SEL presentSheetSEL = NSSelectorFromString(@"presentSheetFromRect:");
+    const void (^swizzleOnClass)(Class k) = ^(Class klass) {
+        const __block IMP origIMP = JSQReplaceMethodWithBlock(klass, presentSheetSEL, ^(id self, CGRect rect) {
+            // Before calling the original implementation, we swizzle the presentation logic on UIViewController
+            installWorkaround();
+            // UIKit later presents the sheet on [view.window rootViewController];
+            // See https://github.com/WebKit/webkit/blob/1aceb9ed7a42d0a5ed11558c72bcd57068b642e7/Source/WebKit2/UIProcess/ios/WKActionSheet.mm#L102
+            // Our workaround forwards this to the topmost presentedViewController instead.
+            ((void (*)(id, SEL, CGRect))origIMP)(self, presentSheetSEL, rect);
+            // Cleaning up again - this workaround would swallow bugs if we let it be there.
+            removeWorkaround();
+        });
+    };
+
+    // _UIRotatingAlertController
+    Class alertClass = NSClassFromString([NSString stringWithFormat:@"%@%@%@", @"_U", @"IRotat", @"ingAlertController"]);
+    if (alertClass) {
+        swizzleOnClass(alertClass);
+    }
+
+    // WKActionSheet
+    Class actionSheetClass = NSClassFromString([NSString stringWithFormat:@"%@%@%@", @"W", @"KActio", @"nSheet"]);
+    if (actionSheetClass) {
+        swizzleOnClass(actionSheetClass);
+    }
+}
+
+
+>>>>>>> Stashed changes
 
 static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObservingContext;
 
 
 
 @interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
+<<<<<<< Updated upstream
                                          JSQMessagesKeyboardControllerDelegate>
+=======
+JSQMessagesKeyboardControllerDelegate>
+>>>>>>> Stashed changes
 
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet JSQMessagesInputToolbar *inputToolbar;
@@ -65,6 +150,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 @property (assign, nonatomic) BOOL textViewWasFirstResponderDuringInteractivePop;
 
+<<<<<<< Updated upstream
 - (void)jsq_configureMessagesViewController;
 
 - (NSString *)jsq_currentlyComposedMessageText;
@@ -95,6 +181,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)jsq_addActionToInteractivePopGestureRecognizer:(BOOL)addAction;
 
+=======
+>>>>>>> Stashed changes
 @end
 
 
@@ -115,6 +203,16 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                                           bundle:[NSBundle bundleForClass:[JSQMessagesViewController class]]];
 }
 
+<<<<<<< Updated upstream
+=======
++ (void)initialize {
+    [super initialize];
+    if (self == [JSQMessagesViewController self]) {
+        JSQInstallWorkaroundForSheetPresentationIssue26295020();
+    }
+}
+
+>>>>>>> Stashed changes
 #pragma mark - Initialization
 
 - (void)jsq_configureMessagesViewController
@@ -130,6 +228,12 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     self.inputToolbar.delegate = self;
     self.inputToolbar.contentView.textView.placeHolder = [NSBundle jsq_localizedStringForKey:@"new_message"];
+<<<<<<< Updated upstream
+=======
+
+    self.inputToolbar.contentView.textView.accessibilityLabel = [NSBundle jsq_localizedStringForKey:@"new_message"];
+
+>>>>>>> Stashed changes
     self.inputToolbar.contentView.textView.delegate = self;
 
     self.automaticallyScrollsToMostRecentMessage = YES;
@@ -167,6 +271,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     _collectionView.dataSource = nil;
     _collectionView.delegate = nil;
+<<<<<<< Updated upstream
     _collectionView = nil;
 
     _inputToolbar.contentView.textView.delegate = nil;
@@ -180,6 +285,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     _senderDisplayName = nil;
     _outgoingCellIdentifier = nil;
     _incomingCellIdentifier = nil;
+=======
+
+    _inputToolbar.contentView.textView.delegate = nil;
+    _inputToolbar.delegate = nil;
+>>>>>>> Stashed changes
 
     [_keyboardController endListeningForKeyboard];
     _keyboardController = nil;
@@ -234,6 +344,10 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     NSParameterAssert(self.senderDisplayName != nil);
 
     [super viewWillAppear:animated];
+<<<<<<< Updated upstream
+=======
+    self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
+>>>>>>> Stashed changes
     [self.view layoutIfNeeded];
     [self.collectionView.collectionViewLayout invalidateLayout];
 
@@ -273,11 +387,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [self.keyboardController endListeningForKeyboard];
 }
 
+<<<<<<< Updated upstream
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     NSLog(@"MEMORY WARNING: %s", __PRETTY_FUNCTION__);
 }
+=======
+>>>>>>> Stashed changes
 
 #pragma mark - View rotation
 
@@ -310,6 +427,26 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     }
 }
 
+<<<<<<< Updated upstream
+=======
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self jsq_resetLayoutAndCaches];
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    [self jsq_resetLayoutAndCaches];
+}
+
+- (void)jsq_resetLayoutAndCaches
+{
+    JSQMessagesCollectionViewFlowLayoutInvalidationContext *context = [JSQMessagesCollectionViewFlowLayoutInvalidationContext context];
+    context.invalidateFlowLayoutMessagesCache = YES;
+    [self.collectionView.collectionViewLayout invalidateLayoutWithContext:context];
+}
+
+>>>>>>> Stashed changes
 #pragma mark - Messages view controller
 
 - (void)didPressSendButton:(UIButton *)button
@@ -364,6 +501,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     if (self.automaticallyScrollsToMostRecentMessage && ![self jsq_isMenuVisible]) {
         [self scrollToBottomAnimated:animated];
     }
+<<<<<<< Updated upstream
+=======
+
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSBundle jsq_localizedStringForKey:@"new_message_received_accessibility_announcement"]);
+>>>>>>> Stashed changes
 }
 
 - (void)scrollToBottomAnimated:(BOOL)animated
@@ -372,9 +514,25 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
         return;
     }
 
+<<<<<<< Updated upstream
     NSInteger items = [self.collectionView numberOfItemsInSection:0];
 
     if (items == 0) {
+=======
+    NSIndexPath *lastCell = [NSIndexPath indexPathForItem:([self.collectionView numberOfItemsInSection:0] - 1) inSection:0];
+    [self scrollToIndexPath:lastCell animated:animated];
+}
+
+
+- (void)scrollToIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
+{
+    if ([self.collectionView numberOfSections] <= indexPath.section) {
+        return;
+    }
+
+    NSInteger numberOfItems = [self.collectionView numberOfItemsInSection:indexPath.section];
+    if (numberOfItems == 0) {
+>>>>>>> Stashed changes
         return;
     }
 
@@ -390,6 +548,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
         return;
     }
 
+<<<<<<< Updated upstream
     //  workaround for really long messages not scrolling
     //  if last message is too long, use scroll position bottom for better appearance, else use top
     //  possibly a UIKit bug, see #480 on GitHub
@@ -402,10 +561,34 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     UICollectionViewScrollPosition scrollPosition = (finalCellSize.height > maxHeightForVisibleMessage) ? UICollectionViewScrollPositionBottom : UICollectionViewScrollPositionTop;
 
     [self.collectionView scrollToItemAtIndexPath:finalIndexPath
+=======
+    NSInteger item = MAX(MIN(indexPath.item, numberOfItems - 1), 0);
+    indexPath = [NSIndexPath indexPathForItem:item inSection:0];
+
+    //  workaround for really long messages not scrolling
+    //  if last message is too long, use scroll position bottom for better appearance, else use top
+    //  possibly a UIKit bug, see #480 on GitHub
+    CGSize cellSize = [self.collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath];
+    CGFloat maxHeightForVisibleMessage = CGRectGetHeight(self.collectionView.bounds) - self.collectionView.contentInset.top - CGRectGetHeight(self.inputToolbar.bounds);
+    UICollectionViewScrollPosition scrollPosition = (cellSize.height > maxHeightForVisibleMessage) ? UICollectionViewScrollPositionBottom : UICollectionViewScrollPositionTop;
+
+    [self.collectionView scrollToItemAtIndexPath:indexPath
+>>>>>>> Stashed changes
                                 atScrollPosition:scrollPosition
                                         animated:animated];
 }
 
+<<<<<<< Updated upstream
+=======
+- (BOOL)isOutgoingMessage:(id<JSQMessageData>)messageItem
+{
+    NSString *messageSenderId = [messageItem senderId];
+    NSParameterAssert(messageSenderId != nil);
+
+    return [messageSenderId isEqualToString:self.senderId];
+}
+
+>>>>>>> Stashed changes
 #pragma mark - JSQMessages collection view data source
 
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -463,10 +646,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     id<JSQMessageData> messageItem = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
     NSParameterAssert(messageItem != nil);
 
+<<<<<<< Updated upstream
     NSString *messageSenderId = [messageItem senderId];
     NSParameterAssert(messageSenderId != nil);
 
     BOOL isOutgoingMessage = [messageSenderId isEqualToString:self.senderId];
+=======
+    BOOL isOutgoingMessage = [self isOutgoingMessage:messageItem];
+>>>>>>> Stashed changes
     BOOL isMediaMessage = [messageItem isMediaMessage];
 
     NSString *cellIdentifier = nil;
@@ -545,10 +732,35 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     cell.backgroundColor = [UIColor clearColor];
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     cell.layer.shouldRasterize = YES;
+<<<<<<< Updated upstream
+=======
+    [self collectionView:collectionView accessibilityForCell:cell indexPath:indexPath message:messageItem];
+>>>>>>> Stashed changes
 
     return cell;
 }
 
+<<<<<<< Updated upstream
+=======
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView
+  accessibilityForCell:(JSQMessagesCollectionViewCell*)cell
+             indexPath:(NSIndexPath *)indexPath
+               message:(id<JSQMessageData>)messageItem
+{
+    const BOOL isMediaMessage = [messageItem isMediaMessage];
+    cell.isAccessibilityElement = YES;
+    if (!isMediaMessage) {
+        cell.accessibilityLabel = [NSString stringWithFormat:[NSBundle jsq_localizedStringForKey:@"text_message_accessibility_label"],
+                                   [messageItem senderDisplayName],
+                                   [messageItem text]];
+    }
+    else {
+        cell.accessibilityLabel = [NSString stringWithFormat:[NSBundle jsq_localizedStringForKey:@"media_message_accessibility_label"],
+                                   [messageItem senderDisplayName]];
+    }
+}
+
+>>>>>>> Stashed changes
 - (UICollectionReusableView *)collectionView:(JSQMessagesCollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath
@@ -745,7 +957,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     }
 }
 
+<<<<<<< Updated upstream
 - (void)jsq_didReceiveMenuWillShowNotification:(NSNotification *)notification
+=======
+- (void)didReceiveMenuWillShowNotification:(NSNotification *)notification
+>>>>>>> Stashed changes
 {
     if (!self.selectedIndexPathForMenu) {
         return;
@@ -765,12 +981,20 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [menu setMenuVisible:YES animated:YES];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
+<<<<<<< Updated upstream
                                              selector:@selector(jsq_didReceiveMenuWillShowNotification:)
+=======
+                                             selector:@selector(didReceiveMenuWillShowNotification:)
+>>>>>>> Stashed changes
                                                  name:UIMenuControllerWillShowMenuNotification
                                                object:nil];
 }
 
+<<<<<<< Updated upstream
 - (void)jsq_didReceiveMenuWillHideNotification:(NSNotification *)notification
+=======
+- (void)didReceiveMenuWillHideNotification:(NSNotification *)notification
+>>>>>>> Stashed changes
 {
     if (!self.selectedIndexPathForMenu) {
         return;
@@ -810,13 +1034,21 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)keyboardController:(JSQMessagesKeyboardController *)keyboardController keyboardDidChangeFrame:(CGRect)keyboardFrame
 {
+<<<<<<< Updated upstream
     if (![self.inputToolbar.contentView.textView isFirstResponder] && self.toolbarBottomLayoutGuide.constant == 0.0f) {
+=======
+    if (![self.inputToolbar.contentView.textView isFirstResponder] && self.toolbarBottomLayoutGuide.constant == 0.0) {
+>>>>>>> Stashed changes
         return;
     }
 
     CGFloat heightFromBottom = CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(keyboardFrame);
 
+<<<<<<< Updated upstream
     heightFromBottom = MAX(0.0f, heightFromBottom);
+=======
+    heightFromBottom = MAX(0.0, heightFromBottom);
+>>>>>>> Stashed changes
 
     [self jsq_setToolbarBottomLayoutGuideConstant:heightFromBottom];
 }
@@ -854,7 +1086,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                 [self.inputToolbar.contentView.textView resignFirstResponder];
                 [UIView animateWithDuration:0.0
                                  animations:^{
+<<<<<<< Updated upstream
                                      [self jsq_setToolbarBottomLayoutGuideConstant:0.0f];
+=======
+                                     [self jsq_setToolbarBottomLayoutGuideConstant:0.0];
+>>>>>>> Stashed changes
                                  }];
 
                 UIView *snapshot = [self.view snapshotViewAfterScreenUpdates:YES];
@@ -1019,12 +1255,20 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                                                    object:nil];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
+<<<<<<< Updated upstream
                                                  selector:@selector(jsq_didReceiveMenuWillShowNotification:)
+=======
+                                                 selector:@selector(didReceiveMenuWillShowNotification:)
+>>>>>>> Stashed changes
                                                      name:UIMenuControllerWillShowMenuNotification
                                                    object:nil];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
+<<<<<<< Updated upstream
                                                  selector:@selector(jsq_didReceiveMenuWillHideNotification:)
+=======
+                                                 selector:@selector(didReceiveMenuWillHideNotification:)
+>>>>>>> Stashed changes
                                                      name:UIMenuControllerWillHideMenuNotification
                                                    object:nil];
     }
@@ -1050,7 +1294,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                                                            action:@selector(jsq_handleInteractivePopGestureRecognizer:)];
         self.currentInteractivePopGestureRecognizer = nil;
     }
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
     if (addAction) {
         [self.navigationController.interactivePopGestureRecognizer addTarget:self
                                                                       action:@selector(jsq_handleInteractivePopGestureRecognizer:)];

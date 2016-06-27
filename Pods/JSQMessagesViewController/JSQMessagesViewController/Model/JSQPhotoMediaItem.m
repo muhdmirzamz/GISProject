@@ -43,12 +43,15 @@
     return self;
 }
 
+<<<<<<< Updated upstream
 - (void)dealloc
 {
     _image = nil;
     _cachedImageView = nil;
 }
 
+=======
+>>>>>>> Stashed changes
 - (void)clearCachedMediaViews
 {
     [super clearCachedMediaViews];

@@ -46,6 +46,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
 
 @property (assign, nonatomic) CGFloat latestDelta;
 
+<<<<<<< Updated upstream
 - (void)jsq_configureFlowLayout;
 
 - (void)jsq_didReceiveApplicationMemoryWarningNotification:(NSNotification *)notification;
@@ -61,6 +62,8 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
 - (void)jsq_removeNoLongerVisibleBehaviorsFromVisibleItemsIndexPaths:(NSSet *)visibleItemsIndexPaths;
 - (void)jsq_adjustSpringBehavior:(UIAttachmentBehavior *)springBehavior forTouchLocation:(CGPoint)touchLocation;
 
+=======
+>>>>>>> Stashed changes
 @end
 
 
@@ -137,6 +140,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+<<<<<<< Updated upstream
     
     _messageBubbleFont = nil;
     _bubbleSizeCalculator = nil;
@@ -146,6 +150,8 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     
     [_visibleIndexPaths removeAllObjects];
     _visibleIndexPaths = nil;
+=======
+>>>>>>> Stashed changes
 }
 
 #pragma mark - Setters
@@ -305,7 +311,11 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
+<<<<<<< Updated upstream
     NSArray *attributesInRect = [super layoutAttributesForElementsInRect:rect];
+=======
+    NSArray *attributesInRect = [[super layoutAttributesForElementsInRect:rect] copy];
+>>>>>>> Stashed changes
     
     if (self.springinessEnabled) {
         NSMutableArray *attributesInRectCopy = [attributesInRect mutableCopy];
@@ -326,7 +336,11 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
             }
         }
         
+<<<<<<< Updated upstream
         attributesInRect = attributesInRectCopy;
+=======
+        attributesInRect = [attributesInRectCopy copy];
+>>>>>>> Stashed changes
     }
     
     [attributesInRect enumerateObjectsUsingBlock:^(JSQMessagesCollectionViewLayoutAttributes *attributesItem, NSUInteger idx, BOOL *stop) {
@@ -343,7 +357,11 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+<<<<<<< Updated upstream
     JSQMessagesCollectionViewLayoutAttributes *customAttributes = (JSQMessagesCollectionViewLayoutAttributes *)[super layoutAttributesForItemAtIndexPath:indexPath];
+=======
+    JSQMessagesCollectionViewLayoutAttributes *customAttributes = (JSQMessagesCollectionViewLayoutAttributes *)[[super layoutAttributesForItemAtIndexPath:indexPath] copy];
+>>>>>>> Stashed changes
     
     if (customAttributes.representedElementCategory == UICollectionElementCategoryCell) {
         [self jsq_configureMessageCellLayoutAttributes:customAttributes];

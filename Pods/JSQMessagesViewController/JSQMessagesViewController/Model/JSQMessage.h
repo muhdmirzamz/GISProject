@@ -131,4 +131,12 @@
                             date:(NSDate *)date
                            media:(id<JSQMessageMediaData>)media;
 
+<<<<<<< Updated upstream
+=======
+/**
+ *  Not a valid initializer.
+ */
+- (id)init NS_UNAVAILABLE;
+
+>>>>>>> Stashed changes
 @end

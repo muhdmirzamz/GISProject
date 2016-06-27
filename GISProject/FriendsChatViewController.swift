@@ -7,11 +7,14 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
 import JSQMessagesViewController
+
 
 class FriendsChatViewController: JSQMessagesViewController {
     
+    //friends obj
+    var friend : Friends!
     
     
     //JSQ msg obj
@@ -27,6 +30,8 @@ class FriendsChatViewController: JSQMessagesViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = friend.Name
+        messages.removeAll()
        setupBubbles()
         
         // No avatars
@@ -195,10 +200,10 @@ class FriendsChatViewController: JSQMessagesViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         // messages from someone else
-        addMessage("foo", text: "Hey person!")
+       // addMessage("foo", text: "Hey person!")
         // messages sent from local sender
-        addMessage(senderId, text: "Yo!")
-        addMessage(senderId, text: "I like turtles!")
+       // addMessage(senderId, text: "Yo!")
+       // addMessage(senderId, text: "I like turtles!")
         // animates the receiving of a new message on the view
         finishReceivingMessage()
         observeMessages()
@@ -236,7 +241,7 @@ class FriendsChatViewController: JSQMessagesViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!,
                                      senderDisplayName: String!, date: NSDate!) {
         
-        let ref = FIRDatabase.database().reference().child("Chats/\(senderId)")
+        let ref = FIRDatabase.database().reference().child("FriendsModule/myFriend/Chats/users/\(senderId)")
         
         let itemRef = ref.childByAutoId() // 1
         
@@ -244,7 +249,8 @@ class FriendsChatViewController: JSQMessagesViewController {
         
         let messageItem = [ // 2
             "text": text,
-            "senderId": senderId
+            "senderId": senderId,
+            "chatMember" : friend.Name
         ]
         itemRef.setValue(messageItem) // 3
         
@@ -260,7 +266,7 @@ class FriendsChatViewController: JSQMessagesViewController {
     }
     
     private func observeMessages() {
-        let messagesQuery = FIRDatabase.database().reference().child("Chats/\(senderId)").queryLimitedToLast(25)
+        let messagesQuery = FIRDatabase.database().reference().child("FriendsModule/myFriend/Chats/users/\(senderId)").queryLimitedToLast(25)
         
          
       
@@ -270,15 +276,26 @@ class FriendsChatViewController: JSQMessagesViewController {
             // 3
             let id = snapshot.value!["senderId"] as! String
             let text = snapshot.value!["text"] as! String
+            let chatMember = snapshot.value!["chatMember"] as! String
             
             // 4
-            self.addMessage(id, text: text)
+            if(chatMember == self.friend.Name && id == self.senderId)
+            {
+             self.addMessage(id, text: text)
+            }
+            
+            
+            
             
             // 5
             self.finishReceivingMessage()
         }
     }
     
+    //pressed accessory button
+    override func didPressAccessoryButton(sender: UIButton!) {
+        print("Accessory btn pressed!")
+    }
     
 
     /*

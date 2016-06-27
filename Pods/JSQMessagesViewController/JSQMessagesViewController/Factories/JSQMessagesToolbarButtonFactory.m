@@ -38,6 +38,11 @@
     accessoryButton.contentMode = UIViewContentModeScaleAspectFit;
     accessoryButton.backgroundColor = [UIColor clearColor];
     accessoryButton.tintColor = [UIColor lightGrayColor];
+<<<<<<< Updated upstream
+=======
+    
+    accessoryButton.accessibilityLabel = [NSBundle jsq_localizedStringForKey:@"accessory_button_accessibility_label"];
+>>>>>>> Stashed changes
 
     return accessoryButton;
 }

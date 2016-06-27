@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Image Picker View Controller-->
@@ -244,19 +245,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendsCell" rowHeight="140" id="gm8-6f-ji0" customClass="FriendsCell" customModule="GISProject" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsCell" rowHeight="140" id="gm8-6f-ji0" customClass="FriendsCell" customModule="GISProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gm8-6f-ji0" id="CGo-Rn-Udj">
+<<<<<<< Updated upstream
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="139.5"/>
+=======
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
+>>>>>>> Stashed changes
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V24-5x-iXu">
-                                            <rect key="frame" x="18" y="11" width="80" height="118"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="bfY-9C-x4L"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1j-qJ-2kT">
                                             <rect key="frame" x="114" y="17" width="173" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -269,7 +268,15 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V24-5x-iXu">
+                                            <rect key="frame" x="18" y="8" width="80" height="123"/>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="V24-5x-iXu" secondAttribute="bottom" id="03g-G8-KE4"/>
+                                        <constraint firstAttribute="topMargin" secondItem="V24-5x-iXu" secondAttribute="top" id="FWy-vE-oqV"/>
+                                        <constraint firstItem="V24-5x-iXu" firstAttribute="leading" secondItem="CGo-Rn-Udj" secondAttribute="leadingMargin" constant="10" id="ek0-Nc-fkE"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="level" destination="Of5-1B-niV" id="2y1-7f-CnW"/>
@@ -284,7 +291,12 @@
                             <outlet property="delegate" destination="shy-Zf-tQH" id="z1F-02-vvc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="lNL-gf-haU"/>
+                    <navigationItem key="navigationItem" title="Friends" id="lNL-gf-haU">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Deck" id="66a-Tb-1gv"/>
+                            <barButtonItem title="Recent" id="bn1-2H-CWv"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLY-Xk-bTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

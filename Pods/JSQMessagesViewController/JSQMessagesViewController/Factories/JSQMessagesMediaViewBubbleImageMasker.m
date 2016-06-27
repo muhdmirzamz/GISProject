@@ -21,6 +21,7 @@
 #import "JSQMessagesBubbleImageFactory.h"
 
 
+<<<<<<< Updated upstream
 @interface JSQMessagesMediaViewBubbleImageMasker ()
 
 - (void)jsq_maskView:(UIView *)view withImage:(UIImage *)image;
@@ -28,6 +29,8 @@
 @end
 
 
+=======
+>>>>>>> Stashed changes
 @implementation JSQMessagesMediaViewBubbleImageMasker
 
 #pragma mark - Initialization
