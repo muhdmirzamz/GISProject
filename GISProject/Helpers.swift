@@ -1,10 +1,6 @@
 //
 //  Helpers.swift
-//  itp312-practestA
-//
-//  Created by KIM FOONG CHOW on 5/6/16.
-//  Copyright © 2016 NYP. All rights reserved.
-//
+
 
 import UIKit
 import Foundation
@@ -54,8 +50,8 @@ public class Helpers
             img = UIImage(data: imageBinary!)
         }
 
-        //imageView.image = img
-            imageView.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img!, withDiameter: 78)
+        imageView.image = img
+         //   imageView.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img!, withDiameter: 78)
         
         // Tells the cell, if available, to re-layout itself.
         // This is an update to the User Interface.

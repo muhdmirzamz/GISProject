@@ -23,3 +23,4 @@ class Friends{
         self.ThumbnailImgUrl = thumbnailImgUrl
     }
 }
+ 

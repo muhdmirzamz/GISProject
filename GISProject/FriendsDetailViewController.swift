@@ -18,7 +18,7 @@ class FriendsDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = friend.Name
+       // self.navigationItem.title = friend.Name
         Helpers.loadAndDisplayImage(nil, imageView: profileImg, url: friend.ThumbnailImgUrl)
         
     }

@@ -35,7 +35,7 @@ class FriendsChatViewController: JSQMessagesViewController {
        setupBubbles()
         
         // No avatars
-        collectionView!.collectionViewLayout.springinessEnabled = true
+        collectionView.collectionViewLayout.springinessEnabled = true
        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize(width: 28, height: 28)
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: 28, height: 28)
      
