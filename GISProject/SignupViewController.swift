@@ -81,6 +81,7 @@ class SignupViewController: UIViewController {
 						self.ref.child("/Account/\(uid)/Level").setValue(level)
 						self.ref.child("/Account/\(uid)/Monsters killed").setValue(monst)
 						self.ref.child("/Account/\(uid)/Picture").setValue(pict)
+                        self.ref.child("/Account/\(uid)/Cards").setValue(cards)
 					
 						self.activityIndicator.stopAnimating()
 						try! FIRAuth.auth()!.signOut()

@@ -69,14 +69,16 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		let ref = FIRDatabase.database().reference().child("/Account")
 		let userID = (FIRAuth.auth()?.currentUser?.uid)!
 		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-			self.baseDamage = snapshot.value!["Base damage"] as? NSNumber
+			self.baseDamage = snapshot.value!["Base Damage"] as? NSNumber
 			self.calculatedDamageLabel.text = String((self.baseDamage?.integerValue)!)
 
 			self.amountOfCards = snapshot.value!["Cards"] as? NSNumber
 			
-			for i in 1 ... (self.amountOfCards?.integerValue)! {
-				self.cardsArr?.addObject(i)
-			}
+            if (self.amountOfCards?.integerValue)! > 0 {
+                for i in 1 ... (self.amountOfCards?.integerValue)! {
+                    self.cardsArr?.addObject(i)
+                }
+            }
 		})
 		
 		// an addition to aid user to dismiss picker view
