@@ -87,6 +87,11 @@ class ProfileViewController: UIViewController {
                         self.imageProfile.layer.borderWidth = 2.0
                         self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
                         self.imageProfile.image = UIImage(named: "ProfileRed")
+                    case 6 :
+                        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
+                        self.imageProfile.layer.borderWidth = 2.0
+                        self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
+                        self.imageProfile.image = UIImage(named: "ProfileSponge")
                     default:
                         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
                         self.imageProfile.layer.borderWidth = 2.0

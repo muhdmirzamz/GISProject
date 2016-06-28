@@ -10,13 +10,15 @@
 		6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */; };
 		6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */; };
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
-		6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */; };
 		6DB566071D1D1CF100110D74 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */; };
 		8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */; };
 		8156447B1D126CA40028D162 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156447A1D126CA40028D162 /* Profile.swift */; };
 		815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E6B621D1A64C700F2C961 /* QRViewController.swift */; };
 		819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AA1641D1266B30003FB8D /* ProfileViewController.swift */; };
 		81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */; };
+		81E3D64F1D220B5A00F3BAF4 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */; };
+		81E3D6511D220CA700F3BAF4 /* ActivityLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */; };
+		81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */; };
 		88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */; };
 		88EFBDF91D21389500577EC5 /* PhotoStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */; };
 		88EFBDFB1D21389A00577EC5 /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */; };
@@ -53,13 +55,15 @@
 		6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
-		6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
 		814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		8156447A1D126CA40028D162 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		815E6B621D1A64C700F2C961 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		819AA1641D1266B30003FB8D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
+		81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
+		81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogManager.swift; sourceTree = "<group>"; };
+		81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoStreamViewController.swift; path = GISProject/PhotoStreamViewController.swift; sourceTree = "<group>"; };
 		88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotatedPhotoCell.swift; path = GISProject/AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
@@ -133,13 +137,16 @@
 		81DA778D1D17B9DD00CB0EB6 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				6D611EB51CEB4AF100F99494 /* ActivityLogViewController.swift */,
+				6D611EB31CEB466500F99494 /* ActivityLog.swift */,
 				814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */,
 				81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */,
 				8156447A1D126CA40028D162 /* Profile.swift */,
 				819AA1641D1266B30003FB8D /* ProfileViewController.swift */,
 				6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */,
 				6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */,
+				81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */,
+				81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */,
+				81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -199,7 +206,6 @@
 				AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
-				6D611EB31CEB466500F99494 /* ActivityLog.swift */,
 			);
 			path = GISProject;
 			sourceTree = "<group>";
@@ -415,9 +421,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81E3D64F1D220B5A00F3BAF4 /* ActivityLogViewController.swift in Sources */,
 				88EFBE071D2138C100577EC5 /* SearchResult.swift in Sources */,
 				88EFBE031D2138B500577EC5 /* Photo.swift in Sources */,
-				6D611EB61CEB4AF100F99494 /* ActivityLogViewController.swift in Sources */,
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
 				88EFBE0B1D2138CE00577EC5 /* SearchResultCell.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
@@ -431,6 +437,7 @@
 				88EFBE191D21390100577EC5 /* Helpers.swift in Sources */,
 				88EFBE011D2138AF00577EC5 /* UIImage+Decompression.swift in Sources */,
 				6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */,
+				81E3D6511D220CA700F3BAF4 /* ActivityLogManager.swift in Sources */,
 				81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */,
 				88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */,
 				AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */,
@@ -445,6 +452,7 @@
 				88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */,
 				88EFBE051D2138BA00577EC5 /* FriendViewController.swift in Sources */,
 				6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */,
+				81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
