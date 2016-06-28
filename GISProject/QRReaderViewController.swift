@@ -13,15 +13,20 @@
 import UIKit
 import AVFoundation
 import MaterialCard
+import Firebase
 
 class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
+    var ref : FIRDatabaseReference!
+    
+    var name : String!
     
     @IBOutlet weak var messageLabel:UILabel!
     @IBOutlet weak var dismissButton: UIButton!
     
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
-    var qrCodeFrameView:UIView?
+    //var qrCodeFrameView:UIView?
     
     // Added to support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode]
@@ -32,6 +37,15 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     
     @IBAction func dismiss(){
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //Functions made just for UIAlerts
+    func dismissAlert (addedAlert: UIAlertAction!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func restartCapture (addedAlert: UIAlertAction!) {
+        captureSession?.startRunning()
     }
     
     override func viewDidLoad() {
@@ -81,14 +95,14 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             view.bringSubviewToFront(messageLabel)
             
             // Initialize QR Code Frame to highlight the QR code
-            qrCodeFrameView = UIView()
+            //qrCodeFrameView = UIView()
             
-            if let qrCodeFrameView = qrCodeFrameView {
-                qrCodeFrameView.layer.borderColor = UIColor.greenColor().CGColor
-                qrCodeFrameView.layer.borderWidth = 2
-                view.addSubview(qrCodeFrameView)
-                view.bringSubviewToFront(qrCodeFrameView)
-            }
+            //            if let qrCodeFrameView = qrCodeFrameView {
+            //                qrCodeFrameView.layer.borderColor = UIColor.greenColor().CGColor
+            //                qrCodeFrameView.layer.borderWidth = 2
+            //                view.addSubview(qrCodeFrameView)
+            //                view.bringSubviewToFront(qrCodeFrameView)
+            //            }
             
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
@@ -107,8 +121,8 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
-            qrCodeFrameView?.frame = CGRectZero
-            messageLabel.text = "No barcode/QR code is detected"
+            //            qrCodeFrameView?.frame = CGRectZero
+            messageLabel.text = ""
             return
         }
         
@@ -121,14 +135,19 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         if supportedBarCodes.contains(metadataObj.type) {
             //        if metadataObj.type == AVMetadataObjectTypeQRCode {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
-            qrCodeFrameView?.frame = barCodeObject!.bounds
-            
+            //let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
+            //qrCodeFrameView?.frame = barCodeObject!.bounds
+            captureSession?.stopRunning()
             if metadataObj.stringValue != nil {
-                messageLabel.text = metadataObj.stringValue
-                let addedAlert = UIAlertController(title: "\(metadataObj.stringValue)", message: "Friend has been added", preferredStyle: .Alert)
-                addedAlert.addAction(UIAlertAction(title: "!!!", style: .Default, handler: nil))
-                self.presentViewController(addedAlert, animated: true, completion: nil)
+                let ref = FIRDatabase.database().reference().child("/Account")
+                ref.child(metadataObj.stringValue).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                    self.name = snapshot.value!["Name"] as! String
+                    self.messageLabel.text = "Last added user, \(self.name)."
+                    let addedAlert = UIAlertController(title: "\(self.name)", message: "Friend has been added", preferredStyle: .Alert)
+                    addedAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: self.dismissAlert))
+                    addedAlert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: self.restartCapture))
+                    self.presentViewController(addedAlert, animated: true, completion: nil)
+                })
             }
         }
     }

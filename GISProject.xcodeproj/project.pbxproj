@@ -173,12 +173,12 @@
 				88EFBE181D21390100577EC5 /* Helpers.swift */,
 			);
 			name = FriendModule;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		AA22DB481CE3613600F8BA43 = {
 			isa = PBXGroup;
 			children = (
-				88EFBE1A1D213B8400577EC5 /* FriendModule */,
 				AA22DB531CE3613800F8BA43 /* GISProject */,
 				AA22DB521CE3613700F8BA43 /* Products */,
 				DD14F4F594CA50E6DBBC665C /* Pods */,
@@ -197,6 +197,7 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
+				88EFBE1A1D213B8400577EC5 /* FriendModule */,
 				6DAE5EDE1D1E4E50007CEF48 /* PLIST */,
 				6DAE5EDD1D1E4E3A007CEF48 /* QR */,
 				AAB38F6B1D199C8B00D1A20C /* Battle */,
@@ -269,7 +270,7 @@
 				TargetAttributes = {
 					AA22DB501CE3613700F8BA43 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 5Y8ZVY4N62;
+						DevelopmentTeam = A8493WN3HZ;
 					};
 				};
 			};
@@ -573,7 +574,7 @@
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -589,7 +590,7 @@
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
