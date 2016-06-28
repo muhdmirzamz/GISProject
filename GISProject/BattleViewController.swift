@@ -41,8 +41,8 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
 
         // set initial monster health to 100
-		self.monsterHealth = 100
-		self.monsterHealthLabel.text = "\(String(Int(self.monsterHealth!)))/100"
+		self.monsterHealth = 1
+		self.monsterHealthLabel.text = "\(String(Int(self.monsterHealth!)))/1"
 		
 		// initialize picker view
 		self.pickerView = UIPickerView()
@@ -148,24 +148,11 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 				ref.child("/\(userID)/Cards").setValue(cards)
 			})
 		}
-		
-		if self.monsterHealth == 0 {
-			let userID = (FIRAuth.auth()?.currentUser?.uid)!
-			let ref = FIRDatabase.database().reference().child("/Account")
-			
-			var currMonstersKilled: NSNumber?
-			
-			ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-				let prevMonstersKilled = snapshot.value!["Monsters killed"] as? NSNumber
-				currMonstersKilled = Int((prevMonstersKilled?.intValue)!) - 1
-				ref.child("/\(userID)/Monsters killed").setValue(currMonstersKilled)
-			})
-		}
 
-		var random = Double(arc4random()) % 0.007357
-		let latitudeRange = 1.376527 + random
-		random = Double(arc4random()) % 0.007328
-		let longitudeRange = 103.843563 + random
+		var random = Double(arc4random()) % 0.004983
+		let latitudeRange = 1.377431 + random
+		random = Double(arc4random()) % 0.002122
+		let longitudeRange = 103.848156 + random
 		
 		let ref = FIRDatabase.database().reference().child("/Location")
 		let key = (self.selectedAnnotation?.key)!
@@ -186,6 +173,19 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 				timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "handleNavController", userInfo: nil, repeats: false)
 			}// prevent health bar from having the glitch of going negative
 		} else {
+			if self.monsterHealth == 0 {
+				let userID = (FIRAuth.auth()?.currentUser?.uid)!
+				let ref = FIRDatabase.database().reference().child("/Account")
+				
+				var currMonstersKilled: NSNumber?
+				
+				ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+					let prevMonstersKilled = snapshot.value!["Monsters killed"] as? NSNumber
+					currMonstersKilled = (prevMonstersKilled?.integerValue)! + 1
+					ref.child("/\(userID)/Monsters killed").setValue(currMonstersKilled)
+				})
+			}
+		
 			self.timer?.invalidate()
 			
 			self.timer = NSTimer()

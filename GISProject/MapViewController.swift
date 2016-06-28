@@ -64,12 +64,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		
 		// center view within region
 		var span = MKCoordinateSpan()
-		span.latitudeDelta = 0.02
-		span.longitudeDelta = 0.02
+		span.latitudeDelta = 0.01
+		span.longitudeDelta = 0.01
+		
+		// 1.382414, 103.848156 - top left
+		// 1.377431, 103.850278 - bottom right
 		
 		var locationTest = CLLocationCoordinate2D()
-		locationTest.latitude = (1.376527 + 1.383884) / 2
-		locationTest.longitude = (103.843563 + 103.850891) / 2
+		locationTest.latitude = (1.377431 + 1.382414) / 2
+		locationTest.longitude = (103.848156 + 103.850278) / 2
 		
 		self.region = MKCoordinateRegion()
 		self.region!.center = locationTest
@@ -77,6 +80,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		
 		self.map.setRegion(self.region!, animated: true)
 		self.map.setCenterCoordinate((self.region?.center)!, animated: true)
+		
+//		for i in 0 ..< 10 {
+//			var random = Double(arc4random()) % 0.004983
+//			let latitudeRange = 1.377431 + random
+//			random = Double(arc4random()) % 0.002122
+//			let longitudeRange = 103.848156 + random
+//			
+//			print("\(latitudeRange) , \(longitudeRange)")
+//		}
 	}
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -96,15 +108,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		}
 	
 		if annotation is LocationModel {
-			var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin") as? MKPinAnnotationView
+			var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin")
 			
 			if annotationView == nil {
-				annotationView = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "pin")
+				annotationView = MKAnnotationView.init(annotation: annotation, reuseIdentifier: "pin")
 				annotationView?.canShowCallout = true
-				annotationView?.pinTintColor = UIColor.redColor()
-				
-				let button = UIButton.init(type: .DetailDisclosure)
-				annotationView?.rightCalloutAccessoryView = button
+
+				let image = UIImage.init(named: "monster")
+
+				// resize image using a new image graphics context
+				UIGraphicsBeginImageContextWithOptions(CGSize.init(width: 30, height: 30), false, 0.0);
+				image?.drawInRect(CGRectMake(0, 0, 30, 30))
+				let newImage = UIGraphicsGetImageFromCurrentImageContext();
+				UIGraphicsEndImageContext();
+			
+				annotationView?.image = newImage
 			} else {
 				annotationView?.annotation = annotation
 			}
@@ -115,26 +133,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		return nil
 	}
 	
-	
-	func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-		// you need this for measuring distance between battle locations and you
-		//let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
-		//let boundaryLocation = CLLocation.init(latitude: (self.region?.center.latitude)!, longitude: (self.region?.center.longitude)!)
-		//let distance = userLocation.distanceFromLocation(boundaryLocation)
-
-		// follows meters
-//		if distance > 50 {
-//			let alert = UIAlertController.init(title: "Hold on", message: "You're too far", preferredStyle: .Alert)
-//			let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
-//			alert.addAction(okAction)
-//			self.presentViewController(alert, animated: true, completion: nil)
-//		} else {
-//			let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController")
-//			self.presentViewController(joinBattleVC, animated: true, completion: nil)
-//		}
-		
+	func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
 		let selectedAnnotation = mapView.selectedAnnotations.first as? LocationModel
-
+		
 		let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController") as? JoinBattleViewController
 		joinBattleVC?.selectedAnnotation = selectedAnnotation
 		let navController = UINavigationController.init(rootViewController: joinBattleVC!)
