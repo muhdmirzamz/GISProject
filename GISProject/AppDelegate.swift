@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 		
 		FIRApp.configure()
-		
+        let theme = ThemeManager.currentTheme()
+        ThemeManager.applyTheme(theme)
+
 		return true
 	}
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eyq-FP-3bD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FKT-JN-61o">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -76,7 +76,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="163"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NGi-gj-BPm" id="wEX-gL-txq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="162.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NameLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAJ-AB-K80">
@@ -819,66 +819,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="sxF-FW-Wa3" kind="relationship" relationship="rootViewController" id="lZM-UY-OnJ"/>
+                        <segue destination="TLz-FH-kgD" kind="relationship" relationship="rootViewController" id="4j2-Bl-dc0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKI-bE-Do3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1191" y="-774"/>
-        </scene>
-        <!--Hi-->
-        <scene sceneID="YUu-Jm-gMJ">
-            <objects>
-                <viewController id="sxF-FW-Wa3" customClass="FriendViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kqf-dn-ndb"/>
-                        <viewControllerLayoutGuide type="bottom" id="9Hq-c4-hxX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3zB-js-HtV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vvD-Nf-wR6">
-                                <rect key="frame" x="0.0" y="66" width="320" height="411"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="sxF-FW-Wa3" id="26j-FN-cbZ"/>
-                                    <outlet property="delegate" destination="sxF-FW-Wa3" id="3rf-xA-sIu"/>
-                                </connections>
-                            </tableView>
-                            <searchBar contentMode="redraw" placeholder="Look For Friends?" translatesAutoresizingMaskIntoConstraints="NO" id="Iof-i0-MGS">
-                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="sxF-FW-Wa3" id="O8P-Hf-ba3"/>
-                                </connections>
-                            </searchBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="vvD-Nf-wR6" firstAttribute="leading" secondItem="3zB-js-HtV" secondAttribute="leading" id="8ee-Rj-kfT"/>
-                            <constraint firstItem="Iof-i0-MGS" firstAttribute="top" secondItem="kqf-dn-ndb" secondAttribute="bottom" id="Vr3-MY-dG9"/>
-                            <constraint firstAttribute="trailing" secondItem="Iof-i0-MGS" secondAttribute="trailing" id="hoo-HR-UXz"/>
-                            <constraint firstAttribute="trailing" secondItem="vvD-Nf-wR6" secondAttribute="trailing" id="oQM-2M-uiW"/>
-                            <constraint firstItem="Iof-i0-MGS" firstAttribute="leading" secondItem="3zB-js-HtV" secondAttribute="leading" id="trX-ve-Vmi"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Hi" id="RY1-Cw-R5Y">
-                        <barButtonItem key="rightBarButtonItem" title="Deck" id="nVq-Lb-Pc8">
-                            <connections>
-                                <segue destination="7TM-KB-KAt" kind="push" id="dsU-qa-RLZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="searchBar" destination="Iof-i0-MGS" id="stO-Ep-lfu"/>
-                        <outlet property="tableView" destination="vvD-Nf-wR6" id="bvF-jL-Qa8"/>
-                        <segue destination="ecQ-mx-922" kind="push" identifier="ShowFriendsDetails" id="Fhz-bz-1a7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2fO-CH-IGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1613" y="-836"/>
         </scene>
         <!--Friendship Deck-->
         <scene sceneID="FXy-4G-lga">
@@ -1017,6 +963,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FHp-Yo-EnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2098" y="-1496"/>
+        </scene>
+        <!--Friends-->
+        <scene sceneID="F6M-aY-TMX">
+            <objects>
+                <tableViewController id="TLz-FH-kgD" customClass="FriendsTableViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ssd-lW-W6o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendsCell" rowHeight="140" id="rlX-Hz-XeV" customClass="FriendsCell" customModule="GISProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="140"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rlX-Hz-XeV" id="zEV-JQ-d3y">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="139"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LV4-UJ-qC5">
+                                            <rect key="frame" x="22" y="15" width="80" height="110"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="SNz-nr-pu1"/>
+                                                <constraint firstAttribute="height" constant="110" id="t9P-qz-WH2"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C97-2f-ki2">
+                                            <rect key="frame" x="133" y="73" width="35" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yK5-LG-f8c">
+                                            <rect key="frame" x="133" y="21" width="43" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="C97-2f-ki2" secondAttribute="bottom" constant="37" id="2VX-ym-3UW"/>
+                                        <constraint firstItem="C97-2f-ki2" firstAttribute="leading" secondItem="yK5-LG-f8c" secondAttribute="leading" id="Nvy-bQ-pXn"/>
+                                        <constraint firstItem="C97-2f-ki2" firstAttribute="leading" secondItem="LV4-UJ-qC5" secondAttribute="trailing" constant="31" id="T3o-jT-ii6"/>
+                                        <constraint firstItem="C97-2f-ki2" firstAttribute="top" secondItem="yK5-LG-f8c" secondAttribute="bottom" constant="31" id="ahm-TF-dC7"/>
+                                        <constraint firstItem="LV4-UJ-qC5" firstAttribute="leading" secondItem="zEV-JQ-d3y" secondAttribute="leadingMargin" constant="14" id="cSr-cD-ZOh"/>
+                                        <constraint firstItem="LV4-UJ-qC5" firstAttribute="centerY" secondItem="zEV-JQ-d3y" secondAttribute="centerY" id="gTM-rQ-DPj"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="level" destination="C97-2f-ki2" id="XWr-qp-JFc"/>
+                                    <outlet property="name" destination="yK5-LG-f8c" id="kdM-X5-CuC"/>
+                                    <outlet property="profileImage" destination="LV4-UJ-qC5" id="cqd-jT-fkc"/>
+                                    <segue destination="ecQ-mx-922" kind="push" identifier="ShowFriendsDetails" id="x5w-sn-7SO"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TLz-FH-kgD" id="AvS-jt-Txs"/>
+                            <outlet property="delegate" destination="TLz-FH-kgD" id="0Df-tS-KdQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Friends" id="vDO-Qe-16F">
+                        <barButtonItem key="rightBarButtonItem" title="Deck" id="Iqa-At-dlK">
+                            <connections>
+                                <segue destination="7TM-KB-KAt" kind="push" identifier="ShowFriendsDeck" id="YJE-2X-EUy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yd9-Ex-Mpf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1667" y="-798"/>
         </scene>
         <!--Name-->
         <scene sceneID="N5u-cc-F9C">

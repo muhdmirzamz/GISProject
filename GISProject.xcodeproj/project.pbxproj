@@ -19,6 +19,9 @@
 		81E3D64F1D220B5A00F3BAF4 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */; };
 		81E3D6511D220CA700F3BAF4 /* ActivityLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */; };
 		81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */; };
+		8804BFF81D255B8400156549 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8804BFF71D255B8400156549 /* Theme.swift */; };
+		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
+		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
 		88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */; };
 		88EFBDF91D21389500577EC5 /* PhotoStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */; };
 		88EFBDFB1D21389A00577EC5 /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */; };
@@ -36,7 +39,6 @@
 		88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */; };
 		88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE141D2138EC00577EC5 /* Friends.swift */; };
 		88EFBE171D2138F100577EC5 /* FriendsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */; };
-		88EFBE191D21390100577EC5 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE181D21390100577EC5 /* Helpers.swift */; };
 		AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */; };
 		AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB541CE3613800F8BA43 /* AppDelegate.swift */; };
 		AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB561CE3613800F8BA43 /* ViewController.swift */; };
@@ -64,6 +66,9 @@
 		81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogManager.swift; sourceTree = "<group>"; };
 		81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
+		8804BFF71D255B8400156549 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoStreamViewController.swift; path = GISProject/PhotoStreamViewController.swift; sourceTree = "<group>"; };
 		88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotatedPhotoCell.swift; path = GISProject/AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
@@ -81,7 +86,6 @@
 		88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsChatViewController.swift; path = GISProject/FriendsChatViewController.swift; sourceTree = "<group>"; };
 		88EFBE141D2138EC00577EC5 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Friends.swift; path = GISProject/Friends.swift; sourceTree = "<group>"; };
 		88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDataManager.swift; path = GISProject/FriendsDataManager.swift; sourceTree = "<group>"; };
-		88EFBE181D21390100577EC5 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = GISProject/Helpers.swift; sourceTree = "<group>"; };
 		8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AA22DB511CE3613700F8BA43 /* GISProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GISProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,10 +155,24 @@
 			name = Account;
 			sourceTree = "<group>";
 		};
+		8804BFF61D255B6300156549 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				8804BFF71D255B8400156549 /* Theme.swift */,
+			);
+			name = Theme;
+			sourceTree = "<group>";
+		};
 		88EFBE1A1D213B8400577EC5 /* FriendModule */ = {
 			isa = PBXGroup;
 			children = (
+				88EFBE141D2138EC00577EC5 /* Friends.swift */,
+				88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */,
+				88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */,
+				88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */,
 				88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */,
+				88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */,
+				88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */,
 				88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */,
 				88EFBDFC1D2138A000577EC5 /* RoundedCornersView.swift */,
 				88EFBDFE1D2138A600577EC5 /* Photos.plist */,
@@ -166,11 +184,6 @@
 				88EFBE0A1D2138CE00577EC5 /* SearchResultCell.swift */,
 				88EFBE0C1D2138D400577EC5 /* NothingFoundCell.xib */,
 				88EFBE0E1D2138DA00577EC5 /* SearchResultCell.xib */,
-				88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */,
-				88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */,
-				88EFBE141D2138EC00577EC5 /* Friends.swift */,
-				88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */,
-				88EFBE181D21390100577EC5 /* Helpers.swift */,
 			);
 			name = FriendModule;
 			path = ..;
@@ -197,6 +210,7 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
+				8804BFF61D255B6300156549 /* Theme */,
 				88EFBE1A1D213B8400577EC5 /* FriendModule */,
 				6DAE5EDE1D1E4E50007CEF48 /* PLIST */,
 				6DAE5EDD1D1E4E3A007CEF48 /* QR */,
@@ -435,7 +449,7 @@
 				6DB566071D1D1CF100110D74 /* QRReaderViewController.swift in Sources */,
 				88EFBE171D2138F100577EC5 /* FriendsDataManager.swift in Sources */,
 				8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */,
-				88EFBE191D21390100577EC5 /* Helpers.swift in Sources */,
+				88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */,
 				88EFBE011D2138AF00577EC5 /* UIImage+Decompression.swift in Sources */,
 				6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */,
 				81E3D6511D220CA700F3BAF4 /* ActivityLogManager.swift in Sources */,
@@ -454,6 +468,8 @@
 				88EFBE051D2138BA00577EC5 /* FriendViewController.swift in Sources */,
 				6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */,
 				81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */,
+				88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */,
+				8804BFF81D255B8400156549 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
