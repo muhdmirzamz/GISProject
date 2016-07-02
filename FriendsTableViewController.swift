@@ -27,7 +27,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = ThemeManager.currentTheme().backgroundColor   
         //refresh control
         refreshDataControl = UIRefreshControl()
         refreshDataControl.addTarget(self, action: #selector(FriendsTableViewController.refreshControlAction), forControlEvents: .ValueChanged)

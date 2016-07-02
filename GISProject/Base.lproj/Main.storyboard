@@ -5,6 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="PoetsenOne-Regular.ttf">
+            <string>PoetsenOne-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Image Picker View Controller-->
         <scene sceneID="acn-DT-55C">
@@ -809,11 +814,11 @@
             </objects>
             <point key="canvasLocation" x="154.5" y="-500.5"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="asa-Fc-0TZ">
             <objects>
                 <navigationController id="huo-dF-jAx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="fwa-aG-rHW"/>
+                    <tabBarItem key="tabBarItem" title="" id="fwa-aG-rHW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wlc-yW-iwC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -993,9 +998,9 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yK5-LG-f8c">
-                                            <rect key="frame" x="133" y="21" width="43" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yK5-LG-f8c">
+                                            <rect key="frame" x="133" y="21" width="128" height="21"/>
+                                            <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="PoetsenOne" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
