@@ -26,6 +26,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
 	var pickerView: UIPickerView?
 	var cardsArr: NSMutableArray?
+	var uidArr: NSMutableArray?
 	var baseDamage: NSNumber?
 	var amountOfCards: NSNumber?
 	var amountOfCardsToUse: NSNumber?
@@ -58,6 +59,8 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		self.cardsArr = NSMutableArray()
 		self.cardsArr?.addObject(0)
 		
+		self.uidArr = NSMutableArray()
+		
 		// check to see if user's card switch should be switched on
 		self.checkUserCardSwitch()
 		
@@ -66,7 +69,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		
 		// get base damage, this becomaes initial calculated damage
 		// get amount of cards
-		let ref = FIRDatabase.database().reference().child("/Account")
+		var ref = FIRDatabase.database().reference().child("/Account")
 		let userID = (FIRAuth.auth()?.currentUser?.uid)!
 		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
 			self.baseDamage = snapshot.value!["Base Damage"] as? NSNumber
@@ -79,6 +82,28 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                     self.cardsArr?.addObject(i)
                 }
             }
+		})
+		
+		ref = FIRDatabase.database().reference().child("/Friend")
+		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+			var counter = 1
+		
+			for i in snapshot.children {
+				print(i.key!!)
+				
+				let key = i.key!!
+				let value = snapshot.value!["\(key)"] as? NSNumber
+				
+				if value?.integerValue == 1 {
+					print("Adding..")
+					self.uidArr?.addObject(key)
+					self.cardsArr?.addObject(counter)
+					
+					counter = counter + 1
+				}
+				
+				print(value!.integerValue)
+			}
 		})
 		
 		// an addition to aid user to dismiss picker view
@@ -137,16 +162,13 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		
 		if (self.amountOfCardsToUse?.integerValue)! > 0 {
 			let userID = (FIRAuth.auth()?.currentUser?.uid)!
-			let ref = FIRDatabase.database().reference().child("/Account")
+			let ref = FIRDatabase.database().reference().child("/Friend")
 			
-			ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-				let prevAmountOfCards = snapshot.value!["Cards"] as? NSNumber
-				print((prevAmountOfCards?.integerValue)!)
-				let currAmountOfCards = (prevAmountOfCards?.integerValue)! - (self.amountOfCardsToUse?.integerValue)!
-				print(currAmountOfCards)
-				let cards = NSNumber.init(integer: currAmountOfCards)
-				ref.child("/\(userID)/Cards").setValue(cards)
-			})
+			for i in 0 ..< (self.amountOfCardsToUse?.integerValue)! {
+				let randomIndex = Int(arc4random()) % (self.amountOfCardsToUse?.integerValue)!
+				let randomUid = self.uidArr![randomIndex] as! String
+				ref.child("/\(userID)/\(randomUid)").setValue(0)
+			}
 		}
 
 		var random = Double(arc4random()) % 0.004983
@@ -173,18 +195,16 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 				timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "handleNavController", userInfo: nil, repeats: false)
 			}// prevent health bar from having the glitch of going negative
 		} else {
-			if self.monsterHealth == 0 {
-				let userID = (FIRAuth.auth()?.currentUser?.uid)!
-				let ref = FIRDatabase.database().reference().child("/Account")
-				
-				var currMonstersKilled: NSNumber?
-				
-				ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-					let prevMonstersKilled = snapshot.value!["Monsters killed"] as? NSNumber
-					currMonstersKilled = (prevMonstersKilled?.integerValue)! + 1
-					ref.child("/\(userID)/Monsters killed").setValue(currMonstersKilled)
-				})
-			}
+			let userID = (FIRAuth.auth()?.currentUser?.uid)!
+			let ref = FIRDatabase.database().reference().child("/Account")
+			
+			var currMonstersKilled: NSNumber?
+			
+			ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+				let prevMonstersKilled = snapshot.value!["Monsters killed"] as? NSNumber
+				currMonstersKilled = (prevMonstersKilled?.integerValue)! + 1
+				ref.child("/\(userID)/Monsters killed").setValue(currMonstersKilled)
+			})
 		
 			self.timer?.invalidate()
 			
