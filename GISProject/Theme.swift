@@ -116,6 +116,8 @@ struct ThemeManager {
         
         UISegmentedControl.appearance().setBackgroundImage(controlBackground, forState: .Normal, barMetrics: .Default)
         UISegmentedControl.appearance().setBackgroundImage(controlSelectedBackground, forState: .Selected, barMetrics: .Default)
+        
+        
     }
 
     //end of ThemeManager
