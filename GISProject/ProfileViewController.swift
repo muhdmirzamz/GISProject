@@ -8,12 +8,15 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class ProfileViewController: UIViewController {
     var name : String = ""
     var monstersKilled : Int = 0
     var level : Int = 0
     var ref: FIRDatabaseReference!
+    
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
 //    @IBOutlet var activityIndicator: UIActivityIndicatorView!
 //    @IBOutlet weak var nameLabel: UILabel!
@@ -121,11 +124,40 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logout() {
         
+        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: self.appDelegate.managedObjectContext)
+        let sortDescriptor = NSSortDescriptor.init(key: "username", ascending: true)
+        let fetchReq = NSFetchRequest()
+        fetchReq.entity = entity
+        fetchReq.sortDescriptors = [sortDescriptor]
+        
+        let fetchResController = NSFetchedResultsController.init(fetchRequest: fetchReq, managedObjectContext: self.appDelegate.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        do {
+            try fetchResController.performFetch()
+            
+            for object in fetchResController.fetchedObjects! {
+                self.appDelegate.managedObjectContext.deleteObject(object as! NSManagedObject)
+                print("delete")
+            }
+            
+            do {
+                try self.appDelegate.managedObjectContext.save()
+            } catch {
+                print("Unable to delete account")
+            }
+            
+            print("DELETE account")
+        } catch {
+            print("Unable to fetch!\n")
+        }
+
+        
         do {
             try! FIRAuth.auth()!.signOut()
+            
+            print("LOGGED OUT")
+            
             self.dismiss()
         } catch {
-            
         }
     }
     

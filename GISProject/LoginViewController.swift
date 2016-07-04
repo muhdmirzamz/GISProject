@@ -8,12 +8,15 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class LoginViewController: UIViewController {
 
     @IBOutlet var image: UIImageView!
     @IBOutlet weak var Email: UITextField!
     @IBOutlet weak var Password: UITextField!
+    
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var myid : String = ""
     
@@ -45,10 +48,6 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-//        return .LightContent
-//    }
     
 
     @IBAction func Login(sender: AnyObject) {
@@ -66,10 +65,18 @@ class LoginViewController: UIViewController {
                 self.Email.text! = ""
                 self.Password.text! = ""
             } else {
-//                if let user = FIRAuth.auth()?.currentUser {
-//                    self.myid = user.uid
-//                    print(self.myid)
-//                }
+                let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: self.appDelegate.managedObjectContext)
+                let object = NSManagedObject.init(entity: entity!, insertIntoManagedObjectContext: self.appDelegate.managedObjectContext)
+                
+                object.setValue(self.Email.text!, forKey: "username")
+                object.setValue(self.Password.text!, forKey: "password")
+                
+                do {
+                    try self.appDelegate.managedObjectContext.save()
+                } catch {
+                    print("Unable to save!")
+                }
+                
                 let tabBarController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain") as? UITabBarController
                     self.presentViewController(tabBarController!, animated: true, completion: nil)
                 self.Email.text! = ""
@@ -77,7 +84,6 @@ class LoginViewController: UIViewController {
             }
         })
     }
-    
 
 
 }

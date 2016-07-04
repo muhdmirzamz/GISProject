@@ -19,6 +19,7 @@
 		81E3D64F1D220B5A00F3BAF4 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */; };
 		81E3D6511D220CA700F3BAF4 /* ActivityLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */; };
 		81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */; };
+		81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81F1673B1D29F581009B305D /* User.xcdatamodeld */; };
 		8804BFF81D255B8400156549 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8804BFF71D255B8400156549 /* Theme.swift */; };
 		88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFF8201D28C08B001304CA /* CustomTabBarController.swift */; };
 		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
@@ -67,6 +68,7 @@
 		81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogManager.swift; sourceTree = "<group>"; };
 		81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
+		81F1673C1D29F581009B305D /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		8804BFF71D255B8400156549 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		882AB7341D279BB100001ECC /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
 		88CFF8201D28C08B001304CA /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				81DA778D1D17B9DD00CB0EB6 /* Account */,
 				AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */,
 				AA22DB581CE3613900F8BA43 /* Main.storyboard */,
+				81F1673B1D29F581009B305D /* User.xcdatamodeld */,
 				AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
@@ -465,6 +468,7 @@
 				AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */,
 				88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */,
 				88EFBDFB1D21389A00577EC5 /* AnnotatedPhotoCell.swift in Sources */,
+				81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */,
 				819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */,
 				815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */,
 				88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */,
@@ -640,6 +644,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		81F1673B1D29F581009B305D /* User.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				81F1673C1D29F581009B305D /* User.xcdatamodel */,
+			);
+			currentVersion = 81F1673C1D29F581009B305D /* User.xcdatamodel */;
+			path = User.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AA22DB491CE3613600F8BA43 /* Project object */;
 }
