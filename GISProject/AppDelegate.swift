@@ -14,8 +14,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-    var tabBarController: UITabBarController?
-    var loginVC: UIViewController?
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
@@ -42,15 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try fetchResController.performFetch()
             
             if fetchResController.fetchedObjects?.count == 1 {
-                let object = fetchResController.fetchedObjects![0]
-                let username = object.valueForKey("username") as? String
-                let password = object.valueForKey("password") as? String
+                print("Logged in")
                 
-                FIRAuth.auth()?.signInWithEmail(username!, password: password!, completion: {
-                    user, error in
-                    loggedIn = true
-                })
+                loggedIn = true
             } else {
+                print("Not logged in")
+                
                loggedIn = false
             }
         } catch {
@@ -58,13 +53,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if loggedIn {
+            let object = fetchResController.fetchedObjects![0]
+            let username = object.valueForKey("username") as? String
+            let password = object.valueForKey("password") as? String
+            
+            FIRAuth.auth()?.signInWithEmail(username!, password: password!, completion: nil)
             self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
-            self.loginVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("LoginViewController")
-            self.window?.rootViewController = self.loginVC
+            self.window?.rootViewController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain")
         } else {
             self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
-            self.tabBarController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain") as? UITabBarController
-            self.window?.rootViewController = self.tabBarController
+            self.window?.rootViewController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("LoginViewController")
         }
         
         self.window?.makeKeyAndVisible()
