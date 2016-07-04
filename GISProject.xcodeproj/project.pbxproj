@@ -257,7 +257,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA22DB631CE3613900F8BA43 /* Build configuration list for PBXNativeTarget "GISProject" */;
 			buildPhases = (
-				85826E740B87E15144E420BA /* 📦 Check Pods Manifest.lock */,
+				85826E740B87E15144E420BA /* [CP] Check Pods Manifest.lock */,
 				E425E6ABC80EF399CE7B013A /* [CP] Check Pods Manifest.lock */,
 				AA22DB4D1CE3613700F8BA43 /* Sources */,
 				AA22DB4E1CE3613700F8BA43 /* Frameworks */,
@@ -359,14 +359,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GISProject/Pods-GISProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		85826E740B87E15144E420BA /* 📦 Check Pods Manifest.lock */ = {
+		85826E740B87E15144E420BA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
