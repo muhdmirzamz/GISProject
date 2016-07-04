@@ -11,11 +11,14 @@ import UIKit
 class JoinBattleViewController: UIViewController, BattleProtocol {
 
 	var selectedAnnotation: LocationModel?
+    
+    @IBOutlet var monsterHealth: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.monsterHealth.text = "1/1"
     }
 
     override func didReceiveMemoryWarning() {

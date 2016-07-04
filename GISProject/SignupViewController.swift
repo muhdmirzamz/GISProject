@@ -84,9 +84,6 @@ class SignupViewController: UIViewController {
                         self.ref.child("/Account/\(uid)/Picture").setValue(pict)
                         self.ref.child("/Account/\(uid)/Cards").setValue(cards)
                         
-                        //Create "Friend" Firebase
-                        self.ref.child("/Friend/\(uid)/FRIEND_UID").setValue("0")
-                        
                         self.activityIndicator.stopAnimating()
                         try! FIRAuth.auth()!.signOut()
                         let errorSuccess = UIAlertController(title: "Account Successfully Created", message: "Enter your information you signed up with to enter the world of LOBA", preferredStyle: .Alert)

@@ -101,8 +101,6 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 					
 					counter = counter + 1
 				}
-				
-				print(value!.integerValue)
 			}
 		})
 		
@@ -186,7 +184,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		if self.monsterHealth > 0 {
 			if self.monsterHealth > self.expectedMonsterHealth {
 				self.monsterHealth = self.monsterHealth! - 1
-				self.monsterHealthLabel.text = "\(String(Int(self.monsterHealth!)))/100"
+				self.monsterHealthLabel.text = "\(String(Int(self.monsterHealth!)))/1"
 				self.monsterHealthBar.progress = self.monsterHealth! / 100
 			} else {
 				self.timer?.invalidate()
