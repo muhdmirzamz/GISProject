@@ -30,7 +30,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         view.backgroundColor = ThemeManager.currentTheme().backgroundColor   
         //refresh control
         refreshDataControl = UIRefreshControl()
-        refreshDataControl.addTarget(self, action: #selector(FriendsTableViewController.refreshControlAction), forControlEvents: .ValueChanged)
+        refreshDataControl.addTarget(self, action: "refreshControlAction", forControlEvents: .ValueChanged)
        refreshDataControl.backgroundColor = UIColor.purpleColor()
        refreshDataControl.tintColor = UIColor.whiteColor()
         tableView.addSubview(refreshDataControl)
