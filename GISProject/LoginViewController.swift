@@ -35,6 +35,52 @@ class LoginViewController: UIViewController {
         let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
         self.view.addGestureRecognizer(tapFunc2)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: self.appDelegate.managedObjectContext)
+        let sortDescriptor = NSSortDescriptor.init(key: "username", ascending: true)
+        let fetchReq = NSFetchRequest()
+        fetchReq.entity = entity
+        fetchReq.sortDescriptors = [sortDescriptor]
+        
+        let fetchResController = NSFetchedResultsController.init(fetchRequest: fetchReq, managedObjectContext: self.appDelegate.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        var loggedIn = false
+        
+        do {
+            try fetchResController.performFetch()
+            
+            if fetchResController.fetchedObjects?.count == 1 {
+                print("Logged in")
+                
+                loggedIn = true
+            } else {
+                print("Not logged in")
+                
+                loggedIn = false
+            }
+        } catch {
+            print("Unable to fetch!\n")
+        }
+        
+        if loggedIn {
+            let object = fetchResController.fetchedObjects![0]
+            let username = object.valueForKey("username") as? String
+            let password = object.valueForKey("password") as? String
+            
+            // if user exit app
+            // if user session has been terminated
+            if (FIRAuth.auth()?.currentUser)! == nil {
+                // log user in
+                FIRAuth.auth()?.signInWithEmail(username!, password: password!, completion: nil)
+            }
+            
+            let tabBarController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain") as? UITabBarController
+            self.presentViewController(tabBarController!, animated: true, completion: nil)
+        }
+    }
 
     func changeView() {
         self.image.image = UIImage.init(named: "loba")
@@ -78,7 +124,7 @@ class LoginViewController: UIViewController {
                 }
                 
                 let tabBarController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain") as? UITabBarController
-                    self.presentViewController(tabBarController!, animated: true, completion: nil)
+                self.presentViewController(tabBarController!, animated: true, completion: nil)
                 self.Email.text! = ""
                 self.Password.text! = ""
             }

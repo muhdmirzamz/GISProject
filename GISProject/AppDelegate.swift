@@ -26,48 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         ThemeManager.applyTheme(selectedTheme!)
         
-        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: self.managedObjectContext)
-        let sortDescriptor = NSSortDescriptor.init(key: "username", ascending: true)
-        let fetchReq = NSFetchRequest()
-        fetchReq.entity = entity
-        fetchReq.sortDescriptors = [sortDescriptor]
-        
-        let fetchResController = NSFetchedResultsController.init(fetchRequest: fetchReq, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        var loggedIn = false
-        
-        do {
-            try fetchResController.performFetch()
-            
-            if fetchResController.fetchedObjects?.count == 1 {
-                print("Logged in")
-                
-                loggedIn = true
-            } else {
-                print("Not logged in")
-                
-               loggedIn = false
-            }
-        } catch {
-            print("Unable to fetch!\n")
-        }
-        
-        if loggedIn {
-            let object = fetchResController.fetchedObjects![0]
-            let username = object.valueForKey("username") as? String
-            let password = object.valueForKey("password") as? String
-            
-            FIRAuth.auth()?.signInWithEmail(username!, password: password!, completion: nil)
-            self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
-            self.window?.rootViewController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain")
-        } else {
-            self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
-            self.window?.rootViewController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("LoginViewController")
-        }
-        
-        self.window?.makeKeyAndVisible()
-        
-       return true
+        return true
 	}
 
 	func applicationWillResignActive(application: UIApplication) {
