@@ -12,7 +12,7 @@ import CoreData
 
 class LoginViewController: UIViewController, ProfileProtocol {
 
-    @IBOutlet var image: UIImageView!
+    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var Email: UITextField!
     @IBOutlet weak var Password: UITextField!
     
@@ -23,17 +23,26 @@ class LoginViewController: UIViewController, ProfileProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        //Dark KB
+        Email.keyboardAppearance = .Dark
+        Password.keyboardAppearance = .Dark
         
-        //easter egg :D
-        let tapFunc1 = UITapGestureRecognizer.init(target: self, action: "changeView")
-        tapFunc1.numberOfTapsRequired = 10
-        tapFunc1.numberOfTouchesRequired = 1
-        self.view.addGestureRecognizer(tapFunc1)
+        //Disable Auto Correct
+        Email.autocorrectionType = .No
+        Password.autocorrectionType = .No
+        
+        //HTML Particle BG
+        let localfilePath = NSBundle.mainBundle().URLForResource("index", withExtension: "html");
+        let myRequest = NSURLRequest(URL: localfilePath!);
+        webView.loadRequest(myRequest);
         
         //hide keyboard
         let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
         self.view.addGestureRecognizer(tapFunc2)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -90,10 +99,6 @@ class LoginViewController: UIViewController, ProfileProtocol {
             
             self.presentViewController(tabBarController!, animated: true, completion: nil)
         }
-    }
-
-    func changeView() {
-        self.image.image = UIImage.init(named: "loba")
     }
     
     func hideKeyboard() {

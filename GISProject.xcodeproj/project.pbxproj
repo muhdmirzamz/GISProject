@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D4122941D2BB7C70016DBE2 /* demo.js in Resources */ = {isa = PBXBuildFile; fileRef = 6D4122901D2BB7C70016DBE2 /* demo.js */; };
+		6D4122951D2BB7C70016DBE2 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6D4122911D2BB7C70016DBE2 /* index.html */; };
+		6D4122961D2BB7C70016DBE2 /* jquery.particleground.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6D4122921D2BB7C70016DBE2 /* jquery.particleground.min.js */; };
+		6D4122971D2BB7C70016DBE2 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 6D4122931D2BB7C70016DBE2 /* style.css */; };
 		6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */; };
 		6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */; };
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
@@ -55,6 +59,10 @@
 /* Begin PBXFileReference section */
 		027CAAD9DE2DC497261DB2FE /* Pods-GISProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.release.xcconfig"; sourceTree = "<group>"; };
 		0B061A809F4C2DBC68A79C9D /* Pods-GISProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.debug.xcconfig"; sourceTree = "<group>"; };
+		6D4122901D2BB7C70016DBE2 /* demo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = demo.js; sourceTree = "<group>"; };
+		6D4122911D2BB7C70016DBE2 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		6D4122921D2BB7C70016DBE2 /* jquery.particleground.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.particleground.min.js; sourceTree = "<group>"; };
+		6D4122931D2BB7C70016DBE2 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
@@ -121,6 +129,17 @@
 				8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D41228F1D2BB7AD0016DBE2 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				6D4122901D2BB7C70016DBE2 /* demo.js */,
+				6D4122911D2BB7C70016DBE2 /* index.html */,
+				6D4122921D2BB7C70016DBE2 /* jquery.particleground.min.js */,
+				6D4122931D2BB7C70016DBE2 /* style.css */,
+			);
+			name = HTML;
 			sourceTree = "<group>";
 		};
 		6DAE5EDD1D1E4E3A007CEF48 /* QR */ = {
@@ -212,6 +231,7 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
+				6D41228F1D2BB7AD0016DBE2 /* HTML */,
 				8804BFF61D255B6300156549 /* Theme */,
 				88EFBE1A1D213B8400577EC5 /* FriendModule */,
 				6DAE5EDE1D1E4E50007CEF48 /* PLIST */,
@@ -289,7 +309,7 @@
 				TargetAttributes = {
 					AA22DB501CE3613700F8BA43 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 5Y8ZVY4N62;
+						DevelopmentTeam = A8493WN3HZ;
 					};
 				};
 			};
@@ -318,11 +338,15 @@
 			files = (
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
 				88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */,
+				6D4122961D2BB7C70016DBE2 /* jquery.particleground.min.js in Resources */,
 				88EFBE0D1D2138D400577EC5 /* NothingFoundCell.xib in Resources */,
+				6D4122951D2BB7C70016DBE2 /* index.html in Resources */,
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
+				6D4122971D2BB7C70016DBE2 /* style.css in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
 				88EFBDFF1D2138A600577EC5 /* Photos.plist in Resources */,
 				88EFBE0F1D2138DA00577EC5 /* SearchResultCell.xib in Resources */,
+				6D4122941D2BB7C70016DBE2 /* demo.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +620,7 @@
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -612,7 +636,7 @@
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
