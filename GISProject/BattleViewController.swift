@@ -256,6 +256,8 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
 		
         if calculatedDamage == 0 {
+            self.calculatedDamageLabel.text = String(calculatedDamage!)
+            
             let alert = UIAlertController.init(title: "Whoops", message: "You can't even m8", preferredStyle: .Alert)
             let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: { (action) -> Void in
                 self.dismissViewControllerAnimated(true, completion: nil)
