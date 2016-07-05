@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        UIApplication.sharedApplication().scheduledLocalNotifications?.removeAll()
         
 		FIRApp.configure()
         

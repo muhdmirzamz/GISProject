@@ -73,7 +73,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		let userID = (FIRAuth.auth()?.currentUser?.uid)!
 		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
 			self.baseDamage = snapshot.value!["Base Damage"] as? NSNumber
-			self.calculatedDamageLabel.text = String((self.baseDamage?.integerValue)!)
+            self.calculateDamage(self.userCardSwitch.on)
 
 			self.amountOfCards = snapshot.value!["Cards"] as? NSNumber
 			
@@ -251,9 +251,21 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		
 		if useOwnCard {
 			calculatedDamage = (self.baseDamage?.integerValue)! + amountOfCardsToUse
-		}
+        } else {
+            calculatedDamage = amountOfCardsToUse
+        }
 		
-		self.calculatedDamageLabel.text = String(calculatedDamage!)
+        if calculatedDamage == 0 {
+            let alert = UIAlertController.init(title: "Whoops", message: "You can't even m8", preferredStyle: .Alert)
+            let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: { (action) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+            alert.addAction(okAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            self.calculatedDamageLabel.text = String(calculatedDamage!)
+        }
 	}
 	
 	func checkUserCardSwitch() {
