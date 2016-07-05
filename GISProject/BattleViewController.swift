@@ -158,6 +158,33 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 	
 		self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
 		
+        if self.userCardSwitch.on {
+            let date = NSDate()
+            let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute], fromDate:date)
+            
+            // skip to the next day if current time is after 9:00:
+            if (components.hour >= 9) {
+                components.day += 1;
+            }
+            
+            components.hour = 9;
+            components.minute = 0;
+            
+            let fireDate = NSCalendar.currentCalendar().dateFromComponents(components)
+            
+            print("Notification will fire at: \(fireDate)")
+            
+            let localNotif = UILocalNotification()
+            localNotif.fireDate = fireDate
+            localNotif.alertBody = "You can use your card again"
+            localNotif.alertAction = "Ready for battle"
+            localNotif.timeZone = NSTimeZone.localTimeZone()
+            localNotif.repeatInterval = .Day
+            localNotif.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+            UIApplication.sharedApplication().scheduleLocalNotification(localNotif)
+            NSNotificationCenter.defaultCenter().postNotificationName("battle", object: self)
+        }
+        
 		if (self.amountOfCardsToUse?.integerValue)! > 0 {
 			let userID = (FIRAuth.auth()?.currentUser?.uid)!
 			let ref = FIRDatabase.database().reference().child("/Friend")
@@ -168,7 +195,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 				ref.child("/\(userID)/\(randomUid)").setValue(0)
 			}
 		}
-
+        
 		var random = Double(arc4random()) % 0.004983
 		let latitudeRange = 1.377431 + random
 		random = Double(arc4random()) % 0.002122
@@ -213,24 +240,39 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 	
 	func calculateDamage(useOwnCard: Bool) {
 		var calculatedDamage: Int?
-		let baseDamage = (self.baseDamage?.integerValue)!
 		let amountOfCardsToUse = (self.amountOfCardsToUse?.integerValue)!
+        let scheduledLocalNotifCount = UIApplication.sharedApplication().scheduledLocalNotifications!.count
+        
+        if scheduledLocalNotifCount == 0 {
+            self.baseDamage = (self.baseDamage?.integerValue)!
+        } else {
+            self.baseDamage = 0
+        }
 		
 		if useOwnCard {
-			calculatedDamage = baseDamage + amountOfCardsToUse
+			calculatedDamage = (self.baseDamage?.integerValue)! + amountOfCardsToUse
 		}
 		
 		self.calculatedDamageLabel.text = String(calculatedDamage!)
 	}
 	
 	func checkUserCardSwitch() {
-		if self.amountOfCardsToUse! == 0 || self.textfield.text == "0" {
-			self.userCardSwitch.on = true
-			self.userCardSwitch.enabled = false
-		} else {
-			self.userCardSwitch.on = true
-			self.userCardSwitch.enabled = true
-		}
+        let scheduledLocalNotifCount = UIApplication.sharedApplication().scheduledLocalNotifications!.count
+        print(scheduledLocalNotifCount)
+        
+        // user has used card
+        if scheduledLocalNotifCount > 0 {
+            self.userCardSwitch.on = false
+            self.userCardSwitch.enabled = false
+        } else {
+            self.userCardSwitch.on = true
+            
+            if self.amountOfCardsToUse! == 0 || self.textfield.text == "0" {
+                self.userCardSwitch.enabled = false
+            } else {
+                self.userCardSwitch.enabled = true
+            }
+        }
 	}
 
 	func handleNavController() {
