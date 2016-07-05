@@ -10,11 +10,17 @@ import UIKit
 import Firebase
 import CoreData
 
+protocol ProfileProtocol {
+    func makeViewVisible()
+}
+
 class ProfileViewController: UIViewController {
     var name : String = ""
     var monstersKilled : Int = 0
     var level : Int = 0
     var ref: FIRDatabaseReference!
+    
+    var delegate: ProfileProtocol?
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -36,6 +42,8 @@ class ProfileViewController: UIViewController {
         
         //DatabaseManager.retrieveAccount("XHPcy86H9gbGHsYYfs4FWqOtbvE")
         // Do any additional setup after loading the view.
+        
+        self.delegate?.makeViewVisible()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -119,7 +127,7 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func dismiss(){
-        self.dismissViewControllerAnimated(true, completion: nil)
+       self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func logout() {

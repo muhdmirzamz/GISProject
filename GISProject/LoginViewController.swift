@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreData
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, ProfileProtocol {
 
     @IBOutlet var image: UIImageView!
     @IBOutlet weak var Email: UITextField!
@@ -70,6 +70,8 @@ class LoginViewController: UIViewController {
             let username = object.valueForKey("username") as? String
             let password = object.valueForKey("password") as? String
             
+            self.view.hidden = true
+            
             // if user exit app
             // if user session has been terminated
             if (FIRAuth.auth()?.currentUser)! == nil {
@@ -78,6 +80,14 @@ class LoginViewController: UIViewController {
             }
             
             let tabBarController = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("tabBarControllerMain") as? UITabBarController
+            
+            for vc in (tabBarController?.viewControllers)! {
+                if vc.isKindOfClass(ProfileViewController) {
+                    let tmpVC = vc as! ProfileViewController
+                    tmpVC.delegate = self
+                }
+            }
+            
             self.presentViewController(tabBarController!, animated: true, completion: nil)
         }
     }
@@ -88,6 +98,10 @@ class LoginViewController: UIViewController {
     
     func hideKeyboard() {
         view.endEditing(true)
+    }
+    
+    func makeViewVisible() {
+        self.view.hidden = false
     }
     
     override func didReceiveMemoryWarning() {
