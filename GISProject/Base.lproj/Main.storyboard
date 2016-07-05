@@ -140,7 +140,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzl-ch-vK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746.5" y="729.5"/>
+            <point key="canvasLocation" x="1746.5" y="1416.5"/>
+        </scene>
+        <!--Test Controller-->
+        <scene sceneID="1kF-C6-tHR">
+            <objects>
+                <viewController id="z7G-fp-o8I" customClass="TestController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hfb-sz-Fu8"/>
+                        <viewControllerLayoutGuide type="bottom" id="8eT-gH-KrH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R0S-rZ-Oou">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="og_af" translatesAutoresizingMaskIntoConstraints="NO" id="Cmf-6g-OZ0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y3z-KI-SLx">
+                                <rect key="frame" x="20" y="75" width="355" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity Log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEH-Vw-UsX">
+                                <rect key="frame" x="139" y="31" width="98" height="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3q-YK-hvf">
+                                <rect key="frame" x="0.0" y="14" width="55" height="50"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                <state key="normal" title="×">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss" destination="z7G-fp-o8I" eventType="touchUpInside" id="Kyx-xl-nUP"/>
+                                    <action selector="dismiss" destination="sZN-mH-ZeB" eventType="touchUpInside" id="nQZ-jW-udn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="AqC-8y-HpR"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dw4-pb-Ta9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1746.5" y="674.5"/>
         </scene>
         <!--Reader View Controller-->
         <scene sceneID="zrN-nD-HQO">
@@ -542,7 +590,7 @@
                                 <rect key="frame" x="218" y="499" width="106" height="30"/>
                                 <state key="normal" title="Activity Log"/>
                                 <connections>
-                                    <segue destination="k3R-cG-NEs" kind="modal" id="nYI-B6-34d"/>
+                                    <segue destination="z7G-fp-o8I" kind="modal" id="vR8-2E-2qh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvO-Nk-pAb">
@@ -1109,5 +1157,6 @@
         <image name="ic_person_add" width="24" height="24"/>
         <image name="login" width="750" height="1334"/>
         <image name="monster" width="178" height="178"/>
+        <image name="og_af" width="360" height="64"/>
     </resources>
 </document>

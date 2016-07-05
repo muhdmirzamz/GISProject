@@ -8,11 +8,13 @@
 import UIKit
 
 class ActivityLog: NSObject {
-    var activity : String!
-    var uid : String!
-    var name : String!
+    var key : String?
+    var activity : String?
+    var uid : String?
+    var name : String?
 
-    init(activity: String, uid : String, name: String) {
+    init(key: String?, activity: String?, uid : String?, name: String?) {
+        self.key = key
         self.activity = activity
         self.uid = uid
         self.name = name

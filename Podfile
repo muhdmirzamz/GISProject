@@ -12,4 +12,5 @@ target 'GISProject' do
   pod 'JSQMessagesViewController'
   pod 'QRCode'
   pod 'MaterialCard'
+  pod 'ISTimeline', '~> 0.0.3'
 end

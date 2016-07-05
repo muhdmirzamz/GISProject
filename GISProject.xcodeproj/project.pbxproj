@@ -16,9 +16,8 @@
 		815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E6B621D1A64C700F2C961 /* QRViewController.swift */; };
 		819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AA1641D1266B30003FB8D /* ProfileViewController.swift */; };
 		81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */; };
-		81E3D64F1D220B5A00F3BAF4 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */; };
-		81E3D6511D220CA700F3BAF4 /* ActivityLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */; };
 		81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */; };
+		81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED3CC01D2B4B9700CABCCC /* TestController.swift */; };
 		81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81F1673B1D29F581009B305D /* User.xcdatamodeld */; };
 		8804BFF81D255B8400156549 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8804BFF71D255B8400156549 /* Theme.swift */; };
 		88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFF8201D28C08B001304CA /* CustomTabBarController.swift */; };
@@ -65,9 +64,8 @@
 		815E6B621D1A64C700F2C961 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		819AA1641D1266B30003FB8D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
-		81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
-		81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogManager.swift; sourceTree = "<group>"; };
 		81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
+		81ED3CC01D2B4B9700CABCCC /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		81F1673C1D29F581009B305D /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		8804BFF71D255B8400156549 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		882AB7341D279BB100001ECC /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
@@ -153,8 +151,6 @@
 				819AA1641D1266B30003FB8D /* ProfileViewController.swift */,
 				6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */,
 				6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */,
-				81E3D64E1D220B5A00F3BAF4 /* ActivityLogViewController.swift */,
-				81E3D6501D220CA700F3BAF4 /* ActivityLogManager.swift */,
 				81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */,
 			);
 			name = Account;
@@ -229,6 +225,7 @@
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
 				88CFF8201D28C08B001304CA /* CustomTabBarController.swift */,
+				81ED3CC01D2B4B9700CABCCC /* TestController.swift */,
 			);
 			path = GISProject;
 			sourceTree = "<group>";
@@ -444,13 +441,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81E3D64F1D220B5A00F3BAF4 /* ActivityLogViewController.swift in Sources */,
 				88EFBE071D2138C100577EC5 /* SearchResult.swift in Sources */,
 				88EFBE031D2138B500577EC5 /* Photo.swift in Sources */,
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
 				88EFBE0B1D2138CE00577EC5 /* SearchResultCell.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
+				81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */,
 				88EFBDF91D21389500577EC5 /* PhotoStreamViewController.swift in Sources */,
 				88EFBDFD1D2138A000577EC5 /* RoundedCornersView.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
@@ -460,7 +457,6 @@
 				88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */,
 				88EFBE011D2138AF00577EC5 /* UIImage+Decompression.swift in Sources */,
 				6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */,
-				81E3D6511D220CA700F3BAF4 /* ActivityLogManager.swift in Sources */,
 				81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */,
 				88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */,
 				AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */,
