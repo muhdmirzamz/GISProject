@@ -32,11 +32,11 @@ enum Theme: Int {
     }
     
     var navigationBackgroundImage: UIImage? {
-        return self == .Graphical ? UIImage(named: "navBackground")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 40), resizingMode: UIImageResizingMode.Stretch) : nil
+        return self == .Graphical ? UIImage(named: "navBackground1")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 40), resizingMode: UIImageResizingMode.Stretch) : nil
     }
     
     var tabBarBackgroundImage: UIImage? {
-        return self == .Graphical ? UIImage(named: "tabBarBackground")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 40), resizingMode: UIImageResizingMode.Stretch) : nil
+        return self == .Graphical ? UIImage(named: "navBackground1")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 40), resizingMode: UIImageResizingMode.Stretch) : nil
 
     }
     
@@ -103,7 +103,7 @@ struct ThemeManager {
        // let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
        // UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
         
-        let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.imageWithRenderingMode(.AlwaysTemplate)
+        let tabIndicator = UIImage(named: "tabBarSelectionIndicator1")?.imageWithRenderingMode(.AlwaysOriginal)
         let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
         UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
         

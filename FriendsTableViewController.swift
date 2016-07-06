@@ -184,7 +184,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         // cell.backgroundColor = .clearColor()
         
         cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        cell.backgroundView = UIImageView(image: UIImage(named: "cell")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
+        cell.backgroundView = UIImageView(image: UIImage(named: "cell_blue")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
         
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
