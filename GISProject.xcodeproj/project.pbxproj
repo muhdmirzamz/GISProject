@@ -24,6 +24,7 @@
 		81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED3CC01D2B4B9700CABCCC /* TestController.swift */; };
 		81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81F1673B1D29F581009B305D /* User.xcdatamodeld */; };
 		8804BFF81D255B8400156549 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8804BFF71D255B8400156549 /* Theme.swift */; };
+		889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */; };
 		88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFF8201D28C08B001304CA /* CustomTabBarController.swift */; };
 		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
 		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
@@ -77,6 +78,7 @@
 		81F1673C1D29F581009B305D /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		8804BFF71D255B8400156549 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		882AB7341D279BB100001ECC /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
+		889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDeckCollectionViewController.swift; sourceTree = "<group>"; };
 		88CFF8201D28C08B001304CA /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
@@ -184,15 +186,23 @@
 			name = Theme;
 			sourceTree = "<group>";
 		};
-		88EFBE1A1D213B8400577EC5 /* FriendModule */ = {
+		889AA4A71D2D48DD004A9892 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
+		88EFBE1A1D213B8400577EC5 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
 				88EFBE141D2138EC00577EC5 /* Friends.swift */,
 				88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */,
 				88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */,
 				88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */,
-				88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */,
 				88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */,
+				889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */,
+				88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */,
 				88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */,
 				88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */,
 				88EFBDFC1D2138A000577EC5 /* RoundedCornersView.swift */,
@@ -206,7 +216,7 @@
 				88EFBE0C1D2138D400577EC5 /* NothingFoundCell.xib */,
 				88EFBE0E1D2138DA00577EC5 /* SearchResultCell.xib */,
 			);
-			name = FriendModule;
+			name = Friends;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -231,9 +241,10 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
+				889AA4A71D2D48DD004A9892 /* Font */,
 				6D41228F1D2BB7AD0016DBE2 /* HTML */,
 				8804BFF61D255B6300156549 /* Theme */,
-				88EFBE1A1D213B8400577EC5 /* FriendModule */,
+				88EFBE1A1D213B8400577EC5 /* Friends */,
 				6DAE5EDE1D1E4E50007CEF48 /* PLIST */,
 				6DAE5EDD1D1E4E3A007CEF48 /* QR */,
 				AAB38F6B1D199C8B00D1A20C /* Battle */,
@@ -486,6 +497,7 @@
 				AADEFED31CF4862800CB2E85 /* BattleViewController.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
 				AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */,
+				889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */,
 				88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */,
 				88EFBDFB1D21389A00577EC5 /* AnnotatedPhotoCell.swift in Sources */,
 				81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */,
