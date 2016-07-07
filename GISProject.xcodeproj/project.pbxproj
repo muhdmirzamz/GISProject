@@ -15,6 +15,7 @@
 		6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */; };
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
 		6DB566071D1D1CF100110D74 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */; };
+		6DE4CE701D2DE3E3006A6B62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DE4CE6F1D2DE3E3006A6B62 /* GoogleService-Info.plist */; };
 		8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */; };
 		8156447B1D126CA40028D162 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156447A1D126CA40028D162 /* Profile.swift */; };
 		815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E6B621D1A64C700F2C961 /* QRViewController.swift */; };
@@ -28,7 +29,6 @@
 		88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFF8201D28C08B001304CA /* CustomTabBarController.swift */; };
 		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
 		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
-		88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */; };
 		88EFBDF91D21389500577EC5 /* PhotoStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */; };
 		88EFBDFB1D21389A00577EC5 /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */; };
 		88EFBDFD1D2138A000577EC5 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDFC1D2138A000577EC5 /* RoundedCornersView.swift */; };
@@ -68,6 +68,7 @@
 		6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
+		6DE4CE6F1D2DE3E3006A6B62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		8156447A1D126CA40028D162 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		815E6B621D1A64C700F2C961 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +83,6 @@
 		88CFF8201D28C08B001304CA /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
-		88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoStreamViewController.swift; path = GISProject/PhotoStreamViewController.swift; sourceTree = "<group>"; };
 		88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotatedPhotoCell.swift; path = GISProject/AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
 		88EFBDFC1D2138A000577EC5 /* RoundedCornersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedCornersView.swift; path = GISProject/RoundedCornersView.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		6DAE5EDE1D1E4E50007CEF48 /* PLIST */ = {
 			isa = PBXGroup;
 			children = (
-				88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */,
+				6DE4CE6F1D2DE3E3006A6B62 /* GoogleService-Info.plist */,
 				AA22DB601CE3613900F8BA43 /* Info.plist */,
 			);
 			name = PLIST;
@@ -348,7 +348,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
-				88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */,
 				6D4122961D2BB7C70016DBE2 /* jquery.particleground.min.js in Resources */,
 				88EFBE0D1D2138D400577EC5 /* NothingFoundCell.xib in Resources */,
 				6D4122951D2BB7C70016DBE2 /* index.html in Resources */,
@@ -356,6 +355,7 @@
 				6D4122971D2BB7C70016DBE2 /* style.css in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
 				88EFBDFF1D2138A600577EC5 /* Photos.plist in Resources */,
+				6DE4CE701D2DE3E3006A6B62 /* GoogleService-Info.plist in Resources */,
 				88EFBE0F1D2138DA00577EC5 /* SearchResultCell.xib in Resources */,
 				6D4122941D2BB7C70016DBE2 /* demo.js in Resources */,
 			);
