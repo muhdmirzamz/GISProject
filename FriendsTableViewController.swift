@@ -13,34 +13,28 @@ import Firebase
 
 class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
+    //declare an array of friends obj
     var friends:[Friends] = []
     
+    //refresh control
     var refreshDataControl : UIRefreshControl!
     
+    //search controller
     let searchController = UISearchController(searchResultsController: nil)
     
+    //filtered friends via search bar
     var filteredFriends = [Friends]()
     
-    
-    // Attach a closure to read the data at our posts reference
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // UIGraphicsBeginImageContext(self.view.frame.size)
-        //  UIImage(named: "friendTable_bg")?.drawInRect(self.view.bounds)
-        
-        // var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        // UIGraphicsEndImageContext()
-        
-        //  self.view.backgroundColor = UIColor(patternImage: image)
-        self.tableView.backgroundView = UIImageView(image: UIImage(named: "friendTable_bg")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
-        // self.tableView.backgroundView.release
+        //background image
+        self.tableView.backgroundView = UIImageView(image: UIImage(named: "friendTable_bg_light")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
+      
         
         
-        // view.backgroundColor = ThemeManager.currentTheme().backgroundColor
         //refresh control
         refreshDataControl = UIRefreshControl()
         refreshDataControl.addTarget(self, action: #selector(FriendsTableViewController.refreshControlAction), forControlEvents: .ValueChanged)
@@ -56,9 +50,14 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         
-        searchController.searchBar.setBackgroundImage(UIImage(named: "navBackground"), forBarPosition: .Any, barMetrics: .Default)
-        searchController.searchBar.setImage(UIImage(named: "search_icon"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
+        //search bar background image
+        searchController.searchBar.setBackgroundImage(UIImage(named: "cell_blue")?.resizableImageWithCapInsets(UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5), resizingMode: UIImageResizingMode.Stretch), forBarPosition: .Any, barMetrics: .Default)
         
+        
+        
+        //search bar icon
+        searchController.searchBar.setImage(UIImage(named: "search_icon"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
+        searchController.searchBar.setSearchFieldBackgroundImage(nil, forState: UIControlState.Normal)
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -88,7 +87,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         tableView.reloadData()
     }
     
-    
+    //refresh contents
     func refreshControlAction()
     {
         print("refresh")
@@ -108,7 +107,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     }
     
     
-    
+    //load friends from firebase
     func loadFriends()
     {
         FriendsDataManager.loadFriends ({ (friendsListFromFirebase) -> Void in
@@ -127,9 +126,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         
     }
-    
-    
-    
     
     
     
@@ -152,13 +148,12 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             return filteredFriends.count
         }
         
-        
         return friends.count
     }
     
     //table cell head spacing
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let cellSpacingHeight: CGFloat = 20
+        let cellSpacingHeight: CGFloat = 10
         return cellSpacingHeight
     }
     
@@ -173,26 +168,17 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        //let cellBgImage:UIImage = UIImage(named: "cell")!.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch)
-        
-        
-        
-        
-        
         
         var cell : FriendsCell! = tableView.dequeueReusableCellWithIdentifier("FriendsCell") as! FriendsCell
-        // cell.backgroundColor = .clearColor()
-        
+      
+        //set and display cell details
         cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        cell.backgroundView = UIImageView(image: UIImage(named: "cell_blue")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
+        cell.backgroundView = UIImageView(image: UIImage(named: "cell_blue_border")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 50, 10, 50), resizingMode: UIImageResizingMode.Stretch))
         
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
         
-        // cell.profileImage.layer.borderColor = UIColor.blueColor().CGColor
-        
-        //cell.name.font = UIFont(name: "PoetsenOne-Regular", size: 14.0)
         
         let friend : Friends
         
@@ -207,11 +193,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         } else {
             friend = friends[indexPath.row]
         }
-        //  let friend = friends[indexPath.row]
-        
-        
-        
-        
+                
         let levelDouble = friend.Level
         let levelString = String(levelDouble)
         

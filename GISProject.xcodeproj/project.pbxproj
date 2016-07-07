@@ -25,22 +25,11 @@
 		81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81F1673B1D29F581009B305D /* User.xcdatamodeld */; };
 		8804BFF81D255B8400156549 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8804BFF71D255B8400156549 /* Theme.swift */; };
 		889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */; };
+		889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */; };
 		88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFF8201D28C08B001304CA /* CustomTabBarController.swift */; };
 		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
 		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
 		88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */; };
-		88EFBDF91D21389500577EC5 /* PhotoStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */; };
-		88EFBDFB1D21389A00577EC5 /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */; };
-		88EFBDFD1D2138A000577EC5 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBDFC1D2138A000577EC5 /* RoundedCornersView.swift */; };
-		88EFBDFF1D2138A600577EC5 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EFBDFE1D2138A600577EC5 /* Photos.plist */; };
-		88EFBE011D2138AF00577EC5 /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE001D2138AF00577EC5 /* UIImage+Decompression.swift */; };
-		88EFBE031D2138B500577EC5 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE021D2138B500577EC5 /* Photo.swift */; };
-		88EFBE051D2138BA00577EC5 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE041D2138BA00577EC5 /* FriendViewController.swift */; };
-		88EFBE071D2138C100577EC5 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE061D2138C100577EC5 /* SearchResult.swift */; };
-		88EFBE091D2138C700577EC5 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE081D2138C700577EC5 /* UIImageView+DownloadImage.swift */; };
-		88EFBE0B1D2138CE00577EC5 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE0A1D2138CE00577EC5 /* SearchResultCell.swift */; };
-		88EFBE0D1D2138D400577EC5 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88EFBE0C1D2138D400577EC5 /* NothingFoundCell.xib */; };
-		88EFBE0F1D2138DA00577EC5 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88EFBE0E1D2138DA00577EC5 /* SearchResultCell.xib */; };
 		88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */; };
 		88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */; };
 		88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE141D2138EC00577EC5 /* Friends.swift */; };
@@ -77,24 +66,12 @@
 		81ED3CC01D2B4B9700CABCCC /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		81F1673C1D29F581009B305D /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		8804BFF71D255B8400156549 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		882AB7341D279BB100001ECC /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
 		889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDeckCollectionViewController.swift; sourceTree = "<group>"; };
+		889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
 		88CFF8201D28C08B001304CA /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoStreamViewController.swift; path = GISProject/PhotoStreamViewController.swift; sourceTree = "<group>"; };
-		88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotatedPhotoCell.swift; path = GISProject/AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
-		88EFBDFC1D2138A000577EC5 /* RoundedCornersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedCornersView.swift; path = GISProject/RoundedCornersView.swift; sourceTree = "<group>"; };
-		88EFBDFE1D2138A600577EC5 /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Photos.plist; path = GISProject/Photos.plist; sourceTree = "<group>"; };
-		88EFBE001D2138AF00577EC5 /* UIImage+Decompression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Decompression.swift"; path = "GISProject/UIImage+Decompression.swift"; sourceTree = "<group>"; };
-		88EFBE021D2138B500577EC5 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Photo.swift; path = GISProject/Photo.swift; sourceTree = "<group>"; };
-		88EFBE041D2138BA00577EC5 /* FriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendViewController.swift; path = GISProject/FriendViewController.swift; sourceTree = "<group>"; };
-		88EFBE061D2138C100577EC5 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResult.swift; path = GISProject/SearchResult.swift; sourceTree = "<group>"; };
-		88EFBE081D2138C700577EC5 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+DownloadImage.swift"; path = "GISProject/UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
-		88EFBE0A1D2138CE00577EC5 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultCell.swift; path = GISProject/SearchResultCell.swift; sourceTree = "<group>"; };
-		88EFBE0C1D2138D400577EC5 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NothingFoundCell.xib; path = GISProject/NothingFoundCell.xib; sourceTree = "<group>"; };
-		88EFBE0E1D2138DA00577EC5 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchResultCell.xib; path = GISProject/SearchResultCell.xib; sourceTree = "<group>"; };
 		88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDetailViewController.swift; path = GISProject/FriendsDetailViewController.swift; sourceTree = "<group>"; };
 		88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsChatViewController.swift; path = GISProject/FriendsChatViewController.swift; sourceTree = "<group>"; };
 		88EFBE141D2138EC00577EC5 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Friends.swift; path = GISProject/Friends.swift; sourceTree = "<group>"; };
@@ -180,7 +157,6 @@
 		8804BFF61D255B6300156549 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				882AB7341D279BB100001ECC /* PoetsenOne-Regular.ttf */,
 				8804BFF71D255B8400156549 /* Theme.swift */,
 			);
 			name = Theme;
@@ -189,6 +165,7 @@
 		889AA4A71D2D48DD004A9892 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */,
 			);
 			name = Font;
 			sourceTree = "<group>";
@@ -202,19 +179,7 @@
 				88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */,
 				88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */,
 				889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */,
-				88EFBDF81D21389500577EC5 /* PhotoStreamViewController.swift */,
 				88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */,
-				88EFBDFA1D21389A00577EC5 /* AnnotatedPhotoCell.swift */,
-				88EFBDFC1D2138A000577EC5 /* RoundedCornersView.swift */,
-				88EFBDFE1D2138A600577EC5 /* Photos.plist */,
-				88EFBE001D2138AF00577EC5 /* UIImage+Decompression.swift */,
-				88EFBE021D2138B500577EC5 /* Photo.swift */,
-				88EFBE041D2138BA00577EC5 /* FriendViewController.swift */,
-				88EFBE061D2138C100577EC5 /* SearchResult.swift */,
-				88EFBE081D2138C700577EC5 /* UIImageView+DownloadImage.swift */,
-				88EFBE0A1D2138CE00577EC5 /* SearchResultCell.swift */,
-				88EFBE0C1D2138D400577EC5 /* NothingFoundCell.xib */,
-				88EFBE0E1D2138DA00577EC5 /* SearchResultCell.xib */,
 			);
 			name = Friends;
 			path = ..;
@@ -348,15 +313,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
+				889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */,
 				88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */,
 				6D4122961D2BB7C70016DBE2 /* jquery.particleground.min.js in Resources */,
-				88EFBE0D1D2138D400577EC5 /* NothingFoundCell.xib in Resources */,
 				6D4122951D2BB7C70016DBE2 /* index.html in Resources */,
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
 				6D4122971D2BB7C70016DBE2 /* style.css in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
-				88EFBDFF1D2138A600577EC5 /* Photos.plist in Resources */,
-				88EFBE0F1D2138DA00577EC5 /* SearchResultCell.xib in Resources */,
 				6D4122941D2BB7C70016DBE2 /* demo.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,21 +439,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88EFBE071D2138C100577EC5 /* SearchResult.swift in Sources */,
-				88EFBE031D2138B500577EC5 /* Photo.swift in Sources */,
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
-				88EFBE0B1D2138CE00577EC5 /* SearchResultCell.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
 				81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */,
-				88EFBDF91D21389500577EC5 /* PhotoStreamViewController.swift in Sources */,
-				88EFBDFD1D2138A000577EC5 /* RoundedCornersView.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
 				6DB566071D1D1CF100110D74 /* QRReaderViewController.swift in Sources */,
 				88EFBE171D2138F100577EC5 /* FriendsDataManager.swift in Sources */,
 				8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */,
 				88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */,
-				88EFBE011D2138AF00577EC5 /* UIImage+Decompression.swift in Sources */,
 				6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */,
 				81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */,
 				88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */,
@@ -499,15 +456,12 @@
 				AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */,
 				889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */,
 				88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */,
-				88EFBDFB1D21389A00577EC5 /* AnnotatedPhotoCell.swift in Sources */,
 				81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */,
 				819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */,
 				815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */,
 				88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */,
-				88EFBE091D2138C700577EC5 /* UIImageView+DownloadImage.swift in Sources */,
 				8156447B1D126CA40028D162 /* Profile.swift in Sources */,
 				88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */,
-				88EFBE051D2138BA00577EC5 /* FriendViewController.swift in Sources */,
 				6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */,
 				81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */,
 				88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */,

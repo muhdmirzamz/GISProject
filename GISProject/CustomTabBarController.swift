@@ -13,7 +13,11 @@ class CustomTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+       // view.backgroundColor = ThemeManager.currentTheme().backgroundColor
+      //  tableView.separatorColor = ThemeManager.currentTheme().secondaryColor
+        
+       
         
         //custom images and title for tab bar
         var tabBarController: UITabBarController = self
@@ -24,6 +28,8 @@ class CustomTabBarController: UITabBarController {
         var tabBarItem3 = tabBarController.tabBar.items![3] as UITabBarItem
         
         var tabBar: UITabBar = tabBarController.tabBar
+        
+     
         
         //set title for individual tabs
         tabBarItem0.title = "QR"
@@ -36,9 +42,12 @@ class CustomTabBarController: UITabBarController {
         tabBarItem1.image = UIImage(named: "mapIcon")?.imageWithRenderingMode(.AlwaysOriginal)
         tabBarItem2.image = UIImage(named: "MeIcon")?.imageWithRenderingMode(.AlwaysOriginal)
         tabBarItem3.image = UIImage(named: "friendIcon")?.imageWithRenderingMode(.AlwaysOriginal)
+        
+        
        
         tabBarItem0.selectedImage = UIImage(named: "qrIcon")?.imageWithRenderingMode(.AlwaysOriginal)
-         tabBarItem1.selectedImage = UIImage(named: "mapIcon")?.imageWithRenderingMode(.AlwaysOriginal)
+        tabBarItem1.selectedImage = UIImage(named: "mapIcon")?.imageWithRenderingMode(.AlwaysOriginal)
+        tabBarItem2.selectedImage = UIImage(named: "MeIcon")?.imageWithRenderingMode(.AlwaysOriginal)
     }
 
 }

@@ -14,7 +14,7 @@ enum Theme: Int {
     var mainColor: UIColor {
         switch self {
         case .Default:
-            return UIColor(red: 87.0/255.0, green: 188.0/255.0, blue: 95.0/255.0, alpha: 1.0)
+            return UIColor(red: 187.0/255.0, green: 188.0/255.0, blue: 95.0/255.0, alpha: 1.0)
         case .Dark:
             return UIColor(red: 242.0/255.0, green: 101.0/255.0, blue: 34.0/255.0, alpha: 1.0)
         case .Graphical:
@@ -32,11 +32,13 @@ enum Theme: Int {
     }
     
     var navigationBackgroundImage: UIImage? {
-        return self == .Graphical ? UIImage(named: "navBackground1")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 40), resizingMode: UIImageResizingMode.Stretch) : nil
+        return self == .Graphical ? UIImage(named: "navBackground_p")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 10), resizingMode: UIImageResizingMode.Stretch) : nil
     }
     
     var tabBarBackgroundImage: UIImage? {
-        return self == .Graphical ? UIImage(named: "navBackground1")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 40), resizingMode: UIImageResizingMode.Stretch) : nil
+        //return self == .Graphical ? UIImage(named: "tabBarBackground_p") : nil
+        return self == .Graphical ? UIImage(named: "tabBarBackground_p")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 6, 0, 6), resizingMode: UIImageResizingMode.Tile) : nil
+
 
     }
     
@@ -52,11 +54,11 @@ enum Theme: Int {
     var secondaryColor: UIColor {
         switch self {
         case .Default:
-            return UIColor(red: 242.0/255.0, green: 101.0/255.0, blue: 34.0/255.0, alpha: 1.0)
+            return UIColor(red: 242/255.0, green: 235/255.0, blue: 48.0/255.0, alpha: 1.0)
         case .Dark:
             return UIColor(red: 34.0/255.0, green: 128.0/255.0, blue: 66.0/255.0, alpha: 1.0)
         case .Graphical:
-            return UIColor(red: 140.0/255.0, green: 50.0/255.0, blue: 48.0/255.0, alpha: 1.0)
+            return UIColor(red: 242/255.0, green: 235/255.0, blue: 48.0/255.0, alpha: 1.0)
         }
     }
    
@@ -88,7 +90,10 @@ struct ThemeManager {
         
         //apply theme to nav
         UINavigationBar.appearance().barStyle = theme.barStyle
-       // let navBgImage:UIImage = UIImage(named: "navBackground")!.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 40), resizingMode: UIImageResizingMode.Stretch)
+        UINavigationBar.appearance().barTintColor = UIColor.clearColor()
+       
+        UINavigationBar.appearance().shadowImage = UIImage()
+       //let navBgImage:UIImage = UIImage(named: "navBackground")!.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 40), resizingMode: UIImageResizingMode.Stretch)
         
        UINavigationBar.appearance().setBackgroundImage(theme.navigationBackgroundImage, forBarMetrics: .Default)
         UINavigationBar.appearance().backIndicatorImage = UIImage(named: "backArrow")
@@ -98,12 +103,18 @@ struct ThemeManager {
   
         UITabBar.appearance().barStyle = theme.barStyle
         UITabBar.appearance().backgroundImage = theme.tabBarBackgroundImage
+       // UITabBar.appearance().backgroundColor = UIColor.clearColor()
+        
+        //transparent uibar
+        //UITabBar.appearance().barTintColor = UIColor.clearColor()
+       // UITabBar.appearance().backgroundImage = UIImage()
+       // UITabBar.appearance().shadowImage = UIImage()
         
         //let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.imageWithRenderingMode(.AlwaysTemplate)
        // let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
        // UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
         
-        let tabIndicator = UIImage(named: "tabBarSelectionIndicator1")?.imageWithRenderingMode(.AlwaysOriginal)
+        let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.imageWithRenderingMode(.AlwaysOriginal)
         let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
         UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
         

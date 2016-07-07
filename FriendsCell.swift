@@ -10,9 +10,6 @@ import UIKit
 
 class FriendsCell: UITableViewCell {
     
-    //  @IBOutlet weak var profileImg: UIImageView!
-    // @IBOutlet weak var name: UILabel!
-    // @IBOutlet weak var level: UILabel!
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var name: UILabel!
@@ -21,14 +18,11 @@ class FriendsCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         self.name.textColor = UIColor.brownColor()
         self.name.font = UIFont(name: "PoetsenOne-Regular", size: 16)
         self.level.titleLabel?.font = UIFont(name: "PoetsenOne-Regular", size: 14)
-        // self.profileImage.layer.backgroundColor = UIColor(patternImage: UIImage(named: "profile_border")!).CGColor
-        
-        
         self.profileImage.layer.borderColor = UIColor(red: 234/255, green: 175/255, blue: 56/255, alpha: 1.0).CGColor
-        
         self.profileImage.layer.borderWidth = 4
         self.profileImage.layer.masksToBounds = true
         self.profileImage.layer.shadowColor = UIColor(red: 233/255, green: 222/255, blue: 36/255, alpha: 1.0).CGColor
@@ -40,9 +34,6 @@ class FriendsCell: UITableViewCell {
         var path: UIBezierPath = UIBezierPath(rect:  self.profileImage.bounds)
         self.profileImage.layer.shadowPath = path.CGPath
         self.profileImage.layer.shouldRasterize = true
-        
-        
-        
         
     }
     

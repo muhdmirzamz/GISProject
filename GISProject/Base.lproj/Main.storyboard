@@ -228,6 +228,15 @@
                                     <action selector="dismiss" destination="sZN-mH-ZeB" eventType="touchUpInside" id="wKn-4e-12i"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera_Claw" translatesAutoresizingMaskIntoConstraints="NO" id="wiT-Az-5bh">
+                                <rect key="frame" x="37" y="356" width="300" height="97"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZT-Aj-Upz">
+                                <rect key="frame" x="66" y="554" width="227" height="32"/>
+                                <state key="normal" title="Start scanning now" backgroundImage="button3">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -311,8 +320,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="monster" translatesAutoresizingMaskIntoConstraints="NO" id="soY-CW-Dzx">
                                 <rect key="frame" x="83" y="90" width="154" height="118"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="mob_bg_info" translatesAutoresizingMaskIntoConstraints="NO" id="VUh-Tn-Ixt">
+                                <rect key="frame" x="16" y="274" width="295" height="220"/>
+                            </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="XbU-xr-c5G">
                                 <rect key="frame" x="43" y="264" width="240" height="2"/>
+                                <color key="progressTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmn-Nu-ReK">
                                 <rect key="frame" x="138" y="379" width="45" height="21"/>
@@ -351,12 +364,14 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.13725490200000001" green="0.12941176469999999" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="VUh-Tn-Ixt" firstAttribute="centerX" secondItem="iN8-aQ-PXv" secondAttribute="centerX" id="0vd-fU-fbR"/>
                             <constraint firstItem="3lF-5C-i5J" firstAttribute="width" secondItem="iN8-aQ-PXv" secondAttribute="width" id="5sy-IO-Qw9"/>
                             <constraint firstItem="XbU-xr-c5G" firstAttribute="centerX" secondItem="iN8-aQ-PXv" secondAttribute="centerX" id="B50-pb-Fiq"/>
+                            <constraint firstItem="VUh-Tn-Ixt" firstAttribute="leading" secondItem="iN8-aQ-PXv" secondAttribute="leadingMargin" constant="20" id="DUp-tq-dB3"/>
                             <constraint firstItem="soY-CW-Dzx" firstAttribute="top" secondItem="njM-5p-ZlW" secondAttribute="bottom" constant="70" id="Ml7-i4-m3x"/>
                             <constraint firstItem="WSq-DC-wIE" firstAttribute="centerX" secondItem="iN8-aQ-PXv" secondAttribute="centerX" id="O4O-Jn-PAE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VUh-Tn-Ixt" secondAttribute="trailing" constant="-11" id="OK4-h1-mzL"/>
                             <constraint firstItem="XbU-xr-c5G" firstAttribute="top" secondItem="soY-CW-Dzx" secondAttribute="bottom" constant="56" id="Tbd-9R-yS3"/>
                             <constraint firstItem="bPk-hg-BiX" firstAttribute="top" secondItem="3lF-5C-i5J" secondAttribute="bottom" id="bLq-Mk-F7Z"/>
                             <constraint firstItem="9Qa-Ui-0Bn" firstAttribute="centerX" secondItem="iN8-aQ-PXv" secondAttribute="centerX" id="nwh-oH-Nz1"/>
@@ -495,7 +510,7 @@
                                 <rect key="frame" x="87" y="496" width="200" height="40"/>
                                 <color key="backgroundColor" red="0.14901960780000001" green="0.90980392160000001" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
-                                <state key="normal" title="Scan a code">
+                                <state key="normal" title="Scan a code" backgroundImage="button0">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -514,6 +529,9 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="qr_Claw" translatesAutoresizingMaskIntoConstraints="NO" id="R2g-15-mOE">
+                                <rect key="frame" x="41" y="414" width="293" height="66"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -579,7 +597,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEa-3c-bci">
                                 <rect key="frame" x="20" y="549" width="134" height="35"/>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.47058823529411764" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Activity Log">
+                                <state key="normal" title="Activity Log" backgroundImage="button1">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -589,7 +607,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="al2-S3-ICi">
                                 <rect key="frame" x="221" y="549" width="134" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.16017142818668639" blue="0.22126671889531613" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Sign Out">
+                                <state key="normal" title="Sign Out" backgroundImage="button2">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -931,7 +949,7 @@
             </objects>
             <point key="canvasLocation" x="1191" y="-774"/>
         </scene>
-        <!--Friends-->
+        <!--Friend-->
         <scene sceneID="TaJ-qs-DOi">
             <objects>
                 <tableViewController id="hvn-cc-SSJ" customClass="FriendsTableViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -967,16 +985,17 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="q0p-Ab-klX">
-                                            <rect key="frame" x="22" y="15" width="80" height="110"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="q0p-Ab-klX">
+                                            <rect key="frame" x="22" y="28" width="80" height="85"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="110" id="e2x-cs-GRu"/>
+                                                <constraint firstAttribute="height" constant="90" id="e2x-cs-GRu"/>
                                                 <constraint firstAttribute="width" constant="80" id="gHX-qm-VUF"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="q0p-Ab-klX" firstAttribute="centerY" secondItem="8Oh-w2-uLV" secondAttribute="centerY" id="MZ3-hP-Wr7"/>
+                                        <constraint firstItem="q0p-Ab-klX" firstAttribute="centerY" secondItem="8Oh-w2-uLV" secondAttribute="centerY" id="ZPc-tu-OBd"/>
                                         <constraint firstItem="q0p-Ab-klX" firstAttribute="leading" secondItem="8Oh-w2-uLV" secondAttribute="leadingMargin" constant="14" id="j5G-9T-hUG"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -993,8 +1012,9 @@
                             <outlet property="delegate" destination="hvn-cc-SSJ" id="P0b-ke-jpW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="FOu-Jj-XVf">
+                    <navigationItem key="navigationItem" title="Friend" id="FOu-Jj-XVf">
                         <barButtonItem key="rightBarButtonItem" title="Deck" id="QT4-SZ-tqT">
+                            <color key="tintColor" red="1" green="0.93115596905431985" blue="0.034984636274992376" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="dKZ-9z-qJe" kind="push" identifier="ShowFriendsDeck" id="uZ3-x3-rw6"/>
                             </connections>
@@ -1201,14 +1221,21 @@
         <image name="MeIcon" width="35" height="33"/>
         <image name="ProfileBlack" width="400" height="400"/>
         <image name="button" width="128" height="93"/>
+        <image name="button0" width="244" height="73"/>
+        <image name="button1" width="187" height="52"/>
+        <image name="button2" width="187" height="52"/>
+        <image name="button3" width="187" height="52"/>
+        <image name="camera_Claw" width="218" height="90"/>
         <image name="cancel" width="48" height="48"/>
         <image name="friends" width="59" height="53"/>
         <image name="front" width="585" height="741"/>
-        <image name="loading" width="420" height="420"/>
+        <image name="loading" width="414" height="415"/>
         <image name="login" width="750" height="1334"/>
         <image name="mapIcon" width="35" height="34"/>
-        <image name="monster" width="67" height="55"/>
+        <image name="mob_bg_info" width="594" height="99"/>
+        <image name="monster" width="180" height="181"/>
         <image name="og_af" width="360" height="64"/>
         <image name="qrIcon" width="34" height="34"/>
+        <image name="qr_Claw" width="174" height="74"/>
     </resources>
 </document>

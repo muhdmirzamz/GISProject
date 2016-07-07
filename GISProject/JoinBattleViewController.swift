@@ -18,6 +18,20 @@ class JoinBattleViewController: UIViewController, BattleProtocol {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "mob_bg")?.drawInRect(self.view.bounds)
+        
+        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        self.view.backgroundColor = UIColor(patternImage: image)
+        
+        
+        
+        
+        
+        
         self.monsterHealth.text = "1/1"
     }
 
