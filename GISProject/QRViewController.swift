@@ -34,9 +34,9 @@ class QRViewController: UIViewController {
         var name : String = ""
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             ref.child("/\(uid)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-              //  name = snapshot.value!["Name"] as! String
+                name = snapshot.value!["Name"] as! String
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.nameLabel.text = "\("ff")"
+                    self.nameLabel.text = "\(name)"
                 })
             })
         }
