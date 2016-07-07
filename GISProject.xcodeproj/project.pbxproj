@@ -15,7 +15,6 @@
 		6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */; };
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
 		6DB566071D1D1CF100110D74 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */; };
-		6DE4CE701D2DE3E3006A6B62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DE4CE6F1D2DE3E3006A6B62 /* GoogleService-Info.plist */; };
 		8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */; };
 		8156447B1D126CA40028D162 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156447A1D126CA40028D162 /* Profile.swift */; };
 		815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E6B621D1A64C700F2C961 /* QRViewController.swift */; };
@@ -30,11 +29,11 @@
 		88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFF8201D28C08B001304CA /* CustomTabBarController.swift */; };
 		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
 		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
-		88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */; };
 		88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */; };
 		88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */; };
 		88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE141D2138EC00577EC5 /* Friends.swift */; };
 		88EFBE171D2138F100577EC5 /* FriendsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */; };
+		88F4D99B1D2EDC7B0093E003 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F4D99A1D2EDC7B0093E003 /* GoogleService-Info.plist */; };
 		AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */; };
 		AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB541CE3613800F8BA43 /* AppDelegate.swift */; };
 		AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22DB561CE3613800F8BA43 /* ViewController.swift */; };
@@ -58,7 +57,6 @@
 		6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
-		6DE4CE6F1D2DE3E3006A6B62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		8156447A1D126CA40028D162 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		815E6B621D1A64C700F2C961 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
@@ -73,11 +71,11 @@
 		88CFF8201D28C08B001304CA /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
-		88EFB7EA1D0FF1D500F40DD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDetailViewController.swift; path = GISProject/FriendsDetailViewController.swift; sourceTree = "<group>"; };
 		88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsChatViewController.swift; path = GISProject/FriendsChatViewController.swift; sourceTree = "<group>"; };
 		88EFBE141D2138EC00577EC5 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Friends.swift; path = GISProject/Friends.swift; sourceTree = "<group>"; };
 		88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDataManager.swift; path = GISProject/FriendsDataManager.swift; sourceTree = "<group>"; };
+		88F4D99A1D2EDC7B0093E003 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AA22DB511CE3613700F8BA43 /* GISProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GISProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +133,7 @@
 		6DAE5EDE1D1E4E50007CEF48 /* PLIST */ = {
 			isa = PBXGroup;
 			children = (
-				6DE4CE6F1D2DE3E3006A6B62 /* GoogleService-Info.plist */,
+				88F4D99A1D2EDC7B0093E003 /* GoogleService-Info.plist */,
 				AA22DB601CE3613900F8BA43 /* Info.plist */,
 			);
 			name = PLIST;
@@ -316,11 +314,11 @@
 			files = (
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
 				889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */,
-				88EFB7EB1D0FF1D500F40DD2 /* GoogleService-Info.plist in Resources */,
 				6D4122961D2BB7C70016DBE2 /* jquery.particleground.min.js in Resources */,
 				6D4122951D2BB7C70016DBE2 /* index.html in Resources */,
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
 				6D4122971D2BB7C70016DBE2 /* style.css in Resources */,
+				88F4D99B1D2EDC7B0093E003 /* GoogleService-Info.plist in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
 				6D4122941D2BB7C70016DBE2 /* demo.js in Resources */,
 			);
