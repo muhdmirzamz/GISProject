@@ -1,10 +1,11 @@
 //
 //  Theme.swift
-//  Pet Finder
+//  GISProject
 //
-//  Created by Essan Parto on 5/16/15.
-//  Copyright (c) 2015 Ray Wenderlich. All rights reserved.
-//
+//  Created by XINGYU on 28/6/16.
+//  Copyright © 2016 NYP. All rights reserved.
+
+//custom theme apply to the application
 
 import UIKit
 
@@ -22,6 +23,7 @@ enum Theme: Int {
         }
     }
     
+    //set bar style color
     var barStyle: UIBarStyle {
         switch self {
         case .Default, .Graphical:
@@ -31,12 +33,13 @@ enum Theme: Int {
         }
     }
     
+    //set navigation background image
     var navigationBackgroundImage: UIImage? {
         return self == .Graphical ? UIImage(named: "navBackground_p")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 10, 0, 10), resizingMode: UIImageResizingMode.Stretch) : nil
     }
-    
+      //set tab bar background image
     var tabBarBackgroundImage: UIImage? {
-        //return self == .Graphical ? UIImage(named: "tabBarBackground_p") : nil
+        
         return self == .Graphical ? UIImage(named: "tabBarBackground_p")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 6, 0, 6), resizingMode: UIImageResizingMode.Tile) : nil
 
 
@@ -88,7 +91,7 @@ struct ThemeManager {
         let sharedApplication = UIApplication.sharedApplication()
         sharedApplication.delegate?.window??.tintColor = theme.mainColor
         
-        //apply theme to nav
+        //apply theme to navigation bar
         UINavigationBar.appearance().barStyle = theme.barStyle
         UINavigationBar.appearance().barTintColor = UIColor.clearColor()
        
@@ -103,16 +106,9 @@ struct ThemeManager {
   
         UITabBar.appearance().barStyle = theme.barStyle
         UITabBar.appearance().backgroundImage = theme.tabBarBackgroundImage
-       // UITabBar.appearance().backgroundColor = UIColor.clearColor()
+        UITabBar.appearance().backgroundColor = UIColor.clearColor()
         
-        //transparent uibar
-        //UITabBar.appearance().barTintColor = UIColor.clearColor()
-       // UITabBar.appearance().backgroundImage = UIImage()
-       // UITabBar.appearance().shadowImage = UIImage()
         
-        //let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.imageWithRenderingMode(.AlwaysTemplate)
-       // let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
-       // UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
         
         let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.imageWithRenderingMode(.AlwaysOriginal)
         let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
@@ -127,6 +123,15 @@ struct ThemeManager {
         
         UISegmentedControl.appearance().setBackgroundImage(controlBackground, forState: .Normal, barMetrics: .Default)
         UISegmentedControl.appearance().setBackgroundImage(controlSelectedBackground, forState: .Selected, barMetrics: .Default)
+        
+        //transparent uibar
+        //UITabBar.appearance().barTintColor = UIColor.clearColor()
+        //  UITabBar.appearance().backgroundImage = UIImage()
+        // UITabBar.appearance().shadowImage = UIImage()
+        
+        //let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.imageWithRenderingMode(.AlwaysTemplate)
+        // let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
+        // UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
         
         
     }

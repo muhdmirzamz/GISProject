@@ -13,6 +13,7 @@ import UIKit
 class FriendsDeckCollectionViewController: UICollectionViewController {
    
    
+
  
 
     
@@ -80,6 +81,15 @@ class FriendsDeckCollectionViewController: UICollectionViewController {
         // Configure the cell
        
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        print("tapped-->\(indexPath.row)")
+        
+      
+        
+        
     }
 
     // MARK: UICollectionViewDelegate

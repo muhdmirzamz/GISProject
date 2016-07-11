@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eyq-FP-3bD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FKT-JN-61o">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -81,7 +82,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="163"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NGi-gj-BPm" id="wEX-gL-txq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="162.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NameLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAJ-AB-K80">
@@ -958,11 +959,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendsCell" rowHeight="140" id="C1q-9Q-ehp" customClass="FriendsCell" customModule="GISProject" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsCell" rowHeight="140" id="C1q-9Q-ehp" customClass="FriendsCell" customModule="GISProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C1q-9Q-ehp" id="8Oh-w2-uLV">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="139.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SH7-mC-ryA">
@@ -992,18 +993,31 @@
                                                 <constraint firstAttribute="width" constant="80" id="gHX-qm-VUF"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPl-xn-cFb">
+                                            <rect key="frame" x="264" y="62" width="48" height="37"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="48" id="06G-Fr-ges"/>
+                                                <constraint firstAttribute="height" constant="37" id="7bm-1r-jYK"/>
+                                            </constraints>
+                                            <state key="normal" backgroundImage="chat_btn"/>
+                                            <connections>
+                                                <segue destination="VSf-t7-r3i" kind="push" identifier="ShowChatRoom" id="pCA-XN-bL9"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="q0p-Ab-klX" firstAttribute="centerY" secondItem="8Oh-w2-uLV" secondAttribute="centerY" id="MZ3-hP-Wr7"/>
                                         <constraint firstItem="q0p-Ab-klX" firstAttribute="centerY" secondItem="8Oh-w2-uLV" secondAttribute="centerY" id="ZPc-tu-OBd"/>
                                         <constraint firstItem="q0p-Ab-klX" firstAttribute="leading" secondItem="8Oh-w2-uLV" secondAttribute="leadingMargin" constant="14" id="j5G-9T-hUG"/>
+                                        <constraint firstItem="gPl-xn-cFb" firstAttribute="top" secondItem="8Oh-w2-uLV" secondAttribute="topMargin" constant="54" id="rL4-Lm-jSq"/>
+                                        <constraint firstItem="gPl-xn-cFb" firstAttribute="trailing" secondItem="8Oh-w2-uLV" secondAttribute="trailingMargin" id="tVK-89-8TQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="friendsCurrentLocatuon" destination="rwf-Kw-dpF" id="cUo-Cr-Vxj"/>
                                     <outlet property="level" destination="Zqy-92-eBe" id="oYa-5A-bNZ"/>
                                     <outlet property="name" destination="SH7-mC-ryA" id="IRi-gH-f01"/>
                                     <outlet property="profileImage" destination="q0p-Ab-klX" id="gkh-RD-5Xo"/>
-                                    <segue destination="gW4-no-jk8" kind="push" identifier="ShowFriendsDetails" id="a64-d2-P5x"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1025,7 +1039,7 @@
             </objects>
             <point key="canvasLocation" x="1667" y="-798"/>
         </scene>
-        <!--cards-->
+        <!--Friends Deck-->
         <scene sceneID="YBo-t1-vm1">
             <objects>
                 <collectionViewController id="dKZ-9z-qJe" customClass="FriendsDeckCollectionViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -1067,6 +1081,9 @@
                                     <constraint firstItem="8Pd-pk-W8T" firstAttribute="top" secondItem="Izk-g2-v62" secondAttribute="topMargin" id="y4K-As-uWY"/>
                                 </constraints>
                                 <size key="customSize" width="174" height="209"/>
+                                <connections>
+                                    <segue destination="Q4a-yr-LKX" kind="modal" identifier="ShowDetail" id="K43-Bk-IMX"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -1074,11 +1091,69 @@
                             <outlet property="delegate" destination="dKZ-9z-qJe" id="J0o-mx-kcA"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="cards" id="Z2D-XT-wur"/>
+                    <navigationItem key="navigationItem" title="Friends Deck" id="Z2D-XT-wur"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJe-hb-EDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1683" y="-1459"/>
+        </scene>
+        <!--Pop Over View Controller-->
+        <scene sceneID="vLT-Sh-x3J">
+            <objects>
+                <viewController id="Q4a-yr-LKX" customClass="PopOverViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mhw-iY-qwk"/>
+                        <viewControllerLayoutGuide type="bottom" id="G8h-Tu-Lus"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RGy-VB-1hM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xkh-dm-abL">
+                                <rect key="frame" x="45" y="118" width="240" height="368"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fe-b8-M7r" userLabel=" ">
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="53"/>
+                                        <accessibility key="accessibilityConfiguration" label="Close"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="front" translatesAutoresizingMaskIntoConstraints="NO" id="Ak4-xJ-kQs">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="368"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59l-D2-kE8" userLabel="Close Button">
+                                        <rect key="frame" x="3" y="-8" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Cpf-iv-kPE"/>
+                                            <constraint firstAttribute="width" constant="30" id="g1Y-pr-1iG"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="CloseButton"/>
+                                        <connections>
+                                            <action selector="closeBtn:" destination="Q4a-yr-LKX" eventType="touchUpInside" id="0BO-Xk-mQD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.93115596909999998" blue="0.034984636270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Ak4-xJ-kQs" firstAttribute="width" secondItem="Xkh-dm-abL" secondAttribute="height" multiplier="15:23" id="6tw-9l-OKh"/>
+                                    <constraint firstItem="Ak4-xJ-kQs" firstAttribute="height" secondItem="Xkh-dm-abL" secondAttribute="height" id="Djl-OA-kvk"/>
+                                    <constraint firstAttribute="height" constant="368" id="Sf9-sj-o1M"/>
+                                    <constraint firstAttribute="width" constant="240" id="jLf-lq-29C"/>
+                                    <constraint firstItem="Ak4-xJ-kQs" firstAttribute="width" secondItem="Xkh-dm-abL" secondAttribute="width" id="jWR-4K-l4n"/>
+                                    <constraint firstItem="59l-D2-kE8" firstAttribute="leading" secondItem="Xkh-dm-abL" secondAttribute="leading" constant="5" id="jeW-9t-QbM"/>
+                                    <constraint firstItem="59l-D2-kE8" firstAttribute="top" secondItem="Xkh-dm-abL" secondAttribute="top" constant="5" id="wdf-TQ-Qtr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xkh-dm-abL" firstAttribute="centerY" secondItem="RGy-VB-1hM" secondAttribute="centerY" id="Ala-LX-p4S"/>
+                            <constraint firstItem="Xkh-dm-abL" firstAttribute="centerX" secondItem="RGy-VB-1hM" secondAttribute="centerX" id="Dpo-eU-hXV"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kq4-20-ahD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2077" y="-1516"/>
         </scene>
         <!--Name-->
         <scene sceneID="A7J-ys-eOF">
@@ -1104,9 +1179,6 @@
                                 <inset key="contentEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                                 <size key="titleShadowOffset" width="5" height="5"/>
                                 <state key="normal" title="Chat" backgroundImage="button"/>
-                                <connections>
-                                    <segue destination="VSf-t7-r3i" kind="push" identifier="ShowChatRoom" id="Q7e-qu-Lu2"/>
-                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sVQ-FS-WqN">
                                 <rect key="frame" x="12" y="287" width="268" height="180"/>
@@ -1123,7 +1195,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="132" height="32"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friends" translatesAutoresizingMaskIntoConstraints="NO" id="1HX-MY-lWD">
-                                                <rect key="frame" x="137" y="0.0" width="132" height="32"/>
+                                                <rect key="frame" x="137" y="0.0" width="131" height="32"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
@@ -1136,7 +1208,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Friends : 15" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9PJ-SE-nLT">
-                                                <rect key="frame" x="137" y="0.0" width="132" height="32"/>
+                                                <rect key="frame" x="137" y="0.0" width="131" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -1149,7 +1221,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="132" height="32"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yfa-Cy-cwW">
-                                                <rect key="frame" x="137" y="0.0" width="132" height="32"/>
+                                                <rect key="frame" x="137" y="0.0" width="131" height="32"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
@@ -1162,7 +1234,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="d" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0bF-Kf-iKA">
-                                                <rect key="frame" x="137" y="0.0" width="132" height="32"/>
+                                                <rect key="frame" x="137" y="0.0" width="131" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -1216,8 +1288,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CloseButton" width="15" height="15"/>
         <image name="Life" width="61" height="57"/>
-        <image name="Lvl_bg" width="40" height="25"/>
+        <image name="Lvl_bg" width="148" height="58"/>
         <image name="MeIcon" width="35" height="33"/>
         <image name="ProfileBlack" width="400" height="400"/>
         <image name="button" width="128" height="93"/>
@@ -1227,6 +1300,7 @@
         <image name="button3" width="187" height="52"/>
         <image name="camera_Claw" width="218" height="90"/>
         <image name="cancel" width="48" height="48"/>
+        <image name="chat_btn" width="78" height="60"/>
         <image name="friends" width="59" height="53"/>
         <image name="front" width="585" height="741"/>
         <image name="loading" width="414" height="415"/>
