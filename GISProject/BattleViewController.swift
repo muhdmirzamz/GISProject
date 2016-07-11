@@ -9,10 +9,6 @@
 import UIKit
 import Firebase
 
-protocol BattleProtocol {
-	func backtoMap()
-}
-
 class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 	
 	@IBOutlet var monsterHealthBar: UIProgressView!
@@ -35,8 +31,6 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 	var monsterHealth: Float?
 	var expectedMonsterHealth: Float?
 	var timer: NSTimer?
-	
-	var delegate: BattleProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
