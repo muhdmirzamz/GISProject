@@ -42,10 +42,31 @@ class BattleViewController2: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         self.textfield.inputView = self.pickerView
         self.textfield.text = String(self.battle!.getAmountOfCardsToUse())
+        
+        self.checkUserCardSwitch()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func checkUserCardSwitch() {
+        let scheduledLocalNotifCount = UIApplication.sharedApplication().scheduledLocalNotifications!.count
+        print(scheduledLocalNotifCount)
+        
+        // user has used card
+        if scheduledLocalNotifCount > 0 {
+            self.userCardSwitch.on = false
+            self.userCardSwitch.enabled = false
+        } else {
+            self.userCardSwitch.on = true
+            
+            if self.battle?.getAmountOfCardsToUse() == 0 || self.textfield.text == "0" {
+                self.userCardSwitch.enabled = false
+            } else {
+                self.userCardSwitch.enabled = true
+            }
+        }
     }
 }

@@ -14,6 +14,10 @@ class Battle: NSObject {
     var amountOfCards: NSNumber?
     var amountOfCardsToUse: NSNumber?
     var cardsArr: NSMutableArray?
+    
+    var userCardSwitchOn: Bool?
+    var userCardSwitchEnabled: Bool?
+    
     var uidArr: NSMutableArray?
     
     var expectedMonsterHealth: Float?
@@ -26,6 +30,9 @@ class Battle: NSObject {
         self.cardsArr = NSMutableArray()
         self.cardsArr?.addObject(0)
         
+        self.userCardSwitchEnabled = true
+        self.userCardSwitchOn = true
+        
         self.uidArr = NSMutableArray()
     }
     
@@ -35,24 +42,5 @@ class Battle: NSObject {
     
     func getAmountOfCardsToUse() -> Int {
         return (self.amountOfCardsToUse?.integerValue)!
-    }
-    
-    func checkUserCardSwitch() {
-        let scheduledLocalNotifCount = UIApplication.sharedApplication().scheduledLocalNotifications!.count
-        print(scheduledLocalNotifCount)
-        
-        // user has used card
-        if scheduledLocalNotifCount > 0 {
-            self.userCardSwitch.on = false
-            self.userCardSwitch.enabled = false
-        } else {
-            self.userCardSwitch.on = true
-            
-            if self.amountOfCardsToUse! == 0 || self.textfield.text == "0" {
-                self.userCardSwitch.enabled = false
-            } else {
-                self.userCardSwitch.enabled = true
-            }
-        }
     }
 }
