@@ -152,12 +152,16 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 	}
 
 	@IBAction func attack() {
+        // disable attack button so user cannot press
+        // there is a delay between transitions and it is possible to press button if not disabled
 		self.attackButton.enabled = false
-	
+        
+        // set the expected monster health to avoid health graphics glitching
 		self.expectedMonsterHealth = self.monsterHealth! - Float(self.calculatedDamageLabel.text!)!
 	
 		self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
 		
+        // set a local notification for user card if it is used
         if self.userCardSwitch.on {
             let date = NSDate()
             let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute], fromDate:date)
@@ -185,6 +189,8 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             NSNotificationCenter.defaultCenter().postNotificationName("battle", object: self)
         }
         
+        // generate a random number using amount of cards to use as the limit
+        // set 0 to it to indicate that card has been used
 		if (self.amountOfCardsToUse?.integerValue)! > 0 {
 			let userID = (FIRAuth.auth()?.currentUser?.uid)!
 			let ref = FIRDatabase.database().reference().child("/Friend")
@@ -196,6 +202,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 			}
 		}
         
+        // generate another random location
 		var random = Double(arc4random()) % 0.004983
 		let latitudeRange = 1.377431 + random
 		random = Double(arc4random()) % 0.002122
