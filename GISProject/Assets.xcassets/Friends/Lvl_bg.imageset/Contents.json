@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Lvl_bg.png",
+      "filename" : "lvl_bg.png",
       "scale" : "1x"
     },
     {

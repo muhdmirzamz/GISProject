@@ -13,7 +13,6 @@ import FirebaseDatabase
 class FriendsDataManager: NSObject {
     
     //load friends from Firebase and converts it into [Friends] array
-    
           
     static func loadFriends(onComplete: ([Friends]) -> Void)
     {
@@ -22,8 +21,8 @@ class FriendsDataManager: NSObject {
         
         var friendsList : [Friends] = []
         
-        let ref = FIRDatabase.database().reference().child("FriendsModule/myFriend/Chats/FriendsList/")
-        
+        //let ref = FIRDatabase.database().reference().child("FriendsModule/myFriend/Chats/FriendsList/")
+        let ref = FIRDatabase.database().reference().child("FriendsModule/friendList/")
        
         
         ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
@@ -54,9 +53,8 @@ class FriendsDataManager: NSObject {
     
     // Downloads the image using the specified URL and
     // shows it on the imageView. If your imageView is
-    // within a TableViewCell, make sure you pass in the
+    // within a TableViewCell, passing in
     // TableViewCell object too.
-    //
     static func loadAndDisplayImage(cell: UITableViewCell!, imageView: UIImageView, url: String)
     {
         

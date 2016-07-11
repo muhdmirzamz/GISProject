@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class LocationModel: NSObject, MKAnnotation {
+class Location: NSObject, MKAnnotation {
 	var key: String?
 	var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
 	var title: String?

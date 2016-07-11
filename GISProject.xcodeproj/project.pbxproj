@@ -20,14 +20,18 @@
 		815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E6B621D1A64C700F2C961 /* QRViewController.swift */; };
 		819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AA1641D1266B30003FB8D /* ProfileViewController.swift */; };
 		819E1AC01D3331730070BF51 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819E1ABF1D3331730070BF51 /* BattleViewController.swift */; };
-		819E1AC21D3335720070BF51 /* Battle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819E1AC11D3335720070BF51 /* Battle.swift */; };
 		81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */; };
 		81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */; };
 		81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED3CC01D2B4B9700CABCCC /* TestController.swift */; };
 		81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81F1673B1D29F581009B305D /* User.xcdatamodeld */; };
 		8804BFF81D255B8400156549 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8804BFF71D255B8400156549 /* Theme.swift */; };
+		881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F148E1D329C7F00F0F270 /* GradientView.swift */; };
+		881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14901D329CB600F0F270 /* BounceAnimationController.swift */; };
+		881F14931D329CBF00F0F270 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */; };
 		889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */; };
 		889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */; };
+		88AFECFF1D329BC400185ED5 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */; };
+		88AFED011D329C2000185ED5 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AFED001D329C2000185ED5 /* PopOverViewController.swift */; };
 		88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFF8201D28C08B001304CA /* CustomTabBarController.swift */; };
 		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
 		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
@@ -42,7 +46,8 @@
 		AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB581CE3613900F8BA43 /* Main.storyboard */; };
 		AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */; };
 		AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */; };
-		AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AA001CFF137F00D7FBD0 /* LocationModel.swift */; };
+		AA8B63791D33CB1300BF2289 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B63781D33CB1300BF2289 /* Location.swift */; };
+		AA8B637B1D33CC1F00BF2289 /* Battle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B637A1D33CC1F00BF2289 /* Battle.swift */; };
 		AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */; };
 		D4A07F8CD0E5ECB803F63164 /* Pods_GISProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */; };
 /* End PBXBuildFile section */
@@ -63,14 +68,18 @@
 		815E6B621D1A64C700F2C961 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		819AA1641D1266B30003FB8D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		819E1ABF1D3331730070BF51 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
-		819E1AC11D3335720070BF51 /* Battle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Battle.swift; sourceTree = "<group>"; };
 		81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		81ED3CC01D2B4B9700CABCCC /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		81F1673C1D29F581009B305D /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		8804BFF71D255B8400156549 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		881F148E1D329C7F00F0F270 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		881F14901D329CB600F0F270 /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
+		881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDeckCollectionViewController.swift; sourceTree = "<group>"; };
 		889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
+		88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
+		88AFED001D329C2000185ED5 /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		88CFF8201D28C08B001304CA /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
@@ -88,7 +97,8 @@
 		AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA22DB5E1CE3613900F8BA43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA22DB601CE3613900F8BA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAC7AA001CFF137F00D7FBD0 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		AA8B63781D33CB1300BF2289 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		AA8B637A1D33CC1F00BF2289 /* Battle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Battle.swift; sourceTree = "<group>"; };
 		AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinBattleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +192,11 @@
 				88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */,
 				889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */,
 				88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */,
+				88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */,
+				88AFED001D329C2000185ED5 /* PopOverViewController.swift */,
+				881F14901D329CB600F0F270 /* BounceAnimationController.swift */,
+				881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */,
+				881F148E1D329C7F00F0F270 /* GradientView.swift */,
 			);
 			name = Friends;
 			path = ..;
@@ -234,8 +249,8 @@
 				AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */,
 				AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */,
 				819E1ABF1D3331730070BF51 /* BattleViewController.swift */,
-				819E1AC11D3335720070BF51 /* Battle.swift */,
-				AAC7AA001CFF137F00D7FBD0 /* LocationModel.swift */,
+				AA8B637A1D33CC1F00BF2289 /* Battle.swift */,
+				AA8B63781D33CB1300BF2289 /* Location.swift */,
 			);
 			name = Battle;
 			sourceTree = "<group>";
@@ -444,10 +459,13 @@
 			files = (
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
-				819E1AC21D3335720070BF51 /* Battle.swift in Sources */,
+				AA8B63791D33CB1300BF2289 /* Location.swift in Sources */,
+				881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */,
+				881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */,
 				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
 				81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
+				AA8B637B1D33CC1F00BF2289 /* Battle.swift in Sources */,
 				6DB566071D1D1CF100110D74 /* QRReaderViewController.swift in Sources */,
 				88EFBE171D2138F100577EC5 /* FriendsDataManager.swift in Sources */,
 				8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */,
@@ -457,15 +475,17 @@
 				819E1AC01D3331730070BF51 /* BattleViewController.swift in Sources */,
 				88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
-				AAC7AA011CFF137F00D7FBD0 /* LocationModel.swift in Sources */,
+				88AFECFF1D329BC400185ED5 /* DimmingPresentationController.swift in Sources */,
 				889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */,
 				88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */,
+				88AFED011D329C2000185ED5 /* PopOverViewController.swift in Sources */,
 				81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */,
 				819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */,
 				815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */,
 				88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */,
 				8156447B1D126CA40028D162 /* Profile.swift in Sources */,
 				88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */,
+				881F14931D329CBF00F0F270 /* SlideOutAnimationController.swift in Sources */,
 				6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */,
 				81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */,
 				88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */,

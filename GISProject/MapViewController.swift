@@ -57,7 +57,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 				coordinate.latitude = latitude.doubleValue
 				coordinate.longitude = longitude.doubleValue
 				
-				let locationModel = LocationModel.init(key: key, coordinate: coordinate, title: "Test", subtitle: "This is a test")
+				let locationModel = Location.init(key: key, coordinate: coordinate, title: "Test", subtitle: "This is a test")
 				self.map.addAnnotation(locationModel)
 			}
 		})
@@ -107,7 +107,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 			return nil
 		}
 	
-		if annotation is LocationModel {
+		if annotation is Location {
 			var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin")
 			
 			if annotationView == nil {
@@ -134,7 +134,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	}
 	
 	func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-		let selectedAnnotation = mapView.selectedAnnotations.first as? LocationModel
+		let selectedAnnotation = mapView.selectedAnnotations.first as? Location
 		
 		let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController") as? JoinBattleViewController
 		joinBattleVC?.selectedAnnotation = selectedAnnotation

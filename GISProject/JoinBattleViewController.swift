@@ -11,7 +11,7 @@ import Firebase
 
 class JoinBattleViewController: UIViewController, BattleProtocol {
 
-	var selectedAnnotation: LocationModel?
+	var selectedAnnotation: Location?
     
     @IBOutlet var monsterHealth: UILabel!
 

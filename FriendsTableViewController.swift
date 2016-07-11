@@ -20,11 +20,17 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     var refreshDataControl : UIRefreshControl!
     
     //search controller
+    //telling the search controller that you want use the same view that you’re searching to display the results.
     let searchController = UISearchController(searchResultsController: nil)
     
     //filtered friends via search bar
     var filteredFriends = [Friends]()
     
+    //chatroom friends
+    var chatRoomFriend : Friends!
+    
+    //declare an friends instance to make use of the objects easily
+    var friend : Friends!
     
     
     override func viewDidLoad() {
@@ -33,7 +39,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //background image
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "friendTable_bg_light")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
       
-        
         
         //refresh control
         refreshDataControl = UIRefreshControl()
@@ -44,21 +49,28 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         tableView.addSubview(refreshDataControl)
         
         
-        //search bar
+        //allow class to be inform when search bar text changes
         searchController.searchResultsUpdater = self
-        searchController.searchResultsUpdater = self
+        
+        //use current view to show the search result,don't dim the view
         searchController.dimsBackgroundDuringPresentation = false
+        
+        //search bar does not remain on the screen if user navigate to another screen
         definesPresentationContext = true
+        
+        //add search bar directly below head view
         tableView.tableHeaderView = searchController.searchBar
         
         //search bar background image
         searchController.searchBar.setBackgroundImage(UIImage(named: "cell_blue")?.resizableImageWithCapInsets(UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5), resizingMode: UIImageResizingMode.Stretch), forBarPosition: .Any, barMetrics: .Default)
         
         
-        
         //search bar icon
         searchController.searchBar.setImage(UIImage(named: "search_icon"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
         searchController.searchBar.setSearchFieldBackgroundImage(nil, forState: UIControlState.Normal)
+        
+        //start to load data
+        loadFriends()
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -67,28 +79,29 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        //start to load data
-        loadFriends()
+        
         
     }
     
     
     //UISearchBar Delegate
+    //respond to the search bar
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
         filterContentForSearchText(self.searchController.searchBar.text!)
     }
     
-    //filtered out the friends based on searchTxt
+    //filtered out the friends based on searchTxt in irregularless of case sensitivity
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteredFriends = friends.filter { friend in
             return friend.Name.lowercaseString.containsString(searchText.lowercaseString)
         }
         
+        //reload tableview to display the search result
         tableView.reloadData()
     }
     
-    //refresh contents
+    //pull to refresh contents
     func refreshControlAction()
     {
         print("refresh")
@@ -136,19 +149,25 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     }
     
     // MARK: - Table view data source
-    
+    // This function is one of the functions that a delegate for
+    // It tells the UITable how many items in the list to display
+    //for a given component  (vertical section)
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         refreshDataControl.endRefreshing()
         return 1
     }
     
+    //returns the number of items in the tableview
+    //display all friends and search friends accordingly
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
+        //return search result count
         if searchController.active && searchController.searchBar.text != "" {
             return filteredFriends.count
         }
         
+        //return all friends from firebase
         return friends.count
     }
     
@@ -158,8 +177,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         return cellSpacingHeight
     }
     
-    
-    
+    //headerview spacing clear colour effect
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clearColor()
@@ -167,50 +185,52 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     }
     
     
+    // given the row/item number of the tableview and display the data of the table cell
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
+        //first we query the table view to see if there are 
+        //any FriendsCell that are no longer visible
+        //and can be reused for a new table cell that need to be display
         var cell : FriendsCell! = tableView.dequeueReusableCellWithIdentifier("FriendsCell") as! FriendsCell
       
-        //set and display cell details
-        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        cell.backgroundView = UIImageView(image: UIImage(named: "cell_blue_border")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 50, 10, 50), resizingMode: UIImageResizingMode.Stretch))
-        
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 8
-        cell.clipsToBounds = true
-        
-        
-        let friend : Friends
-        
+        //if we don't find it, then we create a new FriendsCell by loading the nib
+        //"FriendsCell" from the main bundle
         if(cell == nil){
             
             cell = NSBundle.mainBundle().loadNibNamed("FriendsCell", owner: nil, options: nil)[0] as? FriendsCell
         }
         
+       
         
+        
+        
+        //check for any search inputs and use the corrent friends array data
         if searchController.active && searchController.searchBar.text != "" {
-            friend = filteredFriends[indexPath.row]
+            self.friend = filteredFriends[indexPath.row]
+            chatRoomFriend = friend
         } else {
-            friend = friends[indexPath.row]
+           
+            self.friend = friends[indexPath.row]
+           chatRoomFriend = friend
         }
-                
+    
+        //by using the re-used cell, or newly created one
+        //we update the FriendsCell images and text accordingly
         let levelDouble = friend.Level
         let levelString = String(levelDouble)
         
-        
+        //updating the text labels
         cell.name.text = friend.Name
         cell.level.setTitle("Lvl:\(levelString)", forState: UIControlState.Normal)
         
         
-        
-        //load images
+        //load and update friends avatimages asynchronous from helper class
         FriendsDataManager.loadAndDisplayImage(nil, imageView: cell.profileImage, url: friend.ThumbnailImgUrl)
         
         return cell
         
     }
-    
+  
     
     /*
      // Override to support conditional editing of the table view.
@@ -249,25 +269,31 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
     
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+   
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         
+        //hide the bottombar for friends deck view
         if(segue.identifier == "ShowFriendsDeck") {
-            //  let detailViewController = segue.destinationViewController as! PhotoStreamViewController
-            
+       
             let detailViewController = segue.destinationViewController as! FriendsDeckCollectionViewController
             detailViewController.hidesBottomBarWhenPushed = true
             
         }
         
+        //by tapping on the chat icon, hide the bottom bar and display the chat room view accordingly
+        if(segue.identifier == "ShowChatRoom") {
+            let chatViewController = segue.destinationViewController as! FriendsChatViewController
+            chatViewController.friend = friend
+            chatViewController.senderId = "Alex"
+            chatViewController.senderDisplayName = friend.Name
+            chatViewController.hidesBottomBarWhenPushed = true
+            
+        }
         
+        /*
         if(segue.identifier == "ShowFriendsDetails") {
             let detailViewController = segue.destinationViewController as! FriendsDetailViewController
             let myIndexPath = self.tableView.indexPathForSelectedRow
-            // let friend = friends[myIndexPath!.row]
             
             let filteredfriend : Friends
             
@@ -290,8 +316,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             
             detailViewController.hidesBottomBarWhenPushed = true
         }
+        */
     }
 }
-
 
 

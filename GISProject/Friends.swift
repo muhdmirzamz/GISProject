@@ -10,8 +10,6 @@ import Foundation
 
 class Friends{
     
-    
-    
     var Name : String
     var Level: Double
     var ThumbnailImgUrl : String

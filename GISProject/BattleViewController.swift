@@ -23,7 +23,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet var attackButton: UIButton!
     
     // to change the annotation location after killing monster
-    var selectedAnnotation: LocationModel?
+    var selectedAnnotation: Location?
     
     var pickerView: UIPickerView?
     

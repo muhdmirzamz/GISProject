@@ -24,7 +24,7 @@ class Battle {
 	var calculatedDamage: NSNumber?
     var expectedMonsterHealth: Float?
 	
-	var selectedAnnotation: LocationModel?
+	var selectedAnnotation: Location?
     
 	init() {
         self.monsterHealth = 1
