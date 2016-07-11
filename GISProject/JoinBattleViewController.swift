@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class JoinBattleViewController: UIViewController, BattleProtocol {
 
@@ -21,17 +22,12 @@ class JoinBattleViewController: UIViewController, BattleProtocol {
         UIGraphicsBeginImageContext(self.view.frame.size)
         UIImage(named: "mob_bg")?.drawInRect(self.view.bounds)
         
-        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
         self.view.backgroundColor = UIColor(patternImage: image)
-        
-        
-        
-        
-        
-        
+		
         self.monsterHealth.text = "1/1"
     }
 
@@ -54,8 +50,8 @@ class JoinBattleViewController: UIViewController, BattleProtocol {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "battleSegue" {
 			let battleVC = segue.destinationViewController as? BattleViewController
-			battleVC?.delegate = self
-			battleVC?.selectedAnnotation = self.selectedAnnotation
+			battleVC!.delegate = self
+			battleVC!.selectedAnnotation = self.selectedAnnotation
 		}
     }
 
