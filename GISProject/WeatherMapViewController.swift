@@ -10,14 +10,14 @@ import UIKit
 
 class WeatherMapViewController: UIViewController {
 
-    @IBOutlet var webView: UIWebView!
+    @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        let localFilePath = NSBundle.mainBundle().URLForResource("weathermap", withExtension: "html")
+        let localFilePath = NSBundle.mainBundle().URLForResource("layers", withExtension: "html")
         let myRequest = NSURLRequest(URL: localFilePath!)
         self.webView.loadRequest(myRequest)
     }

@@ -17,6 +17,7 @@
 		6DB566071D1D1CF100110D74 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */; };
 		81364F621D3498C4009A4B8E /* weathermap.html in Resources */ = {isa = PBXBuildFile; fileRef = 81364F611D3498C4009A4B8E /* weathermap.html */; };
 		81364F641D349A5F009A4B8E /* WeatherMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81364F631D349A5F009A4B8E /* WeatherMapViewController.swift */; };
+		81364F661D34A8E6009A4B8E /* layers.html in Resources */ = {isa = PBXBuildFile; fileRef = 81364F651D34A8E6009A4B8E /* layers.html */; };
 		8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */; };
 		8156447B1D126CA40028D162 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156447A1D126CA40028D162 /* Profile.swift */; };
 		815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E6B621D1A64C700F2C961 /* QRViewController.swift */; };
@@ -67,6 +68,7 @@
 		6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
 		81364F611D3498C4009A4B8E /* weathermap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = weathermap.html; sourceTree = "<group>"; };
 		81364F631D349A5F009A4B8E /* WeatherMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherMapViewController.swift; sourceTree = "<group>"; };
+		81364F651D34A8E6009A4B8E /* layers.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = layers.html; sourceTree = "<group>"; };
 		814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		8156447A1D126CA40028D162 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		815E6B621D1A64C700F2C961 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				6D4122921D2BB7C70016DBE2 /* jquery.particleground.min.js */,
 				6D4122931D2BB7C70016DBE2 /* style.css */,
 				81364F611D3498C4009A4B8E /* weathermap.html */,
+				81364F651D34A8E6009A4B8E /* layers.html */,
 			);
 			name = HTML;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				6D4122951D2BB7C70016DBE2 /* index.html in Resources */,
 				81364F621D3498C4009A4B8E /* weathermap.html in Resources */,
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
+				81364F661D34A8E6009A4B8E /* layers.html in Resources */,
 				6D4122971D2BB7C70016DBE2 /* style.css in Resources */,
 				88F4D99B1D2EDC7B0093E003 /* GoogleService-Info.plist in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,

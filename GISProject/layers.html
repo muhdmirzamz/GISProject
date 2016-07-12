@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+            <meta charset="utf-8">
+                <title>Simple markers</title>
+                <style>
+                    html, body {
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                    }
+                #map {
+                    height: 100%;
+                }
+                #floating-panel {
+                    position: absolute;
+                    top: 20px;
+                    left: 25%;
+                    z-index: 5;
+                    background-color: #fff;
+                    padding: 5px;
+                    border: 1px solid #999;
+                    text-align: center;
+                    font-family: 'Roboto','sans-serif';
+                    line-height: 30px;
+                    padding-left: 10px;
+                }
+                #floating-panel {
+                    margin-left: -50px;
+                }
+                </style>
+                </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            function initMap() {
+                
+                var centerlatLng = {lat: 1.3801, lng: 103.8490};
+                var latlng1 = {lat: 1.38098127843023, lng: 103.8486879226299};
+                var latlng2 = {lat: 1.382170199449567, lng: 103.8482437025494};
+                var latlng3 = {lat: 1.381602205990674, lng: 103.8485798830626};
+                var latlng4 = {lat: 1.38184627856266, lng: 103.849257778687};
+                var latlng5 = {lat: 1.381936042993424, lng: 103.848909794732};
+                
+                var map = new google.maps.Map(document.getElementById('map'), {
+                                              zoom: 16,
+                                              center: centerlatLng,
+                                              disableDefaultUI: true
+                                              });
+                                              
+                                              var DryToad = '<div id="content">'+
+                                              '<div id="siteNotice">'+
+                                              '</div>'+
+                                              '<h1 id="firstHeading" class="firstHeading">DryToad</h1>'+
+                                              '<div id="bodyContent">'+
+                                              '<p><b>DryToad</b>, is a large toad that got contaminated' +
+                                              ' by radioactive wastes threw into the pond by companies'+
+                                              ' instead of disposing by proper methods </p>' +
+                                              '<p>HP : <b>1</b></p>  <p>Type: <b>Water</b></p>' +
+                                              '<p>Quote : Too weak to be considered a monster</p>' +
+                                              '</div>'+
+                                              '</div>';
+                                              
+                                            var infoToad= new google.maps.InfoWindow({
+                                                                    content: DryToad
+                                                                                });
+                                              
+                                            var marker1 = new google.maps.Marker({
+                                                                                position: latlng1,
+                                                                                map: map,
+                                                                                 label: 'A',
+                                                                                animation: google.maps.Animation.DROP
+                                                                                });
+                                            var marker2 = new google.maps.Marker({
+                                                                                position: latlng2,
+                                                                                map: map,
+                                                                                label: 'B',
+                                                                                animation: google.maps.Animation.DROP
+                                                                                });
+                                            var marker3 = new google.maps.Marker({
+                                                                                position: latlng3,
+                                                                                map: map,
+                                                                                label: 'C',
+                                                                                animation: google.maps.Animation.DROP
+                                                                                });
+                                            var marker4 = new google.maps.Marker({
+                                                                                position: latlng4,
+                                                                                map: map,
+                                                                                label: 'D',
+                                                                                animation: google.maps.Animation.DROP
+                                                                                });
+                                            var marker5 = new google.maps.Marker({
+                                                                                position: latlng5,
+                                                                                map: map,
+                                                                                label: 'E',
+                                                                                animation: google.maps.Animation.DROP
+                                                                                });
+                map.addListener('center_changed', function() {
+                // 3 seconds after the center of the map has changed, pan back to the marker
+                window.setTimeout(function() {
+                    map.setZoom(16)
+                    map.panTo(map.getPosition());
+                    }, 10000);
+                    });
+                    marker1.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker1.getPosition());
+                                       infoToad.open(map, marker1);
+                                       });
+                    marker2.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker2.getPosition());
+                                        });
+                    marker3.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker3.getPosition());
+                                        });
+                    marker4.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker4.getPosition());
+                                        });
+                    marker5.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker5.getPosition());
+                                        });
+            }
+        </script>
+        <script async defer
+           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initMap">
+            </script>
+    </body>
+</html>
