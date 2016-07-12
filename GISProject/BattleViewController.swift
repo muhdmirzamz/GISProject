@@ -60,9 +60,15 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		
 		// attach a selector to user card switch to listen for value change
 		self.userCardSwitch.addTarget(self, action: "userCardSwitchDidChange", forControlEvents: .ValueChanged)
-		
-		self.calculatedDamageLabel.text = "\(String(self.battle!.calculateDamage()))"
-		
+    
+        var userID = (FIRAuth.auth()?.currentUser?.uid)!
+        var ref = FIRDatabase.database().reference().child("/Account")
+        ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            self.battle?.baseDamage = snapshot.value!["Base Damage"] as? NSNumber
+            
+            self.calculatedDamageLabel.text = "\(String((self.battle?.calculateDamage(self.userCardSwitch.on))!))"
+        })
+        
 		// an addition to aid user to dismiss picker view
 		let tapDown = UITapGestureRecognizer.init(target: self, action: "pickerViewDown")
 		tapDown.numberOfTapsRequired = 1
@@ -77,8 +83,8 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
 	
 	func userCardSwitchDidChange() {
-		let calculatedDamage = self.battle?.calculateDamage()
-		
+		let calculatedDamage = self.battle?.calculateDamage(self.userCardSwitch.on)
+        
 		if calculatedDamage == 0 {
 			let alert = UIAlertController.init(title: "Whoops", message: "You can't even m8", preferredStyle: .Alert)
 			let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: { (action) -> Void in
@@ -121,7 +127,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
 		self.battle?.amountOfCardsToUse = NSNumber.init(integer: Int.init(String(tmpCardsArray![row]))!)
 		
-		let calculatedDamage = self.battle?.calculateDamage()
+		let calculatedDamage = self.battle?.calculateDamage(self.userCardSwitch.on)
 		self.calculatedDamageLabel.text = String(calculatedDamage!)
 	}
 	

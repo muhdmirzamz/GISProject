@@ -26,6 +26,9 @@ class Battle {
 	
 	var selectedAnnotation: Location?
     
+//    var ref = FIRDatabase.database().reference()
+    let userID = (FIRAuth.auth()?.currentUser?.uid)!
+    
 	init() {
         self.monsterHealth = 1
 		self.expectedMonsterHealth = 0
@@ -41,18 +44,10 @@ class Battle {
 		
 		self.baseDamage = 0
 		self.calculatedDamage = 0
-		
-		// get base damage
-		var ref = FIRDatabase.database().reference().child("/Account")
-		let userID = (FIRAuth.auth()?.currentUser?.uid)!
-		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-			self.baseDamage = snapshot.value!["Base Damage"] as? NSNumber
-			print("Test: \((self.baseDamage?.integerValue)!)")
-		})
-		
+        
 		// get amount of valid cards
 		// get uid -> to set card value to 0 after use
-		ref = FIRDatabase.database().reference().child("/Friend")
+		var ref = FIRDatabase.database().reference().child("/Friend")
 		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
 			var counter = 1
 			
@@ -90,20 +85,20 @@ class Battle {
 		return (self.cardsArr?.count)!
 	}
 	
-	func getBaseDamage() -> Int {
-		return (self.baseDamage?.integerValue)!
+    func getBaseDamage() -> Int {
+        return (self.baseDamage?.integerValue)!
 	}
-	
-	func calculateDamage() -> Int {
+    
+    func calculateDamage(isSwitchedOn: Bool) -> Int {
 //		let scheduledLocalNotifCount = UIApplication.sharedApplication().scheduledLocalNotifications!.count
-		
-		if self.userCardSwitchOn {
-			self.calculatedDamage = (self.baseDamage?.integerValue)! + (self.amountOfCardsToUse?.integerValue)!
-		} else {
-			self.calculatedDamage = (self.amountOfCardsToUse?.integerValue)!
-		}
-		
-		return self.calculatedDamage!.integerValue
+        
+        if isSwitchedOn {
+            self.calculatedDamage = (self.baseDamage?.integerValue)! + (self.amountOfCardsToUse?.integerValue)!
+        } else {
+            self.calculatedDamage = (self.amountOfCardsToUse?.integerValue)!
+        }
+        
+        return self.calculatedDamage!.integerValue
 	}
 	
 	func updatePlayer() {
