@@ -14,14 +14,17 @@ protocol BattleProtocol {
 }
 
 class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+	
+	@IBOutlet var monsterImgView: UIImageView!
     @IBOutlet var monsterHealthBar: UIProgressView!
     @IBOutlet var monsterHealthLabel: UILabel!
     @IBOutlet var textfield: UITextField!
     @IBOutlet var userCardSwitch: UISwitch!
     @IBOutlet var calculatedDamageLabel: UILabel!
     @IBOutlet var attackButton: UIButton!
-    
+	
+	var imageString: String?
+	
     // to change the annotation location after killing monster
     var selectedAnnotation: Location?
     
@@ -33,6 +36,16 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		// set monster image
+		let image = UIImage.init(named: self.imageString!)
+		
+		UIGraphicsBeginImageContextWithOptions(CGSize.init(width: self.monsterImgView.frame.width, height: self.monsterImgView.frame.height), false, 0.0);
+		image!.drawInRect(CGRectMake(0, 0, self.monsterImgView.frame.width, self.monsterImgView.frame.height))
+		let newImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		
+		self.monsterImgView.image = newImage
 		
 		// initialise battle entity
 		self.battle = Battle()

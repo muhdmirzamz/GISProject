@@ -45,7 +45,7 @@
                       });
       
                 heatmap.set('radius', heatmap.get('radius') ? null : 100);
-                
+                changeGradient()
             }
         
             function toggleWeathermap() {
@@ -62,10 +62,6 @@
                     document.getElementById("toggleWeathermapID").classList.remove('yellow');
                     document.getElementById("toggleWeathermapID").classList.add('black');
                 }
-            }
-        
-            function toggleLayers() {
-                
             }
             
             function getRandomNum(min, max) {
@@ -84,8 +80,34 @@
                         new google.maps.LatLng(getRandomNum(1.377431, 1.382414), getRandomNum(103.848156, 103.850287)),
                         ];
             }
+		
+		function changeGradient() {
+			/*
+			 'rgba(0, 255, 255, 0)',
+			 'rgba(0, 255, 255, 1)',
+			 'rgba(0, 191, 255, 1)',
+			 'rgba(0, 127, 255, 1)',
+			 'rgba(0, 63, 255, 1)',
+			 'rgba(0, 0, 255, 1)',
+			 'rgba(0, 0, 223, 1)',
+			 'rgba(0, 0, 191, 1)',
+			 'rgba(0, 0, 159, 1)',
+			 'rgba(0, 0, 127, 1)',
+			 'rgba(63, 0, 91, 1)',
+			 'rgba(127, 0, 63, 1)',
+			 'rgba(191, 0, 31, 1)',
+			 'rgba(255, 0, 0, 1)'
+			*/
+		
+			/* goes outer to inner circle */
+			/* alpha values determine how intense it is: 0 is faded while 1 is intense */
+			var gradient = [
+							'rgba(0, 0, 255, 0)',
+							'rgba(255, 0, 0, 1)',]
+							heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+		}
         </script>
-        
+		
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initMap">
             </script>

@@ -9,23 +9,25 @@
 import UIKit
 import Firebase
 
-protocol JoinProtocol {
-    func reload()
-}
-
 class JoinBattleViewController: UIViewController, BattleProtocol {
 
 	var selectedAnnotation: Location?
     var imageString: String?
-    var delegate: JoinProtocol?
     
     @IBOutlet var monsterHealth: UILabel!
     @IBOutlet var monsterImgView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.monsterImgView.image = UIImage.init(named: self.imageString!)
+		
+		let image = UIImage.init(named: self.imageString!)
+		
+		UIGraphicsBeginImageContextWithOptions(CGSize.init(width: self.monsterImgView.frame.width, height: self.monsterImgView.frame.height), false, 0.0);
+		image!.drawInRect(CGRectMake(0, 0, self.monsterImgView.frame.width, self.monsterImgView.frame.height))
+		let newImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		
+		self.monsterImgView.image = newImage
 		
         self.monsterHealth.text = "1/1"
     }
@@ -40,7 +42,6 @@ class JoinBattleViewController: UIViewController, BattleProtocol {
 	}
 	
 	func backtoMap() {
-        self.delegate?.reload()
 		self.dismiss()
 	}
 	
@@ -52,6 +53,7 @@ class JoinBattleViewController: UIViewController, BattleProtocol {
 			let battleVC = segue.destinationViewController as? BattleViewController
 			battleVC!.delegate = self
 			battleVC!.selectedAnnotation = self.selectedAnnotation
+			battleVC?.imageString = self.imageString
 		}
     }
 
