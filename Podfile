@@ -13,4 +13,6 @@ target 'GISProject' do
   pod 'QRCode'
   pod 'MaterialCard'
   pod 'ISTimeline', '~> 0.0.3'
+  pod 'Bluuur'
+  pod 'BFPaperButton'
 end

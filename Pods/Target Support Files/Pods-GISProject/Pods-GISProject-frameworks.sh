@@ -84,16 +84,24 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/BFPaperButton/BFPaperButton.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Bluuur/Bluuur.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ISTimeline/ISTimeline.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JSQMessagesViewController/JSQMessagesViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MaterialCard/MaterialCard.framework"
   install_framework "$BUILT_PRODUCTS_DIR/QRCode/QRCode.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIColor+BFPaperColors/UIColor_BFPaperColors.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/libextobjc/libextobjc.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/BFPaperButton/BFPaperButton.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Bluuur/Bluuur.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ISTimeline/ISTimeline.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JSQMessagesViewController/JSQMessagesViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MaterialCard/MaterialCard.framework"
   install_framework "$BUILT_PRODUCTS_DIR/QRCode/QRCode.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIColor+BFPaperColors/UIColor_BFPaperColors.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/libextobjc/libextobjc.framework"
 fi

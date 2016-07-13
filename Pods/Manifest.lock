@@ -1,4 +1,8 @@
 PODS:
+  - BFPaperButton (2.0.29):
+    - UIColor+BFPaperColors
+  - Bluuur (0.1.0):
+    - libextobjc
   - Firebase (3.3.0):
     - Firebase/Core (= 3.3.0)
   - Firebase/Analytics (3.3.0):
@@ -38,10 +42,48 @@ PODS:
   - JSQMessagesViewController (7.3.3):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - libextobjc (0.4.1):
+    - libextobjc/EXTADT (= 0.4.1)
+    - libextobjc/EXTConcreteProtocol (= 0.4.1)
+    - libextobjc/EXTKeyPathCoding (= 0.4.1)
+    - libextobjc/EXTNil (= 0.4.1)
+    - libextobjc/EXTSafeCategory (= 0.4.1)
+    - libextobjc/EXTScope (= 0.4.1)
+    - libextobjc/EXTSelectorChecking (= 0.4.1)
+    - libextobjc/EXTSynthesize (= 0.4.1)
+    - libextobjc/NSInvocation+EXT (= 0.4.1)
+    - libextobjc/NSMethodSignature+EXT (= 0.4.1)
+    - libextobjc/RuntimeExtensions (= 0.4.1)
+    - libextobjc/UmbrellaHeader (= 0.4.1)
+  - libextobjc/EXTADT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTConcreteProtocol (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTKeyPathCoding (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTNil (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSafeCategory (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSelectorChecking (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSynthesize (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSInvocation+EXT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSMethodSignature+EXT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.4.1)
+  - libextobjc/UmbrellaHeader (0.4.1)
   - MaterialCard (1.0.4)
   - QRCode (0.5)
+  - UIColor+BFPaperColors (1.7.2)
 
 DEPENDENCIES:
+  - BFPaperButton
+  - Bluuur
   - Firebase
   - Firebase/Auth
   - Firebase/Database
@@ -51,6 +93,8 @@ DEPENDENCIES:
   - QRCode
 
 SPEC CHECKSUMS:
+  BFPaperButton: 7df738f2e749a9a4edd3e043f0621ee02215e417
+  Bluuur: 54b27b426ded6586eac39e2a469dcc14431d6fb8
   Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
   FirebaseAnalytics: 0fd6532cb2c3d03cd5cf26ad295ccb091efd3104
   FirebaseAuth: 5efddc3fae47042b73585f083f956462be4f5b8e
@@ -64,9 +108,11 @@ SPEC CHECKSUMS:
   ISTimeline: dbba6a911315b1527afccc0c76329e0477631510
   JSQMessagesViewController: 0ee3f80237268192a3e8337fd0d787f1a1bf5a7a
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   MaterialCard: d360bf995f48ee999643958dd1531bdfa8622e91
   QRCode: a249ed747aeb0f4bf5f9c58b5b001b6b3bc80073
+  UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
 
-PODFILE CHECKSUM: 295ed9a2f6306900b0376f97961d6738b88d2d64
+PODFILE CHECKSUM: ff32da4fc0043189d198aad9e4384f445d5866ab
 
 COCOAPODS: 1.0.1
