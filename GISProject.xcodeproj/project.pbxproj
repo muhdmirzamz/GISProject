@@ -7,21 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D4122941D2BB7C70016DBE2 /* demo.js in Resources */ = {isa = PBXBuildFile; fileRef = 6D4122901D2BB7C70016DBE2 /* demo.js */; };
-		6D4122951D2BB7C70016DBE2 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6D4122911D2BB7C70016DBE2 /* index.html */; };
-		6D4122961D2BB7C70016DBE2 /* jquery.particleground.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6D4122921D2BB7C70016DBE2 /* jquery.particleground.min.js */; };
-		6D4122971D2BB7C70016DBE2 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 6D4122931D2BB7C70016DBE2 /* style.css */; };
-		6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */; };
-		6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */; };
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
-		6DB566071D1D1CF100110D74 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */; };
+		6D8169EA1D360A2D00AC33C6 /* heatmap.html in Resources */ = {isa = PBXBuildFile; fileRef = 6D8169E81D360A2D00AC33C6 /* heatmap.html */; };
+		6D8169EB1D360A2D00AC33C6 /* simple.html in Resources */ = {isa = PBXBuildFile; fileRef = 6D8169E91D360A2D00AC33C6 /* simple.html */; };
+		6D8169EF1D360AC700AC33C6 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8169ED1D360AC700AC33C6 /* QRViewController.swift */; };
+		6D8169F01D360AC700AC33C6 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8169EE1D360AC700AC33C6 /* QRReaderViewController.swift */; };
+		6D8169F41D360B1F00AC33C6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8169F11D360B1F00AC33C6 /* ProfileViewController.swift */; };
+		6D8169F51D360B1F00AC33C6 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8169F21D360B1F00AC33C6 /* SignupViewController.swift */; };
+		6D8169F61D360B1F00AC33C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8169F31D360B1F00AC33C6 /* LoginViewController.swift */; };
 		81364F621D3498C4009A4B8E /* weathermap.html in Resources */ = {isa = PBXBuildFile; fileRef = 81364F611D3498C4009A4B8E /* weathermap.html */; };
 		81364F641D349A5F009A4B8E /* GeoVisMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81364F631D349A5F009A4B8E /* GeoVisMapViewController.swift */; };
 		81364F661D34A8E6009A4B8E /* layers.html in Resources */ = {isa = PBXBuildFile; fileRef = 81364F651D34A8E6009A4B8E /* layers.html */; };
 		8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */; };
 		8156447B1D126CA40028D162 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156447A1D126CA40028D162 /* Profile.swift */; };
-		815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E6B621D1A64C700F2C961 /* QRViewController.swift */; };
-		819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819AA1641D1266B30003FB8D /* ProfileViewController.swift */; };
 		819E1AC01D3331730070BF51 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819E1ABF1D3331730070BF51 /* BattleViewController.swift */; };
 		81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */; };
 		81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */; };
@@ -35,7 +33,6 @@
 		889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */; };
 		88AFECFF1D329BC400185ED5 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */; };
 		88AFED011D329C2000185ED5 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AFED001D329C2000185ED5 /* PopOverViewController.swift */; };
-		88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CFF8201D28C08B001304CA /* CustomTabBarController.swift */; };
 		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
 		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
 		88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */; };
@@ -58,21 +55,19 @@
 /* Begin PBXFileReference section */
 		027CAAD9DE2DC497261DB2FE /* Pods-GISProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.release.xcconfig"; sourceTree = "<group>"; };
 		0B061A809F4C2DBC68A79C9D /* Pods-GISProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.debug.xcconfig"; sourceTree = "<group>"; };
-		6D4122901D2BB7C70016DBE2 /* demo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = demo.js; sourceTree = "<group>"; };
-		6D4122911D2BB7C70016DBE2 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		6D4122921D2BB7C70016DBE2 /* jquery.particleground.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.particleground.min.js; sourceTree = "<group>"; };
-		6D4122931D2BB7C70016DBE2 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
-		6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
-		6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
+		6D8169E81D360A2D00AC33C6 /* heatmap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = heatmap.html; sourceTree = "<group>"; };
+		6D8169E91D360A2D00AC33C6 /* simple.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = simple.html; sourceTree = "<group>"; };
+		6D8169ED1D360AC700AC33C6 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		6D8169EE1D360AC700AC33C6 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
+		6D8169F11D360B1F00AC33C6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		6D8169F21D360B1F00AC33C6 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		6D8169F31D360B1F00AC33C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		81364F611D3498C4009A4B8E /* weathermap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = weathermap.html; sourceTree = "<group>"; };
 		81364F631D349A5F009A4B8E /* GeoVisMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoVisMapViewController.swift; sourceTree = "<group>"; };
 		81364F651D34A8E6009A4B8E /* layers.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = layers.html; sourceTree = "<group>"; };
 		814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		8156447A1D126CA40028D162 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		815E6B621D1A64C700F2C961 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
-		819AA1641D1266B30003FB8D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		819E1ABF1D3331730070BF51 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 		81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
@@ -86,7 +81,6 @@
 		889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
 		88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		88AFED001D329C2000185ED5 /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
-		88CFF8201D28C08B001304CA /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDetailViewController.swift; path = GISProject/FriendsDetailViewController.swift; sourceTree = "<group>"; };
@@ -131,21 +125,27 @@
 		6D41228F1D2BB7AD0016DBE2 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
-				6D4122901D2BB7C70016DBE2 /* demo.js */,
-				6D4122911D2BB7C70016DBE2 /* index.html */,
-				6D4122921D2BB7C70016DBE2 /* jquery.particleground.min.js */,
-				6D4122931D2BB7C70016DBE2 /* style.css */,
-				81364F611D3498C4009A4B8E /* weathermap.html */,
+				6D8169E81D360A2D00AC33C6 /* heatmap.html */,
+				6D8169E91D360A2D00AC33C6 /* simple.html */,
 				81364F651D34A8E6009A4B8E /* layers.html */,
+				81364F611D3498C4009A4B8E /* weathermap.html */,
 			);
 			name = HTML;
+			sourceTree = "<group>";
+		};
+		6D8169EC1D360A7A00AC33C6 /* GeoVis Map */ = {
+			isa = PBXGroup;
+			children = (
+				81364F631D349A5F009A4B8E /* GeoVisMapViewController.swift */,
+			);
+			name = "GeoVis Map";
 			sourceTree = "<group>";
 		};
 		6DAE5EDD1D1E4E3A007CEF48 /* QR */ = {
 			isa = PBXGroup;
 			children = (
-				815E6B621D1A64C700F2C961 /* QRViewController.swift */,
-				6DB566061D1D1CF100110D74 /* QRReaderViewController.swift */,
+				6D8169ED1D360AC700AC33C6 /* QRViewController.swift */,
+				6D8169EE1D360AC700AC33C6 /* QRReaderViewController.swift */,
 			);
 			name = QR;
 			sourceTree = "<group>";
@@ -166,9 +166,9 @@
 				814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */,
 				81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */,
 				8156447A1D126CA40028D162 /* Profile.swift */,
-				819AA1641D1266B30003FB8D /* ProfileViewController.swift */,
-				6D5EF7CC1D06CD3F00520CD9 /* SignupViewController.swift */,
-				6D5EF7CB1D06CD3F00520CD9 /* LoginViewController.swift */,
+				6D8169F11D360B1F00AC33C6 /* ProfileViewController.swift */,
+				6D8169F21D360B1F00AC33C6 /* SignupViewController.swift */,
+				6D8169F31D360B1F00AC33C6 /* LoginViewController.swift */,
 				81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */,
 			);
 			name = Account;
@@ -231,22 +231,21 @@
 		AA22DB531CE3613800F8BA43 /* GISProject */ = {
 			isa = PBXGroup;
 			children = (
-				889AA4A71D2D48DD004A9892 /* Font */,
+				6D8169EC1D360A7A00AC33C6 /* GeoVis Map */,
 				6D41228F1D2BB7AD0016DBE2 /* HTML */,
-				8804BFF61D255B6300156549 /* Theme */,
 				88EFBE1A1D213B8400577EC5 /* Friends */,
 				6DAE5EDE1D1E4E50007CEF48 /* PLIST */,
 				6DAE5EDD1D1E4E3A007CEF48 /* QR */,
 				AAB38F6B1D199C8B00D1A20C /* Battle */,
 				81DA778D1D17B9DD00CB0EB6 /* Account */,
 				AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */,
+				8804BFF61D255B6300156549 /* Theme */,
+				889AA4A71D2D48DD004A9892 /* Font */,
 				AA22DB581CE3613900F8BA43 /* Main.storyboard */,
-				81364F631D349A5F009A4B8E /* GeoVisMapViewController.swift */,
 				81F1673B1D29F581009B305D /* User.xcdatamodeld */,
 				AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */,
 				AA22DB541CE3613800F8BA43 /* AppDelegate.swift */,
 				AA22DB561CE3613800F8BA43 /* ViewController.swift */,
-				88CFF8201D28C08B001304CA /* CustomTabBarController.swift */,
 				81ED3CC01D2B4B9700CABCCC /* TestController.swift */,
 			);
 			path = GISProject;
@@ -312,7 +311,7 @@
 				TargetAttributes = {
 					AA22DB501CE3613700F8BA43 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 5Y8ZVY4N62;
+						DevelopmentTeam = A8493WN3HZ;
 					};
 				};
 			};
@@ -341,15 +340,13 @@
 			files = (
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
 				889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */,
-				6D4122961D2BB7C70016DBE2 /* jquery.particleground.min.js in Resources */,
-				6D4122951D2BB7C70016DBE2 /* index.html in Resources */,
+				6D8169EA1D360A2D00AC33C6 /* heatmap.html in Resources */,
 				81364F621D3498C4009A4B8E /* weathermap.html in Resources */,
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
 				81364F661D34A8E6009A4B8E /* layers.html in Resources */,
-				6D4122971D2BB7C70016DBE2 /* style.css in Resources */,
 				88F4D99B1D2EDC7B0093E003 /* GoogleService-Info.plist in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
-				6D4122941D2BB7C70016DBE2 /* demo.js in Resources */,
+				6D8169EB1D360A2D00AC33C6 /* simple.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,32 +470,31 @@
 				AA8B63791D33CB1300BF2289 /* Location.swift in Sources */,
 				881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */,
 				881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */,
+				6D8169EF1D360AC700AC33C6 /* QRViewController.swift in Sources */,
+				6D8169F41D360B1F00AC33C6 /* ProfileViewController.swift in Sources */,
 				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
 				81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
 				AA8B637B1D33CC1F00BF2289 /* Battle.swift in Sources */,
-				6DB566071D1D1CF100110D74 /* QRReaderViewController.swift in Sources */,
 				88EFBE171D2138F100577EC5 /* FriendsDataManager.swift in Sources */,
 				8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */,
 				88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */,
-				6D5EF7CF1D06CD3F00520CD9 /* SignupViewController.swift in Sources */,
 				81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */,
 				819E1AC01D3331730070BF51 /* BattleViewController.swift in Sources */,
 				88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
 				88AFECFF1D329BC400185ED5 /* DimmingPresentationController.swift in Sources */,
 				889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */,
-				88CFF8211D28C08B001304CA /* CustomTabBarController.swift in Sources */,
 				88AFED011D329C2000185ED5 /* PopOverViewController.swift in Sources */,
 				81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */,
-				819AA1651D1266B30003FB8D /* ProfileViewController.swift in Sources */,
-				815E6B631D1A64C700F2C961 /* QRViewController.swift in Sources */,
+				6D8169F01D360AC700AC33C6 /* QRReaderViewController.swift in Sources */,
+				6D8169F51D360B1F00AC33C6 /* SignupViewController.swift in Sources */,
 				88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */,
 				8156447B1D126CA40028D162 /* Profile.swift in Sources */,
 				88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */,
 				881F14931D329CBF00F0F270 /* SlideOutAnimationController.swift in Sources */,
-				6D5EF7CE1D06CD3F00520CD9 /* LoginViewController.swift in Sources */,
 				81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */,
+				6D8169F61D360B1F00AC33C6 /* LoginViewController.swift in Sources */,
 				88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */,
 				81364F641D349A5F009A4B8E /* GeoVisMapViewController.swift in Sources */,
 				8804BFF81D255B8400156549 /* Theme.swift in Sources */,
@@ -616,13 +612,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B061A809F4C2DBC68A79C9D /* Pods-GISProject.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -632,13 +628,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 027CAAD9DE2DC497261DB2FE /* Pods-GISProject.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

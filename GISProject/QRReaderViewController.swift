@@ -14,8 +14,12 @@ import UIKit
 import AVFoundation
 import MaterialCard
 import Firebase
+import Bluuur
 
 class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
+    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var blurView: MLWLiveBlurView!
     
     var ref : FIRDatabaseReference!
     
@@ -44,13 +48,19 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        setBG()
+    }
+    
     func restartCapture (addedAlert: UIAlertAction!) {
         captureSession?.startRunning()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
+        let myRequest = NSURLRequest(URL: localfilePath!);
+        webView.loadRequest(myRequest);
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
         do {
@@ -125,6 +135,10 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     func addFriendToDB(ownerUIDLocal : String, friendUIDLocal : String) {
         let ref = FIRDatabase.database().reference()
         ref.child("/Friend/\(ownerUIDLocal)/\(friendUIDLocal)").setValue(1)
+    }
+    
+    func setBG() {
+        blurView.blurProgress = 0.5
     }
 }
 

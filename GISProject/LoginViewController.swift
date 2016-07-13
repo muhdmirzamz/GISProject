@@ -9,12 +9,15 @@
 import UIKit
 import Firebase
 import CoreData
+import MaterialCard
+import BFPaperButton
 
 class LoginViewController: UIViewController, ProfileProtocol {
 
-    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var Email: UITextField!
     @IBOutlet weak var Password: UITextField!
+    @IBOutlet weak var blackLine: UIImageView!
+    @IBOutlet weak var login: UIButton!
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -31,18 +34,23 @@ class LoginViewController: UIViewController, ProfileProtocol {
         Email.autocorrectionType = .No
         Password.autocorrectionType = .No
         
-        //HTML Particle BG
-        let localfilePath = NSBundle.mainBundle().URLForResource("index", withExtension: "html");
-        let myRequest = NSURLRequest(URL: localfilePath!);
-        webView.loadRequest(myRequest);
-        
         //hide keyboard
         let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
         self.view.addGestureRecognizer(tapFunc2)
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        
+//        let loginButton = BFPaperButton(frame: CGRectMake(47, 417, 280, 40), raised: true)
+//        loginButton.backgroundColor = UIColor(red: 38/255, green: 232/255, blue: 167/255, alpha: 1)
+//        loginButton.rippleFromTapLocation = true
+//        loginButton.setTitle("Login", forState: .Normal)
+//        loginButton.addTarget(self, action: "Login:", forControlEvents: UIControlEvents.TouchUpInside)
+//        self.view.addSubview(loginButton)
+        
+        self.login.layer.borderColor = UIColor.init(red: 72/255, green: 146/255, blue: 238/255, alpha: 1.0).CGColor
+        self.login.layer.borderWidth = 2
+        self.login.layer.cornerRadius = 5
+        
+        
+        self.view.bringSubviewToFront(blackLine)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -107,6 +115,10 @@ class LoginViewController: UIViewController, ProfileProtocol {
     
     func makeViewVisible() {
         self.view.hidden = false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     override func didReceiveMemoryWarning() {

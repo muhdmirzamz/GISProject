@@ -9,18 +9,29 @@
 import UIKit
 import Firebase
 import CoreData
+import Bluuur
+import ISTimeline
 
 protocol ProfileProtocol {
     func makeViewVisible()
 }
 
 class ProfileViewController: UIViewController {
+    
+    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var blurView: MLWLiveBlurView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var name : String = ""
     var monstersKilled : Int = 0
     var level : Int = 0
+    var card : Int = 0
     var ref: FIRDatabaseReference!
-    
     var delegate: ProfileProtocol?
+    
+    var activityLogs: [ActivityLog] = []
+    var i = 0
+    var boolActivity = true
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -32,6 +43,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var cards: UILabel!
     @IBOutlet weak var monstersLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var imageProfile: UIImageView!
@@ -39,6 +51,12 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityLog()
+        
+        
+        let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
+        let myRequest = NSURLRequest(URL: localfilePath!);
+        webView.loadRequest(myRequest);
         
         //DatabaseManager.retrieveAccount("XHPcy86H9gbGHsYYfs4FWqOtbvE")
         // Do any additional setup after loading the view.
@@ -47,26 +65,27 @@ class ProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        setProfileBG()
-        
         self.activityIndicator.startAnimating()
+        setProfileBG()
         
         let ref = FIRDatabase.database().reference().child("/Account")
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
-        print(uid)
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+
             ref.child("/\(uid)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
                 
                 let level = snapshot.value!["Level"] as! NSNumber
                 let monstersKilled = snapshot.value!["Monsters killed"] as! NSNumber
                 let name = snapshot.value!["Name"] as! String
                 let pict = snapshot.value!["Picture"] as! NSNumber
+                let card = snapshot.value!["Cards"] as! NSNumber
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.nameLabel.text = name
                     self.monstersLabel.text = String(monstersKilled.intValue)
                     self.levelLabel.text = String(level.intValue)
+                    self.cards.text = String(card.intValue)
                     switch pict.intValue {
                     case 0 :
                         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
@@ -170,15 +189,47 @@ class ProfileViewController: UIViewController {
     }
     
     func setProfileBG(){
-        let i = Int(arc4random_uniform(5) + 1)
-        
-        bgProfile.image = UIImage(named: "bg\(i)")
+//        let i = Int(arc4random_uniform(5) + 1)
+//        bgProfile.image = UIImage(named: "bg\(i)")
+
+        blurView.blurProgress = 0.5
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
     
+    func activityLog() {
+        let timeline = ISTimeline(frame: CGRectMake(0, 0, 350, 220))
+        timeline.backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0)
+        timeline.bubbleColor = .init(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
+        timeline.titleColor = .blackColor()
+        timeline.descriptionColor = .lightTextColor()
+        timeline.pointDiameter = 7.0
+        timeline.lineWidth = 2.0
+        timeline.bubbleRadius = 0.5
+        
+        self.scrollView.addSubview(timeline)
+        
+        let ref = FIRDatabase.database().reference().child("/Activity")
+        
+        ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            for record in snapshot.children {
+                let key = record.key!!
+                
+                let uid = record.value!!["uid"] as! String
+                let activity = record.value!!["activity"] as! String
+                let name = record.value!!["name"] as! String
+                
+                let point = ISPoint(title: name)
+                point.description = activity
+                timeline.points.append(point)
+                let Activity = ActivityLog.init(key: key, activity: activity, uid: uid, name: name)
+                
+                self.activityLogs.append(Activity)
+            }
+        })
+    }
 
 
 }

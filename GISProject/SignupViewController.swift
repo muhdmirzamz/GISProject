@@ -17,6 +17,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var EmailLabel: UITextField!
     @IBOutlet weak var PasswordLabel: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var registerBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,9 @@ class SignupViewController: UIViewController {
     }
     
     @IBAction func CreateAccount(sender: AnyObject) {
+        self.registerBtn.enabled = false
+        self.cancelBtn.enabled = false
+        
         hideKeyboard()
         activityIndicator.startAnimating()
         

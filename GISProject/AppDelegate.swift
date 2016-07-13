@@ -31,10 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //choose graphic theme
         let value = 2
-        let selectedTheme = Theme(rawValue: value)
+//        let selectedTheme = Theme(rawValue: value)
         
         //apply custom theme to the application
-        ThemeManager.applyTheme(selectedTheme!)
+//        ThemeManager.applyTheme(selectedTheme!)
         
         return true
 	}

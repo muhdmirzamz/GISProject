@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Heatmaps</title>
+    <!-- Materialize CSS -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="map"></div>
+    
+    <script>
+      var map, heatmap;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: {lat: 1.3801, lng: 103.8490},
+          mapTypeId: google.maps.MapTypeId.MAP,
+          disableDefaultUI: true
+        });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+        
+        heatmap.set('radius', 40)
+      }
+
+      function toggleHeatmap() {
+        heatmap.setMap(heatmap.getMap() ? null : map);
+        //toggle FAB (the floating button thing) highlight
+        if ( document.getElementById("toggleHeatmapID").classList.contains('black') ) {
+            Materialize.toast('Heatmap Enabled!', 2000)
+            document.getElementById("toggleHeatmapID").classList.remove('black');
+            document.getElementById("toggleHeatmapID").classList.add('yellow');
+        } else {
+            Materialize.toast('Heatmap Disabled!', 2000)
+            document.getElementById("toggleHeatmapID").classList.remove('yellow');
+            document.getElementById("toggleHeatmapID").classList.add('black');
+        }
+      }
+
+      // Heatmap data: 500 Points
+      function getPoints() {
+        return [
+          new google.maps.LatLng(1.38098127843023, 103.8486879226299),
+          new google.maps.LatLng(1.382170199449567, 103.8482437025494),
+          new google.maps.LatLng(1.381602205990674, 103.8485798830626),
+          new google.maps.LatLng(1.38184627856266, 103.849257778687),
+          new google.maps.LatLng(1.381936042993424, 103.8495859442111),
+          new google.maps.LatLng(1.38043331828994, 103.848909794732),
+          new google.maps.LatLng(1.381887230073275, 103.8501239042656),
+          new google.maps.LatLng(1.381524104067059, 103.8491558700535),
+          new google.maps.LatLng(1.382110326117077, 103.8485657398038),
+          new google.maps.LatLng(1.382336234915819, 103.8492496518433),
+        ];
+      }
+    </script>
+    
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initMap">
+    </script>
+    
+    <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 20px; right: 24px;">
+        <a class="btn-floating btn-large red">
+            <i class="material-icons">layers</i>
+        </a>
+        <ul>
+            <li><a id="toggleHeatmapID" class="btn-floating yellow" onclick="toggleHeatmap()"><i class="material-icons">insert_chart</i></a></li>
+        </ul>
+        
+    </div>
+    
+  </body>
+</html>
