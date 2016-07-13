@@ -9,10 +9,15 @@
 import UIKit
 import Firebase
 
+protocol JoinProtocol {
+    func reload()
+}
+
 class JoinBattleViewController: UIViewController, BattleProtocol {
 
 	var selectedAnnotation: Location?
     var imageString: String?
+    var delegate: JoinProtocol?
     
     @IBOutlet var monsterHealth: UILabel!
     @IBOutlet var monsterImgView: UIImageView!
@@ -21,16 +26,6 @@ class JoinBattleViewController: UIViewController, BattleProtocol {
         super.viewDidLoad()
         
         self.monsterImgView.image = UIImage.init(named: self.imageString!)
-
-        // Do any additional setup after loading the view.
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "mob_bg")?.drawInRect(self.view.bounds)
-        
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
-        
-        self.view.backgroundColor = UIColor(patternImage: image)
 		
         self.monsterHealth.text = "1/1"
     }
@@ -45,6 +40,7 @@ class JoinBattleViewController: UIViewController, BattleProtocol {
 	}
 	
 	func backtoMap() {
+        self.delegate?.reload()
 		self.dismiss()
 	}
 	

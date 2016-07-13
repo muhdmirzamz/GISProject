@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import Firebase
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JoinProtocol {
 	
 	@IBOutlet var cancelButton: UIBarButtonItem!
 	@IBOutlet var mapView: MKMapView!
@@ -62,6 +62,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let imageString = record.value!!["image string"] as! String
                 
                 let locationModel = Location.init(key: key, coordinate: coordinate, title: "Test", subtitle: "This is a test", imageString: imageString)
+                self.mapView.removeAnnotation(locationModel)
                 self.mapView.addAnnotation(locationModel)
             }
         })
@@ -85,53 +86,54 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.mapView.setRegion(self.region!, animated: true)
         self.mapView.setCenterCoordinate((self.region?.center)!, animated: true)
 	}
-	
-	override func viewWillAppear(animated: Bool) {
-//        print("Hello MAP")
-//        
-//		if self.mapView.annotations.count > 0 {
-//			self.mapView.removeAnnotations(self.mapView.annotations)
-//		}
-//	
-//		let ref = FIRDatabase.database().reference().child("/Location")
-//		
-//		ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-//			for record in snapshot.children {
-//				let key = record.key!!
-//				var coordinate = CLLocationCoordinate2D()
-//				
-//				let latitude = record.value!!["latitude"] as! NSNumber
-//				let longitude = record.value!!["longitude"] as! NSNumber
-//				
-//				coordinate.latitude = latitude.doubleValue
-//				coordinate.longitude = longitude.doubleValue
-//                
-//                let imageString = record.value!!["image string"] as! String
-//                
-//				let locationModel = Location.init(key: key, coordinate: coordinate, title: "Test", subtitle: "This is a test", imageString: imageString)
-//				self.mapView.addAnnotation(locationModel)
-//			}
-//		})
-//		
-//		// center view within region
-//		var span = MKCoordinateSpan()
-//		span.latitudeDelta = 0.01
-//		span.longitudeDelta = 0.01
-//		
-//		// 1.382414, 103.848156 - top left
-//		// 1.377431, 103.850278 - bottom right
-//		
-//		var locationTest = CLLocationCoordinate2D()
-//		locationTest.latitude = (1.377431 + 1.382414) / 2
-//		locationTest.longitude = (103.848156 + 103.850278) / 2
-//		
-//		self.region = MKCoordinateRegion()
-//		self.region!.center = locationTest
-//		self.region!.span = span
-//		
-//		self.mapView.setRegion(self.region!, animated: true)
-//		self.mapView.setCenterCoordinate((self.region?.center)!, animated: true)
-	}
+    
+    func reload() {
+        print("Hello MAP")
+        
+        let ref = FIRDatabase.database().reference().child("/Location")
+        
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        
+        ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            for record in snapshot.children {
+                let key = record.key!!
+                var coordinate = CLLocationCoordinate2D()
+                
+                let latitude = record.value!!["latitude"] as! NSNumber
+                let longitude = record.value!!["longitude"] as! NSNumber
+                
+                coordinate.latitude = latitude.doubleValue
+                coordinate.longitude = longitude.doubleValue
+                
+                let imageString = record.value!!["image string"] as! String
+                
+                let locationModel = Location.init(key: key, coordinate: coordinate, title: "Test", subtitle: "This is a test", imageString: imageString)
+                
+                // remove the specific annotation and add it back again
+                // a bug with mapview
+                self.mapView.addAnnotation(locationModel)
+            }
+        })
+        
+        // center view within region
+        var span = MKCoordinateSpan()
+        span.latitudeDelta = 0.004
+        span.longitudeDelta = 0.004
+        
+        // 1.382414, 103.848156 - top left
+        // 1.377431, 103.850278 - bottom right
+        
+        var locationTest = CLLocationCoordinate2D()
+        locationTest.latitude = (1.377431 + 1.382414) / 2
+        locationTest.longitude = (103.848156 + 103.850278) / 2
+        
+        self.region = MKCoordinateRegion()
+        self.region!.center = locationTest
+        self.region!.span = span
+        
+        self.mapView.setRegion(self.region!, animated: true)
+        self.mapView.setCenterCoordinate((self.region?.center)!, animated: true)
+    }
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let userLocation = locations.last!
@@ -145,6 +147,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	}
 	
 	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        print("test")
+        
 		if annotation.isKindOfClass(MKUserLocation) {
 			return nil
 		}
@@ -158,8 +162,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 let currAnnotation = annotation as? Location
                 let image = UIImage.init(named: (currAnnotation?.imageString)!)
-                
-                print((currAnnotation?.imageString)!)
                 
 				// resize image using a new image graphics context
 				UIGraphicsBeginImageContextWithOptions(CGSize.init(width: 30, height: 30), false, 0.0);
@@ -199,6 +201,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController") as? JoinBattleViewController
 		joinBattleVC?.selectedAnnotation = selectedAnnotation
         joinBattleVC?.imageString = selectedAnnotation?.imageString
+        joinBattleVC?.delegate = self
 		let navController = UINavigationController.init(rootViewController: joinBattleVC!)
 		navController.navigationBarHidden = true
 		self.presentViewController(navController, animated: true, completion: nil)
