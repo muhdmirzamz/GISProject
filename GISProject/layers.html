@@ -4,6 +4,10 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
             <meta charset="utf-8">
                 <title>Simple markers</title>
+                <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+                <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                 <style>
                     html, body {
                         height: 100%;
@@ -42,9 +46,14 @@
                 var latlng3 = {lat: 1.381602205990674, lng: 103.8485798830626};
                 var latlng4 = {lat: 1.38184627856266, lng: 103.849257778687};
                 var latlng5 = {lat: 1.381936042993424, lng: 103.848909794732};
+                var latlng6 = {lat: 1.378214, lng: 103.849410};
+                var latlng7 = {lat: 1.378355, lng: 103.848851};
+                var latlng8 = {lat: 1.377068, lng: 103.849452};
+                var latlng9 = {lat: 1.377497, lng: 103.850740};
+                var latlng10 = {};
                 
                 var map = new google.maps.Map(document.getElementById('map'), {
-                                              zoom: 16,
+                                              zoom: 17,
                                               center: centerlatLng,
                                               disableDefaultUI: true
                                               });
@@ -62,8 +71,42 @@
                                               '</div>'+
                                               '</div>';
                                               
+                                              var Electrifly = '<div id="content">'+
+                                              '<div id="siteNotice">'+
+                                              '</div>'+
+                                              '<h1 id="firstHeading" class="firstHeading">Electrifly</h1>'+
+                                              '<div id="bodyContent">'+
+                                              '<p><b>Electrifly</b>, is a lightning creature that spawned' +
+                                              ' from the thunderstorm clouds. Legends say its electricity'+
+                                              ' is as strong as 500 watts </p>' +
+                                              '<p>HP : <b>1</b></p>  <p>Type: <b>Electric</b></p>' +
+                                              '<p>Quote : Lightning is only as strong as darkness</p>' +
+                                              '</div>'+
+                                              '</div>';
+                                              
+                                              var volLarva = '<div id="content">'+
+                                              '<div id="siteNotice">'+
+                                              '</div>'+
+                                              '<h1 id="firstHeading" class="firstHeading">volLarva</h1>'+
+                                              '<div id="bodyContent">'+
+                                              '<p><b>VolLarva</b>, harnesses his powers from the light of ' +
+                                              ' the sun. It feeds off drywood and disintegrates anything wooden'+
+                                              ' thus it is considered highly dangerous </p>' +
+                                              '<p>HP : <b>1</b></p>  <p>Type: <b>Fire</b></p>' +
+                                              '<p>Quote : Fire can be the only superpower</p>' +
+                                              '</div>'+
+                                              '</div>';
+                                              
                                             var infoToad= new google.maps.InfoWindow({
                                                                     content: DryToad
+                                                                                });
+                                                                                
+                                            var infoElect= new google.maps.InfoWindow({
+                                                                    content: Electrifly
+                                                                                });
+                                                                                
+                                            var infoLarva= new google.maps.InfoWindow({
+                                                                    content: volLarva
                                                                                 });
                                               
                                             var marker1 = new google.maps.Marker({
@@ -96,12 +139,36 @@
                                                                                 label: 'E',
                                                                                 animation: google.maps.Animation.DROP
                                                                                 });
+                                            var marker6 = new google.maps.Marker({
+                                                                                position: latlng6,
+                                                                                map: map,
+                                                                                label: 'F',
+                                                                                animation: google.maps.Animation.DROP
+                                                                                });
+                                            var marker7 = new google.maps.Marker({
+                                                                                position: latlng7,
+                                                                                map: map,
+                                                                                label: 'G',
+                                                                                animation: google.maps.Animation.DROP
+                                                                                });
+                                            var marker8 = new google.maps.Marker({
+                                                                                position: latlng8,
+                                                                                map: map,
+                                                                                label: 'H',
+                                                                                animation: google.maps.Animation.DROP
+                                                                                });
+                                            var marker9 = new google.maps.Marker({
+                                                                                position: latlng9,
+                                                                                map: map,
+                                                                                label: 'I',
+                                                                                animation: google.maps.Animation.DROP
+                                                                                });
                 map.addListener('center_changed', function() {
                 // 3 seconds after the center of the map has changed, pan back to the marker
                 window.setTimeout(function() {
-                    map.setZoom(16)
+                    map.setZoom(17)
                     map.panTo(map.getPosition());
-                    }, 10000);
+                    }, 7000);
                     });
                     marker1.addListener('click', function() {
                                         map.setZoom(20);
@@ -111,23 +178,58 @@
                     marker2.addListener('click', function() {
                                         map.setZoom(20);
                                         map.setCenter(marker2.getPosition());
+                                        infoElect.open(map,marker2);
                                         });
                     marker3.addListener('click', function() {
                                         map.setZoom(20);
                                         map.setCenter(marker3.getPosition());
+                                        infoLarva.open(map,marker3);
                                         });
                     marker4.addListener('click', function() {
                                         map.setZoom(20);
                                         map.setCenter(marker4.getPosition());
+                                        infoToad.open(map, marker4);
                                         });
                     marker5.addListener('click', function() {
                                         map.setZoom(20);
                                         map.setCenter(marker5.getPosition());
+                                        infoLarva.open(map,marker5);
+                                        });
+                    marker6.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker6.getPosition());
+                                        infoToad.open(map,marker6);
+                                        });
+                    marker7.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker7.getPosition());
+                                        infoLarva.open(map,marker7);
+                                        });
+                    marker8.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker7.getPosition());
+                                        infoLarva.open(map,marker8);
+                                        });
+                    marker9.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker7.getPosition());
+                                        infoToad.open(map,marker9);
                                         });
             }
         </script>
         <script async defer
            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initMap">
             </script>
+        <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 20px; right: 24px;">
+            <a class="btn-floating btn-large red">
+                <i class="material-icons">layers</i>
+            </a>
+            <ul>
+                <li><a id="toggleHeatmapID" class="btn-floating black" href="heatmap.html"><i class="material-icons">insert_chart</i></a></li>
+                <li><a class="btn-floating yellow" href="layers.html"><i class="material-icons">layers_clear</i></a></li>
+                <li><a class="btn-floating black" href="weathermap.html"><i class="material-icons">cloud</i></a></li>
+            </ul>
+        </div>
+        
     </body>
 </html>

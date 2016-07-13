@@ -17,7 +17,7 @@ class GeoVisMapViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let localFilePath = NSBundle.mainBundle().URLForResource("weathermap", withExtension: "html")
+        let localFilePath = NSBundle.mainBundle().URLForResource("heatmap", withExtension: "html")
         let myRequest = NSURLRequest(URL: localFilePath!)
         self.webView.loadRequest(myRequest)
     }
