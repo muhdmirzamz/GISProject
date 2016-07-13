@@ -61,8 +61,8 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		// attach a selector to user card switch to listen for value change
 		self.userCardSwitch.addTarget(self, action: "userCardSwitchDidChange", forControlEvents: .ValueChanged)
     
-        var userID = (FIRAuth.auth()?.currentUser?.uid)!
-        var ref = FIRDatabase.database().reference().child("/Account")
+        let userID = (FIRAuth.auth()?.currentUser?.uid)!
+        let ref = FIRDatabase.database().reference().child("/Account")
         ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             self.battle?.baseDamage = snapshot.value!["Base Damage"] as? NSNumber
             

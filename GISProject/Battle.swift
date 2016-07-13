@@ -47,7 +47,7 @@ class Battle {
         
 		// get amount of valid cards
 		// get uid -> to set card value to 0 after use
-		var ref = FIRDatabase.database().reference().child("/Friend")
+		let ref = FIRDatabase.database().reference().child("/Friend")
 		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
 			var counter = 1
 			

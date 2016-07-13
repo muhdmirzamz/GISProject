@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherMapViewController: UIViewController {
+class GeoVisMapViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
@@ -17,7 +17,7 @@ class WeatherMapViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let localFilePath = NSBundle.mainBundle().URLForResource("layers", withExtension: "html")
+        let localFilePath = NSBundle.mainBundle().URLForResource("weathermap", withExtension: "html")
         let myRequest = NSURLRequest(URL: localFilePath!)
         self.webView.loadRequest(myRequest)
     }
@@ -26,6 +26,22 @@ class WeatherMapViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//    @IBAction func buttonPressed(button: UIButton) {
+//        if button.titleLabel?.text == "Layers" {
+//            let localFilePath = NSBundle.mainBundle().URLForResource("layers", withExtension: "html")
+//            let myRequest = NSURLRequest(URL: localFilePath!)
+//            self.webView.loadRequest(myRequest)
+//            
+//            button.titleLabel?.text = "Weather"
+//        } else if button.titleLabel?.text == "Weather" {
+//            let localFilePath = NSBundle.mainBundle().URLForResource("weathermap", withExtension: "html")
+//            let myRequest = NSURLRequest(URL: localFilePath!)
+//            self.webView.loadRequest(myRequest)
+//            
+//            button.titleLabel?.text = "Layers"
+//        }
+//    }
     
 
     /*

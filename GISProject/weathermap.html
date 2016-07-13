@@ -47,36 +47,43 @@
                 heatmap.set('radius', heatmap.get('radius') ? null : 100);
                 
             }
-        function toggleHeatmap() {
-            heatmap.setMap(heatmap.getMap() ? null : map);
-            //toggle FAB (the floating button thing) highlight
-            if ( document.getElementById("toggleHeatmapID").classList.contains('black') ) {
-                Materialize.toast('Heatmap Enabled!', 2000)
-                document.getElementById("toggleHeatmapID").classList.remove('black');
-                document.getElementById("toggleHeatmapID").classList.add('yellow');
-            } else {
-                Materialize.toast('Heatmap Disabled!', 2000)
-                document.getElementById("toggleHeatmapID").classList.remove('yellow');
-                document.getElementById("toggleHeatmapID").classList.add('black');
+        
+            function toggleHeatmap() {
+                heatmap.setMap(heatmap.getMap() ? null : map);
+                
+                //toggle FAB (the floating button thing) highlight
+                
+                if ( document.getElementById("toggleHeatmapID").classList.contains('black') ) {
+                    Materialize.toast('Heatmap Enabled!', 2000)
+                    document.getElementById("toggleHeatmapID").classList.remove('black');
+                    document.getElementById("toggleHeatmapID").classList.add('yellow');
+                } else {
+                    Materialize.toast('Heatmap Disabled!', 2000)
+                    document.getElementById("toggleHeatmapID").classList.remove('yellow');
+                    document.getElementById("toggleHeatmapID").classList.add('black');
+                }
             }
-        }
         
-        function getRandomNum(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-        
-        // Heatmap data: 500 Points
-        function getPoints() {
-        
+            function toggleLayers() {
+                
+            }
             
-          /*  getRandomNum(1.377431, 1.382414)
-            getRandomNum(103.848156, 103.850287)*/
+            function getRandomNum(min, max) {
+                return Math.random() * (max - min) + min;
+            }
             
-            return [
-                    new google.maps.LatLng(getRandomNum(1.377431, 1.382414), getRandomNum(103.848156, 103.850287)),
-                    new google.maps.LatLng(getRandomNum(1.377431, 1.382414), getRandomNum(103.848156, 103.850287)),
-                    ];
-        }
+            // Heatmap data: 500 Points
+            function getPoints() {
+            
+                
+              /*  getRandomNum(1.377431, 1.382414)
+                getRandomNum(103.848156, 103.850287)*/
+                
+                return [
+                        new google.maps.LatLng(getRandomNum(1.377431, 1.382414), getRandomNum(103.848156, 103.850287)),
+                        new google.maps.LatLng(getRandomNum(1.377431, 1.382414), getRandomNum(103.848156, 103.850287)),
+                        ];
+            }
         </script>
         
         <script async defer
@@ -89,6 +96,7 @@
             </a>
             <ul>
                 <li><a id="toggleHeatmapID" class="btn-floating yellow" onclick="toggleHeatmap()"><i class="material-icons">insert_chart</i></a></li>
+                <li><a class="btn-floating blue" href="layers.html"><i class="material-icons">layers_clear</i></a></li>
             </ul>
             
         </div>

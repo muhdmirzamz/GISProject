@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L2C-aA-fKq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eyq-FP-3bD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -191,10 +191,10 @@
             </objects>
             <point key="canvasLocation" x="1746.5" y="674.5"/>
         </scene>
-        <!--Weather Map View Controller-->
+        <!--Geo Vis Map View Controller-->
         <scene sceneID="cVk-c1-EUw">
             <objects>
-                <viewController id="L2C-aA-fKq" customClass="WeatherMapViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="L2C-aA-fKq" customClass="GeoVisMapViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MAq-ZA-qYy"/>
                         <viewControllerLayoutGuide type="bottom" id="AYp-CF-pKU"/>
@@ -217,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwD-dw-rsb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2676.5" y="610.5"/>
+            <point key="canvasLocation" x="2688.5" y="604.5"/>
         </scene>
         <!--Reader View Controller-->
         <scene sceneID="zrN-nD-HQO">
@@ -346,7 +346,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="monster" translatesAutoresizingMaskIntoConstraints="NO" id="soY-CW-Dzx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soY-CW-Dzx">
                                 <rect key="frame" x="83" y="90" width="154" height="118"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="mob_bg_info" translatesAutoresizingMaskIntoConstraints="NO" id="VUh-Tn-Ixt">
@@ -415,6 +415,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="monsterHealth" destination="9Qa-Ui-0Bn" id="cCV-Zf-Dcx"/>
+                        <outlet property="monsterImgView" destination="soY-CW-Dzx" id="Nrm-jN-dbR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpJ-6N-gw3" userLabel="First Responder" sceneMemberID="firstResponder"/>

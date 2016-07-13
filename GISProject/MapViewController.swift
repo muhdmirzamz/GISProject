@@ -20,7 +20,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	
 	var userLat: Double?, userLong: Double?
 	var region: MKCoordinateRegion?
-	
+
+    var monsterImg: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -56,8 +58,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 				
 				coordinate.latitude = latitude.doubleValue
 				coordinate.longitude = longitude.doubleValue
+                
+                let random = Int(arc4random()) % 5
+                print(random)
+                
+                if random == 0 {
+                    self.monsterImg = UIImage.init(named: "electric_monster")
+                } else if random == 1 {
+                    self.monsterImg = UIImage.init(named: "fire_monster")
+                } else if random == 2 {
+                    self.monsterImg = UIImage.init(named: "ghost_monster")
+                } else if random == 3 {
+                    self.monsterImg = UIImage.init(named: "grass_monster")
+                } else if random == 4 {
+                    self.monsterImg = UIImage.init(named: "water_monster")
+                }
 				
-				let locationModel = Location.init(key: key, coordinate: coordinate, title: "Test", subtitle: "This is a test")
+				let locationModel = Location.init(key: key, coordinate: coordinate, title: "Test", subtitle: "This is a test", image: self.monsterImg)
 				self.map.addAnnotation(locationModel)
 			}
 		})
@@ -80,15 +97,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		
 		self.map.setRegion(self.region!, animated: true)
 		self.map.setCenterCoordinate((self.region?.center)!, animated: true)
-		
-//		for i in 0 ..< 10 {
-//			var random = Double(arc4random()) % 0.004983
-//			let latitudeRange = 1.377431 + random
-//			random = Double(arc4random()) % 0.002122
-//			let longitudeRange = 103.848156 + random
-//			
-//			print("\(latitudeRange) , \(longitudeRange)")
-//		}
 	}
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -114,11 +122,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 				annotationView = MKAnnotationView.init(annotation: annotation, reuseIdentifier: "pin")
 				annotationView?.canShowCallout = true
 
-				let image = UIImage.init(named: "monster")
-
+            
 				// resize image using a new image graphics context
 				UIGraphicsBeginImageContextWithOptions(CGSize.init(width: 30, height: 30), false, 0.0);
-				image?.drawInRect(CGRectMake(0, 0, 30, 30))
+				self.monsterImg?.drawInRect(CGRectMake(0, 0, 30, 30))
 				let newImage = UIGraphicsGetImageFromCurrentImageContext();
 				UIGraphicsEndImageContext();
 			
@@ -134,10 +141,26 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	}
 	
 	func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+//        // you need this for measuring distance between battle locations and you
+//        let boundaryLocation = CLLocation.init(latitude: (self.region?.center.latitude)!, longitude: (self.region?.center.longitude)!)
+//        let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
+//        let distance = userLocation.distanceFromLocation(boundaryLocation)
+//        
+//        // follows meters
+//        if distance > 50 {
+//            let alert = UIAlertController.init(title: "Hold on", message: "You're too far", preferredStyle: .Alert)
+//            let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+//            alert.addAction(okAction)
+//            self.presentViewController(alert, animated: true, completion: nil)
+//        } else {
+//            let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController")
+//            self.presentViewController(joinBattleVC, animated: true, completion: nil)
+//        }
+        
 		let selectedAnnotation = mapView.selectedAnnotations.first as? Location
-		
 		let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController") as? JoinBattleViewController
 		joinBattleVC?.selectedAnnotation = selectedAnnotation
+        joinBattleVC?.monsterImg = self.monsterImg
 		let navController = UINavigationController.init(rootViewController: joinBattleVC!)
 		navController.navigationBarHidden = true
 		self.presentViewController(navController, animated: true, completion: nil)
@@ -146,11 +169,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-	
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
     }
 
 }
