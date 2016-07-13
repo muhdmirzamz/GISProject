@@ -128,6 +128,32 @@ class Battle {
 			}
 		}
 	}
+    
+    func updateMonster() {
+        let random = Int(arc4random()) % 5
+        var monsterImg: UIImage?
+        print(random)
+        
+        var imageString = ""
+        
+        if random == 0 {
+            imageString = "electric_monster"
+        } else if random == 1 {
+            imageString = "fire_monster"
+        } else if random == 2 {
+            imageString = "ghost_monster"
+        } else if random == 3 {
+            imageString = "grass_monster"
+        } else if random == 4 {
+            imageString = "water_monster"
+        }
+        
+        monsterImg = UIImage.init(named: imageString)
+        
+        let ref = FIRDatabase.database().reference().child("/Location")
+        let key = (self.selectedAnnotation?.key)!
+        ref.child("/\(key)/image string").setValue(imageString)
+    }
 	
 	func updateLocation() {
 		// generate another random location

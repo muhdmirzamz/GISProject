@@ -307,7 +307,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="50q-ds-T01" id="4Bg-uX-FRV"/>
-                        <outlet property="map" destination="Fgg-9e-RgV" id="gyp-B6-kZl"/>
+                        <outlet property="mapView" destination="Fgg-9e-RgV" id="Ffz-QY-UMw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6FO-p5-0ib" userLabel="First Responder" sceneMemberID="firstResponder"/>

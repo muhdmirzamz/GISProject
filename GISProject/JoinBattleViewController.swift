@@ -12,7 +12,7 @@ import Firebase
 class JoinBattleViewController: UIViewController, BattleProtocol {
 
 	var selectedAnnotation: Location?
-    var monsterImg: UIImage?
+    var imageString: String?
     
     @IBOutlet var monsterHealth: UILabel!
     @IBOutlet var monsterImgView: UIImageView!
@@ -20,7 +20,7 @@ class JoinBattleViewController: UIViewController, BattleProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.monsterImgView.image = self.monsterImg
+        self.monsterImgView.image = UIImage.init(named: self.imageString!)
 
         // Do any additional setup after loading the view.
         UIGraphicsBeginImageContext(self.view.frame.size)

@@ -143,6 +143,7 @@ class BattleViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 		self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
 
 		self.battle?.updateCards()
+        self.battle?.updateMonster()
 		self.battle?.updateLocation()
 
 		// set a local notification for user card if it is used
