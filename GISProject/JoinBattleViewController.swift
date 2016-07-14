@@ -8,17 +8,28 @@
 
 import UIKit
 import Firebase
+import Bluuur
 
 class JoinBattleViewController: UIViewController, BattleProtocol {
 
+    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var blurView: MLWLiveBlurView!
+    
 	var selectedAnnotation: Location?
     var imageString: String?
+    
     
     @IBOutlet var monsterHealth: UILabel!
     @IBOutlet var monsterImgView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
+        let myRequest = NSURLRequest(URL: localfilePath!);
+        self.webView.loadRequest(myRequest);
+        
+        self.blurView.blurProgress = 0.3
 		
 		let image = UIImage.init(named: self.imageString!)
 		
