@@ -48,11 +48,11 @@
         heatmap.setMap(heatmap.getMap() ? null : map);
         //toggle FAB (the floating button thing) highlight
         if ( document.getElementById("toggleHeatmapID").classList.contains('black') ) {
-            Materialize.toast('Heatmap Enabled!', 2000)
+            Materialize.toast('Heatmap Enabled!', 1000)
             document.getElementById("toggleHeatmapID").classList.remove('black');
             document.getElementById("toggleHeatmapID").classList.add('yellow');
         } else {
-            Materialize.toast('Heatmap Disabled!', 2000)
+            Materialize.toast('Heatmap Disabled!', 1000)
             document.getElementById("toggleHeatmapID").classList.remove('yellow');
             document.getElementById("toggleHeatmapID").classList.add('black');
         }
