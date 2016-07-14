@@ -10,25 +10,25 @@ import UIKit
 import Firebase
 import Bluuur
 
+protocol JoinProtocol {
+	func reloadMap()
+}
+
 class JoinBattleViewController: UIViewController, BattleProtocol {
 
-    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var blurView: MLWLiveBlurView!
     
 	var selectedAnnotation: Location?
     var imageString: String?
-    
-    
+	
+	var delegate: JoinProtocol?
+	
     @IBOutlet var monsterHealth: UILabel!
     @IBOutlet var monsterImgView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
-        let myRequest = NSURLRequest(URL: localfilePath!);
-        self.webView.loadRequest(myRequest);
-        
+		
         self.blurView.blurProgress = 0.3
 		
 		let image = UIImage.init(named: self.imageString!)
@@ -48,11 +48,17 @@ class JoinBattleViewController: UIViewController, BattleProtocol {
         // Dispose of any resources that can be recreated.
     }
 	
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
+	
 	@IBAction func dismiss() {
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	func backtoMap() {
+		self.delegate?.reloadMap()
+	
 		self.dismiss()
 	}
 	
