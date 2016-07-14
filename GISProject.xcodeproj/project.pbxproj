@@ -29,6 +29,7 @@
 		881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F148E1D329C7F00F0F270 /* GradientView.swift */; };
 		881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14901D329CB600F0F270 /* BounceAnimationController.swift */; };
 		881F14931D329CBF00F0F270 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */; };
+		883639EC1D379D7100C99CCB /* friendsmap.html in Resources */ = {isa = PBXBuildFile; fileRef = 883639EB1D379D7100C99CCB /* friendsmap.html */; };
 		889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */; };
 		889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */; };
 		88AFECFF1D329BC400185ED5 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */; };
@@ -77,6 +78,7 @@
 		881F148E1D329C7F00F0F270 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		881F14901D329CB600F0F270 /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
+		883639EB1D379D7100C99CCB /* friendsmap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = friendsmap.html; sourceTree = "<group>"; };
 		889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDeckCollectionViewController.swift; sourceTree = "<group>"; };
 		889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
 		88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				6D8169E91D360A2D00AC33C6 /* simple.html */,
 				81364F651D34A8E6009A4B8E /* layers.html */,
 				81364F611D3498C4009A4B8E /* weathermap.html */,
+				883639EB1D379D7100C99CCB /* friendsmap.html */,
 			);
 			name = HTML;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
 				81364F661D34A8E6009A4B8E /* layers.html in Resources */,
 				88F4D99B1D2EDC7B0093E003 /* GoogleService-Info.plist in Resources */,
+				883639EC1D379D7100C99CCB /* friendsmap.html in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
 				6D8169EB1D360A2D00AC33C6 /* simple.html in Resources */,
 			);

@@ -36,9 +36,10 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //self.navigationBar.tintColor =  UIColor(red: 38/255, green: 232/255, blue: 167/255, alpha: 1)
         //background image
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "friendTable_bg_light")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
-      
+        
         
         //refresh control
         refreshDataControl = UIRefreshControl()
@@ -188,11 +189,11 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     // given the row/item number of the tableview and display the data of the table cell
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        //first we query the table view to see if there are 
+        //first we query the table view to see if there are
         //any FriendsCell that are no longer visible
         //and can be reused for a new table cell that need to be display
         var cell : FriendsCell! = tableView.dequeueReusableCellWithIdentifier("FriendsCell") as! FriendsCell
-      
+        
         //if we don't find it, then we create a new FriendsCell by loading the nib
         //"FriendsCell" from the main bundle
         if(cell == nil){
@@ -200,20 +201,22 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             cell = NSBundle.mainBundle().loadNibNamed("FriendsCell", owner: nil, options: nil)[0] as? FriendsCell
         }
         
-       
+        
         
         
         
         //check for any search inputs and use the corrent friends array data
         if searchController.active && searchController.searchBar.text != "" {
             self.friend = filteredFriends[indexPath.row]
-            chatRoomFriend = friend
+            
         } else {
-           
+            
             self.friend = friends[indexPath.row]
-           chatRoomFriend = friend
+            cell.chat.tag = indexPath.row
+            cell.chat.addTarget(self, action: #selector(self.chat), forControlEvents: .TouchUpInside)
+            
         }
-    
+        
         //by using the re-used cell, or newly created one
         //we update the FriendsCell images and text accordingly
         let levelDouble = friend.Level
@@ -230,7 +233,25 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         return cell
         
     }
-  
+    func chat(button: UIButton) {
+        var row: Int = button.tag
+        //you know that which row button is tapped
+        print(row)
+        chatRoomFriend = friends[row]
+        print("go to \(chatRoomFriend.Name)")
+        
+        
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("showChatRoom") as! FriendsChatViewController
+        nextViewController.friend = chatRoomFriend
+        nextViewController.senderId = "Alex"
+        nextViewController.senderDisplayName = chatRoomFriend.Name
+        self.presentViewController(nextViewController, animated:true, completion:nil)
+        
+        
+    }
     
     /*
      // Override to support conditional editing of the table view.
@@ -269,54 +290,56 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
     
     // MARK: - Navigation
-   
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         //hide the bottombar for friends deck view
         if(segue.identifier == "ShowFriendsDeck") {
-       
+            
             let detailViewController = segue.destinationViewController as! FriendsDeckCollectionViewController
             detailViewController.hidesBottomBarWhenPushed = true
             
         }
-        
-        //by tapping on the chat icon, hide the bottom bar and display the chat room view accordingly
-        if(segue.identifier == "ShowChatRoom") {
-            let chatViewController = segue.destinationViewController as! FriendsChatViewController
-            chatViewController.friend = friend
-            chatViewController.senderId = "Alex"
-            chatViewController.senderDisplayName = friend.Name
-            chatViewController.hidesBottomBarWhenPushed = true
-            
-        }
-        
         /*
-        if(segue.identifier == "ShowFriendsDetails") {
-            let detailViewController = segue.destinationViewController as! FriendsDetailViewController
-            let myIndexPath = self.tableView.indexPathForSelectedRow
-            
-            let filteredfriend : Friends
-            
-            if(myIndexPath != nil) {
-                // Set the movieItem field with the movie // object selected by the user.
-                
-                if searchController.active && searchController.searchBar.text != ""
-                {
-                    
-                    filteredfriend = filteredFriends[myIndexPath!.row]
-                    detailViewController.friend = filteredfriend
-                } else {
-                    filteredfriend = friends[myIndexPath!.row]
-                    detailViewController.friend = filteredfriend
-                }
-                
-                
-            }
-            
-            
-            detailViewController.hidesBottomBarWhenPushed = true
-        }
-        */
+         //by tapping on the chat icon, hide the bottom bar and display the chat room view accordingly
+         if(segue.identifier == "ShowChatRoom") {
+         
+         
+         let chatViewController = segue.destinationViewController as! FriendsChatViewController
+         chatViewController.friend = friend
+         chatViewController.senderId = "Alex"
+         chatViewController.senderDisplayName = friend.Name
+         print("00--> \(friend.Name)")
+         
+         }
+         
+         
+         if(segue.identifier == "ShowFriendsDetails") {
+         let detailViewController = segue.destinationViewController as! FriendsDetailViewController
+         let myIndexPath = self.tableView.indexPathForSelectedRow
+         
+         let filteredfriend : Friends
+         
+         if(myIndexPath != nil) {
+         // Set the movieItem field with the movie // object selected by the user.
+         
+         if searchController.active && searchController.searchBar.text != ""
+         {
+         
+         filteredfriend = filteredFriends[myIndexPath!.row]
+         detailViewController.friend = filteredfriend
+         } else {
+         filteredfriend = friends[myIndexPath!.row]
+         detailViewController.friend = filteredfriend
+         }
+         
+         
+         }
+         
+         
+         detailViewController.hidesBottomBarWhenPushed = true
+         }
+         */
     }
 }
 

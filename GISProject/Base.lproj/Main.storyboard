@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dMH-Ja-CGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dMH-Ja-CGM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -528,9 +528,6 @@
                                                 <constraint firstAttribute="height" constant="37" id="7bm-1r-jYK"/>
                                             </constraints>
                                             <state key="normal" backgroundImage="chat_btn"/>
-                                            <connections>
-                                                <segue destination="VSf-t7-r3i" kind="push" identifier="ShowChatRoom" id="pCA-XN-bL9"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -542,6 +539,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="chat" destination="gPl-xn-cFb" id="i4T-Af-bdI"/>
                                     <outlet property="friendsCurrentLocatuon" destination="rwf-Kw-dpF" id="cUo-Cr-Vxj"/>
                                     <outlet property="level" destination="Zqy-92-eBe" id="oYa-5A-bNZ"/>
                                     <outlet property="name" destination="SH7-mC-ryA" id="IRi-gH-f01"/>
@@ -798,7 +796,7 @@
         <!--Chat-->
         <scene sceneID="uKb-Lu-uGN">
             <objects>
-                <viewController id="VSf-t7-r3i" customClass="FriendsChatViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showChatRoom" id="VSf-t7-r3i" customClass="FriendsChatViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xeb-Rk-p7f"/>
                         <viewControllerLayoutGuide type="bottom" id="XVh-cz-zpF"/>

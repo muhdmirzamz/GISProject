@@ -30,6 +30,10 @@ class FriendsChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
         self.navigationItem.title = friend.Name
         messages.removeAll()
         setupBubbles()
@@ -264,67 +268,67 @@ class FriendsChatViewController: JSQMessagesViewController {
         // 5
         finishSendingMessage()
         print("--> \(ref.childByAutoId())")
- 
- 
- 
+        
+        
+        
         
         /*
-    //chats
-     let ref = FIRDatabase.database().reference().child("FriendsModule/chats")
-      
-        let itemRef = ref.childByAutoId() // 1
-        //ref.child("FriendsModule/members").childByAutoId()
-        
-        let messageItem = [ // 2
-            "title": friend.Name,
-            "lastMessage": senderId,
-            "timestamp" : "123"
-        ]
-        itemRef.setValue(messageItem) // 3
-        
-    //members
-     let refMember = FIRDatabase.database().reference().child("FriendsModule/members")
-       let itemMember = refMember.child(itemRef.key)// 1
-        
-        let messageMember = [ // 2
-            "\(friend.Name)": true,
-            "\(senderId)": true
-           
-        ]
-        itemMember.setValue(messageMember) // 3
-        
-        
-        //chats
-        let refMessage = FIRDatabase.database().reference().child("FriendsModule/messages")
-        let itemMessage = refMessage.child(itemRef.key)// 1
-        
-        //random key for individual chat room
-        let randomChatKey = refMessage.childByAutoId()
-        
-        let conversation = [ // 2
-            "name" : friend.Name,
-            "message": "The relay seems to be malfunctioning.",
-            "timestamp": "oo"
-            
-        ]
-        itemMessage.setValue(conversation)
-        //itemMember.setValue(conversation)
-        
-        let refy = FIRDatabase.database().reference().child("FriendsModule/members/")
-        
-        
-        ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            
-            for record in snapshot.children {
-                
-              
-                
-            }
-        
-           
-            
-        })
-        */
+         //chats
+         let ref = FIRDatabase.database().reference().child("FriendsModule/chats")
+         
+         let itemRef = ref.childByAutoId() // 1
+         //ref.child("FriendsModule/members").childByAutoId()
+         
+         let messageItem = [ // 2
+         "title": friend.Name,
+         "lastMessage": senderId,
+         "timestamp" : "123"
+         ]
+         itemRef.setValue(messageItem) // 3
+         
+         //members
+         let refMember = FIRDatabase.database().reference().child("FriendsModule/members")
+         let itemMember = refMember.child(itemRef.key)// 1
+         
+         let messageMember = [ // 2
+         "\(friend.Name)": true,
+         "\(senderId)": true
+         
+         ]
+         itemMember.setValue(messageMember) // 3
+         
+         
+         //chats
+         let refMessage = FIRDatabase.database().reference().child("FriendsModule/messages")
+         let itemMessage = refMessage.child(itemRef.key)// 1
+         
+         //random key for individual chat room
+         let randomChatKey = refMessage.childByAutoId()
+         
+         let conversation = [ // 2
+         "name" : friend.Name,
+         "message": "The relay seems to be malfunctioning.",
+         "timestamp": "oo"
+         
+         ]
+         itemMessage.setValue(conversation)
+         //itemMember.setValue(conversation)
+         
+         let refy = FIRDatabase.database().reference().child("FriendsModule/members/")
+         
+         
+         ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+         
+         for record in snapshot.children {
+         
+         
+         
+         }
+         
+         
+         
+         })
+         */
         
     }
     
@@ -358,6 +362,8 @@ class FriendsChatViewController: JSQMessagesViewController {
     //pressed accessory button
     override func didPressAccessoryButton(sender: UIButton!) {
         print("Accessory btn pressed!")
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     

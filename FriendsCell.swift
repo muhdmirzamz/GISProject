@@ -16,6 +16,7 @@ class FriendsCell: UITableViewCell {
     @IBOutlet weak var level: UIButton!
     @IBOutlet weak var friendsCurrentLocatuon: UILabel!
    
+    @IBOutlet weak var chat: UIButton!
 
     
      // customize the appearance of table cell
