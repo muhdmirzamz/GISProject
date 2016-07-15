@@ -36,8 +36,12 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       //self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+       // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orangeColor()]
         //self.navigationBar.tintColor =  UIColor(red: 38/255, green: 232/255, blue: 167/255, alpha: 1)
         //background image
+      
+        
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "friendTable_bg_light")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
         
         
@@ -61,14 +65,18 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         //add search bar directly below head view
         tableView.tableHeaderView = searchController.searchBar
+        tableView.tableHeaderView?.backgroundColor = UIColor.clearColor()
+        
         
         //search bar background image
-        searchController.searchBar.setBackgroundImage(UIImage(named: "cell_blue")?.resizableImageWithCapInsets(UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5), resizingMode: UIImageResizingMode.Stretch), forBarPosition: .Any, barMetrics: .Default)
-        
+        //searchController.searchBar.setBackgroundImage(UIImage(named: "cell_blue")?.resizableImageWithCapInsets(UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5), resizingMode: UIImageResizingMode.Stretch), forBarPosition: .Any, barMetrics: .Default)
+       
         
         //search bar icon
         searchController.searchBar.setImage(UIImage(named: "search_icon"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
         searchController.searchBar.setSearchFieldBackgroundImage(nil, forState: UIControlState.Normal)
+        
+        
         
         //start to load data
         loadFriends()

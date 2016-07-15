@@ -469,6 +469,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wlc-yW-iwC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.28255208329999998" green="0.28255208329999998" blue="0.28255208329999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.44671416337132841" green="1" blue="0.69484718523268529" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="hvn-cc-SSJ" kind="relationship" relationship="rootViewController" id="D6a-8U-ce3"/>

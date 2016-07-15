@@ -56,7 +56,7 @@ class FriendsCell: UITableViewCell {
         //translucent effect
         self.backgroundColor = UIColor(white: 1, alpha: 0.5)
         //background for cell border
-        self.backgroundView = UIImageView(image: UIImage(named: "cell_blue_border")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 50, 10, 50), resizingMode: UIImageResizingMode.Stretch))
+        //self.backgroundView = UIImageView(image: UIImage(named: "cell_blue_border")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 50, 10, 50), resizingMode: UIImageResizingMode.Stretch))
         
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 8
