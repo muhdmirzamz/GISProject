@@ -17,11 +17,30 @@ class FriendsCell: UITableViewCell {
     @IBOutlet weak var friendsCurrentLocatuon: UILabel!
    
     @IBOutlet weak var chat: UIButton!
-
+    
+    override var frame: CGRect {
+        get {
+            return super.frame
+        }
+        set (newFrame) {
+            /*
+            var frame = newFrame
+            frame.origin.x += 20
+            super.frame = frame
+            */
+             var frame = newFrame
+            frame.origin.x += 10
+            frame.size.width -= 2 * 10
+            
+            super.frame = frame
+        }
+    }
     
      // customize the appearance of table cell
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        
         
         //friend avatar styling
         self.name.textColor = UIColor(red: 4/255, green: 221/255, blue: 143/255, alpha: 1.0)
@@ -48,19 +67,25 @@ class FriendsCell: UITableViewCell {
         //textcolor for friend location label
         self.friendsCurrentLocatuon.textColor = UIColor(red: 81/255, green: 162/255, blue: 205/255, alpha: 1.0)
         
+        
+         
     }
     
     //customize cell background images
     func cellDisplay(){
         
         //translucent effect
-        self.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        self.backgroundColor = UIColor(white: 1, alpha: 0.3)
         //background for cell border
         //self.backgroundView = UIImageView(image: UIImage(named: "cell_blue_border")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 50, 10, 50), resizingMode: UIImageResizingMode.Stretch))
         
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 8
         self.clipsToBounds = true
+        
+         
+      
+        
     }
     
     

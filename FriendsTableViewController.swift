@@ -92,6 +92,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
     }
     
+     
+    
     
     //UISearchBar Delegate
     //respond to the search bar
@@ -193,6 +195,9 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         return headerView
     }
     
+    // Set the spacing between sections
+    
+    
     
     // given the row/item number of the tableview and display the data of the table cell
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -221,7 +226,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             
             self.friend = friends[indexPath.row]
             cell.chat.tag = indexPath.row
-            cell.chat.addTarget(self, action: #selector(self.chat), forControlEvents: .TouchUpInside)
+            //cell.chat.addTarget(self, action: "self.chat", forControlEvents: .TouchUpInside)
+            cell.chat.addTarget(self, action: "chat:", forControlEvents: .TouchUpInside)
             
         }
         
@@ -241,6 +247,10 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         return cell
         
     }
+    
+    
+    
+    
     func chat(button: UIButton) {
         var row: Int = button.tag
         //you know that which row button is tapped
