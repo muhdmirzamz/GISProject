@@ -30,6 +30,7 @@
 		881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14901D329CB600F0F270 /* BounceAnimationController.swift */; };
 		881F14931D329CBF00F0F270 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */; };
 		883639EC1D379D7100C99CCB /* friendsmap.html in Resources */ = {isa = PBXBuildFile; fileRef = 883639EB1D379D7100C99CCB /* friendsmap.html */; };
+		888611BD1D3B5B1200C6F4D2 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888611BC1D3B5B1200C6F4D2 /* Camera.swift */; };
 		889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */; };
 		889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */; };
 		88AFECFF1D329BC400185ED5 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */; };
@@ -79,6 +80,7 @@
 		881F14901D329CB600F0F270 /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		883639EB1D379D7100C99CCB /* friendsmap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = friendsmap.html; sourceTree = "<group>"; };
+		888611BC1D3B5B1200C6F4D2 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDeckCollectionViewController.swift; sourceTree = "<group>"; };
 		889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
 		88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		88EFBE1A1D213B8400577EC5 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				888611BC1D3B5B1200C6F4D2 /* Camera.swift */,
 				88EFBE141D2138EC00577EC5 /* Friends.swift */,
 				88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */,
 				88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */,
@@ -471,6 +474,7 @@
 			files = (
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
+				888611BD1D3B5B1200C6F4D2 /* Camera.swift in Sources */,
 				AA8B63791D33CB1300BF2289 /* Location.swift in Sources */,
 				881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */,
 				881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */,

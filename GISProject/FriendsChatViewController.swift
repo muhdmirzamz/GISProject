@@ -9,9 +9,12 @@
 import UIKit
 import FirebaseDatabase
 import JSQMessagesViewController
+import FirebaseStorage
+import Firebase
+import Photos
 
 
-class FriendsChatViewController: JSQMessagesViewController {
+class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     //friends obj
     var friend : Friends!
@@ -28,10 +31,19 @@ class FriendsChatViewController: JSQMessagesViewController {
     var outgoingAvatarImage : JSQMessagesAvatarImage!
     var incomingAvatarImage : JSQMessagesAvatarImage!
     
+    var storageRef:FIRStorageReference!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addTapped))
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(addTapped))
         
+        
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(addTapped))
         
         
         self.navigationItem.title = friend.Name
@@ -66,7 +78,91 @@ class FriendsChatViewController: JSQMessagesViewController {
         outgoingAvatarImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(img!, diameter: 64)
         outgoingAvatarImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(img!, diameter: 64)
         
+        // [START configurestorage]
+        storageRef = FIRStorage.storage().reference().child("FriendsModule/friendList/8899")
+        // [END configurestorage]
+        
+        
     }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        print("--->did finished picking media info")
+        print(info)
+        
+        picker.dismissViewControllerAnimated(true, completion:nil)
+        
+        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        let photo = JSQPhotoMediaItem(image: selectedPhoto)
+        
+        messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photo!))
+        
+        // if it's a photo from the library, not an image from the camera
+        if #available(iOS 8.0, *), let referenceUrl = info[UIImagePickerControllerReferenceURL] {
+            let assets = PHAsset.fetchAssetsWithALAssetURLs([referenceUrl as! NSURL], options: nil)
+            let asset = assets.firstObject
+            asset?.requestContentEditingInputWithOptions(nil, completionHandler: { (contentEditingInput,info) in
+                let imageFile = contentEditingInput?.fullSizeImageURL
+                let filePath = FIRAuth.auth()!.currentUser!.uid +
+                    "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(imageFile!.lastPathComponent!)"
+                // [START uploadimage]
+                self.storageRef.child(filePath)
+                    .putFile(imageFile!, metadata: nil) { (metadata, error) in
+                        if let error = error {
+                            print("Error uploading: \(error)")
+                           // self.urlTextView.text = "Upload Failed"
+                            return
+                        }
+                        self.uploadSuccess(metadata!, storagePath: filePath)
+                }
+                // [END uploadimage]
+            })
+        } else {
+            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            let imageData = UIImageJPEGRepresentation(image, 0.8)
+            let imagePath = FIRAuth.auth()!.currentUser!.uid +
+                "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            self.storageRef.child(imagePath)
+                .putData(imageData!, metadata: metadata) { (metadata, error) in
+                    if let error = error {
+                        print("Error uploading: \(error)")
+                       // self.urlTextView.text = "Upload Failed"
+                        return
+                    }
+                    self.uploadSuccess(metadata!, storagePath: imagePath)
+            }
+        }
+        
+        
+        
+        
+        
+        //self.dismissViewControllerAnimated(true, completion: nil)
+        
+        // messages.append(JSQMessage()
+    }
+    
+    //  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    //     <#code#>
+    //  }
+    
+    
+    func uploadSuccess(metadata: FIRStorageMetadata, storagePath: String) {
+        print("Upload Succeeded!")
+     //  self.urlTextView.text = metadata.downloadURL()!.absoluteString
+        NSUserDefaults.standardUserDefaults().setObject(storagePath, forKey: "storagePath")
+        NSUserDefaults.standardUserDefaults().synchronize()
+       // self.downloadPicButton.enabled = true
+    }
+    
+    
+    func addTapped (sender:UIButton) {
+        print("add pressed")
+    }
+    
     
     //show timestamp
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString!
@@ -193,14 +289,14 @@ class FriendsChatViewController: JSQMessagesViewController {
     }
     
     
-    
-    
-    //creating msg
-    func addMessage(id: String, text: String) {
-        let message = JSQMessage(senderId: id, displayName: "", text: text)
-        messages.append(message)
-    }
-    
+    /*
+     
+     //creating msg
+     func addMessage(id: String, text: String) {
+     let message = JSQMessage(senderId: id, displayName: self.friend.Name text: text)
+     messages.append(message)
+     }
+     */
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         // messages from someone else
@@ -230,7 +326,7 @@ class FriendsChatViewController: JSQMessagesViewController {
             //cell.cellTopLabel!.text = senderId
             cell.messageBubbleTopLabel!.text = senderId
             cell.cellBottomLabel!.text = senderId
-            cell.textView!.textColor = UIColor.whiteColor()
+            //cell.textView!.textColor = UIColor.whiteColor()
         } else {
             
             cell.textView!.textColor = UIColor.blackColor()
@@ -244,6 +340,10 @@ class FriendsChatViewController: JSQMessagesViewController {
     //insert msg into firebase
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!,
                                      senderDisplayName: String!, date: NSDate!) {
+        
+        
+        let message = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text)
+        messages.append(message)
         
         
         let ref = FIRDatabase.database().reference().child("FriendsModule/myFriend/Chats/users/\(senderId)")
@@ -269,66 +369,8 @@ class FriendsChatViewController: JSQMessagesViewController {
         finishSendingMessage()
         print("--> \(ref.childByAutoId())")
         
+        self.finishReceivingMessage()
         
-        
-        
-        /*
-         //chats
-         let ref = FIRDatabase.database().reference().child("FriendsModule/chats")
-         
-         let itemRef = ref.childByAutoId() // 1
-         //ref.child("FriendsModule/members").childByAutoId()
-         
-         let messageItem = [ // 2
-         "title": friend.Name,
-         "lastMessage": senderId,
-         "timestamp" : "123"
-         ]
-         itemRef.setValue(messageItem) // 3
-         
-         //members
-         let refMember = FIRDatabase.database().reference().child("FriendsModule/members")
-         let itemMember = refMember.child(itemRef.key)// 1
-         
-         let messageMember = [ // 2
-         "\(friend.Name)": true,
-         "\(senderId)": true
-         
-         ]
-         itemMember.setValue(messageMember) // 3
-         
-         
-         //chats
-         let refMessage = FIRDatabase.database().reference().child("FriendsModule/messages")
-         let itemMessage = refMessage.child(itemRef.key)// 1
-         
-         //random key for individual chat room
-         let randomChatKey = refMessage.childByAutoId()
-         
-         let conversation = [ // 2
-         "name" : friend.Name,
-         "message": "The relay seems to be malfunctioning.",
-         "timestamp": "oo"
-         
-         ]
-         itemMessage.setValue(conversation)
-         //itemMember.setValue(conversation)
-         
-         let refy = FIRDatabase.database().reference().child("FriendsModule/members/")
-         
-         
-         ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-         
-         for record in snapshot.children {
-         
-         
-         
-         }
-         
-         
-         
-         })
-         */
         
     }
     
@@ -348,7 +390,7 @@ class FriendsChatViewController: JSQMessagesViewController {
             // 4
             if(chatMember == self.friend.Name && id == self.senderId)
             {
-                self.addMessage(id, text: text)
+                //self.addMessage(id, text: text)
             }
             
             
@@ -362,7 +404,70 @@ class FriendsChatViewController: JSQMessagesViewController {
     //pressed accessory button
     override func didPressAccessoryButton(sender: UIButton!) {
         print("Accessory btn pressed!")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        /*
+         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+         
+         let takePhoto = UIAlertAction(title: "Take Photo", style: .Default) { (alert: UIAlertAction!) -> Void in
+         
+         }
+         
+         let sharePhoto = UIAlertAction(title: "Photo Library", style: .Default) { (alert: UIAlertAction!) -> Void in
+         
+         let imagePicker = UIImagePickerController()
+         imagePicker.delegate = self
+         self.presentViewController(imagePicker, animated: true, completion: nil)
+         
+         
+         
+         }
+         
+         let shareLoction = UIAlertAction(title: "Share Location", style: .Default) { (alert: UIAlertAction!) -> Void in
+         
+         
+         }
+         
+         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alert : UIAlertAction!) -> Void in
+         
+         print("Cancel")
+         }
+         
+         optionMenu.addAction(takePhoto)
+         optionMenu.addAction(sharePhoto)
+         optionMenu.addAction(shareLoction)
+         optionMenu.addAction(cancelAction)
+         
+         self.presentViewController(optionMenu, animated: true, completion: nil)
+         
+         */
+        let camera = Camera(delegate_: self)
+        
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        let takePhoto = UIAlertAction(title: "Take Photo", style: .Default) { (alert: UIAlertAction!) -> Void in
+            camera.PresentPhotoCamera(self, canEdit: true)
+        }
+        
+        let sharePhoto = UIAlertAction(title: "Photo Library", style: .Default) { (alert: UIAlertAction!) -> Void in
+            camera.PresentPhotoLibrary(self, canEdit: true)
+        }
+        
+        let shareLoction = UIAlertAction(title: "Share Location", style: .Default) { (alert: UIAlertAction!) -> Void in
+            
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alert : UIAlertAction!) -> Void in
+            
+            print("Cancel")
+        }
+        
+        optionMenu.addAction(takePhoto)
+        optionMenu.addAction(sharePhoto)
+        optionMenu.addAction(shareLoction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
         
     }
     

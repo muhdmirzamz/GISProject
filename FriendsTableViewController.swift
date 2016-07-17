@@ -29,18 +29,18 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     //chatroom friends
     var chatRoomFriend : Friends!
     
-    //declare an friends instance to make use of the objects easily
-    var friend : Friends!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       //self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
-       // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orangeColor()]
+        //self.navigationController?.navigationBar.barTintColor = UIColor(red: 29/255, green: 233/255, blue: 182/255, alpha: 1)
+        // self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orangeColor()]
         //self.navigationBar.tintColor =  UIColor(red: 38/255, green: 232/255, blue: 167/255, alpha: 1)
         //background image
-      
+        
         
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "friendTable_bg_light")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
         
@@ -65,12 +65,17 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         //add search bar directly below head view
         tableView.tableHeaderView = searchController.searchBar
-        tableView.tableHeaderView?.backgroundColor = UIColor.clearColor()
+        //tableView.tableHeaderView?.backgroundColor = UIColor.blackColor()
         
         
         //search bar background image
         //searchController.searchBar.setBackgroundImage(UIImage(named: "cell_blue")?.resizableImageWithCapInsets(UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5), resizingMode: UIImageResizingMode.Stretch), forBarPosition: .Any, barMetrics: .Default)
-       
+        
+        //searchController.searchBar.backgroundColor = UIColor.blueColor()
+        //searchController.searchBar.backgroundImage = UIImage()
+        
+        
+        //searchController.searchBar.barTintColor = UIColor(red: 29/255, green: 233/255, blue: 182/255, alpha: 1)
         
         //search bar icon
         searchController.searchBar.setImage(UIImage(named: "search_icon"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
@@ -92,7 +97,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
     }
     
-     
+    
     
     
     //UISearchBar Delegate
@@ -184,7 +189,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
     //table cell head spacing
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let cellSpacingHeight: CGFloat = 10
+        let cellSpacingHeight: CGFloat = 0
         return cellSpacingHeight
     }
     
@@ -214,21 +219,18 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             cell = NSBundle.mainBundle().loadNibNamed("FriendsCell", owner: nil, options: nil)[0] as? FriendsCell
         }
         
-        
+        //declare an friends instance to make use of the objects easily
+        var friend : Friends!
         
         
         
         //check for any search inputs and use the corrent friends array data
         if searchController.active && searchController.searchBar.text != "" {
-            self.friend = filteredFriends[indexPath.row]
+            friend = filteredFriends[indexPath.row]
             
         } else {
             
-            self.friend = friends[indexPath.row]
-            cell.chat.tag = indexPath.row
-            //cell.chat.addTarget(self, action: "self.chat", forControlEvents: .TouchUpInside)
-            cell.chat.addTarget(self, action: "chat:", forControlEvents: .TouchUpInside)
-            
+            friend = friends[indexPath.row]
         }
         
         //by using the re-used cell, or newly created one
@@ -250,26 +252,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
     
     
-    
-    func chat(button: UIButton) {
-        var row: Int = button.tag
-        //you know that which row button is tapped
-        print(row)
-        chatRoomFriend = friends[row]
-        print("go to \(chatRoomFriend.Name)")
-        
-        
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("showChatRoom") as! FriendsChatViewController
-        nextViewController.friend = chatRoomFriend
-        nextViewController.senderId = "Alex"
-        nextViewController.senderDisplayName = chatRoomFriend.Name
-        self.presentViewController(nextViewController, animated:true, completion:nil)
-        
-        
-    }
     
     /*
      // Override to support conditional editing of the table view.
@@ -318,6 +300,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             detailViewController.hidesBottomBarWhenPushed = true
             
         }
+        
         /*
          //by tapping on the chat icon, hide the bottom bar and display the chat room view accordingly
          if(segue.identifier == "ShowChatRoom") {
@@ -330,7 +313,47 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
          print("00--> \(friend.Name)")
          
          }
-         
+         */
+        
+        if(segue.identifier == "ShowChatRoom") {
+            let detailViewController = segue.destinationViewController as! FriendsChatViewController
+            let myIndexPath = self.tableView.indexPathForSelectedRow
+            // let friend = friends[myIndexPath!.row]
+            
+            let filteredfriend : Friends
+            
+            if(myIndexPath != nil) {
+                // Set the movieItem field with the movie // object selected by the user.
+                
+                if searchController.active && searchController.searchBar.text != ""
+                {
+                    
+                    filteredfriend = filteredFriends[myIndexPath!.row]
+                    detailViewController.friend = filteredfriend
+                    
+                    detailViewController.friend = filteredfriend
+                    detailViewController.senderId = "Alex"
+                    detailViewController.senderDisplayName = filteredfriend.Name
+                    print("00--> \(filteredfriend.Name)")
+                } else {
+                    filteredfriend = friends[myIndexPath!.row]
+                    detailViewController.friend = filteredfriend
+                    detailViewController.friend = filteredfriend
+                    
+                    detailViewController.senderId = "Alex"
+                    detailViewController.senderDisplayName = filteredfriend.Name
+                    print("00--> \(filteredfriend.Name)")
+                    
+                }
+                
+                
+            }
+            
+            
+            detailViewController.hidesBottomBarWhenPushed = true
+        }
+        
+        /*
          
          if(segue.identifier == "ShowFriendsDetails") {
          let detailViewController = segue.destinationViewController as! FriendsDetailViewController
