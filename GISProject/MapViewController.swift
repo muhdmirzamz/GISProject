@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import Firebase
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JoinProtocol {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, BattleProtocol {
 	
 	@IBOutlet var cancelButton: UIBarButtonItem!
 	@IBOutlet var mapView: MKMapView!
@@ -22,7 +22,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	var region: MKCoordinateRegion?
 
     var monsterImg: UIImage?
-    
+	
+	let userID = (FIRAuth.auth()?.currentUser?.uid)!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -67,7 +69,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	
 		if annotation is Location {
 			let annotationView = MKAnnotationView.init(annotation: annotation, reuseIdentifier: "pin")
-			annotationView.canShowCallout = true
 			
 			let currAnnotation = annotation as? Location
 			let image = UIImage.init(named: (currAnnotation?.imageString)!)
@@ -87,37 +88,65 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	}
 	
 	func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-//        // you need this for measuring distance between battle locations and you
-//        let boundaryLocation = CLLocation.init(latitude: (self.region?.center.latitude)!, longitude: (self.region?.center.longitude)!)
-//        let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
-//        let distance = userLocation.distanceFromLocation(boundaryLocation)
-//        
-//        // follows meters
-//        if distance > 50 {
-//            let alert = UIAlertController.init(title: "Hold on", message: "You're too far", preferredStyle: .Alert)
-//            let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
-//            alert.addAction(okAction)
-//            self.presentViewController(alert, animated: true, completion: nil)
-//        } else {
-//            let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController")
-//            self.presentViewController(joinBattleVC, animated: true, completion: nil)
-//        }
-		
-		// set this - you need it for removing it from map on reload
+		// you need this for measuring distance between battle locations and you
+		//        let boundaryLocation = CLLocation.init(latitude: (self.region?.center.latitude)!, longitude: (self.region?.center.longitude)!)
+		//        let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
+		//        let distance = userLocation.distanceFromLocation(boundaryLocation)
+		//
+		//        // follows meters
+		//        if distance > 50 {
+		//            let alert = UIAlertController.init(title: "Hold on", message: "You're too far", preferredStyle: .Alert)
+		//            let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+		//            alert.addAction(okAction)
+		//            self.presentViewController(alert, animated: true, completion: nil)
+		//        } else {
+		//            let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController")
+		//            self.presentViewController(joinBattleVC, animated: true, completion: nil)
+		//        }
+	
 		let selectedAnnotation = mapView.selectedAnnotations.first as? Location
-		let joinBattleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("JoinBattleViewController") as? JoinBattleViewController
-		joinBattleVC?.selectedAnnotation = selectedAnnotation
-        joinBattleVC?.imageString = selectedAnnotation?.imageString
-		joinBattleVC?.delegate = self
+		let battleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("BattleViewController") as? BattleViewController
+		battleVC?.selectedAnnotation = selectedAnnotation
+		battleVC?.imageString = selectedAnnotation?.imageString
+		battleVC?.delegate = self
 		
-		let navController = UINavigationController.init(rootViewController: joinBattleVC!)
-		navController.navigationBarHidden = true
 		// this is used so that when the presented view controller comes on, the parent view controller stays visible in the background
 		// property set here because it is the root view for this hierarchy
-		navController.definesPresentationContext = true
-		navController.modalPresentationStyle = .OverCurrentContext
-		joinBattleVC?.view.backgroundColor = UIColor.clearColor()
-		self.presentViewController(navController, animated: true, completion: nil)
+		battleVC?.definesPresentationContext = true
+		battleVC?.modalPresentationStyle = .OverCurrentContext
+		
+		let battle = Battle()
+		
+		let ref = FIRDatabase.database().reference().child("/Friend")
+		ref.child("/\(self.userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+			for i in snapshot.children {
+				let key = i.key!!
+				let value = snapshot.value!["\(key)"] as? NSNumber
+				
+				if value?.integerValue == 1 {
+					battle.uidArr?.addObject(key)
+				}
+			}
+			
+			battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
+			
+			if (battle.amountOfCardsAvailable?.integerValue)! == 0 {
+				dispatch_async(dispatch_get_main_queue(), { 
+					let alert = UIAlertController.init(title: "Hold up", message: "Sorry you don't have enough cards", preferredStyle: .Alert)
+					let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+					alert.addAction(okAction)
+					self.presentViewController(alert, animated: true, completion: nil)
+				})
+			} else {
+				dispatch_async(dispatch_get_main_queue(), {
+					battleVC?.battle = battle
+					
+					battleVC?.view.backgroundColor = UIColor.clearColor()
+					
+					self.presentViewController(battleVC!, animated: true, completion: nil)
+				})
+			}
+		})
 	}
 	
 	func reloadMap() {
@@ -143,7 +172,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 				
 				let imageString = record.value!!["image string"] as! String
 				
-				let locationModel = Location.init(key: key, coordinate: coordinate, title: "Test", subtitle: "This is a test", imageString: imageString)
+				let locationModel = Location.init(key: key, coordinate: coordinate, imageString: imageString)
 				
 				self.mapView.addAnnotation(locationModel)
 			}
