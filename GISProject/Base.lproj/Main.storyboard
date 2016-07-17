@@ -93,78 +93,10 @@
             </objects>
             <point key="canvasLocation" x="682" y="1068"/>
         </scene>
-        <!--Join Battle View Controller-->
-        <scene sceneID="cqS-KG-MMc">
-            <objects>
-                <viewController storyboardIdentifier="JoinBattleViewController" id="F9y-5j-ZuQ" customClass="JoinBattleViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="njM-5p-ZlW"/>
-                        <viewControllerLayoutGuide type="bottom" id="bPk-hg-BiX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iN8-aQ-PXv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rd6-ql-32A" customClass="MLWLiveBlurView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="Mdh-AK-YA4">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soY-CW-Dzx">
-                                <rect key="frame" x="110" y="78" width="154" height="118"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kraken" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSq-DC-wIE">
-                                <rect key="frame" x="141" y="316" width="93" height="47"/>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 / 100 HP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Qa-Ui-0Bn">
-                                <rect key="frame" x="138" y="408" width="98" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lF-5C-i5J">
-                                <rect key="frame" x="0.0" y="601" width="375" height="66"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Join battle">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RvW-Rh-ie2" kind="push" identifier="battleSegue" id="wz2-T0-Mom"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spP-KI-0H4">
-                                <rect key="frame" x="20" y="28" width="42" height="42"/>
-                                <state key="normal" image="cancel"/>
-                                <connections>
-                                    <action selector="dismiss" destination="F9y-5j-ZuQ" eventType="touchUpInside" id="Fpu-oL-xws"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="FmP-S9-gnR">
-                        <barButtonItem key="leftBarButtonItem" image="cancel" id="bbd-Vg-krf"/>
-                    </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="blurView" destination="rd6-ql-32A" id="9bK-aC-fIj"/>
-                        <outlet property="monsterHealth" destination="9Qa-Ui-0Bn" id="cCV-Zf-Dcx"/>
-                        <outlet property="monsterImgView" destination="soY-CW-Dzx" id="Nrm-jN-dbR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lpJ-6N-gw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="692.5" y="1792.5"/>
-        </scene>
         <!--Battle View Controller-->
         <scene sceneID="qZi-Vf-6m8">
             <objects>
-                <viewController id="RvW-Rh-ie2" customClass="BattleViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BattleViewController" id="RvW-Rh-ie2" customClass="BattleViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a9N-oj-ASr"/>
                         <viewControllerLayoutGuide type="bottom" id="nB5-wq-IBn"/>
@@ -173,92 +105,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQG-XA-x7l">
-                                <rect key="frame" x="38" y="47" width="240" height="128"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="100 / 100 HP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcZ-hB-6wC">
-                                <rect key="frame" x="109" y="263" width="98" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="How many cards ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfq-P4-Kxf">
-                                <rect key="frame" x="20" y="348" width="154" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqD-bw-6PA">
-                                <rect key="frame" x="0.0" y="502" width="375" height="66"/>
-                                <color key="backgroundColor" red="0.98823529409999999" green="0.12941176469999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="ATTACK">
-                                    <color key="titleColor" red="0.97959183670000005" green="1" blue="0.9591836735" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NJC-dE-yHE" customClass="MLWLiveBlurView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="zG1-54-QUK">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Double tap to attack using cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMi-Rd-v3Y">
+                                            <rect key="frame" x="63" y="503" width="248" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="OS0-i5-avJ">
+                                <rect key="frame" x="67" y="386" width="240" height="2"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjU-Fs-2s6">
+                                <rect key="frame" x="20" y="20" width="56" height="49"/>
+                                <state key="normal" image="cancel"/>
                                 <connections>
-                                    <action selector="attack" destination="RvW-Rh-ie2" eventType="touchUpInside" id="sIj-aQ-idg"/>
+                                    <action selector="dismissBattle" destination="RvW-Rh-ie2" eventType="touchUpInside" id="f0R-RY-sUa"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Damage Done:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEk-nC-A6u">
-                                <rect key="frame" x="30" y="473" width="121" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLf-bE-ZzY">
+                                <rect key="frame" x="166" y="417" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="OS0-i5-avJ">
-                                <rect key="frame" x="38" y="241" width="240" height="2"/>
-                            </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Use own card?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtS-3a-Vyj">
-                                <rect key="frame" x="30" y="399" width="134" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wTE-pm-b0O">
-                                <rect key="frame" x="224" y="344" width="76" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Z2-T8-U94">
-                                <rect key="frame" x="251" y="394" width="51" height="31"/>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDh-LR-70s">
-                                <rect key="frame" x="157" y="473" width="100" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press and hold to use own card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6W-gx-3fS">
+                                <rect key="frame" x="67" y="556" width="240" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQG-XA-x7l">
+                                <rect key="frame" x="0.0" y="99" width="375" height="240"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.18823529410000001" green="0.23137254900000001" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="QcZ-hB-6wC" firstAttribute="centerX" secondItem="5yw-xb-2HW" secondAttribute="centerX" id="8Lj-5y-pte"/>
-                            <constraint firstItem="wTE-pm-b0O" firstAttribute="trailing" secondItem="5Z2-T8-U94" secondAttribute="trailing" id="A3v-8s-Sku"/>
-                            <constraint firstItem="OS0-i5-avJ" firstAttribute="centerX" secondItem="5yw-xb-2HW" secondAttribute="centerX" id="E3w-8h-usT"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5Z2-T8-U94" secondAttribute="trailing" id="IeO-yL-Kfg"/>
-                            <constraint firstItem="VtS-3a-Vyj" firstAttribute="leading" secondItem="5yw-xb-2HW" secondAttribute="leadingMargin" constant="10" id="LC3-uZ-gsE"/>
-                            <constraint firstItem="BEk-nC-A6u" firstAttribute="leading" secondItem="5yw-xb-2HW" secondAttribute="leadingMargin" constant="10" id="Pg0-QO-WP4"/>
-                            <constraint firstItem="OS0-i5-avJ" firstAttribute="top" secondItem="KQG-XA-x7l" secondAttribute="bottom" constant="66" id="akh-dA-TDF"/>
-                            <constraint firstItem="KQG-XA-x7l" firstAttribute="top" secondItem="a9N-oj-ASr" secondAttribute="bottom" constant="27" id="jXD-sr-nWf"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Kfq-P4-Kxf" secondAttribute="leading" id="m7o-De-eqY"/>
-                            <constraint firstItem="KQG-XA-x7l" firstAttribute="centerX" secondItem="5yw-xb-2HW" secondAttribute="centerX" id="ptI-he-dO7"/>
-                            <constraint firstItem="IqD-bw-6PA" firstAttribute="width" secondItem="5yw-xb-2HW" secondAttribute="width" id="qUD-jE-CwY"/>
-                            <constraint firstItem="nB5-wq-IBn" firstAttribute="top" secondItem="IqD-bw-6PA" secondAttribute="bottom" id="rsh-PJ-COb"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="b9U-iX-wWJ"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="attackButton" destination="IqD-bw-6PA" id="ixQ-4L-TDX"/>
-                        <outlet property="calculatedDamageLabel" destination="yDh-LR-70s" id="qQo-b0-CA9"/>
+                        <outlet property="blurView" destination="NJC-dE-yHE" id="Ddy-YU-LVn"/>
                         <outlet property="monsterHealthBar" destination="OS0-i5-avJ" id="LQ3-ni-ZHr"/>
-                        <outlet property="monsterHealthLabel" destination="QcZ-hB-6wC" id="l1N-6D-gu4"/>
+                        <outlet property="monsterHealthLabel" destination="tLf-bE-ZzY" id="xEF-4g-Wqc"/>
                         <outlet property="monsterImgView" destination="KQG-XA-x7l" id="yDg-XP-R4n"/>
-                        <outlet property="textfield" destination="wTE-pm-b0O" id="zMv-uv-RLC"/>
-                        <outlet property="userCardSwitch" destination="5Z2-T8-U94" id="DHt-Yv-dBt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agC-Sn-Pmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="692.5" y="2604.5"/>
+            <point key="canvasLocation" x="681.5" y="1771.5"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="yMZ-kx-Yqk">
