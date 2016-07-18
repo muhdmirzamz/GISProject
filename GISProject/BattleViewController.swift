@@ -17,6 +17,7 @@ protocol BattleProtocol {
 class BattleViewController: UIViewController {
 	
 	@IBOutlet var blurView: MLWLiveBlurView!
+    @IBOutlet var amountOfCardAvailable: UILabel!
 	@IBOutlet var monsterImgView: UIImageView!
     @IBOutlet var monsterHealthBar: UIProgressView!
     @IBOutlet var monsterHealthLabel: UILabel!
@@ -52,9 +53,10 @@ class BattleViewController: UIViewController {
 		
 		// set up battle entity
 		self.battle!.selectedAnnotation = self.selectedAnnotation
+        self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
 		
 		// set initial monster health
-		self.monsterHealthLabel.text = "\(String(self.battle!.getMonsterHealth()))/1"
+		self.monsterHealthLabel.text = "\(String(self.battle!.getMonsterHealth()))/\(String(self.battle!.getInitialMonsterHealth()))"
 		
 		let userID = (FIRAuth.auth()?.currentUser?.uid)!
 		let ref = FIRDatabase.database().reference().child("/Account")
@@ -171,8 +173,8 @@ class BattleViewController: UIViewController {
 		if self.battle?.getMonsterHealth() > 0 {
 			if self.battle?.getMonsterHealth() > self.battle?.getExpectedMonsterHealth() {
 				self.battle?.monsterHealth = (self.battle?.monsterHealth)! - 1
-				self.monsterHealthLabel.text = "\(String(Int((self.battle?.monsterHealth)!)))/1"
-				self.monsterHealthBar.progress = Float((self.battle?.getMonsterHealth())!) / 100
+				self.monsterHealthLabel.text = "\(String(Int((self.battle?.monsterHealth)!)))/\(String(self.battle!.getInitialMonsterHealth()))"
+				self.monsterHealthBar.progress = Float((self.battle?.getMonsterHealth())!) / Float((self.battle?.getInitialMonsterHealth())!)
 			} else {
 				// stop timer to avoid health bar glitch
 				self.timer?.invalidate()
@@ -195,6 +197,9 @@ class BattleViewController: UIViewController {
 					
 					self.battle!.amountOfCardsAvailable = NSNumber(integer: Int((self.battle!.uidArr?.count)!))
 					print((self.battle!.amountOfCardsAvailable?.integerValue)!)
+                    
+                    // set label
+                    self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
 				})
 			}
 		} else {

@@ -11,6 +11,7 @@ import Firebase
 
 class Battle {
 	
+    var initialMonsterHealth: Float?
     var monsterHealth: Float?
     var amountOfCardsToUse: NSNumber?
 	var amountOfCardsAvailable: NSNumber?
@@ -25,6 +26,7 @@ class Battle {
     let userID = (FIRAuth.auth()?.currentUser?.uid)!
     
 	init() {
+        self.initialMonsterHealth = 5
         self.monsterHealth = 5
 		self.expectedMonsterHealth = 0
         self.amountOfCardsToUse = 0
@@ -38,6 +40,9 @@ class Battle {
     
     func getMonsterHealth() -> Int {
         return Int(self.monsterHealth!)
+    }
+    func getInitialMonsterHealth() -> Int {
+        return Int(self.initialMonsterHealth!)
     }
 
 	func getExpectedMonsterHealth() -> Int {

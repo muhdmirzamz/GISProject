@@ -50,7 +50,6 @@
 		AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */; };
 		AA8B63791D33CB1300BF2289 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B63781D33CB1300BF2289 /* Location.swift */; };
 		AA8B637B1D33CC1F00BF2289 /* Battle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B637A1D33CC1F00BF2289 /* Battle.swift */; };
-		AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */; };
 		D4A07F8CD0E5ECB803F63164 /* Pods_GISProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +102,6 @@
 		AA22DB601CE3613900F8BA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA8B63781D33CB1300BF2289 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AA8B637A1D33CC1F00BF2289 /* Battle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Battle.swift; sourceTree = "<group>"; };
-		AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinBattleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */,
-				AADEFED01CF483B500CB2E85 /* JoinBattleViewController.swift */,
 				819E1ABF1D3331730070BF51 /* BattleViewController.swift */,
 				AA8B637A1D33CC1F00BF2289 /* Battle.swift */,
 				AA8B63781D33CB1300BF2289 /* Location.swift */,
@@ -480,7 +477,6 @@
 				881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */,
 				6D8169EF1D360AC700AC33C6 /* QRViewController.swift in Sources */,
 				6D8169F41D360B1F00AC33C6 /* ProfileViewController.swift in Sources */,
-				AADEFED11CF483B500CB2E85 /* JoinBattleViewController.swift in Sources */,
 				81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
 				AA8B637B1D33CC1F00BF2289 /* Battle.swift in Sources */,
