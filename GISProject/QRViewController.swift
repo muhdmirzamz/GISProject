@@ -44,19 +44,24 @@ class QRViewController: UIViewController {
     // Custom labels for user based on stats
     //
     func setCustomLabel() {
+        //Init
         let ref = FIRDatabase.database().reference().child("/Account")
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         var name : String = ""
         var card : Int = 0
         var monster : Int = 0
+        let battle = Battle()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             ref.child("/\(uid)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                //Get values
                 name = snapshot.value!["Name"] as! String
-                let card = snapshot.value!["Cards"] as! NSNumber
+                battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
                 let monster = snapshot.value!["Monsters killed"] as! NSNumber
+                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    //Set to labels
                     self.nameLabel.text = "\(name)"
-                    self.cardLabel.text = "\(card)"
+                    self.cardLabel.text = "\((battle.amountOfCardsAvailable?.integerValue)!)"
                     self.monsterLabel.text = "\(monster)"
                 })
             })
@@ -84,15 +89,10 @@ class QRViewController: UIViewController {
         QRCodeImageView.frame = CGRectMake(62.5, 157, 250, 250)
     
         // material design button
-//        let img: UIImage? = UIImage(named: "ic_add_white")
-//        let button = BFPaperButton(frame: CGRectMake(160, 530, 55, 55), raised: true)
         let button = BFPaperButton(frame: CGRectMake(112, 550, 150, 40), raised: true)
-//        button.setImage(img, forState: .Normal)
-//        button.setImage(img, forState: .Highlighted)
         button.setTitle("Add Card", forState: .Normal)
         button.titleFont = UIFont(name: "HelveticaNeue-Thin", size: 23)
         button.backgroundColor = UIColor(red: 38/255, green: 232/255, blue: 167/255, alpha: 1)
-//        button.cornerRadius = button.frame.size.width / 2
         button.cornerRadius = 3
         button.rippleFromTapLocation = true
         button.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
