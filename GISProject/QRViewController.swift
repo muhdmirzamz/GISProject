@@ -45,27 +45,45 @@ class QRViewController: UIViewController {
     //
     func setCustomLabel() {
         //Init
-        let ref = FIRDatabase.database().reference().child("/Account")
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        let ref = FIRDatabase.database().reference().child("/Account/\(uid)")
+        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
+        
         var name : String = ""
         var card : Int = 0
         var monster : Int = 0
         let battle = Battle()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            ref.child("/\(uid)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+        
+        let dispatch_group = dispatch_group_create()
+        
+
+        ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            for i in snapshot.children {
+                let key = i.key!!
+                let value = snapshot.value!["\(key)"] as? NSNumber
+                if value?.integerValue == 1 {
+                    battle.uidArr?.addObject(key)
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.cardLabel.text = "\((battle.uidArr?.count)!)"
+            })
+        })
+        
+        ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 //Get values
-                name = snapshot.value!["Name"] as! String
-                battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
+                let name = snapshot.value!["Name"] as! String
                 let monster = snapshot.value!["Monsters killed"] as! NSNumber
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     //Set to labels
                     self.nameLabel.text = "\(name)"
-                    self.cardLabel.text = "\((battle.amountOfCardsAvailable?.integerValue)!)"
                     self.monsterLabel.text = "\(monster)"
                 })
             })
-        }
+        })
     }
     
     //
