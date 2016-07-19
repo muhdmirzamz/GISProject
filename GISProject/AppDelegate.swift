@@ -25,16 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-        //UIApplication.sharedApplication().scheduledLocalNotifications?.removeAll() for debugging purpose
+        // for debugging
+        // UIApplication.sharedApplication().scheduledLocalNotifications?.removeAll()
         
 		FIRApp.configure()
-        
-        //choose graphic theme
-        let value = 2
-//        let selectedTheme = Theme(rawValue: value)
-        
-        //apply custom theme to the application
-//        ThemeManager.applyTheme(selectedTheme!)
         
         return true
 	}

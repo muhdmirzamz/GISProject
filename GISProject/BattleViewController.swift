@@ -114,23 +114,57 @@ class BattleViewController: UIViewController {
 	func useOwnCard() {
 		// reset amount of cards to use because it will cause a bug when updating cards
 		self.battle?.amountOfCardsToUse = 0
-	
-		self.alert = UIAlertController.init(title: "Use your own card", message: "Are you sure?", preferredStyle: .Alert)
-		let yesAction = UIAlertAction.init(title: "Yes", style: .Default) { (alert) in
-			// implement user card check
-		
-			// calculate expected damage
-			self.battle?.expectedMonsterHealth = Float((self.battle?.monsterHealth)!) - Float((self.battle?.baseDamage?.integerValue)!)
-
-			self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
-			
-		}
-		let noAction = UIAlertAction.init(title: "No", style: .Default, handler: nil)
-
-		alert!.addAction(yesAction)
-		alert!.addAction(noAction)
-
-		self.presentViewController(alert!, animated: true, completion: nil)
+        
+        // if scheduled notif is 1, it means card is used
+        if UIApplication.sharedApplication().scheduledLocalNotifications!.count == 1 {
+            let fireDate = UIApplication.sharedApplication().scheduledLocalNotifications![0].fireDate
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "HH:mm dd-MM-yyyy"
+            
+            self.alert = UIAlertController.init(title: "Hold up", message: "You need to wait until \(dateFormatter.stringFromDate(fireDate!))", preferredStyle: .Alert)
+            let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+            self.alert!.addAction(okAction)
+            
+            self.presentViewController(self.alert!, animated: true, completion: nil)
+        } else {
+            self.alert = UIAlertController.init(title: "Use your own card", message: "Are you sure?", preferredStyle: .Alert)
+            let yesAction = UIAlertAction.init(title: "Yes", style: .Default) { (alert) in
+                // calculate expected damage
+                self.battle?.expectedMonsterHealth = Float((self.battle?.monsterHealth)!) - Float((self.battle?.baseDamage?.integerValue)!)
+                
+                // schedule the notification
+                let date = NSDate()
+                let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute], fromDate:date)
+                
+                // skip to the next day if current time is after 9:00:
+                if (components.hour >= 9) {
+                    components.day += 1;
+                }
+                
+                components.hour = 9;
+                components.minute = 0;
+                
+                let fireDate = NSCalendar.currentCalendar().dateFromComponents(components)
+                
+                let localNotif = UILocalNotification()
+                localNotif.fireDate = fireDate
+                localNotif.alertBody = "You can use your card again"
+                localNotif.alertAction = "Ready for battle"
+                localNotif.timeZone = NSTimeZone.localTimeZone()
+                localNotif.repeatInterval = .Day
+                localNotif.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+                UIApplication.sharedApplication().scheduleLocalNotification(localNotif)
+                NSNotificationCenter.defaultCenter().postNotificationName("battle", object: self)
+                
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
+            }
+            let noAction = UIAlertAction.init(title: "No", style: .Default, handler: nil)
+            
+            alert!.addAction(yesAction)
+            alert!.addAction(noAction)
+            
+            self.presentViewController(alert!, animated: true, completion: nil)
+        }
 	}
 
     override func didReceiveMemoryWarning() {
@@ -185,6 +219,8 @@ class BattleViewController: UIViewController {
 				// update the number of extra cards
 				let ref = FIRDatabase.database().reference().child("/Friend")
 				ref.child("/\(self.userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                    // remember to reset uid array
+                    // this causes a bug with cards
 					self.battle?.uidArr?.removeAllObjects()
 				
 					for i in snapshot.children {
@@ -201,6 +237,21 @@ class BattleViewController: UIViewController {
                     
                     // set label
                     self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
+                    
+                    // check if user can continue
+                    if (UIApplication.sharedApplication().scheduledLocalNotifications?.count)! == 1 &&
+                       (self.battle?.amountOfCardsAvailable?.integerValue)! == 0 {
+                        // go back to map
+                        self.alert = UIAlertController.init(title: "Hold up", message: "You do not have enough cards to continue", preferredStyle: .Alert)
+                        let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
+                            // dismiss view controller
+                            self.delegate?.reloadMap()
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                        self.alert!.addAction(okAction)
+                        
+                        self.presentViewController(self.alert!, animated: true, completion: nil)
+                    }
 				})
 			}
 		} else {

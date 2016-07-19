@@ -34,7 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		self.locationManager?.requestWhenInUseAuthorization()
 		
 		// you need this for user location
-		//self.locationManager?.startUpdatingLocation()
+		self.locationManager?.startUpdatingLocation()
 		
 		self.mapView.showsUserLocation = true
 		self.mapView.mapType = .Standard
@@ -74,8 +74,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 			let image = UIImage.init(named: (currAnnotation?.imageString)!)
 			
 			// resize image using a new image graphics context
-			UIGraphicsBeginImageContextWithOptions(CGSize.init(width: 30, height: 30), false, 0.0);
-			image!.drawInRect(CGRectMake(0, 0, 30, 30))
+			UIGraphicsBeginImageContextWithOptions(CGSize.init(width: 40, height: 40), false, 0.0);
+			image!.drawInRect(CGRectMake(0, 0, 40, 40))
 			let newImage = UIGraphicsGetImageFromCurrentImageContext();
 			UIGraphicsEndImageContext();
 			
@@ -131,7 +131,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 			battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
 			
             // be sure to check if own card is available too
-			if (battle.amountOfCardsAvailable?.integerValue)! == 0 {
+			if ((UIApplication.sharedApplication().scheduledLocalNotifications?.count)! == 1) && ((battle.amountOfCardsAvailable?.integerValue)! == 0) {
 				dispatch_async(dispatch_get_main_queue(), { 
 					let alert = UIAlertController.init(title: "Hold up", message: "Sorry you don't have enough cards", preferredStyle: .Alert)
 					let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)

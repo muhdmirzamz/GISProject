@@ -25,7 +25,6 @@
 		81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */; };
 		81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED3CC01D2B4B9700CABCCC /* TestController.swift */; };
 		81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81F1673B1D29F581009B305D /* User.xcdatamodeld */; };
-		8804BFF81D255B8400156549 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8804BFF71D255B8400156549 /* Theme.swift */; };
 		881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F148E1D329C7F00F0F270 /* GradientView.swift */; };
 		881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14901D329CB600F0F270 /* BounceAnimationController.swift */; };
 		881F14931D329CBF00F0F270 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */; };
@@ -74,7 +73,6 @@
 		81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		81ED3CC01D2B4B9700CABCCC /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		81F1673C1D29F581009B305D /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
-		8804BFF71D255B8400156549 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		881F148E1D329C7F00F0F270 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		881F14901D329CB600F0F270 /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
@@ -177,14 +175,6 @@
 			name = Account;
 			sourceTree = "<group>";
 		};
-		8804BFF61D255B6300156549 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				8804BFF71D255B8400156549 /* Theme.swift */,
-			);
-			name = Theme;
-			sourceTree = "<group>";
-		};
 		889AA4A71D2D48DD004A9892 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +233,6 @@
 				AAB38F6B1D199C8B00D1A20C /* Battle */,
 				81DA778D1D17B9DD00CB0EB6 /* Account */,
 				AA22DB5B1CE3613900F8BA43 /* Assets.xcassets */,
-				8804BFF61D255B6300156549 /* Theme */,
 				889AA4A71D2D48DD004A9892 /* Font */,
 				AA22DB581CE3613900F8BA43 /* Main.storyboard */,
 				81F1673B1D29F581009B305D /* User.xcdatamodeld */,
@@ -501,7 +490,6 @@
 				6D8169F61D360B1F00AC33C6 /* LoginViewController.swift in Sources */,
 				88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */,
 				81364F641D349A5F009A4B8E /* GeoVisMapViewController.swift in Sources */,
-				8804BFF81D255B8400156549 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
