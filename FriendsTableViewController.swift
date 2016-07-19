@@ -8,8 +8,7 @@
 
 import UIKit
 import Firebase
-
-
+import FirebaseDatabase
 
 class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
@@ -29,7 +28,9 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     //chatroom friends
     var chatRoomFriend : Friends!
     
+     let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
     
+    var sendRoomKey : String!
     
     
     override func viewDidLoad() {
@@ -289,6 +290,84 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
      */
     
     
+    func lookForKey(getKey:Friends){
+        
+        refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            
+            
+            
+            
+            for record in snapshot.children {
+                 print("-------------------------")
+               print(record)
+                  print(record.value!!["Sad"] as! Bool)
+                 print(record.value!!["\(getKey.Name)"] as! Bool)
+                 print("-------------------------")
+                
+                var user1 = record.value!!["Sad"] as! Bool
+                var user2 = record.value!!["\(getKey.Name)"] as! Bool
+                
+                if(user1 == true && user2 == true){
+                    print("-------- got it-------")
+                    print(record.key!)
+                    self.sendRoomKey = record.key!
+                     print("-------- got it-------")
+                }
+            
+            
+                
+            }
+            
+            
+            
+            
+        })
+        
+        
+    }
+    
+    /*
+    func prepareLookForKey(){
+        
+        refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            
+            
+            
+            
+            for record in snapshot.children {
+                
+                var user1 = record.value!!["Sad"] as! Bool
+                
+                
+                for i in 0...self.friends.count {
+                    
+                    record.va
+                    
+                    
+                    var user2 = record.value!!["\(self.friends[i].Name)"] as! Bool
+                    
+                    
+                    if(user1 == true && user2 == true){
+                        print("-------- got it-------")
+                        print(record.key!)
+                        self.sendRoomKey = record.key!
+                        print("-------- got it-------")
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            
+            
+            
+            
+        })
+        
+        
+    }
+    */
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -316,11 +395,16 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
          */
         
         if(segue.identifier == "ShowChatRoom") {
+          
+            let filteredfriend : Friends
+            
             let detailViewController = segue.destinationViewController as! FriendsChatViewController
             let myIndexPath = self.tableView.indexPathForSelectedRow
             // let friend = friends[myIndexPath!.row]
             
-            let filteredfriend : Friends
+            
+           
+            
             
             if(myIndexPath != nil) {
                 // Set the movieItem field with the movie // object selected by the user.
@@ -335,6 +419,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                     detailViewController.senderId = "Alex"
                     detailViewController.senderDisplayName = filteredfriend.Name
                     print("00--> \(filteredfriend.Name)")
+                     // lookForKey(filteredfriend)
+                   // detailViewController.chatRoomId = sendRoomKey
                 } else {
                     filteredfriend = friends[myIndexPath!.row]
                     detailViewController.friend = filteredfriend

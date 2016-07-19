@@ -33,7 +33,14 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     var storageRef:FIRStorageReference!
     
+    var objects: [NSDictionary] = []
+    var loaded: [NSDictionary] = []
     
+    let ref = FIRDatabase.database().reference().child("FriendsModule/messages")
+    
+    var chatRoomId: String!
+    
+    var initialLoadComlete: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +48,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         //navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addTapped))
         //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(addTapped))
         
-        
+        print("Entered room \(chatRoomId)")
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(addTapped))
         
@@ -55,6 +62,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize(width: 28, height: 28)
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: 28, height: 28)
         
+        self.inputToolbar?.contentView?.textView?.placeHolder = "New Message"
         
         // Load the image from the given URL
         //
@@ -82,6 +90,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         storageRef = FIRStorage.storage().reference().child("FriendsModule/friendList/8899")
         // [END configurestorage]
         
+         
+       
         
     }
     
@@ -341,7 +351,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!,
                                      senderDisplayName: String!, date: NSDate!) {
         
-        
+        /*
         let message = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text)
         messages.append(message)
         
@@ -370,11 +380,32 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         print("--> \(ref.childByAutoId())")
         
         self.finishReceivingMessage()
+        */
+        if text != "" {
+            sendMessage(text, date: date, picture: nil, location: nil)
+        }
         
+    }
+      func sendMessage(text: String?, date: NSDate, picture: UIImage?, location: String?) {
+        
+        var outgoingMessage = OutgoingMessage?()
+        
+        //if text message
+        if let text = text {
+            outgoingMessage = OutgoingMessage(message: text, senderId: senderId, senderName: senderDisplayName, date: date, status: "Delivered", type: "text")
+            
+           
+        }
+        //play message sent sound
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        self.finishSendingMessage()
+        
+        outgoingMessage!.sendMessage("chatroom1", item: outgoingMessage!.messageDictionary)
         
     }
     
     private func observeMessages() {
+        /*
         let messagesQuery = FIRDatabase.database().reference().child("FriendsModule/myFriend/Chats/users/\(senderId)").queryLimitedToLast(25)
         
         
@@ -392,13 +423,67 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             {
                 //self.addMessage(id, text: text)
             }
+            */
+        
+        /*
+          let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
+        let refMessages = FIRDatabase.database().reference().child("FriendsModule/messages/")
+        var keyfound : String!
+        var foundMsg : String!
+        
+        refMembers.observeEventType(.ChildAdded) { (snapshot: FIRDataSnapshot!) in
+            // 3
+            let id = snapshot.value!["\(self.friend.Name)"] as! Bool
+            let chatMember = snapshot.value!["\(self.senderId)"] as! Bool
             
             
             
-            
-            // 5
+            // 4
+            if(chatMember == true && id == true)
+            {
+                //self.addMessage(id, text: text)
+                print("success\(id)---\(chatMember)")
+                 print("success---\(self.friend.Name)---\(self.senderId)")
+                print(snapshot.key)
+                keyfound = snapshot.key
+               
+            }
+            if(keyfound != nil){
+                
+                
+                
+                refMessages.observeEventType(FIRDataEventType.Value) { (snapshot1: FIRDataSnapshot!) in
+                    
+                    print("90909090")
+                    print(snapshot1.hasChild(keyfound))
+                    
+                    
+                    if(snapshot1.hasChild(keyfound) == true){
+                        
+                    // print(  snapshot1.childSnapshotForPath(keyfound).value!["message"] as! String)
+                        
+                        print("found in message")
+                        
+                       
+                        
+                    }
+                    
+                
+                
+                }
+                // self.messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
+            }
+                         // 5
             self.finishReceivingMessage()
         }
+        
+        */
+        
+
+    }
+    
+    func lookforMessage(fKey : String){
+        
     }
     
     //pressed accessory button
@@ -470,6 +555,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         self.presentViewController(optionMenu, animated: true, completion: nil)
         
     }
+    
+    
     
     
     /*
