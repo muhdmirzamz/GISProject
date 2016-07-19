@@ -142,6 +142,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 				dispatch_async(dispatch_get_main_queue(), {
 					battleVC?.battle = battle
 					
+                    // make this a clear background
 					battleVC?.view.backgroundColor = UIColor.clearColor()
 					
 					self.presentViewController(battleVC!, animated: true, completion: nil)

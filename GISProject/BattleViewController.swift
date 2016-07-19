@@ -20,6 +20,7 @@ class BattleViewController: UIViewController {
     @IBOutlet var amountOfCardAvailable: UILabel!
     @IBOutlet var userCardAvailable: UILabel!
 	@IBOutlet var monsterImgView: UIImageView!
+    @IBOutlet var monsterNameLabel: UILabel!
     @IBOutlet var monsterHealthBar: UIProgressView!
     @IBOutlet var monsterHealthLabel: UILabel!
 	
@@ -59,6 +60,13 @@ class BattleViewController: UIViewController {
         self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
 		self.monsterHealthLabel.text = "\(String(self.battle!.getMonsterHealth()))/\(String(self.battle!.getInitialMonsterHealth()))"
         
+        let str = (self.selectedAnnotation?.imageString)!
+        let str2 = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
+        var ref = FIRDatabase.database().reference().child("/Monster")
+        ref.child("/\(str2)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            self.monsterNameLabel.text = snapshot.value!["name"] as? String 
+        })
+        
         if UIApplication.sharedApplication().scheduledLocalNotifications!.count == 1 {
             self.userCardAvailable.text = "Not available"
         } else {
@@ -67,7 +75,7 @@ class BattleViewController: UIViewController {
 		
         // get the base damage
 		let userID = (FIRAuth.auth()?.currentUser?.uid)!
-		let ref = FIRDatabase.database().reference().child("/Account")
+		ref = FIRDatabase.database().reference().child("/Account")
 		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
 			self.battle?.baseDamage = snapshot.value!["Base Damage"] as? NSNumber
 		})
