@@ -18,6 +18,7 @@ class BattleViewController: UIViewController {
 	
 	@IBOutlet var blurView: MLWLiveBlurView!
     @IBOutlet var amountOfCardAvailable: UILabel!
+    @IBOutlet var userCardAvailable: UILabel!
 	@IBOutlet var monsterImgView: UIImageView!
     @IBOutlet var monsterHealthBar: UIProgressView!
     @IBOutlet var monsterHealthLabel: UILabel!
@@ -53,11 +54,18 @@ class BattleViewController: UIViewController {
 		
 		// set up battle entity
 		self.battle!.selectedAnnotation = self.selectedAnnotation
+		
+        // UI stuff
         self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
-		
-		// set initial monster health
 		self.monsterHealthLabel.text = "\(String(self.battle!.getMonsterHealth()))/\(String(self.battle!.getInitialMonsterHealth()))"
+        
+        if UIApplication.sharedApplication().scheduledLocalNotifications!.count == 1 {
+            self.userCardAvailable.text = "Not available"
+        } else {
+            self.userCardAvailable.text = "Available"
+        }
 		
+        // get the base damage
 		let userID = (FIRAuth.auth()?.currentUser?.uid)!
 		let ref = FIRDatabase.database().reference().child("/Account")
 		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
@@ -171,36 +179,6 @@ class BattleViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-	
-
-//			let date = NSDate()
-//			let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute], fromDate:date)
-//			
-//			// skip to the next day if current time is after 9:00:
-//			if (components.hour >= 9) {
-//				components.day += 1;
-//			}
-//			
-//			components.hour = 9;
-//			components.minute = 0;
-//			
-//			let fireDate = NSCalendar.currentCalendar().dateFromComponents(components)
-//			
-//			print("Notification will fire at: \(fireDate)")
-//			
-//			let localNotif = UILocalNotification()
-//			localNotif.fireDate = fireDate
-//			localNotif.alertBody = "You can use your card again"
-//			localNotif.alertAction = "Ready for battle"
-//			localNotif.timeZone = NSTimeZone.localTimeZone()
-//			localNotif.repeatInterval = .Day
-//			localNotif.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-//			UIApplication.sharedApplication().scheduleLocalNotification(localNotif)
-//			NSNotificationCenter.defaultCenter().postNotificationName("battle", object: self)
-//		}
-//		let scheduledLocalNotifCount = UIApplication.sharedApplication().scheduledLocalNotifications!.count
-
-	
 	
 	func decreaseMonsterHealth() {
 		// the health loop - to decrease health
