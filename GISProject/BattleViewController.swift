@@ -179,6 +179,7 @@ class BattleViewController: UIViewController {
 				// stop timer to avoid health bar glitch
 				self.timer?.invalidate()
 				
+                // update all the things
 				self.battle?.updateCards()
 				
 				// update the number of cards
@@ -208,9 +209,11 @@ class BattleViewController: UIViewController {
 			// go back to map
 			self.alert = UIAlertController.init(title: "Alright", message: "Going back to the map", preferredStyle: .Alert)
 			let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
+                // update all the things
 				self.battle?.updatePlayer()
 				self.battle?.updateCards()
 				self.battle?.updateMonster()
+                self.battle?.updatePreviousLocation()
 				self.battle?.updateLocation()
 			
 				self.backToMap()
