@@ -46,6 +46,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var cards: UILabel!
     @IBOutlet weak var monstersLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var dmgLabel: UILabel!
+    @IBOutlet weak var ownAvailableLabel: UILabel!
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var bgProfile: UIImageView!
     
@@ -72,6 +74,7 @@ class ProfileViewController: UIViewController {
         let ref = FIRDatabase.database().reference().child("/Account/\(uid)")
         let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
         let battle = Battle()
+        let battle2 = Battle()
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
 
@@ -82,10 +85,13 @@ class ProfileViewController: UIViewController {
                     if value?.integerValue == 1 {
                         battle.uidArr?.addObject(key)
                     }
+                    if value?.integerValue == 0 {
+                        battle2.uidArr?.addObject(key)
+                    }
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.cards.text = "\((battle.uidArr?.count)!)"
+                    self.cards.text = "\((battle.uidArr?.count)!)/\((battle2.uidArr?.count)!+(battle.uidArr?.count)!)"
                 })
             })
 
@@ -94,6 +100,7 @@ class ProfileViewController: UIViewController {
                 
                 let level = snapshot.value!["Level"] as! NSNumber
                 let monstersKilled = snapshot.value!["Monsters killed"] as! NSNumber
+                let damage = snapshot.value!["Base Damage"] as! NSNumber
                 let name = snapshot.value!["Name"] as! String
                 let pict = snapshot.value!["Picture"] as! NSNumber
                 
@@ -101,6 +108,7 @@ class ProfileViewController: UIViewController {
                     self.nameLabel.text = name
                     self.monstersLabel.text = String(monstersKilled.intValue)
                     self.levelLabel.text = String(level.intValue)
+                    self.dmgLabel.text = String(damage.intValue)
                     
                     switch pict.intValue {
                     case 0 :
