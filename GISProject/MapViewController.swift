@@ -130,6 +130,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 			
 			battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
 			
+            // be sure to check if own card is available too
 			if (battle.amountOfCardsAvailable?.integerValue)! == 0 {
 				dispatch_async(dispatch_get_main_queue(), { 
 					let alert = UIAlertController.init(title: "Hold up", message: "Sorry you don't have enough cards", preferredStyle: .Alert)

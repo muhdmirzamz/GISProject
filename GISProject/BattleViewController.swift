@@ -182,7 +182,7 @@ class BattleViewController: UIViewController {
                 // update all the things
 				self.battle?.updateCards()
 				
-				// update the number of cards
+				// update the number of extra cards
 				let ref = FIRDatabase.database().reference().child("/Friend")
 				ref.child("/\(self.userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
 					self.battle?.uidArr?.removeAllObjects()
@@ -215,8 +215,31 @@ class BattleViewController: UIViewController {
 				self.battle?.updateMonster()
                 self.battle?.updatePreviousLocation()
 				self.battle?.updateLocation()
-			
-				self.backToMap()
+                
+                // update the number of extra cards
+                let ref = FIRDatabase.database().reference().child("/Friend")
+                ref.child("/\(self.userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                    self.battle?.uidArr?.removeAllObjects()
+                    
+                    for i in snapshot.children {
+                        let key = i.key!!
+                        let value = snapshot.value!["\(key)"] as? NSNumber
+                        
+                        if value?.integerValue == 1 {
+                            self.battle!.uidArr?.addObject(key)
+                        }
+                    }
+                    
+                    self.battle!.amountOfCardsAvailable = NSNumber(integer: Int((self.battle!.uidArr?.count)!))
+                    print((self.battle!.amountOfCardsAvailable?.integerValue)!)
+                    
+                    // set label
+                    self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
+                    
+                    // dismiss view controller
+                    self.delegate?.reloadMap()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
 			}
 			alert!.addAction(okAction)
 			
@@ -225,11 +248,6 @@ class BattleViewController: UIViewController {
 	}
 	
 	@IBAction func dismissBattle() {
-		self.dismissViewControllerAnimated(true, completion: nil)
-	}
-	
-	func backToMap() {
-		self.delegate?.reloadMap()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 }
