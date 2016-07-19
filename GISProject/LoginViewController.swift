@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, ProfileProtocol {
     @IBOutlet weak var Password: UITextField!
     @IBOutlet weak var blackLine: UIImageView!
     @IBOutlet weak var login: UIButton!
+    @IBOutlet weak var loginBtnBG: UIImageView!
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -38,17 +39,8 @@ class LoginViewController: UIViewController, ProfileProtocol {
         let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
         self.view.addGestureRecognizer(tapFunc2)
         
-//        let loginButton = BFPaperButton(frame: CGRectMake(47, 417, 280, 40), raised: true)
-//        loginButton.backgroundColor = UIColor(red: 38/255, green: 232/255, blue: 167/255, alpha: 1)
-//        loginButton.rippleFromTapLocation = true
-//        loginButton.setTitle("Login", forState: .Normal)
-//        loginButton.addTarget(self, action: "Login:", forControlEvents: UIControlEvents.TouchUpInside)
-//        self.view.addSubview(loginButton)
-        
-        self.login.layer.borderColor = UIColor.init(red: 72/255, green: 146/255, blue: 238/255, alpha: 1.0).CGColor
-        self.login.layer.borderWidth = 2
         self.login.layer.cornerRadius = 5
-        
+        self.loginBtnBG.layer.cornerRadius = 5
         
         self.view.bringSubviewToFront(blackLine)
     }

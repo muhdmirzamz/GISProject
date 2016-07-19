@@ -109,8 +109,8 @@ class QRViewController: UIViewController {
         // material design button
         let button = BFPaperButton(frame: CGRectMake(112, 550, 150, 40), raised: true)
         button.setTitle("Add Card", forState: .Normal)
-        button.titleFont = UIFont(name: "HelveticaNeue-Thin", size: 23)
-        button.backgroundColor = UIColor(red: 38/255, green: 232/255, blue: 167/255, alpha: 1)
+        button.titleFont = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        button.backgroundColor = UIColor(red: 72/255, green: 146/255, blue: 238/255, alpha: 1)
         button.cornerRadius = 3
         button.rippleFromTapLocation = true
         button.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
