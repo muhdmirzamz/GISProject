@@ -11,6 +11,7 @@ import Firebase
 
 class Battle {
 	
+    var initialMonsterHealth: Float?
     var monsterHealth: Float?
     var amountOfCardsToUse: NSNumber?
 	var amountOfCardsAvailable: NSNumber?
@@ -25,7 +26,8 @@ class Battle {
     let userID = (FIRAuth.auth()?.currentUser?.uid)!
     
 	init() {
-        self.monsterHealth = 5
+        self.initialMonsterHealth = 1
+        self.monsterHealth = 1
 		self.expectedMonsterHealth = 0
         self.amountOfCardsToUse = 0
 		self.amountOfCardsAvailable = 0
@@ -38,6 +40,9 @@ class Battle {
     
     func getMonsterHealth() -> Int {
         return Int(self.monsterHealth!)
+    }
+    func getInitialMonsterHealth() -> Int {
+        return Int(self.initialMonsterHealth!)
     }
 
 	func getExpectedMonsterHealth() -> Int {
@@ -105,6 +110,29 @@ class Battle {
         ref.child("/\(key)/image string").setValue(imageString)
     }
 	
+    func updatePreviousLocation() {
+        let str = (self.selectedAnnotation?.imageString)!
+        let str2 = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
+        
+        let ref = FIRDatabase.database().reference().child("/PreviousLocation")
+        ref.child("/\(str2)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            print("Count: \(snapshot.childrenCount)")
+            
+            // index 9 still works because the last added index is going to be 10
+            if snapshot.childrenCount < 10 {
+                let index = snapshot.childrenCount + 1
+                let ref2 = FIRDatabase.database().reference().child("/PreviousLocation")
+                ref2.child("/\(str2)/\(index)/latitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
+                ref2.child("/\(str2)/\(index)/longitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
+            } else {
+                let index = (Int(arc4random()) % 9) + 1
+                let ref2 = FIRDatabase.database().reference().child("/PreviousLocation")
+                ref2.child("/\(str2)/\(index)/latitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
+                ref2.child("/\(str2)/\(index)/longitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
+            }
+        })
+    }
+    
 	func updateLocation() {
 		// generate another random location
 		var random = Double(arc4random()) % 0.004983

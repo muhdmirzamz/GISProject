@@ -44,23 +44,46 @@ class QRViewController: UIViewController {
     // Custom labels for user based on stats
     //
     func setCustomLabel() {
-        let ref = FIRDatabase.database().reference().child("/Account")
+        //Init
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        let ref = FIRDatabase.database().reference().child("/Account/\(uid)")
+        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
+        
         var name : String = ""
         var card : Int = 0
         var monster : Int = 0
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            ref.child("/\(uid)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                name = snapshot.value!["Name"] as! String
-                let card = snapshot.value!["Cards"] as! NSNumber
+        let battle = Battle()
+        
+        let dispatch_group = dispatch_group_create()
+        
+
+        ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            for i in snapshot.children {
+                let key = i.key!!
+                let value = snapshot.value!["\(key)"] as? NSNumber
+                if value?.integerValue == 1 {
+                    battle.uidArr?.addObject(key)
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.cardLabel.text = "\((battle.uidArr?.count)!)"
+            })
+        })
+        
+        ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                //Get values
+                let name = snapshot.value!["Name"] as! String
                 let monster = snapshot.value!["Monsters killed"] as! NSNumber
+                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    //Set to labels
                     self.nameLabel.text = "\(name)"
-                    self.cardLabel.text = "\(card)"
                     self.monsterLabel.text = "\(monster)"
                 })
             })
-        }
+        })
     }
     
     //
@@ -84,15 +107,10 @@ class QRViewController: UIViewController {
         QRCodeImageView.frame = CGRectMake(62.5, 157, 250, 250)
     
         // material design button
-//        let img: UIImage? = UIImage(named: "ic_add_white")
-//        let button = BFPaperButton(frame: CGRectMake(160, 530, 55, 55), raised: true)
         let button = BFPaperButton(frame: CGRectMake(112, 550, 150, 40), raised: true)
-//        button.setImage(img, forState: .Normal)
-//        button.setImage(img, forState: .Highlighted)
         button.setTitle("Add Card", forState: .Normal)
-        button.titleFont = UIFont(name: "HelveticaNeue-Thin", size: 23)
-        button.backgroundColor = UIColor(red: 38/255, green: 232/255, blue: 167/255, alpha: 1)
-//        button.cornerRadius = button.frame.size.width / 2
+        button.titleFont = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        button.backgroundColor = UIColor(red: 72/255, green: 146/255, blue: 238/255, alpha: 1)
         button.cornerRadius = 3
         button.rippleFromTapLocation = true
         button.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)

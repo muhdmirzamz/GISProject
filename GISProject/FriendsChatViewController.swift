@@ -50,7 +50,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         print("Entered room \(chatRoomId)")
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: "addTapped")
         
         
         self.navigationItem.title = friend.Name

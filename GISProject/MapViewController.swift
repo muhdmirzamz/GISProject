@@ -130,6 +130,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 			
 			battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
 			
+            // be sure to check if own card is available too
 			if (battle.amountOfCardsAvailable?.integerValue)! == 0 {
 				dispatch_async(dispatch_get_main_queue(), { 
 					let alert = UIAlertController.init(title: "Hold up", message: "Sorry you don't have enough cards", preferredStyle: .Alert)
@@ -183,19 +184,28 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		span.latitudeDelta = 0.004
 		span.longitudeDelta = 0.004
 		
+        // coordinate limits
 		// 1.382414, 103.848156 - top left
 		// 1.377431, 103.850278 - bottom right
 		
-		var locationTest = CLLocationCoordinate2D()
-		locationTest.latitude = (1.377431 + 1.382414) / 2
-		locationTest.longitude = (103.848156 + 103.850278) / 2
+		var location = CLLocationCoordinate2D()
+		location.latitude = (1.377431 + 1.382414) / 2
+		location.longitude = (103.848156 + 103.850278) / 2
 		
 		self.region = MKCoordinateRegion()
-		self.region!.center = locationTest
+		self.region!.center = location
 		self.region!.span = span
 		
 		self.mapView.setRegion(self.region!, animated: true)
 		self.mapView.setCenterCoordinate((self.region?.center)!, animated: true)
+        
+        // displays map in an angle
+        var eyeCoord = CLLocationCoordinate2D()
+        eyeCoord.latitude = ((1.377431 + 1.382414) / 2) - 0.0099
+        eyeCoord.longitude = ((103.848156 + 103.850278) / 2)
+        
+        let camera = MKMapCamera.init(lookingAtCenterCoordinate: location, fromEyeCoordinate: eyeCoord, eyeAltitude: 20)
+        self.mapView.setCamera(camera, animated: true)
 	}
 	
     override func didReceiveMemoryWarning() {

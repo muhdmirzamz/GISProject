@@ -68,24 +68,40 @@ class ProfileViewController: UIViewController {
         self.activityIndicator.startAnimating()
         setProfileBG()
         
-        let ref = FIRDatabase.database().reference().child("/Account")
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        let ref = FIRDatabase.database().reference().child("/Account/\(uid)")
+        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
+        let battle = Battle()
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
 
-            ref.child("/\(uid)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                for i in snapshot.children {
+                    let key = i.key!!
+                    let value = snapshot.value!["\(key)"] as? NSNumber
+                    if value?.integerValue == 1 {
+                        battle.uidArr?.addObject(key)
+                    }
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.cards.text = "\((battle.uidArr?.count)!)"
+                })
+            })
+
+            
+            ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
                 
                 let level = snapshot.value!["Level"] as! NSNumber
                 let monstersKilled = snapshot.value!["Monsters killed"] as! NSNumber
                 let name = snapshot.value!["Name"] as! String
                 let pict = snapshot.value!["Picture"] as! NSNumber
-                let card = snapshot.value!["Cards"] as! NSNumber
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.nameLabel.text = name
                     self.monstersLabel.text = String(monstersKilled.intValue)
                     self.levelLabel.text = String(level.intValue)
-                    self.cards.text = String(card.intValue)
+                    
                     switch pict.intValue {
                     case 0 :
                         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
