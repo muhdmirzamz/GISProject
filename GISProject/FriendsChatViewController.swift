@@ -37,6 +37,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     var loaded: [NSDictionary] = []
     
     let ref = FIRDatabase.database().reference().child("FriendsModule/messages")
+    let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
     
     var chatRoomId: String!
     
@@ -94,6 +95,42 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
        
         
     }
+    func lookForKey(getKey:Friends){
+        
+        refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            
+            
+            
+            
+            for record in snapshot.children {
+                print("-------------------------")
+                print(record)
+                print(record.value!!["Alex"] as! Bool)
+                print(record.value!!["\(getKey)"] as! Bool)
+                print("-------------------------")
+                
+                var user1 = record.value!!["Alex"] as! Bool
+                var user2 = record.value!!["\(getKey)"] as! Bool
+                
+                if(user1 == true && user2 == true){
+                    print("-------- got it-------")
+                    print(record.key!)
+                    self.chatRoomId = record.key!
+                    print("-------- got it-------")
+                }
+                
+                
+                
+            }
+            
+            
+            
+            
+        })
+        
+        
+    }
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         

@@ -50,6 +50,40 @@ class FriendsDataManager: NSObject {
         
     }
     
+    static func loadFriendsRoomKey(onComplete: ([String]) -> Void)
+    {
+        
+        //create an empty friends list array
+        
+        var friendsList : [String] = []
+        
+        let ref = FIRDatabase.database().reference().child("FriendsModule/friendList/")
+        
+        
+        ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            
+            
+            for record in snapshot.children {
+                
+              
+                
+                friendsList.append(record.key!)
+                
+                
+                
+            }
+            
+            
+            onComplete(friendsList)
+            
+        })
+        
+    }
+    
+    
+ 
+    
+    
     
     // Downloads the image using the specified URL and
     // shows it on the imageView. If your imageView is

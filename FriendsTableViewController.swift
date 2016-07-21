@@ -28,9 +28,11 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     //chatroom friends
     var chatRoomFriend : Friends!
     
-     let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
+     //let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
     
     var sendRoomKey : String!
+    
+    var friendsSnapShot = [String]()
     
     
     override func viewDidLoad() {
@@ -85,8 +87,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         
         //start to load data
-        loadFriends()
-        
+       
+        loadFriendsKeySnapShot()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -97,7 +99,30 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         
     }
-    
+    func loadFriendsKeySnapShot(){
+        
+        FriendsDataManager.loadFriendsRoomKey ({ (friendsListFromFirebase) -> Void in
+            // This is a closure.
+            //
+            // This block of codes is executed when the
+            // async loading from Firebase is complete.
+            // What it is to reassigned the new list loaded
+            // from Firebase.
+            //
+            self.friendsSnapShot = friendsListFromFirebase
+            // Once done, call on the Table View to reload
+            // all its contents
+         
+            
+            
+        })
+        self.loadFriends()
+        /*
+        for i in 0...self.friendsSnapShot.count {
+            print("-->\(self.friendsSnapShot[i])")
+        }
+        */
+    }
     
     
     
@@ -141,6 +166,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     //load friends from firebase
     func loadFriends()
     {
+        /*
+        
         FriendsDataManager.loadFriends ({ (friendsListFromFirebase) -> Void in
             // This is a closure.
             //
@@ -154,12 +181,38 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             // all its contents
             self.tableView.reloadData()
         })
+        */
+        
+        for i in 0...self.friendsSnapShot.count {
+           
+            print("-->\(self.friendsSnapShot[i])")
+        }
+        
+    }
+    /*
+    func loadChatRoom(getKey: Friends)
+    {
+        
+        
+        FriendsDataManager.loadChatRoom ({ (getkey) -> Void in
+            // This is a closure.
+            //
+            // This block of codes is executed when the
+            // async loading from Firebase is complete.
+            // What it is to reassigned the new list loaded
+            // from Firebase.
+            //
+            self.sendRoomKey = getKey
+            
+            print("gotten key: \(self.sendRoomKey)")
+            // Once done, call on the Table View to reload
+            // all its contents
+            // self.tableView.reloadData()
+        })
         
         
     }
-    
-    
-    
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -289,7 +342,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
      }
      */
     
-    
+    /*
     func lookForKey(getKey:Friends){
         
         refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
@@ -325,6 +378,9 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         
     }
+    */
+    
+    
     
     /*
     func prepareLookForKey(){
@@ -368,6 +424,13 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
     }
     */
+    
+    
+    
+ 
+    
+    
+    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -419,7 +482,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                     detailViewController.senderId = "Alex"
                     detailViewController.senderDisplayName = filteredfriend.Name
                     print("00--> \(filteredfriend.Name)")
-                     // lookForKey(filteredfriend)
+                      //lookForKey(filteredfriend)
+                    //loadChatRoom(filteredfriend)
                    // detailViewController.chatRoomId = sendRoomKey
                 } else {
                     filteredfriend = friends[myIndexPath!.row]
