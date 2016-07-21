@@ -119,6 +119,7 @@ class Battle {
             print("Count: \(snapshot.childrenCount)")
             
             // index 9 still works because the last added index is going to be 10
+            // first if statement can be deleted actually
             if snapshot.childrenCount < 10 {
                 let index = snapshot.childrenCount + 1
                 let ref2 = FIRDatabase.database().reference().child("/PreviousLocation")

@@ -30,6 +30,7 @@ class QRViewController: UIViewController {
         generateQRCode()
         setCustomLabel()
         setBlur()
+        setBG()
     }
     
     override func didReceiveMemoryWarning() {

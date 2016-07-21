@@ -16,4 +16,5 @@ target 'GISProject' do
   pod 'ISTimeline', '~> 0.0.3'
   pod 'Bluuur'
   pod 'BFPaperButton'
+  pod 'PageMenu'
 end

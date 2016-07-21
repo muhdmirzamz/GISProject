@@ -84,6 +84,7 @@ PODS:
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
   - MaterialCard (1.0.4)
+  - PageMenu (1.2.9)
   - QRCode (0.5)
   - UIColor+BFPaperColors (1.7.2)
 
@@ -97,6 +98,7 @@ DEPENDENCIES:
   - ISTimeline (~> 0.0.3)
   - JSQMessagesViewController
   - MaterialCard
+  - PageMenu
   - QRCode
 
 SPEC CHECKSUMS:
@@ -118,9 +120,10 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   MaterialCard: d360bf995f48ee999643958dd1531bdfa8622e91
+  PageMenu: ba19ff267f7a19e444e93c20a7847b78954a7011
   QRCode: a249ed747aeb0f4bf5f9c58b5b001b6b3bc80073
   UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
 
-PODFILE CHECKSUM: bdfe464bdd8319a4f6f3a9e6cbc0fa14ad893bed
+PODFILE CHECKSUM: 1039cc4b60ce9be207179b70dc159cbd3728cc66
 
 COCOAPODS: 1.0.1
