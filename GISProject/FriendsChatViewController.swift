@@ -43,6 +43,9 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     var initialLoadComlete: Bool = false
     
+    var senderKey : String!
+    var friendsKey : String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,34 +95,60 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         // [END configurestorage]
         
          
-       
+       lookForKey()
         
     }
-    func lookForKey(getKey:Friends){
+    func lookForKey(){
         
         refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             
-            
+            print("sender\(self.senderKey)")
+            print("sender\(self.friendsKey)")
             
             
             for record in snapshot.children {
-                print("-------------------------")
-                print(record)
-                print(record.value!!["Alex"] as! Bool)
-                print(record.value!!["\(getKey)"] as! Bool)
-                print("-------------------------")
+               
+               
+        
                 
-                var user1 = record.value!!["Alex"] as! Bool
-                var user2 = record.value!!["\(getKey)"] as! Bool
                 
+                //print(record.value!!["\(self.friendsKey)"] as? Bool)
+             
+                var user1Temp : Bool = false
+                var user2Temp : Bool = false
+                
+                var user1 = record.value!!["\(self.senderKey)"] as? Bool
+                
+                if(user1 != nil){
+                    user1Temp = true
+                }else{
+                    print("user 1 not found")
+                }
+                
+                var user2 = record.value!!["\(self.friendsKey)"] as? Bool
+                
+                if(user2 != nil){
+                    user2Temp = true
+                }else{
+                     print("user 2 not found")
+                }
+                
+                print("sender\(self.senderKey)")
+                print("sender\(self.friendsKey)")
+                
+   
+               print("aaaaaaaaaa")
                 if(user1 == true && user2 == true){
                     print("-------- got it-------")
                     print(record.key!)
                     self.chatRoomId = record.key!
+                    self.chatRoomId = record.key!
                     print("-------- got it-------")
+                }else{
+                    print("no chat yet")
                 }
                 
-                
+               
                 
             }
             
@@ -127,8 +156,6 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             
         })
-        
-        
     }
     
     
@@ -429,7 +456,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         //if text message
         if let text = text {
-            outgoingMessage = OutgoingMessage(message: text, senderId: senderId, senderName: senderDisplayName, date: date, status: "Delivered", type: "text")
+            outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey!, senderName: self.friendsKey!, date: date, status: "Delivered", type: "text")
             
            
         }
@@ -442,25 +469,31 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     }
     
     private func observeMessages() {
-        /*
-        let messagesQuery = FIRDatabase.database().reference().child("FriendsModule/myFriend/Chats/users/\(senderId)").queryLimitedToLast(25)
+      
+        let messagesQuery = FIRDatabase.database().reference().child("FriendsModule/messages/\(self.chatRoomId)").queryLimitedToLast(25)
         
         
         
         
         
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FIRDataSnapshot!) in
-            // 3
-            let id = snapshot.value!["senderId"] as! String
-            let text = snapshot.value!["text"] as! String
-            let chatMember = snapshot.value!["chatMember"] as! String
             
+            
+            // 3
+            let id = snapshot.value!["name"] as! String
+            let message = snapshot.value!["message"] as! String
+            let timestamp = snapshot.value!["timestamp"] as! String
+            
+            print("id--> \(id)")
             // 4
-            if(chatMember == self.friend.Name && id == self.senderId)
+            if(self.senderKey == id)
             {
-                //self.addMessage(id, text: text)
+                print("have?")
+                print("\(message)")
+               // self.addMessage(id, text: message)
+                 self.messages.append(JSQMessage(senderId: self.senderKey, displayName: self.friendsKey, text: message))
             }
-            */
+   self.finishReceivingMessage()
         
         /*
           let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
@@ -516,8 +549,15 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         */
         
-
+        }
     }
+    
+    //creating msg
+    func addMessage(id: String, text: String) {
+        let message = JSQMessage(senderId: id, displayName: "", text: text)
+        messages.append(message)
+    }
+    
     
     func lookforMessage(fKey : String){
         

@@ -88,7 +88,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         //start to load data
        
-        loadFriendsKeySnapShot()
+        //loadFriendsKeySnapShot()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -96,7 +96,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        
+        loadFriends()
         
     }
     func loadFriendsKeySnapShot(){
@@ -116,7 +116,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             
             
         })
-        self.loadFriends()
+       // self.loadFriends()
         /*
         for i in 0...self.friendsSnapShot.count {
             print("-->\(self.friendsSnapShot[i])")
@@ -166,7 +166,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     //load friends from firebase
     func loadFriends()
     {
-        /*
+      
         
         FriendsDataManager.loadFriends ({ (friendsListFromFirebase) -> Void in
             // This is a closure.
@@ -181,12 +181,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             // all its contents
             self.tableView.reloadData()
         })
-        */
+       
         
-        for i in 0...self.friendsSnapShot.count {
-           
-            print("-->\(self.friendsSnapShot[i])")
-        }
         
     }
     /*
@@ -481,7 +477,9 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                     detailViewController.friend = filteredfriend
                     detailViewController.senderId = "Alex"
                     detailViewController.senderDisplayName = filteredfriend.Name
-                    print("00--> \(filteredfriend.Name)")
+                    detailViewController.friendsKey = filteredfriend.myKey
+                   detailViewController.senderKey = "Friend0"
+                    print(filteredfriend.myKey)
                       //lookForKey(filteredfriend)
                     //loadChatRoom(filteredfriend)
                    // detailViewController.chatRoomId = sendRoomKey
@@ -489,11 +487,11 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                     filteredfriend = friends[myIndexPath!.row]
                     detailViewController.friend = filteredfriend
                     detailViewController.friend = filteredfriend
-                    
+                    detailViewController.senderKey = "Friend0"
                     detailViewController.senderId = "Alex"
                     detailViewController.senderDisplayName = filteredfriend.Name
-                    print("00--> \(filteredfriend.Name)")
-                    
+                     detailViewController.friendsKey = filteredfriend.myKey
+                    print(filteredfriend.myKey)
                 }
                 
                 

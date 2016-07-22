@@ -38,7 +38,10 @@ class FriendsDataManager: NSObject {
                 
                 friendsList.append(Friends(name: record.value!!["Name"] as! String,
                     level: record.value!!["Level"] as! Double,
-                    thumbnailImgUrl: record.value!!["ThumbnailImgUrl"] as! String))
+                    thumbnailImgUrl: record.value!!["ThumbnailImgUrl"] as! String,
+                    myKey : record.key!))
+                
+                
                 
                 
             }

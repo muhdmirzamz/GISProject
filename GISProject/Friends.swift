@@ -13,12 +13,16 @@ class Friends{
     var Name : String
     var Level: Double
     var ThumbnailImgUrl : String
+    var myKey : String
     
-    init(name: String,level:Double,thumbnailImgUrl:String)
+    
+    
+    init(name: String,level:Double,thumbnailImgUrl:String,myKey:String)
     {
         self.Name = name
         self.Level = level
         self.ThumbnailImgUrl = thumbnailImgUrl
+        self.myKey = myKey
     }
 }
  
