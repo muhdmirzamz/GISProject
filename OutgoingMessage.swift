@@ -49,6 +49,112 @@ class OutgoingMessage {
     //add
     func sendMessage(chatRoomID: String, item: NSMutableDictionary) {
         
+        print("ooutoing chat romid -> \(chatRoomID)")
+        
+        refChats.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            if snapshot.hasChild("\(chatRoomID)"){
+                
+                print("true rooms exist")
+                
+                let title : String = item["message"] as! String
+                let lastMessage : String = item["message"] as! String
+                var timeStamp = item["date"] as! String
+                var type = item["type"] as! String
+                 let senderId : String = item["senderId"] as! String
+                
+                //chats
+                
+                
+                //messages
+                
+                let itemMessage = self.refMessages.child("\(chatRoomID)")// 1
+                
+                let message : String = item["message"] as! String
+                
+                //random key for individual chat room
+                let randomChatKey = itemMessage.childByAutoId()
+                
+                let conversation = [ // 2
+                    "name" : senderId,
+                    "message": message,
+                    "timestamp": timeStamp,
+                    "type" : type
+                    
+                ]
+                //itemMessage.setValue(conversation)
+                itemMessage.child("/\(randomChatKey.key)").setValue(conversation)
+                
+                
+                
+            }else{
+                
+                print("false room doesn't exist")
+                
+                let itemChat = self.refChats.childByAutoId() // 1
+                
+                
+                let title : String = item["message"] as! String
+                let lastMessage : String = item["message"] as! String
+                var timeStamp = item["date"] as! String
+                var type = item["type"] as! String
+                
+                let chat = [ // 2
+                    "title" : title,
+                    "lastMessage": lastMessage,
+                    "timestamp": timeStamp
+                    
+                ]
+                
+                
+                itemChat.setValue(chat) // 3
+                
+                
+                
+                //members
+                //same as chat key
+                let itemMember = self.refMembers.child(itemChat.key)// 1
+                
+                
+                let senderId : String = item["senderId"] as! String
+                let senderName: String = item["senderName"] as! String
+                
+                let messageMember = [ // 2
+                    "\(senderName)": true,
+                    "\(senderId)": true
+                    
+                ]
+                itemMember.setValue(messageMember) // 3
+                
+                
+                
+                //messages
+                
+                let itemMessage = self.refMessages.child(itemChat.key)// 1
+                
+                let message : String = item["message"] as! String
+                
+                //random key for individual chat room
+                let randomChatKey = itemMessage.childByAutoId()
+                
+                let conversation = [ // 2
+                    "name" : senderId,
+                    "message": message,
+                    "timestamp": timeStamp,
+                    "type" : type
+                    
+                ]
+                //itemMessage.setValue(conversation)
+                itemMessage.child("/\(randomChatKey.key)").setValue(conversation)
+                
+                
+            }
+            
+            
+        })
+        
+        
+        /*
         
          //chats
          let itemChat = refChats.childByAutoId() // 1
@@ -57,6 +163,7 @@ class OutgoingMessage {
         let title : String = item["message"] as! String
         let lastMessage : String = item["message"] as! String
         var timeStamp = item["date"] as! String
+        var type = item["type"] as! String
         
         let chat = [ // 2
             "title" : title,
@@ -99,7 +206,8 @@ class OutgoingMessage {
          let conversation = [ // 2
          "name" : senderId,
          "message": message,
-         "timestamp": timeStamp
+         "timestamp": timeStamp,
+         "type" : type
          
          ]
          //itemMessage.setValue(conversation)
@@ -107,7 +215,7 @@ class OutgoingMessage {
         
         
          
- 
+ */
  
        
         /*

@@ -48,6 +48,7 @@
 		88DD7AE41D3BE2DC00B64832 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD7AE31D3BE2DC00B64832 /* IncomingMessage.swift */; };
 		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
 		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
+		88EF1B3D1D41C2910091AE70 /* FriendChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF1B3C1D41C2910091AE70 /* FriendChat.swift */; };
 		88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */; };
 		88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */; };
 		88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE141D2138EC00577EC5 /* Friends.swift */; };
@@ -108,6 +109,7 @@
 		88DD7AE31D3BE2DC00B64832 /* IncomingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
 		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
+		88EF1B3C1D41C2910091AE70 /* FriendChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendChat.swift; sourceTree = "<group>"; };
 		88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDetailViewController.swift; path = GISProject/FriendsDetailViewController.swift; sourceTree = "<group>"; };
 		88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsChatViewController.swift; path = GISProject/FriendsChatViewController.swift; sourceTree = "<group>"; };
 		88EFBE141D2138EC00577EC5 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Friends.swift; path = GISProject/Friends.swift; sourceTree = "<group>"; };
@@ -249,14 +251,6 @@
 			name = Account;
 			sourceTree = "<group>";
 		};
-		8804BFF61D255B6300156549 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				8804BFF71D255B8400156549 /* Theme.swift */,
-			);
-			name = Theme;
-			sourceTree = "<group>";
-		};
 		8877E81A1D3BB7BF00A595DC /* Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +276,7 @@
 				88EFBE141D2138EC00577EC5 /* Friends.swift */,
 				88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */,
 				88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */,
+				88EF1B3C1D41C2910091AE70 /* FriendChat.swift */,
 				88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */,
 				88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */,
 				88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */,
@@ -589,12 +584,11 @@
 				8156447B1D126CA40028D162 /* Profile.swift in Sources */,
 				88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */,
 				881F14931D329CBF00F0F270 /* SlideOutAnimationController.swift in Sources */,
+				88EF1B3D1D41C2910091AE70 /* FriendChat.swift in Sources */,
 				81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */,
 				6D8169F61D360B1F00AC33C6 /* LoginViewController.swift in Sources */,
 				88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */,
 				88DD7AE41D3BE2DC00B64832 /* IncomingMessage.swift in Sources */,
-				81364F641D349A5F009A4B8E /* GeoVisMapViewController.swift in Sources */,
-				8804BFF81D255B8400156549 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

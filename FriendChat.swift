@@ -1,9 +1,9 @@
 //
-//  FriendsChatViewController.swift
-//  GISProject
+//  ChatViewController.swift
+//  quickChat
 //
-//  Created by XINGYU on 12/6/16.
-//  Copyright © 2016 NYP. All rights reserved.
+//  Created by David Kababyan on 06/03/2016.
+//  Copyright © 2016 David Kababyan. All rights reserved.
 //
 
 import UIKit
@@ -13,10 +13,7 @@ import FirebaseStorage
 import Firebase
 import Photos
 
-
-class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-    
-    var friend : Friends!
+class ChatViewController: JSQMessagesViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -27,8 +24,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     //chaged
     //let ref = Firebase(url: "https://quickchataplication.firebaseio.com/Message")
-    let ref = FIRDatabase.database().reference().child("FriendsModule/messages/")
-    let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
+    let ref = FIRDatabase.database().reference().child("FriendsModule/messages")
     
     var messages: [JSQMessage] = []
     var objects: [NSDictionary] = []
@@ -41,7 +37,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     var firstLoad: Bool?
     
     
-    // var withUser: BackendlessUser?
+   // var withUser: BackendlessUser?
     var recent: NSDictionary?
     
     var chatRoomId: String!
@@ -54,20 +50,19 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     
     
+   
     
-    
-    
+  
     
     var senderKey : String!
     var friendsKey : String!
     
     override func viewWillAppear(animated: Bool) {
         loadUserDefaults()
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
-        // ClearRecentCounter(chatRoomId)
+       // ClearRecentCounter(chatRoomId)
         ref.removeAllObservers()
     }
     
@@ -80,73 +75,14 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
+       
         
-        lookForKey()
         //load firebase messages
-        
+        loadmessages()
         
         self.inputToolbar?.contentView?.textView?.placeHolder = "New Message"
         
     }
-    func lookForKey(){
-        
-        refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            
-            print("sender : \(self.senderKey)")
-            print("sender : \(self.friendsKey)")
-            
-            
-            for record in snapshot.children {
-                
-                
-                
-                
-                
-                //print(record.value!!["\(self.friendsKey)"] as? Bool)
-                
-                var user1Temp : Bool = false
-                var user2Temp : Bool = false
-                
-                var user1 = record.value!!["\(self.senderKey)"] as? Bool
-                
-                if(user1 != nil){
-                    user1Temp = true
-                }else{
-                    print("user 1 not found")
-                }
-                
-                var user2 = record.value!!["\(self.friendsKey)"] as? Bool
-                
-                if(user2 != nil){
-                    user2Temp = true
-                }else{
-                    print("user 2 not found")
-                }
-                
-                print("sender\(self.senderKey)")
-                print("sender\(self.friendsKey)")
-                
-                
-                print("aaaaaaaaaa")
-                if(user1 == true && user2 == true){
-                    print("-------- got it-------")
-                    print(record.key!)
-                    self.chatRoomId = record.key!
-                    self.chatRoomId = record.key!
-                    print("-------- got it-------")
-                     self.loadmessages()
-                }else{
-                    print("no chat yet")
-                }
-                
-            }
-            
-        })
-        
-        
-    }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -216,9 +152,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         let message = objects[indexPath.row]
         
-       // let status = message["status"] as! String
+        let status = message["status"] as! String
         
-        let status = "online"
         if indexPath.row == (messages.count - 1) {
             return NSAttributedString(string: status)
         } else {
@@ -270,7 +205,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         let shareLoction = UIAlertAction(title: "Share Location", style: .Default) { (alert: UIAlertAction!) -> Void in
             
-            
+           
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alert : UIAlertAction!) -> Void in
@@ -294,9 +229,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         //if text message
         if let text = text {
-           // outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey, senderName: self.senderKey, date: date, status: "Delivered", type: "text")
-            
-             outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey!, senderName: self.friendsKey!, date: date, status: "Delivered", type: "text")
+            outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey, senderName: self.senderKey, date: date, status: "Delivered", type: "text")
         }
         
         
@@ -306,30 +239,23 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         self.finishSendingMessage()
         
         
-        outgoingMessage!.sendMessage("\(self.chatRoomId)", item: outgoingMessage!.messageDictionary)
+        outgoingMessage!.sendMessage(chatRoomId, item: outgoingMessage!.messageDictionary)
     }
     
     
     //MARK: Load Messages
     
     func loadmessages() {
-        print("load msges")
         
-        let messagesQuery = FIRDatabase.database().reference().child("FriendsModule/messages/\(self.chatRoomId)").queryLimitedToLast(25)
-        print(ref)
-      
-         ref.child("\(self.chatRoomId)").observeEventType(.ChildAdded, withBlock: {
+        
+        ref.child(chatRoomId).observeEventType(.ChildAdded, withBlock: {
             snapshot in
             
-             print("chatroom id \(self.chatRoomId)")
             if snapshot.exists() {
                 let item = (snapshot.value as? NSDictionary)!
                 
-               
-                
                 if self.initialLoadComlete {
                     let incoming = self.insertMessage(item)
-                    
                     
                     if incoming {
                         JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
@@ -338,32 +264,28 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
                     self.finishReceivingMessageAnimated(true)
                     
                 } else {
-                    print("no msg : \(item)")
                     self.loaded.append(item)
                 }
-            }else{
-                print("no snapshot")
             }
-         
         })
- 
-
-       ref.child("\(self.chatRoomId)").observeEventType(.ChildChanged, withBlock: {
+        
+        
+        ref.child(chatRoomId).observeEventType(.ChildChanged, withBlock: {
             snapshot in
             
             //updated message
         })
         
         
-       ref.child("\(self.chatRoomId)").observeEventType(.ChildRemoved, withBlock: {
+        ref.child(chatRoomId).observeEventType(.ChildRemoved, withBlock: {
             snapshot in
             
             //Deleted message
         })
         
-      ref.child("\(self.chatRoomId)").observeSingleEventOfType(.Value, withBlock:{
+        ref.child(chatRoomId).observeSingleEventOfType(.Value, withBlock:{
             snapshot in
-            print("00--> insert msg")
+            
             self.insertMessages()
             self.finishReceivingMessageAnimated(true)
             self.initialLoadComlete = true
@@ -375,7 +297,6 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         for item in loaded {
             //create message
-            print("item 9 \(item)")
             insertMessage(item)
         }
     }
@@ -387,18 +308,14 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         let message = incomingMessage.createMessage(item)
         
         objects.append(item)
-        
-        if(message != nil){
-            messages.append(message!)
-        }
-        
+        messages.append(message!)
         
         return incoming(item)
     }
     
     func incoming(item: NSDictionary) -> Bool {
         
-        if self.senderKey == item["name"] as! String {
+        if self.senderKey == item["senderId"] as! String {
             print("have location")
             return false
         } else {
@@ -408,7 +325,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     func outgoing(item: NSDictionary) -> Bool {
         
-        if self.senderKey == item["name"] as! String {
+        if self.senderKey == item["senderId"] as! String {
             return true
         } else {
             return false
@@ -417,7 +334,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     
     //MARK: Helper functions
-    
+ 
     
     func getAvatars() {
         
@@ -428,8 +345,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(30, 30)
             
             //download avatars
-            //  avatarImageFromBackendlessUser(backendless.userService.currentUser)
-            //  avatarImageFromBackendlessUser(withUser!)
+          //  avatarImageFromBackendlessUser(backendless.userService.currentUser)
+          //  avatarImageFromBackendlessUser(withUser!)
             
             //create avatars
             createAvatars(avatarImagesDictionary)
@@ -469,10 +386,10 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             let mediaItem = message.media as! JSQPhotoMediaItem
             
-            // let photos = IDMPhoto.photosWithImages([mediaItem.image])
-            // let browser = IDMPhotoBrowser(photos: photos)
+           // let photos = IDMPhoto.photosWithImages([mediaItem.image])
+           // let browser = IDMPhotoBrowser(photos: photos)
             
-            //  self.presentViewController(browser, animated: true, completion: nil)
+          //  self.presentViewController(browser, animated: true, completion: nil)
         }
         
         if object["type"] as! String == "location" {
@@ -506,7 +423,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             let mediaItem = message.media as! JSQLocationMediaItem
             
             let mapView = segue.destinationViewController as! MapViewController
-            //  mapView.location = mediaItem.location
+          //  mapView.location = mediaItem.location
         }
     }
     
@@ -523,4 +440,5 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         showAvatars = userDefaults.boolForKey(kAVATARSTATE)
     }
+    
 }

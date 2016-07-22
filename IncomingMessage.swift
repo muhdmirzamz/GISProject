@@ -45,14 +45,20 @@ class IncomingMessage {
     
     func createTextMessage(item: NSDictionary) -> JSQMessage {
         
-        let name = item["senderName"] as? String
-        let userId = item["senderId"] as? String
-        
-        let date = dateFormatter().dateFromString((item["date"] as? String)!)
-        let text = item["message"] as? String
         
         
-        return JSQMessage(senderId: userId, senderDisplayName: name, date: date, text: text)
+        //let date = dateFormatter().dateFromString((item["date"] as? String)!)
+        
+        
+        
+        
+        // 3
+        let id = item["name"] as! String
+        let message = item["message"] as! String
+        let timestamp = item["timestamp"] as! String
+        
+        return JSQMessage(senderId: id, displayName: id, text: message)
+        //return JSQMessage(senderId: userId, senderDisplayName: name, date: date, text: text)
     }
     
 
