@@ -4,7 +4,7 @@
 //
 //  Created by XINGYU on 12/6/16.
 //  Copyright © 2016 NYP. All rights reserved.
-//
+//  reference to David Kababyan
 
 import UIKit
 import FirebaseDatabase
@@ -87,7 +87,35 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         self.inputToolbar?.contentView?.textView?.placeHolder = "New Message"
         
+             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: "addTapped:")
+        
+                
     }
+    func addTapped (sender:UIButton) {
+        print("add pressed")
+        
+        var myObject = NSDate()
+        var outgoingMessage = OutgoingMessage?()
+        
+        //if text message
+       
+            // outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey, senderName: self.senderKey, date: date, status: "Delivered", type: "text")
+            
+            outgoingMessage = OutgoingMessage(message: "test text", senderId: self.friendsKey!, senderName: self.friendsKey!, date: myObject, status: "Delivered", type: "text")
+      
+    
+        
+        
+        outgoingMessage!.sendMessage("\(self.chatRoomId)", item: outgoingMessage!.messageDictionary)
+        
+        
+        
+        
+    }
+    
+    
+    
+    
     func lookForKey(){
         
         refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
@@ -297,6 +325,14 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
            // outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey, senderName: self.senderKey, date: date, status: "Delivered", type: "text")
             
              outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey!, senderName: self.friendsKey!, date: date, status: "Delivered", type: "text")
+        }
+        
+        //send picture message
+        if let pic = picture {
+            
+            let imageData = UIImageJPEGRepresentation(pic, 1.0)
+            
+            outgoingMessage = OutgoingMessage(message: "Picture", pictureData: imageData!, senderId: self.senderKey!, senderName: self.friendsKey!, date: date, status: "Delivered", type: "picture")
         }
         
         

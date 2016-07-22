@@ -1,9 +1,4 @@
-//
-//  Camera.swift
-//  quickChat
-//
-//  Created by David Kababyan on 10/03/2016.
-//  Copyright © 2016 David Kababyan. All rights reserved.
+//  reference to David Kababyan
 //
 
 import UIKit

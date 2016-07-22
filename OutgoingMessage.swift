@@ -1,10 +1,6 @@
 //
-//  OutgoingMessage.swift
-//  quickChat
-//
-//  Created by David Kababyan on 07/03/2016.
-//  Copyright © 2016 David Kababyan. All rights reserved.
-//
+//  reference to David Kababyan
+
 
 import Foundation
 import UIKit
@@ -13,7 +9,7 @@ import Firebase
 class OutgoingMessage {
     
     //change
-    //private let firebase = Firebase(url: "https://quickchataplication.firebaseio.com/Message")
+   
     let refChats = FIRDatabase.database().reference().child("FriendsModule/chats")
     let refMembers = FIRDatabase.database().reference().child("FriendsModule/members")
     let refMessages = FIRDatabase.database().reference().child("FriendsModule/messages")

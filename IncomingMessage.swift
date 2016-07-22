@@ -1,9 +1,4 @@
-//
-//  IncomingMessage.swift
-//  quickChat
-//
-//  Created by David Kababyan on 09/03/2016.
-//  Copyright © 2016 David Kababyan. All rights reserved.
+//  reference to David Kababyan
 //
 
 import Foundation
