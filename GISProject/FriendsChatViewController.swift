@@ -395,7 +395,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         let message = messages[indexPath.item]
         
-        if message.senderId == senderId {
+        if message.senderId == self.senderKey {
             
             //cell.cellTopLabel!.text = senderId
             cell.messageBubbleTopLabel!.text = senderId
@@ -448,8 +448,10 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         if text != "" {
             sendMessage(text, date: date, picture: nil, location: nil)
         }
+          
         
     }
+    
       func sendMessage(text: String?, date: NSDate, picture: UIImage?, location: String?) {
         
         var outgoingMessage = OutgoingMessage?()
@@ -462,10 +464,12 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         }
         //play message sent sound
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        self.finishSendingMessage()
+        
         
         outgoingMessage!.sendMessage("chatroom1", item: outgoingMessage!.messageDictionary)
         
+        
+        self.finishSendingMessage()
     }
     
     private func observeMessages() {
@@ -490,64 +494,11 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             {
                 print("have?")
                 print("\(message)")
-               // self.addMessage(id, text: message)
-                 self.messages.append(JSQMessage(senderId: self.senderKey, displayName: self.friendsKey, text: message))
+                self.addMessage(id, text: message)
+                // self.messages.append(JSQMessage(senderId: self.senderKey, displayName: self.friendsKey, text: message))
             }
-   self.finishReceivingMessage()
-        
-        /*
-          let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
-        let refMessages = FIRDatabase.database().reference().child("FriendsModule/messages/")
-        var keyfound : String!
-        var foundMsg : String!
-        
-        refMembers.observeEventType(.ChildAdded) { (snapshot: FIRDataSnapshot!) in
-            // 3
-            let id = snapshot.value!["\(self.friend.Name)"] as! Bool
-            let chatMember = snapshot.value!["\(self.senderId)"] as! Bool
-            
-            
-            
-            // 4
-            if(chatMember == true && id == true)
-            {
-                //self.addMessage(id, text: text)
-                print("success\(id)---\(chatMember)")
-                 print("success---\(self.friend.Name)---\(self.senderId)")
-                print(snapshot.key)
-                keyfound = snapshot.key
-               
-            }
-            if(keyfound != nil){
-                
-                
-                
-                refMessages.observeEventType(FIRDataEventType.Value) { (snapshot1: FIRDataSnapshot!) in
-                    
-                    print("90909090")
-                    print(snapshot1.hasChild(keyfound))
-                    
-                    
-                    if(snapshot1.hasChild(keyfound) == true){
-                        
-                    // print(  snapshot1.childSnapshotForPath(keyfound).value!["message"] as! String)
-                        
-                        print("found in message")
-                        
-                       
-                        
-                    }
-                    
-                
-                
-                }
-                // self.messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
-            }
-                         // 5
             self.finishReceivingMessage()
-        }
-        
-        */
+      
         
         }
     }

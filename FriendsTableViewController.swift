@@ -475,7 +475,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                     detailViewController.friend = filteredfriend
                     
                     detailViewController.friend = filteredfriend
-                    detailViewController.senderId = "Alex"
+                    detailViewController.senderId = "Friend0"
                     detailViewController.senderDisplayName = filteredfriend.Name
                     detailViewController.friendsKey = filteredfriend.myKey
                    detailViewController.senderKey = "Friend0"
@@ -488,7 +488,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                     detailViewController.friend = filteredfriend
                     detailViewController.friend = filteredfriend
                     detailViewController.senderKey = "Friend0"
-                    detailViewController.senderId = "Alex"
+                    detailViewController.senderId = "Friend0"
                     detailViewController.senderDisplayName = filteredfriend.Name
                      detailViewController.friendsKey = filteredfriend.myKey
                     print(filteredfriend.myKey)
