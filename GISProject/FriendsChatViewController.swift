@@ -53,8 +53,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     
-    
-    
+
     
     
     
@@ -81,6 +80,14 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
         
+        
+        self.getAvatars()
+        
+      
+        
+        
+        
+        
         lookForKey()
         //load firebase messages
         
@@ -88,6 +95,13 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         self.inputToolbar?.contentView?.textView?.placeHolder = "New Message"
         
              navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: "addTapped:")
+        
+  
+ 
+        
+           collectionView!.collectionViewLayout.springinessEnabled = true
+ 
+        
         
                 
     }
@@ -244,9 +258,9 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         let message = objects[indexPath.row]
         
-       // let status = message["status"] as! String
+       let status = message["status"] as! String
         
-        let status = "online"
+   
         if indexPath.row == (messages.count - 1) {
             return NSAttributedString(string: status)
         } else {
@@ -266,6 +280,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
         
         let message = messages[indexPath.row]
+       
+   
         let avatar = avatarDictionary!.objectForKey(message.senderId) as! JSQMessageAvatarImageDataSource
         
         return avatar
@@ -434,7 +450,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     func incoming(item: NSDictionary) -> Bool {
         
-        if self.senderKey == item["name"] as! String {
+        if self.senderKey == item["senderId"] as! String {
             print("have location")
             return false
         } else {
@@ -444,7 +460,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     func outgoing(item: NSDictionary) -> Bool {
         
-        if self.senderKey == item["name"] as! String {
+        if self.senderKey == item["senderId"] as! String {
             return true
         } else {
             return false
@@ -453,23 +469,59 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     
     //MARK: Helper functions
-    
+  
     
     func getAvatars() {
         
-        if showAvatars {
+       
             
             print("showAvatar")
             collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(30, 30)
             collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(30, 30)
             
             //download avatars
-            //  avatarImageFromBackendlessUser(backendless.userService.currentUser)
-            //  avatarImageFromBackendlessUser(withUser!)
+          avatarImageFromBackendlessUser(self.senderId!)
+         avatarImageFromBackendlessUser(self.friendsKey!)
             
             //create avatars
             createAvatars(avatarImagesDictionary)
+        
+    }
+    
+    func avatarImageFromBackendlessUser(user: String) {
+        
+        print("avatoar from backend function")
+        
+        let nurl = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png")
+        var imageBinary : NSData?
+        if nurl != nil
+        {
+            imageBinary = NSData(contentsOfURL: nurl!)
         }
+        
+        // After retrieving the image data, we convert
+        // it to an UIImage object. This is an update
+        // to the User Interface.
+        //
+        var img : UIImage!
+        if imageBinary != nil
+        {
+            img = UIImage(data: imageBinary!)
+        }
+        
+        let imageData = UIImageJPEGRepresentation(img!, 1.0)
+        
+        
+        if self.avatarImagesDictionary != nil {
+            
+            self.avatarImagesDictionary!.removeObjectForKey(self.senderId!)
+            self.avatarImagesDictionary!.setObject(imageData!, forKey: self.senderId!)
+        } else {
+            self.avatarImagesDictionary = [self.senderId! : imageData!]
+        }
+        self.createAvatars(self.avatarImagesDictionary)
+        
+        
     }
     
     
@@ -480,7 +532,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         
         if let avat = avatars {
-            if let currentUserAvatarImage = avat.objectForKey(self.senderKey) {
+            if let currentUserAvatarImage = avat.objectForKey(self.senderId!) {
                 
                 currentUserAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(data: currentUserAvatarImage as! NSData), diameter: 70)
                 self.collectionView?.reloadData()
@@ -488,10 +540,17 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         }
         
         if let avat = avatars {
+            if let withUserAvatarImage = avat.objectForKey(self.friendsKey!) {
+                
+                withUserAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(data: withUserAvatarImage as! NSData), diameter: 70)
+                self.collectionView?.reloadData()
+            }
         }
+        
+        avatarDictionary = [self.senderId! : currentUserAvatar, self.friendsKey! : withUserAvatar]
     }
     
-    
+
     
     //MARK: JSQDelegate functions
     

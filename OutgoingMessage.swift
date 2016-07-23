@@ -79,7 +79,7 @@ class OutgoingMessage {
                     
                 ]
                 //itemMessage.setValue(conversation)
-                itemMessage.child("/\(randomChatKey.key)").setValue(conversation)
+                itemMessage.child("/\(randomChatKey.key)").setValue(item)
                 
                 
                 
@@ -141,7 +141,7 @@ class OutgoingMessage {
                     
                 ]
                 //itemMessage.setValue(conversation)
-                itemMessage.child("/\(randomChatKey.key)").setValue(conversation)
+                itemMessage.child("/\(randomChatKey.key)").setValue(item)
                 
                 
             }
