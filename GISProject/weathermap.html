@@ -7,14 +7,10 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-        
-        <script type="text/javascript"
-            src="http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false">
-        </script>
-        
+
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
+
         <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
@@ -22,7 +18,7 @@
         <script>
             // Initialize Firebase
             var config = {
-                apiKey: "AIzaSyD2dTQbTXivlnQEQwh6p8WSyg_90ma2xCo",
+                apiKey: "AIzaSyCRIZ7ernlycehS8DLYRoPY_90aaZTXbLQ",
                 authDomain: "loba-83587.firebaseapp.com",
                 databaseURL: "https://loba-83587.firebaseio.com",
                 storageBucket: "loba-83587.appspot.com",
@@ -30,7 +26,7 @@
             firebase.initializeApp(config);
             var database = firebase.database();
         </script>
-        
+
         <style>
             html, body {
                 height: 100%;
@@ -42,34 +38,53 @@
             }
         </style>
     </head>
-    
+
     <body>
-        
+
         <div id="map"></div>
-        
+
         <script>
             var map, weatherLayer;
+            var locationArr = new Array()
+
+            // everything in the firebase method because async problem as per usual
             function initMap() {
-                map = new google.maps.Map(document.getElementById('map'), {
-                      zoom: 16,
-                      center: {lat: 1.3801, lng: 103.8490},
-                      mapTypeId: google.maps.MapTypeId.MAP,
-                      disableDefaultUI: true
-                });
-                      heatmap = new google.maps.visualization.HeatmapLayer({
-                           data: getPoints(),
-                           map: map
+                firebase.database().ref('/Location/').once('value').then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                           var key = childSnapshot.key; // 1
+
+                           var childData = childSnapshot.val()["image string"];
+
+                           if (childData.substring(0, 5) == "water") {
+                               console.log("Latitude: " + childSnapshot.val().latitude)
+                               console.log("Longitude: " + childSnapshot.val().longitude)
+
+                               locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude))
+                           }
+                      })
+
+                      map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 16,
+                            center: {lat: 1.3801, lng: 103.8490},
+                            mapTypeId: google.maps.MapTypeId.MAP,
+                            disableDefaultUI: true
                       });
-      
-                heatmap.set('radius', heatmap.get('radius') ? null : 100);
-                changeGradient()
+
+                      heatmap = new google.maps.visualization.HeatmapLayer({
+                         data: locationArr,
+                         map: map
+                     });
+
+                     heatmap.set('radius', heatmap.get('radius') ? null : 100);
+                     changeGradient()
+                });
             }
-        
+
             function toggleWeathermap() {
                 heatmap.setMap(heatmap.getMap() ? null : map);
-                
+
                 //toggle FAB (the floating button thing) highlight
-                
+
                 if ( document.getElementById("toggleWeathermapID").classList.contains('black') ) {
                     Materialize.toast('Weathermap Enabled!', 1000)
                     document.getElementById("toggleWeathermapID").classList.remove('black');
@@ -80,73 +95,38 @@
                     document.getElementById("toggleWeathermapID").classList.add('black');
                 }
             }
-            
-            function getRandomNum(min, max) {
-                return Math.random() * (max - min) + min;
-            }
-            
-            // Heatmap data: 500 Points
-            function getPoints() {
-            
-                
-              /*  getRandomNum(1.377431, 1.382414)
-                getRandomNum(103.848156, 103.850287)*/
-              
-              var locationArr = new Array()
-              
-              
-              console.log(database.ref().url)
-              
-              /*var userId = firebase.auth().currentUser.uid;*/
-              
-              firebase.database().ref('/Location/').once('value').then(function(snapshot) {
-                    snapshot.forEach(function(childSnapshot) {
-                         var key = childSnapshot.key; // 1
-                                     
-                         var childData = childSnapshot.val()["image string"];
-                                     
-                         if (childData.substring(0, 5) == "water") {
-                             locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().latitude))
-                         }
-                    })
-                                                                       
-                                                                       
-              });
-                
-                return locationArr
-            }
-		
-		function changeGradient() {
-			/*
-			 'rgba(0, 255, 255, 0)',
-			 'rgba(0, 255, 255, 1)',
-			 'rgba(0, 191, 255, 1)',
-			 'rgba(0, 127, 255, 1)',
-			 'rgba(0, 63, 255, 1)',
-			 'rgba(0, 0, 255, 1)',
-			 'rgba(0, 0, 223, 1)',
-			 'rgba(0, 0, 191, 1)',
-			 'rgba(0, 0, 159, 1)',
-			 'rgba(0, 0, 127, 1)',
-			 'rgba(63, 0, 91, 1)',
-			 'rgba(127, 0, 63, 1)',
-			 'rgba(191, 0, 31, 1)',
-			 'rgba(255, 0, 0, 1)'
-			*/
-		
-			/* goes outer to inner circle */
-			/* alpha values determine how intense it is: 0 is faded while 1 is intense */
-			var gradient = [
-							'rgba(0, 0, 255, 0)',
-							'rgba(255, 0, 0, 1)',]
-							heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-		}
+
+    		function changeGradient() {
+    			/*
+    			 'rgba(0, 255, 255, 0)',
+    			 'rgba(0, 255, 255, 1)',
+    			 'rgba(0, 191, 255, 1)',
+    			 'rgba(0, 127, 255, 1)',
+    			 'rgba(0, 63, 255, 1)',
+    			 'rgba(0, 0, 255, 1)',
+    			 'rgba(0, 0, 223, 1)',
+    			 'rgba(0, 0, 191, 1)',
+    			 'rgba(0, 0, 159, 1)',
+    			 'rgba(0, 0, 127, 1)',
+    			 'rgba(63, 0, 91, 1)',
+    			 'rgba(127, 0, 63, 1)',
+    			 'rgba(191, 0, 31, 1)',
+    			 'rgba(255, 0, 0, 1)'
+    			*/
+
+    			/* goes outer to inner circle */
+    			/* alpha values determine how intense it is: 0 is faded while 1 is intense */
+    			var gradient = [
+    							'rgba(0, 0, 255, 0)',
+    							'rgba(255, 0, 0, 1)']
+    							heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+    		}
         </script>
-		
+
         <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initMap">
-            </script>
-        
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIZ7ernlycehS8DLYRoPY_90aaZTXbLQ&libraries=visualization&callback=initMap">
+        </script>
+
         <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 20px; right: 24px;">
             <a class="btn-floating btn-large red">
                 <i class="material-icons">layers</i>
@@ -158,6 +138,6 @@
                 <li><a class="btn-floating black" href="friendsmap.html"><i class="material-icons">cloud</i></a></li>
             </ul>
         </div>
-        
+
     </body>
 </html>
