@@ -98,26 +98,33 @@ class BattleViewController: UIViewController {
 		let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
 			// get the text
 			let text = self.alert?.textFields![0].text
-			self.battle?.amountOfCardsToUse = NSNumber.init(integer: Int.init(text!)!)
-			print((self.battle?.amountOfCardsToUse!.integerValue)!)
-			print((self.battle?.uidArr?.count)!)
 			
-			// uid arr count is also used as amount of cards available
-			if (self.battle?.amountOfCardsToUse?.integerValue)! > (self.battle?.amountOfCardsAvailable?.integerValue)! {
-				print("Dont have enough")
-			
-				let alert = UIAlertController.init(title: "Hold up", message: "You do not have enough cards!", preferredStyle: .Alert)
+			// validate the input
+			if text == "" || text == "0" {
+				self.alert = UIAlertController.init(title: "Hold up", message: "Invalid input", preferredStyle: .Alert)
 				let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
-				alert.addAction(okAction)
-				
-				self.presentViewController(alert, animated: true, completion: nil)
+				self.alert?.addAction(okAction)
+				self.presentViewController(self.alert!, animated: true, completion: nil)
 			} else {
-				// calculate expected damage
-				self.battle?.expectedMonsterHealth = Float((self.battle?.monsterHealth)!) - Float((self.battle?.amountOfCardsToUse!.integerValue)!)
-	
-				self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
+				self.battle?.amountOfCardsToUse = NSNumber.init(integer: Int.init(text!)!)
+				print((self.battle?.amountOfCardsToUse!.integerValue)!)
+				print((self.battle?.uidArr?.count)!)
+				
+				if (self.battle?.amountOfCardsToUse?.integerValue)! > (self.battle?.amountOfCardsAvailable?.integerValue)! {
+					print("Dont have enough")
+					
+					let alert = UIAlertController.init(title: "Hold up", message: "You do not have enough cards!", preferredStyle: .Alert)
+					let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+					alert.addAction(okAction)
+					
+					self.presentViewController(alert, animated: true, completion: nil)
+				} else {
+					// calculate expected damage
+					self.battle?.expectedMonsterHealth = Float((self.battle?.monsterHealth)!) - Float((self.battle?.amountOfCardsToUse!.integerValue)!)
+					
+					self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
+				}
 			}
-			
 		}
 		let cancelAction = UIAlertAction.init(title: "Cancel", style: .Default, handler: nil)
 		
