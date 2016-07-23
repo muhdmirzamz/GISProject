@@ -46,6 +46,7 @@
 		88AFED011D329C2000185ED5 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AFED001D329C2000185ED5 /* PopOverViewController.swift */; };
 		88DD7ADF1D3BB7E500B64832 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD7ADD1D3BB7E500B64832 /* OutgoingMessage.swift */; };
 		88DD7AE41D3BE2DC00B64832 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD7AE31D3BE2DC00B64832 /* IncomingMessage.swift */; };
+		88EC59691D43A97C00075534 /* ChatMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EC59681D43A97C00075534 /* ChatMapViewController.swift */; };
 		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
 		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
 		88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */; };
@@ -106,6 +107,7 @@
 		88AFED001D329C2000185ED5 /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		88DD7ADD1D3BB7E500B64832 /* OutgoingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		88DD7AE31D3BE2DC00B64832 /* IncomingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
+		88EC59681D43A97C00075534 /* ChatMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMapViewController.swift; sourceTree = "<group>"; };
 		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDetailViewController.swift; path = GISProject/FriendsDetailViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				8877E81A1D3BB7BF00A595DC /* Messages */,
 				888611BC1D3B5B1200C6F4D2 /* Camera.swift */,
 				88EFBE141D2138EC00577EC5 /* Friends.swift */,
+				88EC59681D43A97C00075534 /* ChatMapViewController.swift */,
 				88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */,
 				88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */,
 				88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */,
@@ -557,6 +560,7 @@
 				881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */,
 				881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */,
 				6D8169EF1D360AC700AC33C6 /* QRViewController.swift in Sources */,
+				88EC59691D43A97C00075534 /* ChatMapViewController.swift in Sources */,
 				6D8169F41D360B1F00AC33C6 /* ProfileViewController.swift in Sources */,
 				88DD7ADF1D3BB7E500B64832 /* OutgoingMessage.swift in Sources */,
 				81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */,

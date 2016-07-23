@@ -12,18 +12,22 @@ import JSQMessagesViewController
 import FirebaseStorage
 import Firebase
 import Photos
+import IDMPhotoBrowser
 
 
-class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate {
     
     var friend : Friends!
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    public let kAVATARSTATE = "avatarState"
-    public let kFIRSTRUN = "firstRun"
+  let kAVATARSTATE = "avatarState"
+   let kFIRSTRUN = "firstRun"
     
+    
+    var locationManager: CLLocationManager!
+    var coordinate: CLLocationCoordinate2D!
     
     //chaged
     //let ref = Firebase(url: "https://quickchataplication.firebaseio.com/Message")
@@ -62,6 +66,17 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     override func viewWillAppear(animated: Bool) {
         loadUserDefaults()
+        
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        print("have location manager")
+        locationManager!.startUpdatingLocation()
         
     }
     
@@ -126,7 +141,24 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         
     }
+    //MARK:  LocationManger fuctions
     
+    
+    
+    func locationManagerStop() {
+        locationManager!.stopUpdatingLocation()
+    }
+    
+    //MARK: CLLocationManager Delegate
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        
+        coordinate = newLocation.coordinate
+        
+        print(coordinate?.longitude)
+        print(coordinate?.latitude)
+        
+    }
     
     
     
@@ -313,7 +345,10 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         }
         
         let shareLoction = UIAlertAction(title: "Share Location", style: .Default) { (alert: UIAlertAction!) -> Void in
-            
+          
+            if self.haveAccessToLocation() {
+                self.sendMessage(nil, date: NSDate(), picture: nil, location: "location")
+            }
             
         }
         
@@ -328,6 +363,17 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         optionMenu.addAction(cancelAction)
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    //MARK: Helper functions
+    
+    func haveAccessToLocation() -> Bool {
+        if let _ = self.coordinate?.latitude {
+            return true
+        } else {
+            print("no access to location")
+            return false
+        }
     }
     
     //MARK: Send Message
@@ -351,7 +397,14 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             outgoingMessage = OutgoingMessage(message: "Picture", pictureData: imageData!, senderId: self.senderKey!, senderName: self.friendsKey!, date: date, status: "Delivered", type: "picture")
         }
         
-        
+        if let _ = location {
+            
+            let lat: NSNumber = NSNumber(double: (self.coordinate?.latitude)!)
+            let lng: NSNumber = NSNumber(double: (self.coordinate?.longitude)!)
+            
+            outgoingMessage = OutgoingMessage(message: "Location", latitude: lat, longitude: lng, senderId: self.senderKey!, senderName: self.senderKey!, date: date, status: "Delivered", type: "location")
+        }
+
         
         //play message sent sound
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
@@ -564,10 +617,10 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             let mediaItem = message.media as! JSQPhotoMediaItem
             
-            // let photos = IDMPhoto.photosWithImages([mediaItem.image])
-            // let browser = IDMPhotoBrowser(photos: photos)
+             let photos = IDMPhoto.photosWithImages([mediaItem.image])
+             let browser = IDMPhotoBrowser(photos: photos)
             
-            //  self.presentViewController(browser, animated: true, completion: nil)
+              self.presentViewController(browser, animated: true, completion: nil)
         }
         
         if object["type"] as! String == "location" {

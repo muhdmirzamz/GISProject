@@ -1446,7 +1446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbV-5o-GIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2086" y="-828"/>
+            <point key="canvasLocation" x="2976" y="-810"/>
         </scene>
         <!--Chat-->
         <scene sceneID="OrH-Rh-1PX">
@@ -1462,10 +1462,60 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chat" id="RVl-Bg-t4v"/>
+                    <connections>
+                        <segue destination="SlV-m4-ByG" kind="modal" identifier="chatToMapSeg" id="SUS-eT-jV8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8c7-qe-n2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2482" y="-828"/>
+            <point key="canvasLocation" x="2129" y="-824"/>
+        </scene>
+        <!--Chat Map View Controller-->
+        <scene sceneID="RcW-3N-lWZ">
+            <objects>
+                <viewController id="SlV-m4-ByG" customClass="ChatMapViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L3t-BU-qcC"/>
+                        <viewControllerLayoutGuide type="bottom" id="gcl-bL-xEA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iHW-Vw-Jzl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uHm-JI-fDw">
+                                <rect key="frame" x="-4" y="58" width="328" height="510"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBx-7d-OH3">
+                                <rect key="frame" x="16" y="20" width="66" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="BZO-2M-adw"/>
+                                    <constraint firstAttribute="height" constant="30" id="ZZQ-4u-qwv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelBtn:" destination="SlV-m4-ByG" eventType="touchUpInside" id="53P-YP-ZTR"/>
+                                    <action selector="cancelButtonPressed:" destination="SlV-m4-ByG" eventType="touchUpInside" id="BWF-25-5K1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gcl-bL-xEA" firstAttribute="top" secondItem="uHm-JI-fDw" secondAttribute="bottom" id="5sJ-T5-UzP"/>
+                            <constraint firstItem="YBx-7d-OH3" firstAttribute="leading" secondItem="iHW-Vw-Jzl" secondAttribute="leadingMargin" id="Fw0-90-UxP"/>
+                            <constraint firstItem="uHm-JI-fDw" firstAttribute="leading" secondItem="iHW-Vw-Jzl" secondAttribute="leadingMargin" constant="-20" id="OPh-NI-xdz"/>
+                            <constraint firstItem="YBx-7d-OH3" firstAttribute="top" secondItem="L3t-BU-qcC" secondAttribute="bottom" id="iiU-xz-EFY"/>
+                            <constraint firstItem="uHm-JI-fDw" firstAttribute="top" secondItem="YBx-7d-OH3" secondAttribute="bottom" constant="8" id="vyi-Pr-aXd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uHm-JI-fDw" secondAttribute="trailing" constant="-20" id="x0B-y2-aHi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="uHm-JI-fDw" id="PNO-cP-SiL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="48d-DT-tIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2574" y="-810"/>
         </scene>
     </scenes>
     <resources>

@@ -9,12 +9,19 @@
 import UIKit
 import Firebase
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-
+     
+    
+    
+    
+    
+    
+    
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
         
@@ -27,8 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         // for debugging
         // UIApplication.sharedApplication().scheduledLocalNotifications?.removeAll()
+      
+        
+        
         
 		FIRApp.configure()
+        
+        FIRDatabase.database().persistenceEnabled = true //change
+        
         
         return true
 	}
