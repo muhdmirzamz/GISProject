@@ -18,4 +18,5 @@ target 'GISProject' do
   pod 'BFPaperButton'
   pod 'PageMenu'
   pod 'IDMPhotoBrowser'
+ 
 end

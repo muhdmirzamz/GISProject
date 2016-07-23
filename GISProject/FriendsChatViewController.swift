@@ -138,7 +138,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         outgoingMessage!.sendMessage("\(self.chatRoomId)", item: outgoingMessage!.messageDictionary)
         
         
-        
+        self.tabBarController?.tabBar.items?[3].badgeValue = "8"
         
     }
     //MARK:  LocationManger fuctions
