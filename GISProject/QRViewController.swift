@@ -18,7 +18,6 @@ class QRViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var cardLabel: UILabel!
-    @IBOutlet weak var monsterLabel: UILabel!
     @IBOutlet weak var blurView: MLWLiveBlurView!
     
     override func viewDidLoad() {
@@ -52,7 +51,6 @@ class QRViewController: UIViewController {
         
         var name : String = ""
         var card : Int = 0
-        var monster : Int = 0
         let battle = Battle()
         
         let dispatch_group = dispatch_group_create()
@@ -76,12 +74,10 @@ class QRViewController: UIViewController {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 //Get values
                 let name = snapshot.value!["Name"] as! String
-                let monster = snapshot.value!["Monsters killed"] as! NSNumber
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     //Set to labels
                     self.nameLabel.text = "\(name)"
-                    self.monsterLabel.text = "\(monster)"
                 })
             })
         })

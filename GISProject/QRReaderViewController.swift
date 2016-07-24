@@ -48,33 +48,19 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        setBG()
-    }
-    
-    func restartCapture (addedAlert: UIAlertAction!) {
-        captureSession?.startRunning()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
-        let myRequest = NSURLRequest(URL: localfilePath!);
-        webView.loadRequest(myRequest);
+        setBG()
+        
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice)
-            
             captureSession = AVCaptureSession()
-
             captureSession?.addInput(input)
-            
             let captureMetadataOutput = AVCaptureMetadataOutput()
             captureSession?.addOutput(captureMetadataOutput)
-            
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-
             captureMetadataOutput.metadataObjectTypes = supportedBarCodes
             
             // Add material card design
@@ -102,6 +88,15 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        setBlur()
+        setBG()
+    }
+    
+    func restartCapture (addedAlert: UIAlertAction!) {
+        captureSession?.startRunning()
+    }
+    
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
         if metadataObjects == nil || metadataObjects.count == 0 {
@@ -114,20 +109,38 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         if supportedBarCodes.contains(metadataObj.type) {
             captureSession?.stopRunning()
             if metadataObj.stringValue != nil {
-                
                 friendUID = metadataObj.stringValue
-                let ref = FIRDatabase.database().reference().child("/Account")
-                
-                addFriendToDB(ownerUID, friendUIDLocal: friendUID)
-                
-                ref.child(friendUID).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                    self.name = snapshot.value!["Name"] as! String
-                    self.messageLabel.text = "Last added user, \(self.name)."
-                    let addedAlert = UIAlertController(title: "\(self.name)", message: "Friend has been added", preferredStyle: .Alert)
+                let UIDLength = friendUID.characters.count
+                //check if legit UID
+                if (UIDLength == 28) {
+                    //check if scanning own code
+                    if (ownerUID != friendUID) {
+                        let ref = FIRDatabase.database().reference().child("/Account")
+                        
+                        addFriendToDB(ownerUID, friendUIDLocal: friendUID)
+                        
+                        ref.child(friendUID).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                            //set custom label
+                            self.name = snapshot.value!["Name"] as! String
+                            self.messageLabel.text = "Added user, \(self.name)."
+                            //pop up alert
+                            let addedAlert = UIAlertController(title: "\(self.name)", message: "Friend has been added", preferredStyle: .Alert)
+                            addedAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: self.dismissAlert))
+                            addedAlert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: self.restartCapture))
+                            self.presentViewController(addedAlert, animated: true, completion: nil)
+                        })
+                    } else {
+                        let addedAlert = UIAlertController(title: "Aw come on!", message: "Scanning your own QRCode is lame! Go find a friend!", preferredStyle: .Alert)
+                        addedAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: self.dismissAlert))
+                        addedAlert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: self.restartCapture))
+                        self.presentViewController(addedAlert, animated: true, completion: nil)
+                    }
+                } else {
+                    let addedAlert = UIAlertController(title: "Invalid QRCode Scanned", message: "What the heck did you just scan?!?!", preferredStyle: .Alert)
                     addedAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: self.dismissAlert))
                     addedAlert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: self.restartCapture))
                     self.presentViewController(addedAlert, animated: true, completion: nil)
-                })
+                }
             }
         }
     }
@@ -137,7 +150,19 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         ref.child("/Friend/\(ownerUIDLocal)/\(friendUIDLocal)").setValue(1)
     }
     
+    //
+    // Set HTML based map background
+    //
     func setBG() {
+        let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
+        let myRequest = NSURLRequest(URL: localfilePath!);
+        webView.loadRequest(myRequest);
+    }
+    
+    //
+    // Blur overlay
+    //
+    func setBlur() {
         blurView.blurProgress = 0.5
     }
 }
