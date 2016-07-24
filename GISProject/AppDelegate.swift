@@ -15,12 +15,6 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-     
-    
-    
-    
-    
-    
     
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
@@ -33,10 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         // for debugging
-        // UIApplication.sharedApplication().scheduledLocalNotifications?.removeAll()
-      
-        
-        
+		// UIApplication.sharedApplication().scheduledLocalNotifications?.removeAll()
         
 		FIRApp.configure()
         
@@ -53,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // app when the notification is received. //
         if(state == UIApplicationState.Active) {
             
-            let alert = UIAlertController.init(title: "Alert", message: notification.alertBody, preferredStyle: .Alert)
+            let alert = UIAlertController.init(title: "Alright", message: notification.alertBody, preferredStyle: .Alert)
             let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
             alert.addAction(okAction)
             

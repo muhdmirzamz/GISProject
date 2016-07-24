@@ -61,9 +61,9 @@ class BattleViewController: UIViewController {
 		self.monsterHealthLabel.text = "\(String(self.battle!.getMonsterHealth()))/\(String(self.battle!.getInitialMonsterHealth()))"
         
         let str = (self.selectedAnnotation?.imageString)!
-        let str2 = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
+        let monsterType = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
         var ref = FIRDatabase.database().reference().child("/Monster")
-        ref.child("/\(str2)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+        ref.child("/\(monsterType)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             self.monsterNameLabel.text = snapshot.value!["name"] as? String 
         })
         
@@ -178,7 +178,7 @@ class BattleViewController: UIViewController {
                 localNotif.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
                 UIApplication.sharedApplication().scheduleLocalNotification(localNotif)
                 NSNotificationCenter.defaultCenter().postNotificationName("battle", object: self)
-                
+				
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
             }
             let noAction = UIAlertAction.init(title: "No", style: .Default, handler: nil)

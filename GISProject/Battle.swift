@@ -22,9 +22,6 @@ class Battle {
 	
 	var selectedAnnotation: Location?
     
-//    var ref = FIRDatabase.database().reference()
-    let userID = (FIRAuth.auth()?.currentUser?.uid)!
-    
 	init() {
         self.initialMonsterHealth = 1
         self.monsterHealth = 1
@@ -112,25 +109,24 @@ class Battle {
 	
     func updatePreviousLocation() {
         let str = (self.selectedAnnotation?.imageString)!
-        let str2 = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
+        let monsterType = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
         
         let ref = FIRDatabase.database().reference().child("/PreviousLocation")
-        ref.child("/\(str2)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+        ref.child("/\(monsterType)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             print("Count: \(snapshot.childrenCount)")
-            
+			
+			let index: Int
+			
             // index 9 still works because the last added index is going to be 10
             // first if statement can be deleted actually
             if snapshot.childrenCount < 10 {
-                let index = snapshot.childrenCount + 1
-                let ref2 = FIRDatabase.database().reference().child("/PreviousLocation")
-                ref2.child("/\(str2)/\(index)/latitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
-                ref2.child("/\(str2)/\(index)/longitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
+                index = Int(snapshot.childrenCount) + 1
             } else {
-                let index = (Int(arc4random()) % 9) + 1
-                let ref2 = FIRDatabase.database().reference().child("/PreviousLocation")
-                ref2.child("/\(str2)/\(index)/latitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
-                ref2.child("/\(str2)/\(index)/longitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
+                index = (Int(arc4random()) % 9) + 1
             }
+			
+			ref.child("/\(monsterType)/\(index)/latitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
+			ref.child("/\(monsterType)/\(index)/longitude").setValue((self.selectedAnnotation?.coordinate.longitude)!)
         })
     }
     
