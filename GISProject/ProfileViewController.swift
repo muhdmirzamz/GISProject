@@ -11,6 +11,7 @@ import Firebase
 import CoreData
 import Bluuur
 import ISTimeline
+import SCLAlertView
 
 protocol ProfileProtocol {
     func makeViewVisible()
@@ -174,7 +175,25 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logout() {
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont.systemFontOfSize(30, weight: UIFontWeightLight),
+            kTitleHeight: 40,
+            kButtonFont: UIFont.systemFontOfSize(18, weight: UIFontWeightLight),
+            showCloseButton: false
+        )
+        //pop up alert
+        let alertView = SCLAlertView(appearance : appearance)
+        alertView.addButton("Yeah, log me out") {
+            self.logoutSeq()
+        }
+        alertView.addButton("ABORT!!1!") {
+            alertView.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alertView.showNotice("Logging Out", subTitle: "\n Are you sure? \n")
         
+    }
+
+    func logoutSeq () {
         let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: self.appDelegate.managedObjectContext)
         let sortDescriptor = NSSortDescriptor.init(key: "username", ascending: true)
         let fetchReq = NSFetchRequest()
@@ -200,7 +219,7 @@ class ProfileViewController: UIViewController {
         } catch {
             print("Unable to fetch!\n")
         }
-
+        
         
         do {
             try! FIRAuth.auth()!.signOut()

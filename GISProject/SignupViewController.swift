@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SCLAlertView
 
 class SignupViewController: UIViewController {
     
@@ -43,16 +44,16 @@ class SignupViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //
-    //Functions made just for UIAlerts
-    //
-    func dismissAlert (addedAlert: UIAlertAction!) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     @IBAction func CreateAccount(sender: AnyObject) {
         self.registerBtn.enabled = false
         self.cancelBtn.enabled = false
+        //set alert appearance
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont.systemFontOfSize(30, weight: UIFontWeightLight),
+            kTitleHeight: 40,
+            kButtonFont: UIFont.systemFontOfSize(18, weight: UIFontWeightLight),
+            showCloseButton: false
+        )
         
         hideKeyboard()
         activityIndicator.startAnimating()
@@ -62,9 +63,14 @@ class SignupViewController: UIViewController {
             
             if error != nil {
                 self.activityIndicator.stopAnimating()
-                let errorFailed = UIAlertController(title: "Account Creation Failed", message: "Please ensure information given is correct and all fields are filled up!", preferredStyle: .Alert)
-                errorFailed.addAction(UIAlertAction(title: "Retry Creation", style: .Default, handler: nil))
-                self.presentViewController(errorFailed, animated: true, completion: nil)
+                //pop up alert
+                let alertView = SCLAlertView(appearance : appearance)
+                alertView.addButton("Retry") {
+                    alertView.dismissViewControllerAnimated(true, completion: nil)
+                }
+                alertView.showError("Creation Failed", subTitle: "\n Please ensure information given is correct and all fields are filled up! \n")
+                self.registerBtn.enabled = true
+                self.cancelBtn.enabled = true
             } else {
                 
                 FIRAuth.auth()?.signInWithEmail(self.EmailLabel.text!, password: self.PasswordLabel.text!, completion: {
@@ -78,7 +84,6 @@ class SignupViewController: UIViewController {
                         let base : NSNumber = 1
                         let level : NSNumber = 1
                         let monst : NSNumber = 0
-                        let cards : NSNumber = 0
                         let pict : NSNumber = 7
                         
                         //Create "Account" Firebase
@@ -87,13 +92,16 @@ class SignupViewController: UIViewController {
                         self.ref.child("/Account/\(uid)/Level").setValue(level)
                         self.ref.child("/Account/\(uid)/Monsters killed").setValue(monst)
                         self.ref.child("/Account/\(uid)/Picture").setValue(pict)
-                        self.ref.child("/Account/\(uid)/Cards").setValue(cards)
                         
                         self.activityIndicator.stopAnimating()
                         try! FIRAuth.auth()!.signOut()
-                        let errorSuccess = UIAlertController(title: "Account Successfully Created", message: "Enter your information you signed up with to enter the world of LOBA", preferredStyle: .Alert)
-                        errorSuccess.addAction(UIAlertAction(title: "Enter LOBA!", style: .Default, handler: self.dismissAlert))
-                        self.presentViewController(errorSuccess, animated: true, completion: nil)
+                        //pop up alert
+                        let alertView = SCLAlertView(appearance : appearance)
+                        alertView.addButton("Done") {
+                            self.dismiss()
+                        }
+                        alertView.showSuccess("Success!", subTitle: "\n Enter your information you signed up with to enter the world of LOBA \n")
+
                         self.EmailLabel.text! = ""
                         self.UsernameLabel.text! = ""
                         self.PasswordLabel.text! = ""
