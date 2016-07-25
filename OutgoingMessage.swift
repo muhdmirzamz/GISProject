@@ -40,6 +40,14 @@ class OutgoingMessage {
         
         messageDictionary = NSMutableDictionary(objects: [message, pic, senderId, senderName, dateFormatter().stringFromDate(date), status, type], forKeys: ["message", "picture", "senderId", "senderName", "date", "status", "type"])
     }
+    init (message: String, pictureData: NSData) {
+        
+        let pic = pictureData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        
+        
+        messageDictionary = NSMutableDictionary(objects: [message, pic], forKeys: ["message", "picture"])
+    }
+    
     
     //save to firebase
     //add

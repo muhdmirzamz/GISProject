@@ -1073,13 +1073,6 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tB-P5-jDC">
-                                            <rect key="frame" x="294" y="149" width="62" height="30"/>
-                                            <state key="normal" title="Take Me!"/>
-                                            <connections>
-                                                <action selector="takePhotoBtn:" destination="GED-Ph-YfL" eventType="touchUpInside" id="wYY-5R-CKT"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>

@@ -73,9 +73,25 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        let picture = info[UIImagePickerControllerEditedImage] as! UIImage
+        let picture = info[UIImagePickerControllerEditedImage] as? UIImage
+        
+        var outgoingMessage = OutgoingMessage?()
         
         print("saved to firebase")
+        
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        print("saving to \(uid)")
+       
+        //send picture message
+        if let pic = picture {
+            
+            let imageData = UIImageJPEGRepresentation(picture!, 1.0)
+            
+            outgoingMessage = OutgoingMessage(message: "testing pc", pictureData: imageData!)
+        }
+        
+        outgoingMessage!.sendMessage("room chat1", item: outgoingMessage!.messageDictionary)
+        print("done")
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
