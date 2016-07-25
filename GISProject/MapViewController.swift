@@ -205,7 +205,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         eyeCoord.latitude = ((1.377431 + 1.382414) / 2) - 0.0099
         eyeCoord.longitude = ((103.848156 + 103.850278) / 2)
         
-        let camera = MKMapCamera.init(lookingAtCenterCoordinate: location, fromEyeCoordinate: eyeCoord, eyeAltitude: 20)
+        let camera = MKMapCamera.init(lookingAtCenterCoordinate: location, fromEyeCoordinate: eyeCoord, eyeAltitude: 800)
         self.mapView.setCamera(camera, animated: true)
 	}
 	
