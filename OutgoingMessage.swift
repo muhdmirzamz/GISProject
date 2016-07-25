@@ -238,7 +238,49 @@ class OutgoingMessage {
        // SendPushNotification(chatRoomID, message: (item["message"] as? String)!)
        // UpdateRecents(chatRoomID, lastMessage: (item["message"] as? String)!)
     }
-
+func sendPhoto(chatRoomID: String, item: NSMutableDictionary) {
+   let usersRef = FIRDatabase.database().reference().child("/Account")
+    
+    print("ooutoing chat romid -> \(chatRoomID)")
+    
+    refChats.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        
+        if snapshot.hasChild("\(chatRoomID)"){
+            
+            print("true rooms exist")
+       
+            
+            //messages
+            
+          //  let itemMessage = self.refMessages.child("\(chatRoomID)")// 1
+            
+           // let message : String = item["message"] as! String
+            
+            //random key for individual chat room
+          //  let randomChatKey = itemMessage.childByAutoId()
+     
+            //itemMessage.setValue(conversation)
+           // itemMessage.child("/\(randomChatKey.key)").setValue(item)
+            
+            
+            
+            var hopperRef = usersRef.child("\(chatRoomID)")
+            var nickname = ["Picture": item["picture"] as! String]
+            
+            hopperRef.updateChildValues(nickname)
+            
+        }
+        
+        
+    })
+    
+    
+    
+    
+    
+    
+    
+    }
     
     
 }

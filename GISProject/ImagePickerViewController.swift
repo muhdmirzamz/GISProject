@@ -85,12 +85,12 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
         //send picture message
         if let pic = picture {
             
-            let imageData = UIImageJPEGRepresentation(picture!, 1.0)
+            let imageData = UIImageJPEGRepresentation(pic, 1.0)
             
             outgoingMessage = OutgoingMessage(message: "testing pc", pictureData: imageData!)
         }
         
-        outgoingMessage!.sendMessage("room chat1", item: outgoingMessage!.messageDictionary)
+        outgoingMessage!.sendPhoto("\(uid)", item: outgoingMessage!.messageDictionary)
         print("done")
         
         picker.dismissViewControllerAnimated(true, completion: nil)
