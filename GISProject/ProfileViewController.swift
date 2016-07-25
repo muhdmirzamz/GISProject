@@ -17,11 +17,29 @@ protocol ProfileProtocol {
     func makeViewVisible()
 }
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var blurView: MLWLiveBlurView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBAction func takePhoto(sender: AnyObject) {
+        
+        print("take photo")
+        
+        let camera = Camera(delegate_: self)
+        
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        let takePhoto = UIAlertAction(title: "Take Photo", style: .Default) { (alert: UIAlertAction!) -> Void in
+            camera.PresentPhotoCamera(self, canEdit: true)
+        }
+        
+        optionMenu.addAction(takePhoto)
+  
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+        
+    }
     
     var name : String = ""
     var monstersKilled : Int = 0
