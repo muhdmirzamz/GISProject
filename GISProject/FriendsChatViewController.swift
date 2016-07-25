@@ -92,8 +92,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         self.senderDisplayName = friendsKey
         
         
-        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
-        collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
+        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
+        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
         
         
         self.getAvatars()

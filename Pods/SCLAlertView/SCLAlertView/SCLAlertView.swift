@@ -269,7 +269,7 @@ public class SCLAlertView: UIViewController {
         viewText.textColor = appearance.titleColor
         contentView.layer.borderColor = appearance.contentViewBorderColor.CGColor
         //Gesture Recognizer for tapping outside the textinput
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SCLAlertView.tapped(_:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
         tapGesture.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tapGesture)
     }
@@ -352,8 +352,8 @@ public class SCLAlertView: UIViewController {
     
     override public func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SCLAlertView.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SCLAlertView.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name:UIKeyboardWillHideNotification, object: nil);
     }
     
     override public func viewDidDisappear(animated: Bool) {
@@ -407,9 +407,9 @@ public class SCLAlertView: UIViewController {
         let btn = addButton(title, backgroundColor: backgroundColor, textColor: textColor, showDurationStatus: showDurationStatus)
         btn.actionType = SCLActionType.Closure
         btn.action = action
-        btn.addTarget(self, action:#selector(SCLAlertView.buttonTapped(_:)), forControlEvents:.TouchUpInside)
-        btn.addTarget(self, action:#selector(SCLAlertView.buttonTapDown(_:)), forControlEvents:[.TouchDown, .TouchDragEnter])
-        btn.addTarget(self, action:#selector(SCLAlertView.buttonRelease(_:)), forControlEvents:[.TouchUpInside, .TouchUpOutside, .TouchCancel, .TouchDragOutside] )
+        btn.addTarget(self, action: "buttonTapped:", forControlEvents:.TouchUpInside)
+        btn.addTarget(self, action: "buttonTapDown:", forControlEvents:[.TouchDown, .TouchDragEnter])
+        btn.addTarget(self, action: "buttonRelease:", forControlEvents:[.TouchUpInside, .TouchUpOutside, .TouchCancel, .TouchDragOutside] )
         return btn
     }
     
@@ -418,9 +418,9 @@ public class SCLAlertView: UIViewController {
         btn.actionType = SCLActionType.Selector
         btn.target = target
         btn.selector = selector
-        btn.addTarget(self, action:#selector(SCLAlertView.buttonTapped(_:)), forControlEvents:.TouchUpInside)
-        btn.addTarget(self, action:#selector(SCLAlertView.buttonTapDown(_:)), forControlEvents:[.TouchDown, .TouchDragEnter])
-        btn.addTarget(self, action:#selector(SCLAlertView.buttonRelease(_:)), forControlEvents:[.TouchUpInside, .TouchUpOutside, .TouchCancel, .TouchDragOutside] )
+        btn.addTarget(self, action: "buttonTapped:", forControlEvents:.TouchUpInside)
+        btn.addTarget(self, action: "buttonTapDown:", forControlEvents:[.TouchDown, .TouchDragEnter])
+        btn.addTarget(self, action: "buttonRelease:", forControlEvents:[.TouchUpInside, .TouchUpOutside, .TouchCancel, .TouchDragOutside] )
         return btn
     }
     
@@ -644,7 +644,7 @@ public class SCLAlertView: UIViewController {
         
         // Done button
         if appearance.showCloseButton {
-            addButton(completeText ?? "Done", target:self, selector:#selector(SCLAlertView.hideView))
+            addButton(completeText ?? "Done", target:self, selector: "hideView")
         }
         
         //hidden/show circular view based on the ui option
@@ -702,9 +702,9 @@ public class SCLAlertView: UIViewController {
         if duration > 0 {
             self.duration = duration
             durationTimer?.invalidate()
-            durationTimer = NSTimer.scheduledTimerWithTimeInterval(self.duration, target: self, selector: #selector(SCLAlertView.hideView), userInfo: nil, repeats: false)
+            durationTimer = NSTimer.scheduledTimerWithTimeInterval(self.duration, target: self, selector: "hideView", userInfo: nil, repeats: false)
             durationStatusTimer?.invalidate()
-            durationStatusTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(SCLAlertView.updateDurationStatus), userInfo: nil, repeats: true)
+            durationStatusTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateDurationStatus", userInfo: nil, repeats: true)
         }
         
         // Animate in the alert view

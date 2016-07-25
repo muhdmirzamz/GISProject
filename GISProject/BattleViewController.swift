@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Bluuur
+import SCLAlertView
 
 protocol BattleProtocol {
 	func reloadMap()
@@ -40,6 +41,13 @@ class BattleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont.systemFontOfSize(30, weight: UIFontWeightLight),
+            kTitleHeight: 40,
+            kButtonFont: UIFont.systemFontOfSize(18, weight: UIFontWeightLight),
+            showCloseButton: false
+        )
+        
 		// set up blur view
 		self.blurView.blurProgress = 0.3
 		
