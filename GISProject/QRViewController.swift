@@ -40,6 +40,7 @@ class QRViewController: UIViewController {
         return .LightContent
     }
     
+    
     //
     // Custom labels for user based on stats
     //
