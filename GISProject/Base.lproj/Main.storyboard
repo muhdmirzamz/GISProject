@@ -1495,7 +1495,6 @@
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="cancelBtn:" destination="SlV-m4-ByG" eventType="touchUpInside" id="53P-YP-ZTR"/>
-                                    <action selector="cancelButtonPressed:" destination="SlV-m4-ByG" eventType="touchUpInside" id="BWF-25-5K1"/>
                                 </connections>
                             </button>
                         </subviews>

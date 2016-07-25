@@ -334,7 +334,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         let camera = Camera(delegate_: self)
         
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
         
         let takePhoto = UIAlertAction(title: "Take Photo", style: .Default) { (alert: UIAlertAction!) -> Void in
             camera.PresentPhotoCamera(self, canEdit: true)
@@ -653,8 +653,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             let mediaItem = message.media as! JSQLocationMediaItem
             
-            let mapView = segue.destinationViewController as! MapViewController
-            //  mapView.location = mediaItem.location
+            let mapView = segue.destinationViewController as! ChatMapViewController
+              mapView.location = mediaItem.location
         }
     }
     
