@@ -92,6 +92,7 @@ PODS:
   - PageMenu (1.2.9)
   - pop (1.0.9)
   - QRCode (0.5)
+  - SCLAlertView (0.5.9)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
@@ -110,6 +111,7 @@ DEPENDENCIES:
   - MaterialCard
   - PageMenu
   - QRCode
+  - SCLAlertView
 
 SPEC CHECKSUMS:
   BFPaperButton: 7df738f2e749a9a4edd3e043f0621ee02215e417
@@ -135,9 +137,10 @@ SPEC CHECKSUMS:
   PageMenu: ba19ff267f7a19e444e93c20a7847b78954a7011
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   QRCode: a249ed747aeb0f4bf5f9c58b5b001b6b3bc80073
+  SCLAlertView: d7c6a48c7d340e60206d4ed0e8ebcbff3b9d2a44
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
 
-PODFILE CHECKSUM: c9e49c057cda6c71de70477d77a745d92cb6aff5
+PODFILE CHECKSUM: f41e48bbef51a3fa26e5c4fc2a80ae245c9d1de5
 
 COCOAPODS: 1.0.1

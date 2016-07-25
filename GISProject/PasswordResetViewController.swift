@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SCLAlertView
 
 class PasswordResetViewController: UIViewController {
 
@@ -41,23 +42,35 @@ class PasswordResetViewController: UIViewController {
         activityIndicator.startAnimating()
         
         let email = EmailLabel.text!
-
+        //set alert appearance
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont.systemFontOfSize(28, weight: UIFontWeightLight),
+            kTitleHeight: 40,
+            kButtonFont: UIFont.systemFontOfSize(18, weight: UIFontWeightLight),
+            showCloseButton: false
+        )
+        
         FIRAuth.auth()?.sendPasswordResetWithEmail(email) { error in
             if let error = error {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.activityIndicator.stopAnimating()
-                    let errorAlert = UIAlertController(title: "Password Reset Failed", message: "Please ensure information given is correct!", preferredStyle: .Alert)
-                    errorAlert.addAction(UIAlertAction(title: "Fix it now!!!", style: .Default, handler: nil))
-                    self.presentViewController(errorAlert, animated: true, completion: nil)
+                    //pop up alert
+                    let alertView = SCLAlertView(appearance : appearance)
+                    alertView.addButton("Retry") {
+                        alertView.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    alertView.showError("Reset Failed", subTitle: "\n Please ensure information given is correct! \n")
                 })
             } else {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.activityIndicator.stopAnimating()
-                    let errorAlert = UIAlertController(title: "Password Reset Complete", message: "Please check the provided Email to proceed.", preferredStyle: .Alert)
-                    errorAlert.addAction(UIAlertAction(title: "Alright!", style: .Default, handler: nil))
-                    self.presentViewController(errorAlert, animated: true, completion: nil)
+                    //pop up alert
+                    let alertView = SCLAlertView(appearance : appearance)
+                    alertView.addButton("Done") {
+                        self.dismiss()
+                    }
+                    alertView.showSuccess("Reset Requested", subTitle: "\n Please check provided email for further instructions. \n")
                     self.EmailLabel.text! = ""
-                    self.dismiss()
                 })
             }
         }

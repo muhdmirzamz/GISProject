@@ -18,7 +18,6 @@ class QRViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var cardLabel: UILabel!
-    @IBOutlet weak var monsterLabel: UILabel!
     @IBOutlet weak var blurView: MLWLiveBlurView!
     
     override func viewDidLoad() {
@@ -41,6 +40,7 @@ class QRViewController: UIViewController {
         return .LightContent
     }
     
+    
     //
     // Custom labels for user based on stats
     //
@@ -52,7 +52,6 @@ class QRViewController: UIViewController {
         
         var name : String = ""
         var card : Int = 0
-        var monster : Int = 0
         let battle = Battle()
         
         let dispatch_group = dispatch_group_create()
@@ -76,12 +75,10 @@ class QRViewController: UIViewController {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 //Get values
                 let name = snapshot.value!["Name"] as! String
-                let monster = snapshot.value!["Monsters killed"] as! NSNumber
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     //Set to labels
                     self.nameLabel.text = "\(name)"
-                    self.monsterLabel.text = "\(monster)"
                 })
             })
         })
@@ -110,7 +107,7 @@ class QRViewController: UIViewController {
         // material design button
         let button = BFPaperButton(frame: CGRectMake(112, 550, 150, 40), raised: true)
         button.setTitle("Add Card", forState: .Normal)
-        button.titleFont = UIFont(name: "HelveticaNeue-Thin", size: 22)
+        button.titleFont = UIFont.systemFontOfSize(22, weight: UIFontWeightLight)
         button.backgroundColor = UIColor(red: 72/255, green: 146/255, blue: 238/255, alpha: 1)
         button.cornerRadius = 3
         button.rippleFromTapLocation = true

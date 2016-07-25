@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreData
 import MaterialCard
-import BFPaperButton
+import SCLAlertView
 
 class LoginViewController: UIViewController, ProfileProtocol {
 
@@ -121,14 +121,26 @@ class LoginViewController: UIViewController, ProfileProtocol {
 
     @IBAction func Login(sender: AnyObject) {
         hideKeyboard()
+        self.login.enabled = false
         FIRAuth.auth()?.signInWithEmail(Email.text!, password: Password.text!, completion: {
             user, error in
             
             if error != nil {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    let errorAlert = UIAlertController(title: "Login Failed", message: "Please ensure information given is correct!", preferredStyle: .Alert)
-                    errorAlert.addAction(UIAlertAction(title: "Fix it now!!!", style: .Default, handler: nil))
-                    self.presentViewController(errorAlert, animated: true, completion: nil)
+                    //set alert appearance
+                    let appearance = SCLAlertView.SCLAppearance(
+                        kTitleFont: UIFont.systemFontOfSize(30, weight: UIFontWeightLight),
+                        kTitleHeight: 40,
+                        kButtonFont: UIFont.systemFontOfSize(18, weight: UIFontWeightLight),
+                        showCloseButton: false
+                    )
+                    self.login.enabled = true
+                    //pop up alert
+                    let alertView = SCLAlertView(appearance : appearance)
+                    alertView.addButton("Retry") {
+                        alertView.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    alertView.showError("Login Failed", subTitle: "\n Please ensure information given is correct! \n")
                 })
 				
                 self.Email.text! = ""

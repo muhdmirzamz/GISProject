@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerViewDelegate {
+class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var PickerView: UIPickerView!
@@ -33,6 +33,68 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func takePhotoBtn(sender: AnyObject) {
+        
+        print("test egg")
+        
+        
+        let camera = Camera(delegate_: self)
+        
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        let takePhoto = UIAlertAction(title: "Take Photo", style: .Default) { (alert: UIAlertAction!) -> Void in
+            camera.PresentPhotoCamera(self, canEdit: true)
+        }
+        
+        let sharePhoto = UIAlertAction(title: "Photo Library", style: .Default) { (alert: UIAlertAction!) -> Void in
+            camera.PresentPhotoLibrary(self, canEdit: true)
+        }
+        
+        let shareLoction = UIAlertAction(title: "Share Location", style: .Default) { (alert: UIAlertAction!) -> Void in
+            
+           
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alert : UIAlertAction!) -> Void in
+            
+            print("Cancel")
+        }
+        
+        optionMenu.addAction(takePhoto)
+        optionMenu.addAction(sharePhoto)
+        optionMenu.addAction(shareLoction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    //MARK: UIIMagePickerController functions
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        let picture = info[UIImagePickerControllerEditedImage] as? UIImage
+        
+        var outgoingMessage = OutgoingMessage?()
+        
+        print("saved to firebase")
+        
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        print("saving to \(uid)")
+       
+        //send picture message
+        if let pic = picture {
+            
+            let imageData = UIImageJPEGRepresentation(pic, 1.0)
+            
+            outgoingMessage = OutgoingMessage(message: "testing pc", pictureData: imageData!)
+        }
+        
+        outgoingMessage!.sendPhoto("\(uid)", item: outgoingMessage!.messageDictionary)
+        print("done")
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
