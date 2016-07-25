@@ -202,6 +202,16 @@ class ProfileViewController: UIViewController {
             appDelegate.locationManagerStop()
             appDelegate.stopTimer()
             
+            //set online to false
+            onlineUserRef.child(KEY_UID).updateChildValues(["KEY_ISONLINE":false])
+            
+            
+            KEY_UID = ""
+            HANDLE = ""
+            NEW_USER = false
+            
+            
+            
             self.logoutSeq()
         }
         alertView.addButton("ABORT!!1!") {

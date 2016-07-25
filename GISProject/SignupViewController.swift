@@ -87,6 +87,7 @@ class SignupViewController: UIViewController {
                         let pict : NSNumber = 7
                         let lat : NSNumber = 0
                         let lng : NSNumber = 0
+                        let KEY_ISONLINE : Bool = false
                         
                         //Create "Account" Firebase
                         self.ref.child("/Account/\(uid)/Name").setValue(self.UsernameLabel.text!)
@@ -96,6 +97,7 @@ class SignupViewController: UIViewController {
                         self.ref.child("/Account/\(uid)/Picture").setValue(pict)
                         self.ref.child("/Account/\(uid)/lat").setValue(lat)
                         self.ref.child("/Account/\(uid)/lng").setValue(lng)
+                        self.ref.child("/Account/\(uid)/KEY_ISONLINE").setValue(KEY_ISONLINE)
                         
                         
                         self.activityIndicator.stopAnimating()

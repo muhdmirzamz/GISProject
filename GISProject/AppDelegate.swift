@@ -91,11 +91,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     }
     
     func locationManagerDidPauseLocationUpdates(manager: CLLocationManager) {
-        print("位置情報更新停止")
+        print("pause location update")
     }
     
     func locationManagerDidResumeLocationUpdates(manager: CLLocationManager) {
-        print("位置情報更新再開")
+        print("resume location update")
     }
     
     func setupLocationTimer(){
@@ -188,6 +188,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
 	func applicationWillResignActive(application: UIApplication) {
 		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
 		// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        
+      
+        
 	}
 
 	func applicationDidEnterBackground(application: UIApplication) {
@@ -197,6 +200,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
 
 	func applicationWillEnterForeground(application: UIApplication) {
 		// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
 	}
 
 	func applicationDidBecomeActive(application: UIApplication) {

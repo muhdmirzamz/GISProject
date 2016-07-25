@@ -21,8 +21,8 @@ class QRViewController: UIViewController {
     @IBOutlet weak var blurView: MLWLiveBlurView!
     
     var sendUid :String!
-    var lat : Double!
-    var log : Double!
+    var lat : Double! = 0
+    var log : Double! = 0
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -47,9 +47,6 @@ class QRViewController: UIViewController {
         setBlur()
         setBG()
         
-       // appDelegate.fbKey! = sendUid
-        
-       // let uid = (FIRAuth.auth()?.currentUser?.uid)!
         
     }
     
@@ -75,8 +72,8 @@ class QRViewController: UIViewController {
         var card : Int = 0
         let battle = Battle()
         
-       
-        
+        KEY_UID = uid
+        onlineUserRef.child(KEY_UID).updateChildValues(["KEY_ISONLINE":true])
         
         let dispatch_group = dispatch_group_create()
         
@@ -166,17 +163,19 @@ class QRViewController: UIViewController {
         print("-->\(self.lat)")
         print("-->\(self.log)")
        
-        sendUid = (FIRAuth.auth()?.currentUser?.uid)!
+        sendUid = KEY_UID
+        
+        
         
         var ref =  FIRDatabase.database().reference().child("/Account/")
-         print(sendUid)
+         print(KEY_UID)
         print(ref)
         
-        if(sendUid != nil){
+        if(KEY_UID != ""){
             
     
-       ref.childByAppendingPath(sendUid).updateChildValues(["lat":self.lat])
-            ref.childByAppendingPath(sendUid).updateChildValues(["lng":self.log])
+       ref.childByAppendingPath(KEY_UID).updateChildValues(["lat":self.lat])
+            ref.childByAppendingPath(KEY_UID).updateChildValues(["lng":self.log])
     
             
    //ref.childByAppendingPath("Users").childByAppendingPath(self.ref.authData.ui‌​d).updateChildValues(["Email":self.EmailAddressTF.text!])
