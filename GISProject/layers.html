@@ -4,10 +4,31 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
             <meta charset="utf-8">
                 <title>Simple markers</title>
-                <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+                <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
                 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+                <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+
+                <script>
+                // init side nav
+                $(document).ready(function(){
+                    $(".button-collapse").sideNav();
+                    });
+                // Initialize Firebase
+                var config = {
+                    apiKey: "AIzaSyCRIZ7ernlycehS8DLYRoPY_90aaZTXbLQ",
+                    authDomain: "loba-83587.firebaseapp.com",
+                    databaseURL: "https://loba-83587.firebaseio.com",
+                    storageBucket: "loba-83587.appspot.com",
+                };
+                firebase.initializeApp(config);
+                var database = firebase.database();
+                </script>
                 <style>
                     html, body {
                         height: 100%;
@@ -17,220 +38,357 @@
                 #map {
                     height: 100%;
                 }
-                #floating-panel {
-                    position: absolute;
-                    top: 20px;
-                    left: 25%;
-                    z-index: 5;
-                    background-color: #fff;
-                    padding: 5px;
-                    border: 1px solid #999;
-                    text-align: center;
-                    font-family: 'Roboto','sans-serif';
-                    line-height: 30px;
-                    padding-left: 10px;
+                .sideNavHeader {
+                    padding: 16px;
+                    line-height: 21px;
                 }
-                #floating-panel {
-                    margin-left: -50px;
+                .sideNavHeaderTitle {
+                    color: rgba(72, 146, 238, 1);
                 }
                 </style>
                 </head>
     <body>
+        <ul id="slide-out" class="side-nav">
+            <li>
+                <h5 class="sideNavHeader sideNavHeaderTitle">Monster Current Spawns</h1>
+                    <p class="sideNavHeader">This map provides statistics based on currently active monsters</p>
+                    </li>
+            <li>
+                <li><div class="divider"></div></li>
+                <br>
+                <li><a class="waves-effect" onClick="initMap()" style="color:#FFEB3B;">All monsters</a></li>
+                <li><a class="waves-effect" onClick="initElectricMap()" style="color:#FFEB3B;">Electric monsters</a></li>
+                <li><a class="waves-effect" onClick="initFireMap()" style="color:#F44336;">Fire monsters</a></li>
+                <li><a class="waves-effect" onClick="initGhostMap()" style="color:#607D8B;">Ghost monsters</a></li>
+                <li><a class="waves-effect" onClick="initGrassMap()" style="color:#8BC34A;">Grass monsters</a></li>
+                <li><a class="waves-effect" onClick="initWaterMap()" style="color:#2196F3;">Water monsters</a></li>
+                <br>
+                <li><div class="divider"></div></li>
+                <li>
+                    </ul>
+        <div class="fixed-action-btn" style="bottom: 50px; right: 10px;">
+            <a data-activates="slide-out" class="btn-floating btn-large waves-effect waves-light blue button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+
         <div id="map"></div>
+
         <script>
+
+            var map;
+            var locationArr = new Array();
+            var DryToad = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">DryToad</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>DryToad</b>, is a large toad that got contaminated' +
+            ' by radioactive wastes threw into the pond by companies'+
+            ' instead of disposing by proper methods </p>' +
+            '<p>HP : <b>1</b></p>  <p>Type: <b>Water</b></p>' +
+            '<p>Quote : Too weak to be considered a monster</p>' +
+            '</div>'+
+            '</div>';
+
+            var Electrifly = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Electrifly</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>Electrifly</b>, is a lightning creature that spawned' +
+            ' from the thunderstorm clouds. Legends say its electricity'+
+            ' is as strong as 500 watts </p>' +
+            '<p>HP : <b>1</b></p>  <p>Type: <b>Electric</b></p>' +
+            '<p>Quote : Lightning is only as strong as darkness</p>' +
+            '</div>'+
+            '</div>';
+
+            var volLarva = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">volLarva</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>VolLarva</b>, harnesses his powers from the light of ' +
+            ' the sun. It feeds off drywood and disintegrates anything wooden'+
+            ' thus it is considered highly dangerous </p>' +
+            '<p>HP : <b>1</b></p>  <p>Type: <b>Fire</b></p>' +
+            '<p>Quote : Fire can be the only superpower</p>' +
+            '</div>'+
+            '</div>';
+
+            var infoToad = new google.maps.InfoWindow({
+                        content: DryToad
+                        });
+
+            var infoElect = new google.maps.InfoWindow({
+                        content: Electrifly
+                        });
+
+            var infoLarva = new google.maps.InfoWindow({
+                        content: volLarva
+                        });
+
             function initMap() {
-                
-                var centerlatLng = {lat: 1.3801, lng: 103.8490};
-                var latlng1 = {lat: 1.38098127843023, lng: 103.8486879226299};
-                var latlng2 = {lat: 1.382170199449567, lng: 103.8482437025494};
-                var latlng3 = {lat: 1.381602205990674, lng: 103.8485798830626};
-                var latlng4 = {lat: 1.38184627856266, lng: 103.849257778687};
-                var latlng5 = {lat: 1.381936042993424, lng: 103.848909794732};
-                var latlng6 = {lat: 1.378214, lng: 103.849410};
-                var latlng7 = {lat: 1.378355, lng: 103.848851};
-                var latlng8 = {lat: 1.377068, lng: 103.849452};
-                var latlng9 = {lat: 1.377497, lng: 103.850740};
-                var latlng10 = {};
-                
-                var map = new google.maps.Map(document.getElementById('map'), {
-                                              zoom: 17,
-                                              center: centerlatLng,
-                                              disableDefaultUI: true
-                                              });
-                                              
-                                              var DryToad = '<div id="content">'+
-                                              '<div id="siteNotice">'+
-                                              '</div>'+
-                                              '<h1 id="firstHeading" class="firstHeading">DryToad</h1>'+
-                                              '<div id="bodyContent">'+
-                                              '<p><b>DryToad</b>, is a large toad that got contaminated' +
-                                              ' by radioactive wastes threw into the pond by companies'+
-                                              ' instead of disposing by proper methods </p>' +
-                                              '<p>HP : <b>1</b></p>  <p>Type: <b>Water</b></p>' +
-                                              '<p>Quote : Too weak to be considered a monster</p>' +
-                                              '</div>'+
-                                              '</div>';
-                                              
-                                              var Electrifly = '<div id="content">'+
-                                              '<div id="siteNotice">'+
-                                              '</div>'+
-                                              '<h1 id="firstHeading" class="firstHeading">Electrifly</h1>'+
-                                              '<div id="bodyContent">'+
-                                              '<p><b>Electrifly</b>, is a lightning creature that spawned' +
-                                              ' from the thunderstorm clouds. Legends say its electricity'+
-                                              ' is as strong as 500 watts </p>' +
-                                              '<p>HP : <b>1</b></p>  <p>Type: <b>Electric</b></p>' +
-                                              '<p>Quote : Lightning is only as strong as darkness</p>' +
-                                              '</div>'+
-                                              '</div>';
-                                              
-                                              var volLarva = '<div id="content">'+
-                                              '<div id="siteNotice">'+
-                                              '</div>'+
-                                              '<h1 id="firstHeading" class="firstHeading">volLarva</h1>'+
-                                              '<div id="bodyContent">'+
-                                              '<p><b>VolLarva</b>, harnesses his powers from the light of ' +
-                                              ' the sun. It feeds off drywood and disintegrates anything wooden'+
-                                              ' thus it is considered highly dangerous </p>' +
-                                              '<p>HP : <b>1</b></p>  <p>Type: <b>Fire</b></p>' +
-                                              '<p>Quote : Fire can be the only superpower</p>' +
-                                              '</div>'+
-                                              '</div>';
-                                              
-                                            var infoToad= new google.maps.InfoWindow({
-                                                                    content: DryToad
-                                                                                });
-                                                                                
-                                            var infoElect= new google.maps.InfoWindow({
-                                                                    content: Electrifly
-                                                                                });
-                                                                                
-                                            var infoLarva= new google.maps.InfoWindow({
-                                                                    content: volLarva
-                                                                                });
-                                              
-                                            var marker1 = new google.maps.Marker({
-                                                                                position: latlng1,
-                                                                                map: map,
-                                                                                 label: 'A',
-                                                                                animation: google.maps.Animation.DROP
-                                                                                });
-                                            var marker2 = new google.maps.Marker({
-                                                                                position: latlng2,
-                                                                                map: map,
-                                                                                label: 'B',
-                                                                                animation: google.maps.Animation.DROP
-                                                                                });
-                                            var marker3 = new google.maps.Marker({
-                                                                                position: latlng3,
-                                                                                map: map,
-                                                                                label: 'C',
-                                                                                animation: google.maps.Animation.DROP
-                                                                                });
-                                            var marker4 = new google.maps.Marker({
-                                                                                position: latlng4,
-                                                                                map: map,
-                                                                                label: 'D',
-                                                                                animation: google.maps.Animation.DROP
-                                                                                });
-                                            var marker5 = new google.maps.Marker({
-                                                                                position: latlng5,
-                                                                                map: map,
-                                                                                label: 'E',
-                                                                                animation: google.maps.Animation.DROP
-                                                                                });
-                                            var marker6 = new google.maps.Marker({
-                                                                                position: latlng6,
-                                                                                map: map,
-                                                                                label: 'F',
-                                                                                animation: google.maps.Animation.DROP
-                                                                                });
-                                            var marker7 = new google.maps.Marker({
-                                                                                position: latlng7,
-                                                                                map: map,
-                                                                                label: 'G',
-                                                                                animation: google.maps.Animation.DROP
-                                                                                });
-                                            var marker8 = new google.maps.Marker({
-                                                                                position: latlng8,
-                                                                                map: map,
-                                                                                label: 'H',
-                                                                                animation: google.maps.Animation.DROP
-                                                                                });
-                                            var marker9 = new google.maps.Marker({
-                                                                                position: latlng9,
-                                                                                map: map,
-                                                                                label: 'I',
-                                                                                animation: google.maps.Animation.DROP
-                                                                                });
-                map.addListener('center_changed', function() {
-                // 3 seconds after the center of the map has changed, pan back to the marker
-                window.setTimeout(function() {
-                    map.setZoom(17)
-                    map.panTo(map.getPosition());
-                    }, 7000);
-                    });
-                    marker1.addListener('click', function() {
-                                        map.setZoom(20);
-                                        map.setCenter(marker1.getPosition());
-                                       infoToad.open(map, marker1);
-                                       });
-                    marker2.addListener('click', function() {
-                                        map.setZoom(20);
-                                        map.setCenter(marker2.getPosition());
-                                        infoElect.open(map,marker2);
-                                        });
-                    marker3.addListener('click', function() {
-                                        map.setZoom(20);
-                                        map.setCenter(marker3.getPosition());
-                                        infoLarva.open(map,marker3);
-                                        });
-                    marker4.addListener('click', function() {
-                                        map.setZoom(20);
-                                        map.setCenter(marker4.getPosition());
-                                        infoToad.open(map, marker4);
-                                        });
-                    marker5.addListener('click', function() {
-                                        map.setZoom(20);
-                                        map.setCenter(marker5.getPosition());
-                                        infoLarva.open(map,marker5);
-                                        });
-                    marker6.addListener('click', function() {
-                                        map.setZoom(20);
-                                        map.setCenter(marker6.getPosition());
-                                        infoToad.open(map,marker6);
-                                        });
-                    marker7.addListener('click', function() {
-                                        map.setZoom(20);
-                                        map.setCenter(marker7.getPosition());
-                                        infoLarva.open(map,marker7);
-                                        });
-                    marker8.addListener('click', function() {
-                                        map.setZoom(20);
-                                        map.setCenter(marker7.getPosition());
-                                        infoLarva.open(map,marker8);
-                                        });
-                    marker9.addListener('click', function() {
-                                        map.setZoom(20);
-                                        map.setCenter(marker7.getPosition());
-                                        infoToad.open(map,marker9);
-                                        });
+              locationArr.length = 0
+
+                firebase.database().ref('/Location/').once('value').then(function(snapshot) {
+                       snapshot.forEach(function(childSnapshot) {
+                            var key = childSnapshot.key; // 1
+
+                            var childData = childSnapshot.val()["image string"];
+
+                            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude))
+                        })
+
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 16,
+                            center: {lat: 1.3801, lng: 103.8490},
+                            mapTypeId: google.maps.MapTypeId.MAP,
+                            disableDefaultUI: true
+                        });
+                        // Display multiple markers on a map
+                        // Loop through our array of markers & place each one on the map
+                        console.log(locationArr.length)
+
+                            for( i = 0; i < locationArr.length; i++ ) {
+                                var position = locationArr[i]
+                                marker = new google.maps.Marker({
+                                    position: position,
+                                    map: map,
+                                    animation: google.maps.Animation.DROP,
+                                });
+
+                                map.addListener('center_changed', function() {
+                                // 3 seconds after the center of the map has changed, pan back to the marker
+                                window.setTimeout(function() {
+                                  map.setZoom(17)
+                                  map.panTo(map.getPosition());
+                                  }, 7000);
+                                });
+                                // Allow each marker to have an info window
+                                marker.addListener('click', function() {
+                                          map.setZoom(20);
+                                          map.setCenter(marker.getPosition());
+                                         });
+                        }
+                });
             }
+            function initElectricMap() {
+              locationArr.length = 0
+
+              firebase.database().ref('/Location/').once('value').then(function(snapshot) {
+                     snapshot.forEach(function(childSnapshot) {
+                          var key = childSnapshot.key; // 1
+
+                          var childData = childSnapshot.val()["image string"];
+
+                          if (childData.substring(0, 6) == "electric") {
+                            console.log("Latitude: " + childSnapshot.val().latitude)
+                            console.log("Longitude: " + childSnapshot.val().longitude)
+
+                            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude))
+                          }
+                      })
+
+                      map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 16,
+                          center: {lat: 1.3801, lng: 103.8490},
+                          mapTypeId: google.maps.MapTypeId.MAP,
+                          disableDefaultUI: true
+                      });
+                      // Display multiple markers on a map
+                      // Loop through our array of markers & place each one on the map
+                      console.log(locationArr.length)
+
+                          for( i = 0; i < locationArr.length; i++ ) {
+                              var position = locationArr[i]
+                              marker = new google.maps.Marker({
+                                  position: position,
+                                  map: map,
+                              });
+
+
+                              // Allow each marker to have an info window
+                              marker.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker.getPosition());
+                                       });
+                      }
+              });
+            }
+
+            function initFireMap() {
+              locationArr.length = 0
+
+              firebase.database().ref('/Location/').once('value').then(function(snapshot) {
+                     snapshot.forEach(function(childSnapshot) {
+                          var key = childSnapshot.key; // 1
+
+                          var childData = childSnapshot.val()["image string"];
+
+                          if (childData.substring(0, 4) == "fire") {
+                            console.log("Latitude: " + childSnapshot.val().latitude)
+                            console.log("Longitude: " + childSnapshot.val().longitude)
+
+                            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude))
+                          }
+                      })
+
+                      map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 16,
+                          center: {lat: 1.3801, lng: 103.8490},
+                          mapTypeId: google.maps.MapTypeId.MAP,
+                          disableDefaultUI: true
+                      });
+                      // Display multiple markers on a map
+                      // Loop through our array of markers & place each one on the map
+                      console.log(locationArr.length)
+
+                          for( i = 0; i < locationArr.length; i++ ) {
+                              var position = locationArr[i]
+                              marker = new google.maps.Marker({
+                                  position: position,
+                                  map: map,
+                                  animation: google.maps.Animation.DROP
+                              });
+
+                              // Allow each marker to have an info window
+                              marker.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker.getPosition());
+                                       });
+                      }
+              });
+            }
+            function initWaterMap() {
+              locationArr.length = 0
+
+              firebase.database().ref('/Location/').once('value').then(function(snapshot) {
+                     snapshot.forEach(function(childSnapshot) {
+                          var key = childSnapshot.key; // 1
+
+                          var childData = childSnapshot.val()["image string"];
+
+                          if (childData.substring(0, 5) == "water") {
+                            console.log("Latitude: " + childSnapshot.val().latitude)
+                            console.log("Longitude: " + childSnapshot.val().longitude)
+
+                            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude))
+                          }
+                      })
+
+                      map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 16,
+                          center: {lat: 1.3801, lng: 103.8490},
+                          mapTypeId: google.maps.MapTypeId.MAP,
+                          disableDefaultUI: true
+                      });
+                      // Display multiple markers on a map
+                      // Loop through our array of markers & place each one on the map
+                      console.log(locationArr.length)
+
+                          for( i = 0; i < locationArr.length; i++ ) {
+                              var position = locationArr[i]
+                              marker = new google.maps.Marker({
+                                  position: position,
+                                  map: map,
+                                  animation: google.maps.Animation.DROP
+                              });
+                              marker.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker.getPosition());
+                                       });
+                      }
+              });
+            }
+
+            function initGhostMap() {
+              locationArr.length = 0
+
+              firebase.database().ref('/Location/').once('value').then(function(snapshot) {
+                     snapshot.forEach(function(childSnapshot) {
+                          var key = childSnapshot.key; // 1
+
+                          var childData = childSnapshot.val()["image string"];
+
+                          if (childData.substring(0, 5) == "ghost") {
+                            console.log("Latitude: " + childSnapshot.val().latitude)
+                            console.log("Longitude: " + childSnapshot.val().longitude)
+
+                            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude))
+                          }
+                      })
+
+                      map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 16,
+                          center: {lat: 1.3801, lng: 103.8490},
+                          mapTypeId: google.maps.MapTypeId.MAP,
+                          disableDefaultUI: true
+                      });
+                      // Display multiple markers on a map
+                      // Loop through our array of markers & place each one on the map
+                      console.log(locationArr.length)
+
+                          for( i = 0; i < locationArr.length; i++ ) {
+                              var position = locationArr[i]
+                              marker = new google.maps.Marker({
+                                  position: position,
+                                  map: map,
+                                  animation: google.maps.Animation.DROP
+                              });
+                              marker.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker.getPosition());
+                                       });
+                      }
+              });
+            }
+
+            function initGrassMap() {
+              locationArr.length = 0
+
+              firebase.database().ref('/Location/').once('value').then(function(snapshot) {
+                     snapshot.forEach(function(childSnapshot) {
+                          var key = childSnapshot.key; // 1
+
+                          var childData = childSnapshot.val()["image string"];
+
+                          if (childData.substring(0, 5) == "grass") {
+                            console.log("Latitude: " + childSnapshot.val().latitude)
+                            console.log("Longitude: " + childSnapshot.val().longitude)
+
+                            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude))
+                          }
+                      })
+
+                      map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 16,
+                          center: {lat: 1.3801, lng: 103.8490},
+                          mapTypeId: google.maps.MapTypeId.MAP,
+                          disableDefaultUI: true
+                      });
+                      // Display multiple markers on a map
+                      // Loop through our array of markers & place each one on the map
+                      console.log(locationArr.length)
+
+                          for( i = 0; i < locationArr.length; i++ ) {
+                              var position = locationArr[i]
+                              marker = new google.maps.Marker({
+                                  position: position,
+                                  map: map,
+                                  animation: google.maps.Animation.DROP
+                              });
+                              marker.addListener('click', function() {
+                                        map.setZoom(20);
+                                        map.setCenter(marker.getPosition());
+                                       });
+                      }
+              });
+            }
+
         </script>
         <script async defer
-           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initMap">
+           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIZ7ernlycehS8DLYRoPY_90aaZTXbLQ&libraries=visualization&callback=initMap">
             </script>
-        <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 20px; right: 24px;">
-            <a class="btn-floating btn-large red">
-                <i class="material-icons">layers</i>
-            </a>
-            <ul>
-                <li><a id="toggleHeatmapID" class="btn-floating black" href="heatmap.html"><i class="material-icons">insert_chart</i></a></li>
-                <li><a class="btn-floating yellow" href="layers.html"><i class="material-icons">layers_clear</i></a></li>
-                <li><a class="btn-floating black" href="weathermap.html"><i class="material-icons">cloud</i></a></li>
-                 <li><a class="btn-floating black" href="friendsmap.html"><i class="material-icons">cloud</i></a></li>
-            </ul>
-        </div>
-        
+
     </body>
 </html>
