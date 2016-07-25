@@ -12,9 +12,93 @@ import CoreData
 import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate {
 
 	var window: UIWindow?
+    
+    //setup plist to get location working
+    //NSLocationWhenInUseUsageDescription
+    var locationManager: CLLocationManager?
+    var coordinate: CLLocationCoordinate2D?
+    var timer : NSTimer?
+    var count = 0
+    var seconds = 0
+    
+    //MARK:  LocationManger fuctions
+    
+    func locationManagerStart() {
+        
+        if locationManager == nil {
+            print("init locationManager")
+            locationManager = CLLocationManager()
+            locationManager!.delegate = self
+            locationManager!.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager!.requestWhenInUseAuthorization()
+        }
+        
+        print("have location manager")
+        locationManager!.startUpdatingLocation()
+        
+        
+        
+        
+    }
+    
+    func locationManagerStop() {
+        locationManager!.stopUpdatingLocation()
+    }
+    
+    
+    //MARK: CLLocationManager Delegate
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        
+        coordinate = newLocation.coordinate
+        
+       print(coordinate!.longitude)
+        print(coordinate!.latitude)
+        
+        locationManagerStop()
+        
+        
+    }
+    func setupLocationTimer(){
+        count = 0
+        seconds = 10
+        
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0,
+                                                       target: self,
+                                                       selector: "updateLocationInterval", userInfo: nil,
+                                                       repeats: true)
+        
+        
+    }
+    
+    
+    func updateLocationInterval(){
+        
+        seconds--
+        print(seconds)
+        
+        
+        
+        
+        
+        
+        if (seconds == 0) {
+            // Optional chaining – don’t call 
+            // invalidate if timer is null.
+            
+            timer?.invalidate()
+            locationManagerStart()
+            
+             setupLocationTimer()
+            
+            
+        }
+        
+    }
     
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
@@ -33,6 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRDatabase.database().persistenceEnabled = true //change
         
+         setupLocationTimer()
         
         return true
 	}
@@ -77,10 +162,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func applicationDidBecomeActive(application: UIApplication) {
 		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+         locationManagerStart()
 	}
 
 	func applicationWillTerminate(application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        locationManagerStop()
 	}
 
     // MARK: - Core Data stack
