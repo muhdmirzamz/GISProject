@@ -15,6 +15,7 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate {
 
 	var window: UIWindow?
+     
     
     //setup plist to get location working
     //NSLocationWhenInUseUsageDescription
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     var timer : NSTimer?
     var count = 0
     var seconds = 0
+    
     
     //MARK:  LocationManger fuctions
     
@@ -65,6 +67,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         print(coordinate!.latitude)
         
         locationManagerStop()
+        
+        //update firebase location 
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+       let setCoordinateViewController = storyboard.instantiateViewControllerWithIdentifier("qrViewController") as! QRViewController
+                 
+        
+        
+        
+            setCoordinateViewController.lat = coordinate!.latitude
+            setCoordinateViewController.log = coordinate!.longitude
+            setCoordinateViewController.updateLocation()
+        
+        
         
         
     }

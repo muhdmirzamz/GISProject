@@ -20,14 +20,25 @@ class QRViewController: UIViewController {
     @IBOutlet weak var cardLabel: UILabel!
     @IBOutlet weak var blurView: MLWLiveBlurView!
     
+    var sendUid :String!
+    var lat : Double!
+    var log : Double!
+    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBG()
-        
         //start timer upon successful logged in
-       let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
         appDelegate.setupLocationTimer()
         appDelegate.locationManagerStart()
+       
+        
+        
+        
+        
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -35,6 +46,11 @@ class QRViewController: UIViewController {
         setCustomLabel()
         setBlur()
         setBG()
+        
+       // appDelegate.fbKey! = sendUid
+        
+       // let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,6 +75,9 @@ class QRViewController: UIViewController {
         var card : Int = 0
         let battle = Battle()
         
+       
+        
+        
         let dispatch_group = dispatch_group_create()
         
 
@@ -68,6 +87,8 @@ class QRViewController: UIViewController {
                 let value = snapshot.value!["\(key)"] as? NSNumber
                 if value?.integerValue == 1 {
                     battle.uidArr?.addObject(key)
+                   
+                     
                 }
             }
             
@@ -84,6 +105,7 @@ class QRViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     //Set to labels
                     self.nameLabel.text = "\(name)"
+                    
                 })
             })
         })
@@ -135,6 +157,36 @@ class QRViewController: UIViewController {
     //
     func setBlur() {
         blurView.blurProgress = 0.5
+    }
+    
+    func updateLocation(){
+        
+        
+        
+        print("-->\(self.lat)")
+        print("-->\(self.log)")
+       
+        sendUid = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        var ref =  FIRDatabase.database().reference().child("/Account/")
+         print(sendUid)
+        print(ref)
+        
+        if(sendUid != nil){
+            
+    
+       ref.childByAppendingPath(sendUid).updateChildValues(["lat":self.lat])
+            ref.childByAppendingPath(sendUid).updateChildValues(["lng":self.log])
+    
+            
+   //ref.childByAppendingPath("Users").childByAppendingPath(self.ref.authData.ui‌​d).updateChildValues(["Email":self.EmailAddressTF.text!])
+           
+        }else{
+            print("no key yet")
+        }
+
+        
+        
     }
     
     //
