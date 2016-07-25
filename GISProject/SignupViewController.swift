@@ -85,6 +85,8 @@ class SignupViewController: UIViewController {
                         let level : NSNumber = 1
                         let monst : NSNumber = 0
                         let pict : NSNumber = 7
+                        let lat : NSNumber = 0
+                        let lng : NSNumber = 0
                         
                         //Create "Account" Firebase
                         self.ref.child("/Account/\(uid)/Name").setValue(self.UsernameLabel.text!)
@@ -92,6 +94,9 @@ class SignupViewController: UIViewController {
                         self.ref.child("/Account/\(uid)/Level").setValue(level)
                         self.ref.child("/Account/\(uid)/Monsters killed").setValue(monst)
                         self.ref.child("/Account/\(uid)/Picture").setValue(pict)
+                        self.ref.child("/Account/\(uid)/lat").setValue(lat)
+                        self.ref.child("/Account/\(uid)/lng").setValue(lng)
+                        
                         
                         self.activityIndicator.stopAnimating()
                         try! FIRAuth.auth()!.signOut()

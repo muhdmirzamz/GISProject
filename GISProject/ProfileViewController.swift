@@ -196,6 +196,12 @@ class ProfileViewController: UIViewController {
         //pop up alert
         let alertView = SCLAlertView(appearance : appearance)
         alertView.addButton("Yeah, log me out") {
+            
+            //stop updating location before log out
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.locationManagerStop()
+            appDelegate.stopTimer()
+            
             self.logoutSeq()
         }
         alertView.addButton("ABORT!!1!") {

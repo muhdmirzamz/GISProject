@@ -34,7 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
             locationManager!.delegate = self
             locationManager!.desiredAccuracy = kCLLocationAccuracyBest
             locationManager!.requestWhenInUseAuthorization()
+           // locationManager!.allowsBackgroundLocationUpdates = true
         }
+        
+       
+        
+        
+        
         
         print("have location manager")
         locationManager!.startUpdatingLocation()
@@ -62,6 +68,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         
         
     }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("error: \(error)")
+        
+      
+    }
+    
+    func locationManagerDidPauseLocationUpdates(manager: CLLocationManager) {
+        print("位置情報更新停止")
+    }
+    
+    func locationManagerDidResumeLocationUpdates(manager: CLLocationManager) {
+        print("位置情報更新再開")
+    }
+    
     func setupLocationTimer(){
         count = 0
         seconds = 10
@@ -75,6 +96,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         
     }
     
+    func stopTimer(){
+          timer?.invalidate()
+    }
     
     func updateLocationInterval(){
         
@@ -117,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         
         FIRDatabase.database().persistenceEnabled = true //change
         
-         setupLocationTimer()
+        // setupLocationTimer()
         
         return true
 	}

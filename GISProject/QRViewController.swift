@@ -23,6 +23,11 @@ class QRViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBG()
+        
+        //start timer upon successful logged in
+       let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.setupLocationTimer()
+        appDelegate.locationManagerStart()
     }
 
     override func viewWillAppear(animated: Bool) {
