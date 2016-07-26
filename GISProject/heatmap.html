@@ -45,6 +45,38 @@
       .sideNavHeaderTitle {
         color: rgba(72, 146, 238, 1);
       }
+      .legend {
+        height: 15px;
+        margin-left: 16px;
+        margin-right: 16px;
+        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.75));
+      }
+      #fab {
+        bottom: 55px;
+        right: 10px;
+      }
+      #legendSubHeader {
+        color: rgba(0, 0, 0, 0.54);
+        font-weight: 500;
+      }
+      #legendSub {
+        width: 100%;
+        font-size: 12px;
+      }
+      #subLeft {
+        display: inline;
+        margin-top: 0;
+        margin-left: 16px;
+        float: left;
+        text-align: left;
+      }
+      #subRight {
+        display: inline;
+        margin-top: 0;
+        margin-right: 16px;
+        float: right;
+        text-align: right;
+      }
     </style>
   </head>
 
@@ -65,19 +97,40 @@
         <br>
         <li><div class="divider"></div></li>
       <li>
+      <li>
+        <p id="legendSubHeader" class="sideNavHeader">Legend</p>
+        <div class="legend"></div>
+        <div id="legendSub">
+          <p id="subLeft"><i class="material-icons">thumb_up</i><br>Likely To Spawn</p>
+          <p id="subRight"><i class="material-icons">thumb_down</i><br>Unlikely To Spawn</p>
+        </div>
+      </li>
     </ul>
-    <div class="fixed-action-btn" style="bottom: 50px; right: 10px;">
+    <div id="fab" class="fixed-action-btn">
       <a data-activates="slide-out" class="btn-floating btn-large waves-effect waves-light blue button-collapse"><i class="material-icons">menu</i></a>
     </div>
     <div id="map"></div>
 
     <script>
+    var map, heatmap;
+    var locationArr = new Array();
+    var zoom = 17;
+    var radius = 30;
+    var gradient = [
+      'rgba(0, 0, 0, 0)',
+      'rgba(0, 0, 0, 0.4)',
+      'rgba(0, 0, 0, 0.6)',
+      'rgba(0, 0, 0, 0.8)',
+      'rgba(0, 0, 0, 1)',
+      'rgba(0, 0, 0, 1)',
+      'rgba(0, 0, 0, 1)'
+    ]
       //
       // Electric
       //
       function initElectricMap() {
-        var map, heatmap;
-        var locationArr = new Array();
+        locationArr = new Array();
+
         firebase.database().ref('/PreviousLocation/electric').once('value').then(function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
             var key = childSnapshot.key;
@@ -87,7 +140,7 @@
           })
 
           map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
+            zoom: zoom,
             center: {lat: 1.3801, lng: 103.8490},
             mapTypeId: google.maps.MapTypeId.MAP,
             disableDefaultUI: true
@@ -95,10 +148,11 @@
 
           heatmap = new google.maps.visualization.HeatmapLayer({
             data: locationArr,
-            map: map
+            map: map,
           });
 
-          heatmap.set('radius', 40);
+          heatmap.set('radius', radius);
+          heatmap.set('gradient', gradient);
           var $toastMsg = $('<span>Showing <b style="color:#FFEB3B;">Electric</b> type monster spawns</span>');
           Materialize.toast($toastMsg, 2000);
           $('.button-collapse').sideNav('hide');
@@ -109,8 +163,7 @@
       // Fire
       //
       function initFireMap() {
-        var map, heatmap;
-        var locationArr = new Array();
+        locationArr = new Array();
         firebase.database().ref('/PreviousLocation/fire').once('value').then(function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
             var key = childSnapshot.key;
@@ -120,7 +173,7 @@
           })
 
           map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
+            zoom: zoom,
             center: {lat: 1.3801, lng: 103.8490},
             mapTypeId: google.maps.MapTypeId.MAP,
             disableDefaultUI: true
@@ -131,7 +184,8 @@
             map: map
           });
 
-          heatmap.set('radius', 40);
+          heatmap.set('radius', radius);
+          heatmap.set('gradient', gradient);
           var $toastMsg = $('<span>Showing <b style="color:#F44336;">Fire</b> type monster spawns</span>');
           Materialize.toast($toastMsg, 2000);
           $('.button-collapse').sideNav('hide');
@@ -142,8 +196,7 @@
       // Ghost
       //
       function initGhostMap() {
-        var map, heatmap;
-        var locationArr = new Array();
+        locationArr = new Array();
         firebase.database().ref('/PreviousLocation/ghost').once('value').then(function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
             var key = childSnapshot.key;
@@ -153,7 +206,7 @@
           })
 
           map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
+            zoom: zoom,
             center: {lat: 1.3801, lng: 103.8490},
             mapTypeId: google.maps.MapTypeId.MAP,
             disableDefaultUI: true
@@ -164,7 +217,8 @@
             map: map
           });
 
-          heatmap.set('radius', 40);
+          heatmap.set('radius', radius);
+          heatmap.set('gradient', gradient);
           var $toastMsg = $('<span>Showing <b style="color:#607D8B;">Ghost</b> type monster spawns</span>');
           Materialize.toast($toastMsg, 2000);
           $('.button-collapse').sideNav('hide');
@@ -186,7 +240,7 @@
           })
 
           map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
+            zoom: zoom,
             center: {lat: 1.3801, lng: 103.8490},
             mapTypeId: google.maps.MapTypeId.MAP,
             disableDefaultUI: true
@@ -197,7 +251,8 @@
             map: map
           });
 
-          heatmap.set('radius', 40);
+          heatmap.set('radius', radius);
+          heatmap.set('gradient', gradient);
           var $toastMsg = $('<span>Showing <b style="color:#8BC34A;">Grass</b> type monster spawns</span>');
           Materialize.toast($toastMsg, 2000);
           $('.button-collapse').sideNav('hide');
@@ -219,7 +274,7 @@
           })
 
           map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
+            zoom: zoom,
             center: {lat: 1.3801, lng: 103.8490},
             mapTypeId: google.maps.MapTypeId.MAP,
             disableDefaultUI: true
@@ -230,7 +285,8 @@
             map: map
           });
 
-          heatmap.set('radius', 40);
+          heatmap.set('radius', radius);
+          heatmap.set('gradient', gradient);
           var $toastMsg = $('<span>Showing <b style="color:#2196F3;">Water</b> type monster spawns</span>');
           Materialize.toast($toastMsg, 2000);
           $('.button-collapse').sideNav('hide');
