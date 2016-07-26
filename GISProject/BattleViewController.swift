@@ -261,9 +261,11 @@ class BattleViewController: UIViewController {
                 self.battle?.updatePreviousLocation()
 				self.battle?.updateLocation()
                 
+                self.battle?.updateActivity()
+                
                 // update the number of extra cards
-                let ref = FIRDatabase.database().reference().child("/Friend")
-                ref.child("/\(self.userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                let ref2 = FIRDatabase.database().reference().child("/Friend")
+                ref2.child("/\(self.userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
                     self.battle?.uidArr?.removeAllObjects()
                     
                     for i in snapshot.children {

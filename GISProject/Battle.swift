@@ -19,6 +19,9 @@ class Battle {
 	
 	var baseDamage: NSNumber?
     var expectedMonsterHealth: Float?
+
+    var nameuid: String?
+    var monsKilled: NSNumber?
 	
 	var selectedAnnotation: Location?
     
@@ -143,4 +146,24 @@ class Battle {
 		ref.child("/\(key)/latitude").setValue(latitudeRange)
 		ref.child("/\(key)/longitude").setValue(longitudeRange)
 	}
+    
+    func updateActivity() {
+        let userID = (FIRAuth.auth()?.currentUser?.uid)!
+        //Retrieve name and uid
+        let ref = FIRDatabase.database().reference().child("/Account")
+        ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            self.monsKilled = snapshot.value!["Monsters killed"] as? NSNumber
+            self.nameuid = snapshot.value!["Name"] as! String
+            print(self.nameuid)
+            print(self.monsKilled)
+        })
+        // Update activity table
+        let activityNum = Int(arc4random_uniform(5) + 1)
+        let ref2 = FIRDatabase.database().reference().child("/Activity/\(activityNum)")
+        let updatedKilled = (monsKilled?.integerValue)! + 1
+        ref2.child("activity").setValue("has killed /\(updatedKilled) monsters")
+        ref2.child("uid").setValue(userID)
+        ref2.child("name").setValue(nameuid)
+    }
+    
 }

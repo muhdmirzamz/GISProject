@@ -282,6 +282,8 @@ class ProfileViewController: UIViewController {
         
         self.scrollView.addSubview(timeline)
         
+        
+        
         let ref = FIRDatabase.database().reference().child("/Activity")
         
         ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
