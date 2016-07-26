@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     func updateLocationInterval(){
         
         seconds--
-        print(seconds)
+        //print(seconds)
         
         
         
@@ -140,18 +140,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     }
     
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		// Override point for customization after application launch.
-        
-        if (UIApplication.instancesRespondToSelector("registerUserNotificationSettings(_:)"))
-        {
-            let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        }
-        
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-        // for debugging
-		// UIApplication.sharedApplication().scheduledLocalNotifications?.removeAll()
-        
 		FIRApp.configure()
         
         FIRDatabase.database().persistenceEnabled = true //change
@@ -160,30 +148,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         
         return true
 	}
-    
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        let state = application.applicationState
-        // We will want to show an alert only when the
-        // application is still running as a foreground
-        // app when the notification is received. //
-        if(state == UIApplicationState.Active) {
-            
-            let alert = UIAlertController.init(title: "Alright", message: notification.alertBody, preferredStyle: .Alert)
-            let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
-            alert.addAction(okAction)
-            
-            var topVC = self.window?.rootViewController
-            
-            while topVC?.presentedViewController != nil {
-                topVC = topVC?.presentedViewController
-            }
-            
-            topVC?.presentViewController(alert, animated: true, completion: nil)
-        }
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("battle", object: self)
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-    }
 
 	func applicationWillResignActive(application: UIApplication) {
 		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import Firebase
+import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, BattleProtocol {
 	
@@ -24,6 +25,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var monsterImg: UIImage?
 	
 	let userID = (FIRAuth.auth()?.currentUser?.uid)!
+	var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +106,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		//            self.presentViewController(joinBattleVC, animated: true, completion: nil)
 		//        }
 	
+		// setting up the next view controller
 		let selectedAnnotation = mapView.selectedAnnotations.first as? Location
 		let battleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("BattleViewController") as? BattleViewController
 		battleVC?.selectedAnnotation = selectedAnnotation
@@ -115,6 +118,56 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		battleVC?.definesPresentationContext = true
 		battleVC?.modalPresentationStyle = .OverCurrentContext
 		
+		// check for uid entry in Date entity of core data
+		// this checks if user has used their own card
+		var userCanUseCard = true
+		
+		let entity = NSEntityDescription.entityForName("Date", inManagedObjectContext: self.appDelegate.managedObjectContext)
+		let sortDescriptor = NSSortDescriptor.init(key: "uid", ascending: true)
+		let fetchReq = NSFetchRequest()
+		fetchReq.entity = entity
+		fetchReq.sortDescriptors = [sortDescriptor]
+		
+		let fetchResController = NSFetchedResultsController.init(fetchRequest: fetchReq, managedObjectContext: self.appDelegate.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+		
+		do {
+			try fetchResController.performFetch()
+			
+			for i in fetchResController.fetchedObjects! {
+				let object = i as? NSManagedObject
+				
+				if (FIRAuth.auth()?.currentUser?.uid)! == (object?.valueForKey("uid"))! as! String {
+					let storedDate = object?.valueForKey("date") as? NSDate
+					
+					print(storedDate?.timeIntervalSinceNow)
+					
+					let dateFormatter = NSDateFormatter()
+					dateFormatter.dateFormat = "HH:mm dd-MM-yyyy"
+					print(dateFormatter.stringFromDate(storedDate!))
+					
+					// if the date has past, delete the object
+					// if stored date has passed, the time interval between now and the stored date should be a negative
+					if storedDate?.timeIntervalSinceNow < 0 {
+						self.appDelegate.managedObjectContext.deleteObject(object!)
+						
+						do {
+							try self.appDelegate.managedObjectContext.save()
+						} catch {
+							print("Unable to delete object")
+						}
+						
+						userCanUseCard = true
+						
+						break
+					} else {
+						userCanUseCard = false
+					}
+				}
+			}
+		} catch {
+			print("Unable to fetch")
+		}
+
 		let battle = Battle()
 		
 		let ref = FIRDatabase.database().reference().child("/Friend")
@@ -130,8 +183,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 			
 			battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
 			
+			print(userCanUseCard)
+			
             // be sure to check if own card is available too
-			if ((UIApplication.sharedApplication().scheduledLocalNotifications?.count)! == 1) && ((battle.amountOfCardsAvailable?.integerValue)! == 0) {
+			if (userCanUseCard == false && (battle.amountOfCardsAvailable?.integerValue)! == 0) {
 				dispatch_async(dispatch_get_main_queue(), { 
 					let alert = UIAlertController.init(title: "Hold up", message: "Sorry you don't have enough cards", preferredStyle: .Alert)
 					let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)

@@ -26,8 +26,8 @@ class Battle {
 	var selectedAnnotation: Location?
     
 	init() {
-        self.initialMonsterHealth = 1
-        self.monsterHealth = 1
+        self.initialMonsterHealth = 2 // this is the base
+		self.monsterHealth = 2
 		self.expectedMonsterHealth = 0
         self.amountOfCardsToUse = 0
 		self.amountOfCardsAvailable = 0
@@ -156,14 +156,15 @@ class Battle {
             self.nameuid = snapshot.value!["Name"] as! String
             print(self.nameuid)
             print(self.monsKilled)
+			
+			// Update activity table
+			let activityNum = Int(arc4random_uniform(5) + 1)
+			let ref2 = FIRDatabase.database().reference().child("/Activity/\(activityNum)")
+			let updatedKilled = (self.monsKilled?.integerValue)! + 1
+			ref2.child("activity").setValue("has killed /\(updatedKilled) monsters")
+			ref2.child("uid").setValue(userID)
+			ref2.child("name").setValue(self.nameuid)
         })
-        // Update activity table
-        let activityNum = Int(arc4random_uniform(5) + 1)
-        let ref2 = FIRDatabase.database().reference().child("/Activity/\(activityNum)")
-        let updatedKilled = (monsKilled?.integerValue)! + 1
-        ref2.child("activity").setValue("has killed /\(updatedKilled) monsters")
-        ref2.child("uid").setValue(userID)
-        ref2.child("name").setValue(nameuid)
     }
-    
+	
 }

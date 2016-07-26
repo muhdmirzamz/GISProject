@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Bluuur
 import SCLAlertView
+import CoreData
 
 protocol BattleProtocol {
 	func reloadMap()
@@ -37,7 +38,8 @@ class BattleViewController: UIViewController {
 	var timer: NSTimer?
 	
 	let userID = (FIRAuth.auth()?.currentUser?.uid)!
-
+	var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,12 +69,12 @@ class BattleViewController: UIViewController {
         ref.child("/\(monsterType)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             self.monsterNameLabel.text = snapshot.value!["name"] as? String 
         })
-        
-        if UIApplication.sharedApplication().scheduledLocalNotifications!.count == 1 {
-            self.userCardAvailable.text = "Not available"
-        } else {
-            self.userCardAvailable.text = "Available"
-        }
+		
+		if self.isUserCardAvailable() {
+			self.userCardAvailable.text = "Available"
+		} else {
+			self.userCardAvailable.text = "Not available"
+		}
 		
         // get the base damage
 		let userID = (FIRAuth.auth()?.currentUser?.uid)!
@@ -138,10 +140,36 @@ class BattleViewController: UIViewController {
 	func useOwnCard() {
 		// reset amount of cards to use because it will cause a bug when updating cards
 		self.battle?.amountOfCardsToUse = 0
-        
-        // if scheduled notif is 1, it means card is used
-        if UIApplication.sharedApplication().scheduledLocalNotifications!.count == 1 {
-            let fireDate = UIApplication.sharedApplication().scheduledLocalNotifications![0].fireDate
+		
+		// this does not use the self-provided method because I need the NSManagedObject to display the date
+		var userCanUseCard = true
+		var object: NSManagedObject?
+		
+		let entity = NSEntityDescription.entityForName("Date", inManagedObjectContext: self.appDelegate.managedObjectContext)
+		let sortDescriptor = NSSortDescriptor.init(key: "uid", ascending: true)
+		let fetchReq = NSFetchRequest()
+		fetchReq.entity = entity
+		fetchReq.sortDescriptors = [sortDescriptor]
+		
+		let fetchResController = NSFetchedResultsController.init(fetchRequest: fetchReq, managedObjectContext: self.appDelegate.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+		
+		do {
+			try fetchResController.performFetch()
+			
+			for i in fetchResController.fetchedObjects! {
+				object = i as? NSManagedObject
+				
+				// if there is already an entry, then user has used up card
+				if (FIRAuth.auth()?.currentUser?.uid)! == (object!.valueForKey("uid"))! as! String {
+					userCanUseCard = false
+				}
+			}
+		} catch {
+			print("Unable to fetch")
+		}
+		
+        if userCanUseCard == false {
+            let fireDate = object!.valueForKey("date") as? NSDate
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "HH:mm dd-MM-yyyy"
             
@@ -156,30 +184,27 @@ class BattleViewController: UIViewController {
                 // calculate expected damage
                 self.battle?.expectedMonsterHealth = Float((self.battle?.monsterHealth)!) - Float((self.battle?.baseDamage?.integerValue)!)
                 
-                // schedule the notification
+                // set the date
                 let date = NSDate()
                 let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute], fromDate:date)
-                
-                // skip to the next day if current time is after 9:00:
-                if (components.hour >= 9) {
-                    components.day += 1;
-                }
-                
-                components.hour = 9;
-                components.minute = 0;
+				components.minute += 2
                 
                 let fireDate = NSCalendar.currentCalendar().dateFromComponents(components)
-                
-                let localNotif = UILocalNotification()
-                localNotif.fireDate = fireDate
-                localNotif.alertBody = "You can use your card again"
-                localNotif.alertAction = "Ready for battle"
-                localNotif.timeZone = NSTimeZone.localTimeZone()
-                localNotif.repeatInterval = .Day
-                localNotif.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-                UIApplication.sharedApplication().scheduleLocalNotification(localNotif)
-                NSNotificationCenter.defaultCenter().postNotificationName("battle", object: self)
+				print(fireDate)
 				
+				// save the date
+				let entity = NSEntityDescription.entityForName("Date", inManagedObjectContext: self.appDelegate.managedObjectContext)
+				let object = NSManagedObject.init(entity: entity!, insertIntoManagedObjectContext: self.appDelegate.managedObjectContext)
+				object.setValue((FIRAuth.auth()?.currentUser?.uid)!, forKey: "uid")
+				object.setValue(fireDate, forKey: "date")
+				
+				do {
+					try self.appDelegate.managedObjectContext.save()
+				} catch {
+					print("Unable to save the date")
+				}
+				
+				// start timer
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
             }
             let noAction = UIAlertAction.init(title: "No", style: .Default, handler: nil)
@@ -231,21 +256,24 @@ class BattleViewController: UIViewController {
                     
                     // set label
                     self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
-                    
-                    // check if user can continue
-                    if (UIApplication.sharedApplication().scheduledLocalNotifications?.count)! == 1 &&
-                       (self.battle?.amountOfCardsAvailable?.integerValue)! == 0 {
-                        // go back to map
-                        self.alert = UIAlertController.init(title: "Hold up", message: "You do not have enough cards to continue", preferredStyle: .Alert)
-                        let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
-                            // dismiss view controller
-                            self.delegate?.reloadMap()
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        }
-                        self.alert!.addAction(okAction)
-                        
-                        self.presentViewController(self.alert!, animated: true, completion: nil)
-                    }
+					
+					if self.isUserCardAvailable() == false &&
+						(self.battle?.amountOfCardsAvailable?.integerValue)! == 0 {
+						self.userCardAvailable.text = "Not available"
+						
+						// go back to map
+						self.alert = UIAlertController.init(title: "Hold up", message: "You do not have enough cards to continue", preferredStyle: .Alert)
+						let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
+							// dismiss view controller
+							self.delegate?.reloadMap()
+							self.dismissViewControllerAnimated(true, completion: nil)
+						}
+						self.alert!.addAction(okAction)
+						
+						self.presentViewController(self.alert!, animated: true, completion: nil)
+					} else {
+						self.userCardAvailable.text = "Not available"
+					}
 				})
 			}
 		} else {
@@ -292,6 +320,36 @@ class BattleViewController: UIViewController {
 			
 			self.presentViewController(alert!, animated: true, completion: nil)
 		}
+	}
+	
+	func isUserCardAvailable() -> Bool {
+		var available = true
+	
+		let entity = NSEntityDescription.entityForName("Date", inManagedObjectContext: self.appDelegate.managedObjectContext)
+		let sortDescriptor = NSSortDescriptor.init(key: "uid", ascending: true)
+		let fetchReq = NSFetchRequest()
+		fetchReq.entity = entity
+		fetchReq.sortDescriptors = [sortDescriptor]
+		
+		let fetchResController = NSFetchedResultsController.init(fetchRequest: fetchReq, managedObjectContext: self.appDelegate.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+		
+		do {
+			try fetchResController.performFetch()
+			
+			for i in fetchResController.fetchedObjects! {
+				let object = i as? NSManagedObject
+				
+				if (FIRAuth.auth()?.currentUser?.uid)! == (object?.valueForKey("uid"))! as! String {
+					available = false
+					
+					break
+				}
+			}
+		} catch {
+			print("Unable to fetch")
+		}
+		
+		return available
 	}
 	
 	@IBAction func dismissBattle() {
