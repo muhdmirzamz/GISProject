@@ -138,7 +138,7 @@ class LoginViewController: UIViewController, ProfileProtocol {
                     //pop up alert
                     let alertView = SCLAlertView(appearance : appearance)
                     alertView.addButton("Retry") {
-                        alertView.dismissViewControllerAnimated(true, completion: nil)
+                        alertView.hideView()
                     }
                     alertView.showError("Login Failed", subTitle: "\n Please ensure information given is correct! \n")
                 })

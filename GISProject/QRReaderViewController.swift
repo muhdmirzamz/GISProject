@@ -159,10 +159,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                         alertView.showError("Aw come on!", subTitle: "\n Scanning your own QRCode is lame! Go find a friend! \n")
                     }
                 } else {
-//                    let addedAlert = UIAlertController(title: "Invalid QRCode Scanned", message: "What the heck did you just scan?!?!", preferredStyle: .Alert)
-//                    addedAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: self.dismissAlert))
-//                    addedAlert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: self.restartCapture))
-//                    self.presentViewController(addedAlert, animated: true, completion: nil)
                     let alertView = SCLAlertView(appearance : appearance)
                     alertView.addButton("Try Again") {
                         self.restartCapture()

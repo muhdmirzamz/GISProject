@@ -66,7 +66,7 @@ class SignupViewController: UIViewController {
                 //pop up alert
                 let alertView = SCLAlertView(appearance : appearance)
                 alertView.addButton("Retry") {
-                    alertView.dismissViewControllerAnimated(true, completion: nil)
+                    alertView.hideView()
                 }
                 alertView.showError("Creation Failed", subTitle: "\n Please ensure information given is correct and all fields are filled up! \n")
                 self.registerBtn.enabled = true
