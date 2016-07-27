@@ -40,7 +40,13 @@
     </head>
 
     <body>
-
+        <nav>
+          <ul style="left: 0%">
+            <li><a href="layers.html">Layers</a></li>
+            <li><a href="heatmap.html">Heatmap</a></li>
+            <li><a href="friendsmap.html">Nearby</a></li>
+          </ul>
+        </nav>
         <div id="map"></div>
 
         <script>
@@ -75,7 +81,7 @@
                          map: map
                      });
 
-                     heatmap.set('radius', heatmap.get('radius') ? null : 100);
+                     heatmap.set('radius', heatmap.get('radius') ? null : 80);
                      changeGradient()
                 });
             }
@@ -117,8 +123,9 @@
     			/* goes outer to inner circle */
     			/* alpha values determine how intense it is: 0 is faded while 1 is intense */
     			var gradient = [
-    							'rgba(0, 0, 255, 0)',
-    							'rgba(255, 0, 0, 1)']
+    							'rgba(255, 255, 255, 0)',
+                  'rgba(255, 255, 255, 0.5)',
+    							'rgba(0, 0, 255, 0.7)']
     							heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
     		}
         </script>
@@ -127,16 +134,8 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIZ7ernlycehS8DLYRoPY_90aaZTXbLQ&libraries=visualization&callback=initMap">
         </script>
 
-        <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 20px; right: 24px;">
-            <a class="btn-floating btn-large red">
-                <i class="material-icons">layers</i>
-            </a>
-            <ul>
-                <li><a id="toggleHeatmapID" class="btn-floating black" href="heatmap.html"><i class="material-icons">insert_chart</i></a></li>
-                <li><a class="btn-floating black" href="layers.html"><i class="material-icons">layers_clear</i></a></li>
-                <li><a id="toggleWeathermapID" class="btn-floating yellow" onClick="toggleWeathermap()"><i class="material-icons">cloud</i></a></li>
-                <li><a class="btn-floating black" href="friendsmap.html"><i class="material-icons">cloud</i></a></li>
-            </ul>
+        <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 20px; right: 24px;" onClick="toggleWeathermap()">
+            <a id="toggleWeathermapID" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">cloud</i></a>
         </div>
 
     </body>
