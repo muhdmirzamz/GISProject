@@ -1,0 +1,57 @@
+/*
+IT3161-GEOSPATIAL VISUALIZATION
+HeatMap Feature
+Foong Jun Hui 142855L
+heatmap.html, heatmap.css, heatmap.js
+*/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+  height: 100%;
+}
+.sideNavHeader {
+  padding: 16px;
+  line-height: 21px;
+}
+.sideNavHeaderTitle {
+  color: rgba(72, 146, 238, 1);
+}
+.legend {
+  height: 15px;
+  margin-left: 16px;
+  margin-right: 16px;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.75));
+}
+#fab {
+  bottom: 55px;
+  right: 10px;
+}
+#legendSubHeader {
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 500;
+}
+#legendSub {
+  width: 100%;
+  font-size: 12px;
+}
+#subLeft {
+  display: inline;
+  margin-top: 0;
+  margin-left: 16px;
+  float: left;
+  text-align: left;
+}
+#subRight {
+  display: inline;
+  margin-top: 0;
+  margin-right: 16px;
+  float: right;
+  text-align: right;
+}
+#here {
+  color: white;
+  background-color: #c35a5a;
+}

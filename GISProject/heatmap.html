@@ -1,20 +1,35 @@
+<!--
+IT3161-GEOSPATIAL VISUALIZATION
+HeatMap Feature
+Foong Jun Hui 142855L
+heatmap.html, heatmap.css, heatmap.js
+-->
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Heatmaps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <link rel="stylesheet" href="helper.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase-auth.js"></script>
+
+    <!-- Other CSS -->
+    <link rel="stylesheet" href="helper.css">
+    <link rel="stylesheet" href="heatmap.css">
+
+    <!-- Init stuff -->
     <script>
       // init side nav
       $(document).ready(function(){
@@ -30,62 +45,10 @@
       firebase.initializeApp(config);
       var database = firebase.database();
     </script>
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-      .sideNavHeader {
-        padding: 16px;
-        line-height: 21px;
-      }
-      .sideNavHeaderTitle {
-        color: rgba(72, 146, 238, 1);
-      }
-      .legend {
-        height: 15px;
-        margin-left: 16px;
-        margin-right: 16px;
-        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.75));
-      }
-      #fab {
-        bottom: 55px;
-        right: 10px;
-      }
-      #legendSubHeader {
-        color: rgba(0, 0, 0, 0.54);
-        font-weight: 500;
-      }
-      #legendSub {
-        width: 100%;
-        font-size: 12px;
-      }
-      #subLeft {
-        display: inline;
-        margin-top: 0;
-        margin-left: 16px;
-        float: left;
-        text-align: left;
-      }
-      #subRight {
-        display: inline;
-        margin-top: 0;
-        margin-right: 16px;
-        float: right;
-        text-align: right;
-      }
-      #here {
-        color: white;
-        background-color: #c35a5a;
-      }
-    </style>
   </head>
 
   <body>
+    <!-- NavBar -->
     <nav>
       <ul id="list">
         <li><a href="layers.html">Layers</a></li>
@@ -94,6 +57,8 @@
         <li><a href="friendsmap.html">Nearby</a></li>
       </ul>
     </nav>
+
+    <!-- Menu -->
     <ul id="slide-out" class="side-nav">
       <li>
         <h5 class="sideNavHeader sideNavHeaderTitle">Monster Spawn Heatmap</h1>
@@ -119,196 +84,20 @@
         </div>
       </li>
     </ul>
+
+    <!-- Floating Action Button -->
     <div id="fab" class="fixed-action-btn">
       <a data-activates="slide-out" class="btn-floating btn-large waves-effect waves-light blue button-collapse"><i class="material-icons">menu</i></a>
     </div>
+
+    <!-- Map Div -->
     <div id="map"></div>
 
-    <script>
-    var map, heatmap;
-    var locationArr = new Array();
-    var zoom = 17;
-    var radius = 30;
-    var gradient = [
-      'rgba(0, 0, 0, 0)',
-      'rgba(0, 0, 0, 0.4)',
-      'rgba(0, 0, 0, 0.6)',
-      'rgba(0, 0, 0, 0.8)',
-      'rgba(0, 0, 0, 1)',
-      'rgba(0, 0, 0, 1)',
-      'rgba(0, 0, 0, 1)'
-    ]
-      //
-      // Electric
-      //
-      function initElectricMap() {
-        locationArr = new Array();
+    <!-- Init GMap -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initElectricMap"></script>
 
-        firebase.database().ref('/PreviousLocation/electric').once('value').then(function(snapshot) {
-          snapshot.forEach(function(childSnapshot) {
-            var key = childSnapshot.key;
-            console.log("electric " + "Latitude: " + childSnapshot.val().latitude);
-            console.log("electric " + "Longitude: " + childSnapshot.val().longitude);
-            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
-          })
+    <!-- Call External JS -->
+    <script src="heatmap.js"></script>
 
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom: zoom,
-            center: {lat: 1.3801, lng: 103.8490},
-            mapTypeId: google.maps.MapTypeId.MAP,
-            disableDefaultUI: true
-          });
-
-          heatmap = new google.maps.visualization.HeatmapLayer({
-            data: locationArr,
-            map: map,
-          });
-
-          heatmap.set('radius', radius);
-          heatmap.set('gradient', gradient);
-          var $toastMsg = $('<span>Showing <b style="color:#FFEB3B;">Electric</b> type monster spawns</span>');
-          Materialize.toast($toastMsg, 2000);
-          $('.button-collapse').sideNav('hide');
-        });
-      }
-
-      //
-      // Fire
-      //
-      function initFireMap() {
-        locationArr = new Array();
-        firebase.database().ref('/PreviousLocation/fire').once('value').then(function(snapshot) {
-          snapshot.forEach(function(childSnapshot) {
-            var key = childSnapshot.key;
-            console.log("fire " + "Latitude: " + childSnapshot.val().latitude);
-            console.log("fire " + "Longitude: " + childSnapshot.val().longitude);
-            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
-          })
-
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom: zoom,
-            center: {lat: 1.3801, lng: 103.8490},
-            mapTypeId: google.maps.MapTypeId.MAP,
-            disableDefaultUI: true
-          });
-
-          heatmap = new google.maps.visualization.HeatmapLayer({
-            data: locationArr,
-            map: map
-          });
-
-          heatmap.set('radius', radius);
-          heatmap.set('gradient', gradient);
-          var $toastMsg = $('<span>Showing <b style="color:#F44336;">Fire</b> type monster spawns</span>');
-          Materialize.toast($toastMsg, 2000);
-          $('.button-collapse').sideNav('hide');
-        });
-      }
-
-      //
-      // Ghost
-      //
-      function initGhostMap() {
-        locationArr = new Array();
-        firebase.database().ref('/PreviousLocation/ghost').once('value').then(function(snapshot) {
-          snapshot.forEach(function(childSnapshot) {
-            var key = childSnapshot.key;
-            console.log("ghost " + "Latitude: " + childSnapshot.val().latitude);
-            console.log("ghost " + "Longitude: " + childSnapshot.val().longitude);
-            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
-          })
-
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom: zoom,
-            center: {lat: 1.3801, lng: 103.8490},
-            mapTypeId: google.maps.MapTypeId.MAP,
-            disableDefaultUI: true
-          });
-
-          heatmap = new google.maps.visualization.HeatmapLayer({
-            data: locationArr,
-            map: map
-          });
-
-          heatmap.set('radius', radius);
-          heatmap.set('gradient', gradient);
-          var $toastMsg = $('<span>Showing <b style="color:#607D8B;">Ghost</b> type monster spawns</span>');
-          Materialize.toast($toastMsg, 2000);
-          $('.button-collapse').sideNav('hide');
-        });
-      }
-
-      //
-      // Grass
-      //
-      function initGrassMap() {
-        var map, heatmap;
-        var locationArr = new Array();
-        firebase.database().ref('/PreviousLocation/grass').once('value').then(function(snapshot) {
-          snapshot.forEach(function(childSnapshot) {
-            var key = childSnapshot.key;
-            console.log("grass " + "Latitude: " + childSnapshot.val().latitude);
-            console.log("grass " + "Longitude: " + childSnapshot.val().longitude);
-            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
-          })
-
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom: zoom,
-            center: {lat: 1.3801, lng: 103.8490},
-            mapTypeId: google.maps.MapTypeId.MAP,
-            disableDefaultUI: true
-          });
-
-          heatmap = new google.maps.visualization.HeatmapLayer({
-            data: locationArr,
-            map: map
-          });
-
-          heatmap.set('radius', radius);
-          heatmap.set('gradient', gradient);
-          var $toastMsg = $('<span>Showing <b style="color:#8BC34A;">Grass</b> type monster spawns</span>');
-          Materialize.toast($toastMsg, 2000);
-          $('.button-collapse').sideNav('hide');
-        });
-      }
-
-      //
-      // Water
-      //
-      function initWaterMap() {
-        var map, heatmap;
-        var locationArr = new Array();
-        firebase.database().ref('/PreviousLocation/water').once('value').then(function(snapshot) {
-          snapshot.forEach(function(childSnapshot) {
-            var key = childSnapshot.key;
-            console.log("water " + "Latitude: " + childSnapshot.val().latitude);
-            console.log("water " + "Longitude: " + childSnapshot.val().longitude);
-            locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
-          })
-
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom: zoom,
-            center: {lat: 1.3801, lng: 103.8490},
-            mapTypeId: google.maps.MapTypeId.MAP,
-            disableDefaultUI: true
-          });
-
-          heatmap = new google.maps.visualization.HeatmapLayer({
-            data: locationArr,
-            map: map
-          });
-
-          heatmap.set('radius', radius);
-          heatmap.set('gradient', gradient);
-          var $toastMsg = $('<span>Showing <b style="color:#2196F3;">Water</b> type monster spawns</span>');
-          Materialize.toast($toastMsg, 2000);
-          $('.button-collapse').sideNav('hide');
-        });
-      }
-    </script>
-
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initElectricMap">
-    </script>
   </body>
 </html>
