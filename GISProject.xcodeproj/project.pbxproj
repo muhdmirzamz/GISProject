@@ -20,6 +20,9 @@
 		6DADCAA11D3E12E100C2884B /* GeoVisMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DADCAA01D3E12E100C2884B /* GeoVisMapViewController.swift */; };
 		6DADCAA41D3E13D700C2884B /* HeatMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DADCAA21D3E13D700C2884B /* HeatMapViewController.swift */; };
 		6DADCAA51D3E13D700C2884B /* HeatMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DADCAA31D3E13D700C2884B /* HeatMapViewController.xib */; };
+		6DC212E71D48CE8600E6E58D /* heatmap.css in Resources */ = {isa = PBXBuildFile; fileRef = 6DC212E41D48CE8600E6E58D /* heatmap.css */; };
+		6DC212E81D48CE8600E6E58D /* heatmap.js in Resources */ = {isa = PBXBuildFile; fileRef = 6DC212E51D48CE8600E6E58D /* heatmap.js */; };
+		6DC212E91D48CE8600E6E58D /* helper.css in Resources */ = {isa = PBXBuildFile; fileRef = 6DC212E61D48CE8600E6E58D /* helper.css */; };
 		6DDF54D01D3E1F3900C9ABEE /* LayerMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDF54CE1D3E1F3900C9ABEE /* LayerMapViewController.swift */; };
 		6DDF54D11D3E1F3900C9ABEE /* LayerMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DDF54CF1D3E1F3900C9ABEE /* LayerMapViewController.xib */; };
 		6DDF54D41D3E1F4900C9ABEE /* WeatherMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDF54D21D3E1F4900C9ABEE /* WeatherMapViewController.swift */; };
@@ -82,6 +85,9 @@
 		6DADCAA01D3E12E100C2884B /* GeoVisMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoVisMapViewController.swift; sourceTree = "<group>"; };
 		6DADCAA21D3E13D700C2884B /* HeatMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMapViewController.swift; sourceTree = "<group>"; };
 		6DADCAA31D3E13D700C2884B /* HeatMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeatMapViewController.xib; sourceTree = "<group>"; };
+		6DC212E41D48CE8600E6E58D /* heatmap.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = heatmap.css; sourceTree = "<group>"; };
+		6DC212E51D48CE8600E6E58D /* heatmap.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = heatmap.js; sourceTree = "<group>"; };
+		6DC212E61D48CE8600E6E58D /* helper.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = helper.css; sourceTree = "<group>"; };
 		6DDF54CE1D3E1F3900C9ABEE /* LayerMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerMapViewController.swift; sourceTree = "<group>"; };
 		6DDF54CF1D3E1F3900C9ABEE /* LayerMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LayerMapViewController.xib; sourceTree = "<group>"; };
 		6DDF54D21D3E1F4900C9ABEE /* WeatherMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherMapViewController.swift; sourceTree = "<group>"; };
@@ -150,16 +156,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6D41228F1D2BB7AD0016DBE2 /* HTML */ = {
+		6D41228F1D2BB7AD0016DBE2 /* Google Map HTML Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				6DC212E41D48CE8600E6E58D /* heatmap.css */,
+				6DC212E51D48CE8600E6E58D /* heatmap.js */,
+				6DC212E61D48CE8600E6E58D /* helper.css */,
 				6D8169E81D360A2D00AC33C6 /* heatmap.html */,
 				6D8169E91D360A2D00AC33C6 /* simple.html */,
 				81364F651D34A8E6009A4B8E /* layers.html */,
 				81364F611D3498C4009A4B8E /* weathermap.html */,
 				883639EB1D379D7100C99CCB /* friendsmap.html */,
 			);
-			name = HTML;
+			name = "Google Map HTML Stuff";
 			sourceTree = "<group>";
 		};
 		6D8169EC1D360A7A00AC33C6 /* GeoVis Map */ = {
@@ -316,7 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				6D8169EC1D360A7A00AC33C6 /* GeoVis Map */,
-				6D41228F1D2BB7AD0016DBE2 /* HTML */,
+				6D41228F1D2BB7AD0016DBE2 /* Google Map HTML Stuff */,
 				88EFBE1A1D213B8400577EC5 /* Friends */,
 				6DAE5EDE1D1E4E50007CEF48 /* PLIST */,
 				6DAE5EDD1D1E4E3A007CEF48 /* QR */,
@@ -421,6 +430,7 @@
 			files = (
 				AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */,
 				889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */,
+				6DC212E71D48CE8600E6E58D /* heatmap.css in Resources */,
 				6D8169EA1D360A2D00AC33C6 /* heatmap.html in Resources */,
 				6DDF54D11D3E1F3900C9ABEE /* LayerMapViewController.xib in Resources */,
 				6DADCAA51D3E13D700C2884B /* HeatMapViewController.xib in Resources */,
@@ -428,12 +438,14 @@
 				AA22DB5C1CE3613900F8BA43 /* Assets.xcassets in Resources */,
 				81364F661D34A8E6009A4B8E /* layers.html in Resources */,
 				88F4D99B1D2EDC7B0093E003 /* GoogleService-Info.plist in Resources */,
+				6DC212E81D48CE8600E6E58D /* heatmap.js in Resources */,
 				6DDF54D91D3E1F5700C9ABEE /* FriendsMapViewController.xib in Resources */,
 				883639EC1D379D7100C99CCB /* friendsmap.html in Resources */,
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
 				6D8169EB1D360A2D00AC33C6 /* simple.html in Resources */,
 				6DDF54D51D3E1F4900C9ABEE /* WeatherMapViewController.xib in Resources */,
 				6D7047071D3E179E00354033 /* SimpleMapViewController.xib in Resources */,
+				6DC212E91D48CE8600E6E58D /* helper.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
