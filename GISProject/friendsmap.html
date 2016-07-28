@@ -1,150 +1,476 @@
+<!--
+ IT3161-GEOSPATIAL VISUALIZATION
+ Friends Map Feature
+ CHEN XINGYU 140363K
+ -->
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-            <title>Friends Map</title>
-            <!-- Materialize CSS -->
-            <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-            <link rel="stylesheet" href="helper.css">
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-                <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                    <style>
-                        html, body {
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+            <meta charset="utf-8">
+                <title>Friends Map</title>
+                
+                <!-- Materialize CSS -->
+                <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+                    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                        <!-- End of CSS -->
+                        
+                        <!-- Extra Scripts -->
+                        
+                        <!-- Firebase -->
+                        <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+                        
+                        <!-- GeoFire -->
+                        <script src="https://cdn.firebase.com/libs/geofire/4.1.1/geofire.min.js"></script>
+                        
+                        <!-- End of  Scripts -->
+                        
+                        <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+                        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+                        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+                        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+                        <script src="dynamics.min.js"></script>
+                        
+                        <script>
+                            // Initialize Firebase
+                            var config = {
+                                apiKey: "AIzaSyCRIZ7ernlycehS8DLYRoPY_90aaZTXbLQ",
+                                authDomain: "loba-83587.firebaseapp.com",
+                                databaseURL: "https://loba-83587.firebaseio.com",
+                                storageBucket: "loba-83587.appspot.com",
+                            };
+                        firebase.initializeApp(config);
+                        
+                        $(document).ready(function(){
+                                          // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                                          $('.modal-trigger').leanModal();
+                                          });
+                                          // init side nav
+                                          $(document).ready(function(){
+                                                            $(".button-collapse").sideNav();
+                                                            });
+                                                            
+                            </script>
+                        
+                        
+                        <style>
+                            html, body {
+                                height: 100%;
+                                margin: 0;
+                                padding: 0;
+                            }
+                        #map {
                             height: 100%;
-                            margin: 0;
-                            padding: 0;
                         }
-                    #map {
-                        height: 100%;
-                    }
-                    #floating-panel {
-                        position: absolute;
-                        top: 10px;
-                        left: 25%;
-                        z-index: 5;
-
-                        padding: 5px;
-
-                        text-align: center;
-                        font-family: 'Roboto','sans-serif';
-                        line-height: 30px;
-                        padding-left: 10px;
-                    }
-
-                    #floating-panel2 {
-                        position: absolute;
-                        top: 10px;
-                        left: 45%;
-                        z-index: 5;
-
-                        padding: 5px;
-
-                        text-align: center;
-                        font-family: 'Roboto','sans-serif';
-                        line-height: 30px;
-                        padding-left: 10px;
-                    }
-                    </style>
-                     <!-- End of CSS -->
-
-                     <!-- Extra Scripts -->
-                     <script async defer
-                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initMap">
-                         </script>
-
-                     <!-- Firebase -->
-                     <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-
-                     <!-- GeoFire -->
-                     <script src="https://cdn.firebase.com/libs/geofire/4.1.1/geofire.min.js"></script>
-
-                     <!-- End of  Scripts -->
-
-
-
-                    </head>
-
+                        #floating-panel {
+                            position: absolute;
+                            top: 10px;
+                            left: 25%;
+                            z-index: 5;
+                            
+                            padding: 5px;
+                            
+                            text-align: center;
+                            font-family: 'Roboto','sans-serif';
+                            line-height: 30px;
+                            padding-left: 10px;
+                        }
+                        
+                        #floating-panel2 {
+                            position: absolute;
+                            top: 10px;
+                            left: 45%;
+                            z-index: 5;
+                            
+                            padding: 5px;
+                            
+                            text-align: center;
+                            font-family: 'Roboto','sans-serif';
+                            line-height: 30px;
+                            padding-left: 10px;
+                        }
+                        .customMarker {
+                            position:absolute;
+                            cursor:pointer;
+                            background:#424242;
+                            width:100px;
+                            height:100px;
+                            /* -width/2 */
+                            margin-left:-50px;
+                            /* -height + arrow */
+                            margin-top:-110px;
+                            border-radius:10px;
+                            padding:0px;
+                        }
+                        .customMarker:after {
+                            content:"";
+                            position: absolute;
+                            bottom: -10px;
+                            left: 40px;
+                            border-width: 10px 10px 0;
+                            border-style: solid;
+                            border-color: #424242 transparent;
+                            display: block;
+                            width: 0;
+                        }
+                        .customMarker img {
+                            width:90px;
+                            height:90px;
+                            margin:5px;
+                            border-radius:10px;
+                        }
+                        .gm-style-iw {
+                            min-width: 160px;
+                            width: auto!important;
+                            height: auto!important;
+                            left: 0!important;
+                            font-size: 15px!important;
+                            font-weight: normal!important;
+                            top: 0!important;
+                            overflow: hidden!important;
+                            border-radius: 5px;
+                            background-color:  floralwhite
+                        }
+                        #iw-container {
+                            margin-bottom: 10px;
+                        }
+                        #iw-container .iw-title {
+                            font-family: 'Open Sans Condensed', sans-serif;
+                            font-size: 22px;
+                            font-weight: 400;
+                            padding: 10px;
+                            background-color: #48b5e9;
+                            color: white;
+                            margin: 0;
+                            border-radius: 2px 2px 0 0;
+                            text-align: center
+                        }
+                        #iw-container .iw-content {
+                            font-size: 13px;
+                            line-height: 18px;
+                            font-weight: 400;
+                            margin-right: 1px;
+                            padding: 15px 5px 20px 15px;
+                            max-height: 340px;
+                            overflow-y: auto;
+                            overflow-x: hidden;
+                            
+                        }
+                        .iw-content img {
+                            float: right;
+                            margin: 0 5px 5px 10px;
+                        }
+                        .iw-subTitle {
+                            font-size: 16px;
+                            font-weight: 700;
+                            padding: 5px 0;
+                        }
+                        .iw-bottom-gradient {
+                            position: absolute;
+                            width: 326px;
+                            height: 25px;
+                            bottom: 10px;
+                            right: 18px;
+                            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                            background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                            background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                            background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                        }
+                        .pin-wrap {
+                            position: absolute;
+                            width: 100px;
+                            height: 100px;
+                            margin-top: -120.71068px;
+                            margin-left: -50px;
+                            -webkit-transform-origin: 50% 120.71068% 0;
+                            transform-origin: 50% 120.71068% 0;
+                        }
+                        
+                        .pin {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            width: 100px;
+                            height: 100px;
+                            margin-top: -50px;
+                            margin-left: -50px;
+                            -webkit-transform-origin: 50% 120.71068% 0;
+                            transform-origin: 50% 120.71068% 0;
+                        }
+                        
+                        .pin::after {
+                            position: absolute;
+                            display: block;
+                            box-sizing: border-box;
+                            width: 100px;
+                            height: 100px;
+                            content: '';
+                            -webkit-transform: rotateZ(-45deg);
+                            transform: rotateZ(-45deg);
+                            border: 20px solid #f93c11;
+                            border-radius: 50% 50% 50% 50%;
+                        }
+                        
+                        .pin::before {
+                            position: absolute;
+                            display: block;
+                            box-sizing: border-box;
+                            width: 100px;
+                            height: 100px;
+                            content: '';
+                            -webkit-transform: rotateZ(-45deg);
+                            transform: rotateZ(-45deg);
+                            border: 18px solid #d22b05;
+                            border-radius: 50% 50% 50% 0;
+                        }
+                        
+                        .shadow {
+                            position: absolute;
+                        }
+                        
+                        .shadow::after {
+                            position: absolute;
+                            left: -125px;
+                            display: block;
+                            width: 50px;
+                            height: 50px;
+                            margin-top: -25px;
+                            content: '';
+                            -webkit-transform: rotateX(55deg);
+                            transform: rotateX(55deg);
+                            border-radius: 50%;
+                            box-shadow: rgba(0, 0, 0, 0.5) 100px 0 20px;
+                        }
+                        
+                        .pulse {
+                            position: absolute;
+                            margin-top: -50px;
+                            margin-left: -50px;
+                            -webkit-transform: rotateX(55deg);
+                            transform: rotateX(55deg);
+                        }
+                        
+                        .pulse::after {
+                            display: block;
+                            width: 100px;
+                            height: 100px;
+                            content: '';
+                            -webkit-animation: pulsate 1s ease-out;
+                            animation: pulsate 1s ease-out;
+                            -webkit-animation-delay: 1.1s;
+                            animation-delay: 1.1s;
+                            -webkit-animation-iteration-count: infinite;
+                            animation-iteration-count: infinite;
+                            opacity: 0;
+                            border-radius: 50%;
+                            box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.5);
+                            box-shadow: 0 0 6px 3px #f93c11;
+                        }
+                        
+                        @-webkit-keyframes pulsate {
+                            0% {
+                                -webkit-transform: scale(0.1, 0.1);
+                                transform: scale(0.1, 0.1);
+                                opacity: 0;
+                            }
+                            50% {
+                                opacity: 1;
+                            }
+                            100% {
+                                -webkit-transform: scale(1.2, 1.2);
+                                transform: scale(1.2, 1.2);
+                                opacity: 0;
+                            }
+                        }
+                        
+                        @keyframes pulsate {
+                            0% {
+                                -webkit-transform: scale(0.1, 0.1);
+                                transform: scale(0.1, 0.1);
+                                opacity: 0;
+                            }
+                            50% {
+                                opacity: 1;
+                            }
+                            100% {
+                                -webkit-transform: scale(1.2, 1.2);
+                                transform: scale(1.2, 1.2);
+                                opacity: 0;
+                            }
+                        }
+                        .header {
+                            font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                            font-size: 16px;
+                            line-height: 2em;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            padding: 10px 0;
+                            text-align: center;
+                            color: #f93c11;
+                            background: rgba(255, 255, 255, 0.75);
+                        }
+                        
+                        h1 {
+                            font-family: Raleway, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+                            font-weight: 900;
+                            font-size: 32px;
+                            margin-bottom: 10px;
+                            border-bottom: 2px dashed #f93c11;
+                            display: inline-block;
+                        }
+                        
+                        .tags {
+                            font-weight: 300;
+                        }
+                        
+                        .list-label {
+                            font-family: Raleway, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+                            font-weight: 400;
+                        }
+                        
+                        .header li {
+                            display: inline-block;
+                        }
+                        
+                        .tags a {
+                            color: #f93c11;
+                        }
+                        
+                        .animations a {
+                            line-height: 42px;
+                            display: block;
+                            box-sizing: border-box;
+                            height: 44px;
+                            margin: 0 5px;
+                            padding: 0 10px;
+                            text-decoration: none;
+                            color: #f93c11;
+                            border: 2px solid #f93c11;
+                            border-radius: 22px;
+                            -webkit-transition: background-color 0.3s, color 0.3s;
+                            transition: background-color 0.3s, color 0.3s;
+                        }
+                        
+                        .animations a:hover {
+                            color: white;
+                            background: #f93c11;
+                        }
+                        .sideNavHeader {
+                            padding: 16px;
+                            line-height: 21px;
+                        }
+                        .sideNavHeaderTitle {
+                            color: rgba(72, 146, 238, 1);
+                        }
+                        
+                        
+                        
+                            </style>
+                        <!-- End of CSS -->
+                        
+                        
+                        </head>
     <body>
-      <nav>
-        <ul id="list">
-          <li><a href="layers.html">Layers</a></li>
-          <li><a href="weathermap.html">Weather</a></li>
-          <li><a href="heatmap.html">Heatmap</a></li>
-          <li><a id="here" href="friendsmap.html">Nearby</a></li>
-        </ul>
-      </nav>
-        <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5SEqwC7aVnIb2mr35lBeykuHL1QL8uBA&libraries=visualization&callback=initMap">
-            </script>
-         <div id="map"></div>
-
-        <div id="floating-panel">
-            <a class="waves-effect waves-light btn" onclick="saveMyLocation()" id="hideSaveLocationBtn">Save My Location</a>
-        </div>
-
-        <div id="floating-panel2">
-            <a class="waves-effect waves-light btn" onclick="myDistance()" id="hideMyDistanceBtn">Get Distance</a>
-        </div>
-
-
-
-        <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 20px; right: 24px;">
-            <a class="btn-floating btn-large red">
-                <i class="material-icons">layers</i>
-            </a>
-            <ul>
-                <li><a id="toggleHeatmapID" class="btn-floating yellow" onClick="toggleHeatmap()"><i class="material-icons">insert_chart</i></a></li>
-                <li><a class="btn-floating black" href="layers.html"><i class="material-icons">layers_clear</i></a></li>
-                <li><a class="btn-floating black" href="weathermap.html"><i class="material-icons">cloud</i></a></li>
-                <li><a class="btn-floating black" href="friendsmap.html"><i class="material-icons">cloud</i></a></li>
-
-                <li><a id="toggleMonsterMapID" class="btn-floating orange" onclick="toggleMonsterMap()"><i class="material-icons">insert_chart</i></a></li>
-                <li><a id="retrieveLocation" class="btn-floating green" onclick="retrieveLocation()"><i class="material-icons">insert_chart</i></a></li>
+        <nav>
+            <ul id="list">
+                <li><a href="layers.html">Layers</a></li>
+                <li><a href="weathermap.html">Weather</a></li>
+                <li><a href="heatmap.html">Heatmap</a></li>
+                <li><a id="here" href="friendsmap.html">Nearby</a></li>
             </ul>
-        </div>
-
-        <div class="fixed-action-btn" onclick="myCurrentLocation()" style="bottom: 90px; right: 24px;">
+        </nav>
+        
+        <div class="fixed-action-btn" id="showMyCurrentLocation" style="bottom: 90px; right: 24px;">
             <a class="btn-floating btn-large red">
                 <i class="large material-icons">my_location</i>
             </a>
-
         </div>
-
-
-
-
-
+        
+        <ul id="slide-out" class="side-nav">
+            <li>
+                <h5 class="sideNavHeader sideNavHeaderTitle">Friends Map</h1>
+                    <p class="sideNavHeader">This map look for friends</p>
+                    </li>
+            <li>
+                <li><div class="divider"></div></li>
+                <br>
+                
+                
+                <li><a href="#" id="hideMyMarkers">Hide My Markers</a>
+                    <li><a href="#" id="showMyBuffer">Show Nearby Players</a>
+                        <li><a href="#" id="showMyFriends">Show My Friends</a>
+                            <li><a href="#" id="plotMeetingPlace">Plot Meeting Place</a>
+                                <li><a href="#" id="plotMeetingPlace">Get Meeting Distance</a>
+                                    
+                                    <br>
+                                    <li><div class="divider"></div></li>
+                                    <li>
+                                        </ul>
+        <div class="fixed-action-btn" style="bottom: 30px; right: 24px;">
+            <a data-activates="slide-out" class="btn-floating btn-large waves-effect waves-light blue button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+        
+        
+        
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Modal Header</h4>
+                <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
+        
+        <!-- Map -->
+        <div id="map"></div>
+        
+        
+        
         <!-- main script -->
         <script>
+            var cLat,cLng;
+            var friendsList = [];
+            
+            var authKey = "rtLWvlxC0lQ0r2ejZoMg2RNAgLK2";
             var map, heatmap;
             var image1;
             var directionsDisplay;
             var directionsService;
             var monsterMarker,monsterMap,myCurrentLocationMarker,myCurrentLocationInfoWindow;
-            var monsterInfoWindow = null;
+            var friendsInfoWindow = null;
             var destinationA,destinationB;
             var desetinationArray = [];
-            document.getElementById("toggleMonsterMapID").classList.add('black');
-            document.getElementById("retrieveLocation").classList.add('black');
-
+            var myBuffer;
+            
+            var customMarker;
+            
+            var overlay;
+            var myCustomLocationMarker;
+            
+            var myCurrentLocationPosition;
             //marker image
             var image = 'https://maxcdn.icons8.com/Color/PNG/48/Gaming/pokemon-48.png';
-
-
-
+            
+            
+            
             //stored monsters
-            var storedMonsters = [];
-
+            var storedFriends = [];
+            
             //friends from firebase
             var firebaseFriends = [];
-
+            
             //store locatio  to firebase
             var storeLocationToFirebase = [];
-
-            //monster location
-            var monsterLocation = [{
+            
+            //friends location
+            var friendsLocation = [{
                                    city : 'Block R',
                                    desc : 'Engineering',
                                    lat : 1.378438,
@@ -181,402 +507,612 @@
                                    long : 103.848600
                                    }
                                    ];
-
-                                   // Get a database reference to our firebase
-                                   var ref = new Firebase("https://loba-83587.firebaseio.com/FriendsModule/friendList");
-
-                                   //save location to firebase
-                                   var refToFirebase = new Firebase("https://loba-83587.firebaseio.com/FriendsModule/GEOVIS");
-
-                                   // Retrieve new posts as they are added to our database
-                                   ref.on("child_added", function(snapshot, prevChildKey) {
-                                          var newFriend = snapshot.val();
-                                          console.log("Author: " + newFriend.Name);
-
-                                          //add to firebase array
-                                          firebaseFriends.push(newFriend)
-                                          });
-
-
-                                          //save my location to firebase
-                                          function saveMyLocation(){
-                                              Materialize.toast('Save my location', 1500);
-                                              document.getElementById('hideSaveLocationBtn').style.visibility = 'hidden';
-
-
-                                              for ( var i= 0; i < storeLocationToFirebase.length; i++) {
-                                                  refToFirebase.push({lat: storeLocationToFirebase[i].lat(), lng: storeLocationToFirebase[i].lng()});
-                                              }
-
-                                              console.log("SaVED!")
-
-                                          };
-
-        //get distance
-        function myDistance(start, end) {
-            var request = {
-                origin:  ""+desetinationArray[0].lat+","+desetinationArray[0].lng+"",
-                destination:  ""+desetinationArray[1].lat()+","+desetinationArray[1].lng()+"",
-                travelMode: google.maps.DirectionsTravelMode.DRIVING
-            };
-            directionsService.route(request, function(response, status) {
-                                    if (status == google.maps.DirectionsStatus.OK) {
-                                    directionsDisplay.setDirections(response);
-                                    var step = 1;
-                                    var infowindow2 = new google.maps.InfoWindow();
-
-
-                                    var total = 0;
-                                    var time  = 0;
-                                    var myroute = response.routes[0];
-                                    for (var i = 0; i < myroute.legs.length; i++) {
-                                    total += myroute.legs[i].distance.value;
-                                    time += myroute.legs[i].duration.value
-                                    }
-                                    total = total / 1000;
-                                    // document.getElementById('total').innerHTML = total + ' km';
-
-                                    infowindow2.setContent(total +" km ");
-
-                                    // infowindow2.setContent(response.routes[0].legs[0].steps[step].distance.text + "<br>" + response.routes[0].legs[0].steps[step].duration.text + " ");
-                                    infowindow2.setPosition(myroute.legs[0].steps[step].end_location);
-                                    infowindow2.open(map);
-                                    }
-                                    });
-        }
-
-        //retrieve location from firebase
-        function retrieveLocation(){
-
-
-            if ( document.getElementById("retrieveLocation").classList.contains('black') ) {
-
-                Materialize.toast('Retrieving Loation Stored!', 2000);
-                document.getElementById("retrieveLocation").classList.remove('black');
-                document.getElementById("retrieveLocation").classList.add('green');
-
-
-                //empty previous array
-                storedMonsters.empty
-
-                refToFirebase.on("child_added", function(snapshot, prevChildKey) {
-                                 // Get latitude and longitude from the cloud.
-                                 var newPosition = snapshot.val();
-
-                                 // Create a google.maps.LatLng object for the position of the marker.
-                                 // A LatLng object literal (as above) could be used, but the heatmap
-                                 // in the next step requires a google.maps.LatLng object.
-                                 var latLng = new google.maps.LatLng(newPosition.lat, newPosition.lng);
-
-                                 // Place a marker at that location.
-                                 var marker = new google.maps.Marker({
-                                                                     position: latLng,
-                                                                     map: map
-                                                                     });
-
-                                 storedMonsters.push(marker)
-                                 });
-
-
-
-
-            }else{
-                //set makers to null
-                for (var i = 0; i < storedMonsters.length; i++) {
-                    storedMonsters[i].setMap(null);
-                }
-
-                document.getElementById("retrieveLocation").classList.remove('green');
-                document.getElementById("retrieveLocation").classList.add('black');
-
-            }
-
-
-
-
-
-        };
-
-
-
-
-        //initialise maps
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                                      zoom: 16,
-                                      center: {lat: 1.3801, lng: 103.8490},
-                                      mapTypeId: google.maps.MapTypeId.MAP,
-                                      disableDefaultUI: true,
-                                      styles: [
-                                               {
-                                               "elementType": "geometry.stroke",
-                                               "stylers": [
-                                                           { "color": "#28e8a8" }
-                                                           ]
-                                               }
-                                               ]
-                                      });
-
-                                      heatmap = new google.maps.visualization.HeatmapLayer({
-                                                                                           data: getPoints(),
-                                                                                           map: map
-                                                                                           });
-
-                                                                                           heatmap.set('radius', 40)
-
-
-                                                                                           monsterInfoWindow = new google.maps.InfoWindow({
-                                                                                                                                          content: "loading..."
-                                                                                                                                          });
-
-                                                                                                                                          //listen to map click event
-                                                                                                                                          map.addListener('click', function(e) {
-                                                                                                                                                          addMarker(e.latLng);
-                                                                                                                                                          //  refToFirebase.push({lat: e.latLng.lat(), lng: e.latLng.lng()});
-
-                                                                                                                                                          //if have location show button
-                                                                                                                                                          if(storeLocationToFirebase.length != 0){
-                                                                                                                                                          document.getElementById('hideSaveLocationBtn').style.visibility = 'visible';
-                                                                                                                                                          }else{
-                                                                                                                                                          document.getElementById('hideSaveLocationBtn').style.visibility = 'hidden';
-                                                                                                                                                          }
-                                                                                                                                                          })
-
-
-                                                                                                                                                          //hide save button
-                                                                                                                                                          document.getElementById('hideSaveLocationBtn').style.visibility = 'hidden';
-                                                                                                                                                          directionsService = new google.maps.DirectionsService();
-                                                                                                                                                          directionsDisplay = new google.maps.DirectionsRenderer();
-                                                                                                                                                          directionsDisplay.setMap(map);
-        };
-
-
-
-
-        // Adds a marker to the map and push to the array.
-        function addMarker(location) {
-            var storeLocationMarker = new google.maps.Marker({
-                                                             position: location,
-                                                             map: map,
-                                                             draggable :true
-                                                             });
-
-                                                             //store in array
-                                                             storeLocationToFirebase.push(location);
-                                                             desetinationArray.push(location);
-
-                                                             // refToFirebase.push({lat: e.latLng.lat(), lng: e.latLng.lng()});
-                                                             //console.log("---> "+storeLocationToFirebase[0].lat()+"long" +storeLocationToFirebase[0].lng())
-                                                             //  refToFirebase.push({lat: location.lat(), lng: location.lng()});
-
-
-
-        };
-
-
-
-        <!-- Get My Location-->
-        function myCurrentLocation(){
-            Materialize.toast('Getting Your Location...', 1500)
-            myCurrentLocationInfoWindow = new google.maps.InfoWindow({map: map});
-
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                                                         var pos = {
-                                                         lat: position.coords.latitude,
-                                                         lng: position.coords.longitude
-                                                         };
-
-                                                         desetinationArray.push(pos);
-
-
-                                                         myCurrentLocationInfoWindow.setPosition(pos);
-                                                         myCurrentLocationInfoWindow.setContent('You Are Here');
-                                                         map.setCenter(pos);
-
-
-                                                         for (var city in monsterLocation) {
-                                                         // Add the circle for this city to the map.
-                                                         var cityCircle = new google.maps.Circle({
-                                                                                                 strokeColor: '#FF0000',
-                                                                                                 strokeOpacity: 0.8,
-                                                                                                 strokeWeight: 2,
-                                                                                                 fillColor: '#FF0000',
-                                                                                                 fillOpacity: 0.1,
-                                                                                                 map: map,
-                                                                                                 center: pos,
-                                                                                                 radius: Math.sqrt(monsterLocation.length) * 20
-                                                                                                 });
-                                                         }
-
-
-
-                                                         }, function() {
-                                                         handleLocationError(true, myCurrentLocationInfoWindow, map.getCenter());
-                                                         });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, myCurrentLocationInfoWindow, map.getCenter());
-            }
-
-        };
-        <!-- end Get My Location-->
-
-
-        <!-- start of monster map -->
-
-        function toggleMonsterMap(){
-
-
-
-            if ( document.getElementById("toggleMonsterMapID").classList.contains('black') ) {
-
-                /*add monster marker to map*/
-                /*
-                 monsterMaker = new google.maps.Marker({
-                 position:{lat: 1.3801, lng: 103.8490},
-                 map: map,
-                 label: "A",
-                 animation: google.maps.Animation.DROP,
-                 title: 'Hello World!'
-                 });
-
-
-                 for (var i = 0; i < monsterLocation.length; i++) {
-                 var data = monsterLocation[i];
-
-                 var myLatlng = new google.maps.LatLng(data.lat, data.long);
-                 monsterMarker = new google.maps.Marker({
-                 position: {lat: data.lat, lng: data.long},
-                 map: map,
-                 animation: google.maps.Animation.DROP,
-                 title: data.desc,
-                 icon: image
-                 })
-                 //add monster markers to storedMonster array
-                 storedMonsters.push(monsterMarker)
-                 };
-                 */
-
-                // displayMonsterMarkers() function is called to begin the markers creation
-                displayMonsterMarkers();
-
-
-                Materialize.toast('MonsterMap Enabled!', 2000);
-                document.getElementById("toggleMonsterMapID").classList.remove('black');
-                document.getElementById("toggleMonsterMapID").classList.add('orange');
-            } else {
-
-                /*remove monster marker  */
-                //monsterMarker.setMap(null);
-                for (var i = 0; i < storedMonsters.length; i++) {
-                    storedMonsters[i].setMap(null);
-                }
-
-
-
-
-
-                Materialize.toast('MonsterMap Disabled!', 2000)
-                document.getElementById("toggleMonsterMapID").classList.remove('orange');
-                document.getElementById("toggleMonsterMapID").classList.add('black');
-            };
-
-            monsterMarker.addListener('click', toggleBounce)
-        };
-        <!-- end of monster map -->
-
-        /*markers animation*/
-        function toggleBounce() {
-            if (monsterMarker.getAnimation() !== null) {
-                monsterMarker.setAnimation(null);
-            } else {
-                monsterMarker.setAnimation(google.maps.Animation.BOUNCE);
-            }};
-
-        function displayMonsterMarkers(){
-            var i = 0;
-            var bounds = new google.maps.LatLngBounds();
-
-            for ( i= 0; i < firebaseFriends.length; i++) {
-                var data = monsterLocation[i];
-                var latlng = new google.maps.LatLng(data.lat, data.long);
-                bounds.extend(latlng);
-                var myLatlng = new google.maps.LatLng(data.lat, data.long);
-
-                /*
-                 image1 = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2238%22%20height%3D%2238%22%20viewBox%3D%220%200%2038%2038%22%3E%3Cpath%20fill%3D%22%23808080%22%20stroke%3D%22%23ccc%22%20stroke-width%3D%22.5%22%20d%3D%22M34.305%2016.234c0%208.83-15.148%2019.158-15.148%2019.158S3.507%2025.065%203.507%2016.1c0-8.505%206.894-14.304%2015.4-14.304%208.504%200%2015.398%205.933%2015.398%2014.438z%22%2F%3E%3Ctext%20transform%3D%22translate%2819%2018.5%29%22%20fill%3D%22%23fff%22%20style%3D%22font-family%3A%20Arial%2C%20sans-serif%3Bfont-weight%3Abold%3Btext-align%3Acenter%3B%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3E' + firebaseFriends[i].Name.lable + '%3C%2Ftext%3E%3C%2Fsvg%3E';
-                 */
-
-
-                monsterMarker = new google.maps.Marker({
-                                                       position: {lat: data.lat, lng: data.long},
-                                                       map: map,
-                                                       animation: google.maps.Animation.DROP,
-                                                       title: data.desc,
-                                                       //icon: image
-                                                       icon: image
-                                                       });
-
-                                                       monsterMarker.html = '<div>'+ data.city +'<br> '+ firebaseFriends[i].Name+ '<br>'+ firebaseFriends[i].Level+ '<br><img src="'+firebaseFriends[i].ThumbnailImgUrl+'" alt="Mountain View" style="width:80px;height:80spx;">'+'</div>';
-
-                                                       google.maps.event.addListener(monsterMarker, 'click', function(){
-                                                                                     // Set the content of the InfoBubble or InfoWindow
-                                                                                     // They both have a function called setContent
-                                                                                     monsterInfoWindow.setContent(this.html);
-                                                                                     monsterInfoWindow.open(map, this);
-                                                                                     map.setZoom(map.getZoom() + 1);
-                                                                                     map.setCenter(monsterMarker.getPosition());
-                                                                                     });
-
-                                                                                     storedMonsters.push(monsterMarker)
-
-            }
-            map.fitBounds(bounds);
-            //end of for loop
-        };
-
-
-
-
-        function toggleHeatmap() {
-            heatmap.setMap(heatmap.getMap() ? null : map);
-            //toggle FAB (the floating button thing) highlight
-            if ( document.getElementById("toggleHeatmapID").classList.contains('black') ) {
-                Materialize.toast('Heatmap Enabled!', 2000)
-                document.getElementById("toggleHeatmapID").classList.remove('black');
-                document.getElementById("toggleHeatmapID").classList.add('yellow');
-            } else {
-                Materialize.toast('Heatmap Disabled!', 2000)
-                document.getElementById("toggleHeatmapID").classList.remove('yellow');
-                document.getElementById("toggleHeatmapID").classList.add('black');
-            }
-        };
-
-        // Heatmap data: 500 Points
-        function getPoints() {
-            return [
-                    new google.maps.LatLng(1.38098127843023, 103.8486879226299),
-                    new google.maps.LatLng(1.382170199449567, 103.8482437025494),
-                    new google.maps.LatLng(1.381602205990674, 103.8485798830626),
-                    new google.maps.LatLng(1.38184627856266, 103.849257778687),
-                    new google.maps.LatLng(1.381936042993424, 103.8495859442111),
-                    new google.maps.LatLng(1.38043331828994, 103.848909794732),
-                    new google.maps.LatLng(1.381887230073275, 103.8501239042656),
-                    new google.maps.LatLng(1.381524104067059, 103.8491558700535),
-                    new google.maps.LatLng(1.382110326117077, 103.8485657398038),
-                    new google.maps.LatLng(1.382336234915819, 103.8492496518433),
-                    ];
-
-        }
-
-
-
+                                   
+                                   
+                                   <!-- initialise maps-->
+                                   
+                                   function initMap() {
+                                       map = new google.maps.Map(document.getElementById('map'), {
+                                                                 zoom: 16,
+                                                                 center: {lat: 1.3801, lng: 103.8490},
+                                                                 mapTypeId: google.maps.MapTypeId.MAP,
+                                                                 disableDefaultUI: true,
+                                                                 styles: [
+                                                                          {
+                                                                          "elementType": "geometry.stroke",
+                                                                          "stylers": [
+                                                                                      { "color": "#28e8a8" }
+                                                                                      ]
+                                                                          }
+                                                                          ]
+                                                                 });
+                                                                 //listen to map click event
+                                                                 map.addListener('click', function(e) {
+                                                                                 addMarker(e.latLng);
+                                                                                 
+                                                                                 })
+                                                                                 
+                                                                                 // Adds a marker to the map and push to the array.
+                                                                                 function addMarker(location) {
+                                                                                     var storeLocationMarker = new google.maps.Marker({
+                                                                                                                                      position: location,
+                                                                                                                                      map: map,
+                                                                                                                                      draggable :true
+                                                                                                                                      });
+                                                                                                                                      
+                                                                                                                                      //store in array
+                                                                                                                                      storeLocationToFirebase.push(location);
+                                                                                                                                      desetinationArray.push(location);
+                                                                                                                                      
+                                                                                                                                      
+                                                                                 };
+                                                                                 
+                                                                                 //end of init function
+                                                                                 var infoWindow = new google.maps.InfoWindow({map: map});
+                                                                                 // Try HTML5 geolocation.
+                                                                                 if (navigator.geolocation) {
+                                                                                     navigator.geolocation.getCurrentPosition(function(position) {
+                                                                                                                              var pos = {
+                                                                                                                              lat: position.coords.latitude,
+                                                                                                                              lng: position.coords.longitude
+                                                                                                                              };
+                                                                                                                              
+                                                                                                                              infoWindow.setPosition(pos);
+                                                                                                                              infoWindow.setContent('Location found.');
+                                                                                                                              map.setCenter(pos);
+                                                                                                                              console.log(pos.lat)
+                                                                                                                              console.log(pos.lng)
+                                                                                                                              cLat = pos.lat;
+                                                                                                                              cLng = pos.lng;
+                                                                                                                              
+                                                                                                                              var posf = new google.maps.LatLng(pos.lat, pos.lng);
+                                                                                                                              
+                                                                                                                              
+                                                                                                                              }, function() {
+                                                                                                                              handleLocationError(true, infoWindow, map.getCenter());
+                                                                                                                              });
+                                                                                 } else {
+                                                                                     // Browser doesn't support Geolocation
+                                                                                     handleLocationError(false, infoWindow, map.getCenter());
+                                                                                 }
+                                                                                 
+                                                                                 
+                                                                                 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                                                                                     infoWindow.setPosition(pos);
+                                                                                     infoWindow.setContent(browserHasGeolocation ?
+                                                                                                           'Error: The Geolocation service failed.' :
+                                                                                                           'Error: Your browser doesn\'t support geolocation.');
+                                                                                 }
+                                                                                 console.log(cLat) ;
+                                                                                 
+                                                                                 
+                                                                                 friendsInfoWindow = new google.maps.InfoWindow({
+                                                                                                                                content: "loading..."
+                                                                                                                                });
+                                                                                                                                
+                                                                                                                                //listen to map click event plot meeting place
+                                                                                                                                map.addListener('click', function(e) {
+                                                                                                                                                addMarker(e.latLng);
+                                                                                                                                                
+                                                                                                                                                })
+                                                                                                                                                
+                                                                                                                                                
+                                                                                                                                                //plot direction
+                                                                                                                                                directionsService = new google.maps.DirectionsService();
+                                                                                                                                                directionsDisplay = new google.maps.DirectionsRenderer();
+                                                                                                                                                directionsDisplay.setMap(map);
+                                                                                                                                                
+                                                                                                                                                
+                                                                                                                                                //start of custom marker
+                                                                                                                                                CustomMarker.prototype = new google.maps.OverlayView();
+                                                                                                                                                
+                                                                                                                                                function CustomMarker(opts) {
+                                                                                                                                                    this.setValues(opts);
+                                                                                                                                                }
+                                                                                                                                                
+                                                                                                                                                CustomMarker.prototype.draw = function() {
+                                                                                                                                                    var self = this;
+                                                                                                                                                    var div = this.div;
+                                                                                                                                                    if (!div) {
+                                                                                                                                                        div = this.div = $('' +
+                                                                                                                                                                           '<div>' +
+                                                                                                                                                                           '<div class="shadow"></div>' +
+                                                                                                                                                                           '<div class="pulse"></div>' +
+                                                                                                                                                                           '<div class="pin-wrap">' +
+                                                                                                                                                                           '<div class="pin"></div>' +
+                                                                                                                                                                           '</div>' +
+                                                                                                                                                                           '</div>' +
+                                                                                                                                                                           '')[0];
+                                                                                                                                                                           this.pinWrap = this.div.getElementsByClassName('pin-wrap');
+                                                                                                                                                                           this.pin = this.div.getElementsByClassName('pin');
+                                                                                                                                                                           this.pinShadow = this.div.getElementsByClassName('shadow');
+                                                                                                                                                                           div.style.position = 'absolute';
+                                                                                                                                                                           div.style.cursor = 'pointer';
+                                                                                                                                                                           var panes = this.getPanes();
+                                                                                                                                                                           panes.overlayImage.appendChild(div);
+                                                                                                                                                                           google.maps.event.addDomListener(div, "click", function(event) {
+                                                                                                                                                                                                            google.maps.event.trigger(self, "click", event);
+                                                                                                                                                                                                            });
+                                                                                                                                                    }
+                                                                                                                                                    var point = this.getProjection().fromLatLngToDivPixel(this.position);
+                                                                                                                                                    if (point) {
+                                                                                                                                                        div.style.left = point.x + 'px';
+                                                                                                                                                        div.style.top = point.y + 'px';
+                                                                                                                                                    }
+                                                                                                                                                };
+                                                                                                                                                
+                                                                                                                                                CustomMarker.prototype.animateDrop = function() {
+                                                                                                                                                    dynamics.stop(this.pinWrap);
+                                                                                                                                                    dynamics.css(this.pinWrap, {
+                                                                                                                                                                 'transform': 'scaleY(2) translateY(-'+$('#map').outerHeight()+'px)',
+                                                                                                                                                                 'opacity': '1',
+                                                                                                                                                                 });
+                                                                                                                                                                 dynamics.animate(this.pinWrap, {
+                                                                                                                                                                                  translateY: 0,
+                                                                                                                                                                                  scaleY: 1.0,
+                                                                                                                                                                                  }, {
+                                                                                                                                                                                  type: dynamics.gravity,
+                                                                                                                                                                                  duration: 1800,
+                                                                                                                                                                                  });
+                                                                                                                                                                                  
+                                                                                                                                                                                  dynamics.stop(this.pin);
+                                                                                                                                                                                  dynamics.css(this.pin, {
+                                                                                                                                                                                               'transform': 'none',
+                                                                                                                                                                                               });
+                                                                                                                                                                                               dynamics.animate(this.pin, {
+                                                                                                                                                                                                                scaleY: 0.8
+                                                                                                                                                                                                                }, {
+                                                                                                                                                                                                                type: dynamics.bounce,
+                                                                                                                                                                                                                duration: 1800,
+                                                                                                                                                                                                                bounciness: 600,
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                                
+                                                                                                                                                                                                                dynamics.stop(this.pinShadow);
+                                                                                                                                                                                                                dynamics.css(this.pinShadow, {
+                                                                                                                                                                                                                             'transform': 'scale(0,0)',
+                                                                                                                                                                                                                             });
+                                                                                                                                                                                                                             dynamics.animate(this.pinShadow, {
+                                                                                                                                                                                                                                              scale: 1,
+                                                                                                                                                                                                                                              }, {
+                                                                                                                                                                                                                                              type: dynamics.gravity,
+                                                                                                                                                                                                                                              duration: 1800,
+                                                                                                                                                                                                                                              });
+                                                                                                                                                }
+                                                                                                                                                
+                                                                                                                                                CustomMarker.prototype.animateBounce = function() {
+                                                                                                                                                    dynamics.stop(this.pinWrap);
+                                                                                                                                                    dynamics.css(this.pinWrap, {
+                                                                                                                                                                 'transform': 'none',
+                                                                                                                                                                 });
+                                                                                                                                                                 dynamics.animate(this.pinWrap, {
+                                                                                                                                                                                  translateY: -30
+                                                                                                                                                                                  }, {
+                                                                                                                                                                                  type: dynamics.forceWithGravity,
+                                                                                                                                                                                  bounciness: 0,
+                                                                                                                                                                                  duration: 500,
+                                                                                                                                                                                  delay: 150,
+                                                                                                                                                                                  });
+                                                                                                                                                                                  
+                                                                                                                                                                                  dynamics.stop(this.pin);
+                                                                                                                                                                                  dynamics.css(this.pin, {
+                                                                                                                                                                                               'transform': 'none',
+                                                                                                                                                                                               });
+                                                                                                                                                                                               dynamics.animate(this.pin, {
+                                                                                                                                                                                                                scaleY: 0.8
+                                                                                                                                                                                                                }, {
+                                                                                                                                                                                                                type: dynamics.bounce,
+                                                                                                                                                                                                                duration: 800,
+                                                                                                                                                                                                                bounciness: 0,
+                                                                                                                                                                                                                });
+                                                                                                                                                                                                                dynamics.animate(this.pin, {
+                                                                                                                                                                                                                                 scaleY: 0.8
+                                                                                                                                                                                                                                 }, {
+                                                                                                                                                                                                                                 type: dynamics.bounce,
+                                                                                                                                                                                                                                 duration: 800,
+                                                                                                                                                                                                                                 bounciness: 600,
+                                                                                                                                                                                                                                 delay: 650,
+                                                                                                                                                                                                                                 });
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 dynamics.stop(this.pinShadow);
+                                                                                                                                                                                                                                 dynamics.css(this.pinShadow, {
+                                                                                                                                                                                                                                              'transform': 'none',
+                                                                                                                                                                                                                                              });
+                                                                                                                                                                                                                                              dynamics.animate(this.pinShadow, {
+                                                                                                                                                                                                                                                               scale: 0.6,
+                                                                                                                                                                                                                                                               }, {
+                                                                                                                                                                                                                                                               type: dynamics.forceWithGravity,
+                                                                                                                                                                                                                                                               bounciness: 0,
+                                                                                                                                                                                                                                                               duration: 500,
+                                                                                                                                                                                                                                                               delay: 150,
+                                                                                                                                                                                                                                                               });
+                                                                                                                                                }
+                                                                                                                                                
+                                                                                                                                                CustomMarker.prototype.animateWobble = function() {
+                                                                                                                                                    dynamics.stop(this.pinWrap);
+                                                                                                                                                    dynamics.css(this.pinWrap, {
+                                                                                                                                                                 'transform': 'none',
+                                                                                                                                                                 });
+                                                                                                                                                                 dynamics.animate(this.pinWrap, {
+                                                                                                                                                                                  rotateZ: -45,
+                                                                                                                                                                                  }, {
+                                                                                                                                                                                  type: dynamics.bounce,
+                                                                                                                                                                                  duration: 1800,
+                                                                                                                                                                                  });
+                                                                                                                                                                                  
+                                                                                                                                                                                  dynamics.stop(this.pin);
+                                                                                                                                                                                  dynamics.css(this.pin, {
+                                                                                                                                                                                               'transform': 'none',
+                                                                                                                                                                                               });
+                                                                                                                                                                                               dynamics.animate(this.pin, {
+                                                                                                                                                                                                                scaleX: 0.8
+                                                                                                                                                                                                                }, {
+                                                                                                                                                                                                                type: dynamics.bounce,
+                                                                                                                                                                                                                duration: 800,
+                                                                                                                                                                                                                bounciness: 1800,
+                                                                                                                                                                                                                });
+                                                                                                                                                }
+                                                                                                                                                
+                                                                                                                                                
+                                                                                                                                                //call this function to remove markers
+                                                                                                                                                CustomMarker.prototype.remove = function () {
+                                                                                                                                                    // Check if the overlay was on the map and needs to be removed.
+                                                                                                                                                    if (this.div) {
+                                                                                                                                                        
+                                                                                                                                                        this.div.style.visibility = 'hidden';
+                                                                                                                                                    }
+                                                                                                                                                };
+                                                                                                                                                
+                                                                                                                                                CustomMarker.prototype.on = function () {
+                                                                                                                                                    
+                                                                                                                                                    // Check if the overlay was on the map and needs to be removed.
+                                                                                                                                                    if (this.div) {
+                                                                                                                                                        
+                                                                                                                                                        this.div.style.visibility = 'visible';
+                                                                                                                                                    }
+                                                                                                                                                };
+                                                                                                                                                
+                                                                                                                                                
+                                                                                                                                                //create custom obj, jQuery selector
+                                                                                                                                                $(function() {
+                                                                                                                                                  var pos = new google.maps.LatLng(1.379283, 103.849829);
+                                                                                                                                                  var map = new google.maps.Map(document.getElementById('map'), {
+                                                                                                                                                                                zoom: 14,
+                                                                                                                                                                                center: pos,
+                                                                                                                                                                                disableDefaultUI: true,
+                                                                                                                                                                                });
+                                                                                                                                                  
+                                                                                                                                                  myCustomLocationMarker = new CustomMarker({
+                                                                                                                                                                                            position: pos,
+                                                                                                                                                                                            map: map,
+                                                                                                                                                                                            });
+                                                                                                                                                  
+                                                                                                                                                  google.maps.event.addListener(myCustomLocationMarker, 'click', function(e) {
+                                                                                                                                                                                myCustomLocationMarker.animateWobble();
+                                                                                                                                                                                
+                                                                                                                                                                                });
+                                                                                                                                                  
+                                                                                                                                                  $('#drop').on('click', function(e) {
+                                                                                                                                                                myCustomLocationMarker.animateDrop();
+                                                                                                                                                                });
+                                                                                                                                                  
+                                                                                                                                                  $('#wobble').on('click', function(e) {
+                                                                                                                                                                  // myCustomLocationMarker.animateWobble();
+                                                                                                                                                                  //myBuffer.setMap(map);
+                                                                                                                                                                  });
+                                                                                                                                                  
+                                                                                                                                                  $('#bounce').on('click', function(e) {
+                                                                                                                                                                  // myCustomLocationMarker.animateBounce();
+                                                                                                                                                                  //myCustomLocationMarker.remove();
+                                                                                                                                                                  //myBuffer.setMap(null);
+                                                                                                                                                                  
+                                                                                                                                                                  });
+                                                                                                                                                  
+                                                                                                                                                  
+                                                                                                                                                  $('#hideMyMarkers').on('click', function(e) {
+                                                                                                                                                                         // call remove function
+                                                                                                                                                                         myCustomLocationMarker.remove();
+                                                                                                                                                                         myBuffer.setMap(null);
+                                                                                                                                                                         //hide panel
+                                                                                                                                                                         $('.button-collapse').sideNav('hide');
+                                                                                                                                                                         
+                                                                                                                                                                         });
+                                                                                                                                                  
+                                                                                                                                                  $('#showMyCurrentLocation').on('click', function(e) {
+                                                                                                                                                                                 
+                                                                                                                                                                                 // call remove function
+                                                                                                                                                                                 myCustomLocationMarker.on();
+                                                                                                                                                                                 myCustomLocationMarker.animateWobble();
+                                                                                                                                                                                 //myBuffer.setMap(map);
+                                                                                                                                                                                 
+                                                                                                                                                                                 });
+                                                                                                                                                  
+                                                                                                                                                  
+                                                                                                                                                  $('#plotMeetingPlace').on('click', function(e) {
+                                                                                                                                                                            console.log("plot meeting place");
+                                                                                                                                                                            
+                                                                                                                                                                            $('.button-collapse').sideNav('hide');
+                                                                                                                                                                            
+                                                                                                                                                                            //enable plotting on the map
+                                                                                                                                                                            
+                                                                                                                                                                            
+                                                                                                                                                                            });
+                                                                                                                                                  
+                                                                                                                                                  
+                                                                                                                                                  $('#showMyBuffer').on('click', function(e) {
+                                                                                                                                                                        
+                                                                                                                                                                        myBuffer.setMap(map);
+                                                                                                                                                                        
+                                                                                                                                                                        //var posttt = new google.maps.LatLng(1.379283, 103.849829);
+                                                                                                                                                                        
+                                                                                                                                                                        var i = 0;
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                                                                                        for ( i= 0; i < friendsLocation.length; i++) { 
+                                                                                                                                                                        var bounds = myBuffer.getBounds();
+                                                                                                                                                                        var tempPos =  new google.maps.LatLng(friendsLocation[i].lat,friendsLocation[i].long)
+                                                                                                                                                                        console.log( bounds.contains( tempPos ) );
+                                                                                                                                                                        
+                                                                                                                                                                        var tempResult = bounds.contains( tempPos );
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                                                                                        //if found within the boundary add the marker and display
+                                                                                                                                                                        if(tempResult == true){
+                                                                                                                                                                        console.log(tempResult +"8899");
+                                                                                                                                                                        
+                                                                                                                                                                        var data = friendsLocation[i];
+                                                                                                                                                                        var latlng = new google.maps.LatLng(data.lat, data.long);
+                                                                                                                                                                        bounds.extend(latlng);
+                                                                                                                                                                        var myLatlng = new google.maps.LatLng(data.lat, data.long);
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                                                                                        monsterMarker = new google.maps.Marker({
+                                                                                                                                                                                                               position: {lat: data.lat, lng: data.long},
+                                                                                                                                                                                                               map: map,
+                                                                                                                                                                                                               animation: google.maps.Animation.DROP,
+                                                                                                                                                                                                               title: data.desc,
+                                                                                                                                                                                                               //icon: image
+                                                                                                                                                                                                               icon: image
+                                                                                                                                                                                                               });
+                                                                                                                                                                        
+                                                                                                                                                                        monsterMarker.html = '<div>'+ data.city +'<br> </div>';
+                                                                                                                                                                        
+                                                                                                                                                                        google.maps.event.addListener(monsterMarker, 'click', function(){
+                                                                                                                                                                                                      // Set the content of the InfoBubble or InfoWindow
+                                                                                                                                                                                                      // They both have a function called setContent
+                                                                                                                                                                                                      friendsInfoWindow.setContent(this.html);
+                                                                                                                                                                                                      friendsInfoWindow.open(map, this);
+                                                                                                                                                                                                      map.setZoom(map.getZoom() + 1);
+                                                                                                                                                                                                      map.setCenter(monsterMarker.getPosition());
+                                                                                                                                                                                                      });
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                                                                                        google.maps.event.addListener(myBuffer, 'dragend', function(){
+                                                                                                                                                                                                      console.log("aa");
+                                                                                                                                                                                                      
+                                                                                                                                                                                                      console.log( myBuffer.getBounds().contains( monsterMarker.getPosition() ) );
+                                                                                                                                                                                                      });
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                                                                                        storedFriends.push(monsterMarker)  
+                                                                                                                                                                        
+                                                                                                                                                                        } 
+                                                                                                                                                                        }
+                                                                                                                                                                        map.fitBounds(bounds);
+                                                                                                                                                                        //end of for loop
+                                                                                                                                                                        
+                                                                                                                                                                        //Hide the side bar when clciked
+                                                                                                                                                                        $('.button-collapse').sideNav('hide');
+                                                                                                                                                                        
+                                                                                                                                                                        });
+                                                                                                                                                  
+                                                                                                                                                  //retrieve from firebase
+                                                                                                                                                  $('#showMyFriends').on('click', function(e) {
+                                                                                                                                                                         
+                                                                                                                                                                         Materialize.toast('Retrieving Friends List..', 1500);
+                                                                                                                                                                         
+                                                                                                                                                                         firebase.database().ref('/Friend/'+authKey).once('value').then(function(snapshot) {
+                                                                                                                                                                                                                                        snapshot.forEach(function(childSnapshot) {
+                                                                                                                                                                                                                                                         var key = childSnapshot.key; // 1 
+                                                                                                                                                                                                                                                         firebase.database().ref('/Account/'+ key).once('value').then(function(snapshot) {
+                                                                                                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                                                                                      console.log(snapshot.val().Picture); 
+                                                                                                                                                                                                                                                                                                                      //add friend obj to arraylist
+                                                                                                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                                                                                      firebaseFriends.push(snapshot.val());
+                                                                                                                                                                                                                                                                                                                      });  
+                                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                         })
+                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                        }); 
+                                                                                                                                                                         
+                                                                                                                                                                         //custom friends markers
+                                                                                                                                                                         
+                                                                                                                                                                         function FriendsCustomMarker(latlng, map, imageSrc) {
+                                                                                                                                                                         this.latlng_ = latlng;
+                                                                                                                                                                         this.imageSrc = imageSrc;
+                                                                                                                                                                         // Once the LatLng and text are set, add the overlay to the map.  This will
+                                                                                                                                                                         // trigger a call to panes_changed which should in turn call draw.
+                                                                                                                                                                         this.setMap(map);
+                                                                                                                                                                         }
+                                                                                                                                                                         
+                                                                                                                                                                         FriendsCustomMarker.prototype = new google.maps.OverlayView();
+                                                                                                                                                                         
+                                                                                                                                                                         FriendsCustomMarker.prototype.draw = function () {
+                                                                                                                                                                         
+                                                                                                                                                                         var me = this;
+                                                                                                                                                                         // Check if the div has been created.
+                                                                                                                                                                         var div = this.div_;
+                                                                                                                                                                         if (!div) {
+                                                                                                                                                                         // Create a overlay text DIV
+                                                                                                                                                                         div = this.div_ = document.createElement('div');
+                                                                                                                                                                         // Create the DIV representing our CustomMarker
+                                                                                                                                                                         div.className = "customMarker";
+                                                                                                                                                                         
+                                                                                                                                                                         
+                                                                                                                                                                         
+                                                                                                                                                                         var img = document.createElement("img");
+                                                                                                                                                                         img.src = this.imageSrc;
+                                                                                                                                                                         div.appendChild(img);
+                                                                                                                                                                         
+                                                                                                                                                                         
+                                                                                                                                                                         google.maps.event.addDomListener(div, "click", function (event) {
+                                                                                                                                                                                                          google.maps.event.trigger(me, "click");
+                                                                                                                                                                                                          
+                                                                                                                                                                                                          });
+                                                                                                                                                                         
+                                                                                                                                                                         
+                                                                                                                                                                         // Then add the overlay to the DOM
+                                                                                                                                                                         var panes = this.getPanes();
+                                                                                                                                                                         panes.overlayImage.appendChild(div);
+                                                                                                                                                                         }
+                                                                                                                                                                         
+                                                                                                                                                                         // Position the overlay 
+                                                                                                                                                                         var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
+                                                                                                                                                                         if (point) {
+                                                                                                                                                                         div.style.left = point.x + 'px';
+                                                                                                                                                                         div.style.top = point.y + 'px';
+                                                                                                                                                                         }
+                                                                                                                                                                         };
+                                                                                                                                                                         
+                                                                                                                                                                         FriendsCustomMarker.prototype.remove = function () { 
+                                                                                                                                                                         // Check if the overlay was on the map and needs to be removed.
+                                                                                                                                                                         if (this.div_) { 
+                                                                                                                                                                         this.div_.style.visibility = 'hidden';
+                                                                                                                                                                         }
+                                                                                                                                                                         };
+                                                                                                                                                                         
+                                                                                                                                                                         FriendsCustomMarker.prototype.getPosition = function () {
+                                                                                                                                                                         return this.latlng_;
+                                                                                                                                                                         };
+                                                                                                                                                                         
+                                                                                                                                                                         
+                                                                                                                                                                         //friends marks html contents, dynamic
+                                                                                                                                                                         var i = 0;
+                                                                                                                                                                         var bounds = new google.maps.LatLngBounds();
+                                                                                                                                                                         
+                                                                                                                                                                         for ( i= 0; i < firebaseFriends.length; i++) { 
+                                                                                                                                                                         console.log(firebaseFriends.length);
+                                                                                                                                                                         var data = friendsLocation[i];
+                                                                                                                                                                         var latlng = new google.maps.LatLng(data.lat, data.long);
+                                                                                                                                                                         bounds.extend(latlng);
+                                                                                                                                                                         var myLatlng = new google.maps.LatLng(data.lat, data.long);
+                                                                                                                                                                         
+                                                                                                                                                                         monsterMarker = new FriendsCustomMarker(new google.maps.LatLng(friendsLocation[i].lat,friendsLocation[i].long), map,  firebaseFriends[i].Picture)
+                                                                                                                                                                         
+                                                                                                                                                                         monsterMarker.html =  '<div id="iw-container">' +
+                                                                                                                                                                         '<div class="iw-title">'+firebaseFriends[i].Name+ '</div>'  +
+                                                                                                                                                                         '<div class="iw-content">' +
+                                                                                                                                                                         
+                                                                                                                                                                         '<img align="left" src="'+firebaseFriends[i].Picture+'" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+                                                                                                                                                                         '<div class="iw-subTitle">Level : '+firebaseFriends[i].Level+'</div>'  +
+                                                                                                                                                                         '<p>Monsters Kille : None Location @ : Block L  </p>' +
+                                                                                                                                                                         
+                                                                                                                                                                         '</div>' +
+                                                                                                                                                                         '<div class="iw-bottom-gradient"></div>' +
+                                                                                                                                                                         '</div>';
+                                                                                                                                                                         
+                                                                                                                                                                         
+                                                                                                                                                                         google.maps.event.addListener(monsterMarker, 'click', function(){
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Set the content of the InfoBubble or InfoWindow
+                                                                                                                                                                                                       // They both have a function called setContent
+                                                                                                                                                                                                       friendsInfoWindow.setContent(this.html);
+                                                                                                                                                                                                       friendsInfoWindow.open(map, this);
+                                                                                                                                                                                                       map.setZoom(map.getZoom() + 1);
+                                                                                                                                                                                                       map.setCenter(monsterMarker.getPosition());
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Reference to the DIV that wraps the bottom of infowindow
+                                                                                                                                                                                                       var iwOuter = $('.gm-style-iw');
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       /* Since this div is in a position prior to .gm-div style-iw.
+                                                                                                                                                                                                        * We use jQuery and create a iwBackground variable,
+                                                                                                                                                                                                        * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+                                                                                                                                                                                                        */
+                                                                                                                                                                                                       var iwBackground = iwOuter.prev();
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Removes background shadow DIV
+                                                                                                                                                                                                       iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Removes white background DIV
+                                                                                                                                                                                                       iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Moves the infowindow 115px to the right.
+                                                                                                                                                                                                       // iwOuter.parent().parent().css({left: '115px'});
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Moves the shadow of the arrow 76px to the left margin.
+                                                                                                                                                                                                       iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 121px !important;'});
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Moves the arrow 76px to the left margin.
+                                                                                                                                                                                                       iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 121px !important;'});
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Changes the desired tail shadow color.
+                                                                                                                                                                                                       iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Reference to the div that groups the close button elements.
+                                                                                                                                                                                                       var iwCloseBtn = iwOuter.next();
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // Apply the desired effect to the close button
+                                                                                                                                                                                                       //  iwCloseBtn.css({opacity: '1', right: '38px', top: '3px', border: '1px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9'});
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+                                                                                                                                                                                                       if($('.iw-content').height() < 140){
+                                                                                                                                                                                                       $('.iw-bottom-gradient').css({display: 'none'});
+                                                                                                                                                                                                       }
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
+                                                                                                                                                                                                       iwCloseBtn.mouseout(function(){
+                                                                                                                                                                                                                           $(this).css({opacity: '1'});
+                                                                                                                                                                                                                           });
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       });
+                                                                                                                                                                         
+                                                                                                                                                                         storedFriends.push(monsterMarker)  
+                                                                                                                                                                         
+                                                                                                                                                                         }
+                                                                                                                                                                         map.fitBounds(bounds);
+                                                                                                                                                                         //end of for loop
+                                                                                                                                                                         
+                                                                                                                                                                         
+                                                                                                                                                                         //hide side nav
+                                                                                                                                                                         $('.button-collapse').sideNav('hide');
+                                                                                                                                                                         
+                                                                                                                                                                         //end of custom markers
+                                                                                                                                                                         
+                                                                                                                                                                         });
+                                                                                                                                                  
+                                                                                                                                                  
+                                                                                                                                                  //circle buffer
+                                                                                                                                                  for (var city in friendsLocation) {
+                                                                                                                                                  
+                                                                                                                                                  // Add the circle for this city to the map.
+                                                                                                                                                  myBuffer = new google.maps.Circle({
+                                                                                                                                                                                    strokeColor: '#FF0000',
+                                                                                                                                                                                    strokeOpacity: 0.8,
+                                                                                                                                                                                    strokeWeight: 2,
+                                                                                                                                                                                    fillColor: '#FF0000',
+                                                                                                                                                                                    fillOpacity: 0.1,
+                                                                                                                                                                                    draggable: true,
+                                                                                                                                                                                    center: pos,
+                                                                                                                                                                                    radius: Math.sqrt(friendsLocation.length) * 20
+                                                                                                                                                                                    });
+                                                                                                                                                  };
+                                                                                                                                                  
+                                                                                                                                                  
+                                                                                                                                                  });
+                                                                                                                                                  //end 
+                                                                                                                                                  
+                                   };
+        
+        
             </script>
-        <!-- End of main script -->
-
-
-
+        <!--end of  main script -->
+        
+        
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIZ7ernlycehS8DLYRoPY_90aaZTXbLQ&libraries=visualization&callback=initMap">
+            </script>
+        
     </body>
 </html>
