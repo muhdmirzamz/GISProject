@@ -10,30 +10,31 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
             <meta charset="utf-8">
                 <title>Friends Map</title>
-                
+
                 <!-- Materialize CSS -->
                 <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
                     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                        <link rel="stylesheet" href="helper.css">
                         <!-- End of CSS -->
-                        
+
                         <!-- Extra Scripts -->
-                        
+
                         <!-- Firebase -->
                         <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-                        
+
                         <!-- GeoFire -->
                         <script src="https://cdn.firebase.com/libs/geofire/4.1.1/geofire.min.js"></script>
-                        
+
                         <!-- End of  Scripts -->
-                        
+
                         <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
                         <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
                         <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
                         <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
                         <script src="dynamics.min.js"></script>
-                        
+
                         <script>
                             // Initialize Firebase
                             var config = {
@@ -43,7 +44,7 @@
                                 storageBucket: "loba-83587.appspot.com",
                             };
                         firebase.initializeApp(config);
-                        
+
                         $(document).ready(function(){
                                           // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                                           $('.modal-trigger').leanModal();
@@ -52,10 +53,10 @@
                                           $(document).ready(function(){
                                                             $(".button-collapse").sideNav();
                                                             });
-                                                            
+
                             </script>
-                        
-                        
+
+
                         <style>
                             html, body {
                                 height: 100%;
@@ -70,23 +71,23 @@
                             top: 10px;
                             left: 25%;
                             z-index: 5;
-                            
+
                             padding: 5px;
-                            
+
                             text-align: center;
                             font-family: 'Roboto','sans-serif';
                             line-height: 30px;
                             padding-left: 10px;
                         }
-                        
+
                         #floating-panel2 {
                             position: absolute;
                             top: 10px;
                             left: 45%;
                             z-index: 5;
-                            
+
                             padding: 5px;
-                            
+
                             text-align: center;
                             font-family: 'Roboto','sans-serif';
                             line-height: 30px;
@@ -157,7 +158,7 @@
                             max-height: 340px;
                             overflow-y: auto;
                             overflow-x: hidden;
-                            
+
                         }
                         .iw-content img {
                             float: right;
@@ -188,7 +189,7 @@
                             -webkit-transform-origin: 50% 120.71068% 0;
                             transform-origin: 50% 120.71068% 0;
                         }
-                        
+
                         .pin {
                             position: absolute;
                             top: 50%;
@@ -200,7 +201,7 @@
                             -webkit-transform-origin: 50% 120.71068% 0;
                             transform-origin: 50% 120.71068% 0;
                         }
-                        
+
                         .pin::after {
                             position: absolute;
                             display: block;
@@ -213,7 +214,7 @@
                             border: 20px solid #f93c11;
                             border-radius: 50% 50% 50% 50%;
                         }
-                        
+
                         .pin::before {
                             position: absolute;
                             display: block;
@@ -226,11 +227,11 @@
                             border: 18px solid #d22b05;
                             border-radius: 50% 50% 50% 0;
                         }
-                        
+
                         .shadow {
                             position: absolute;
                         }
-                        
+
                         .shadow::after {
                             position: absolute;
                             left: -125px;
@@ -244,7 +245,7 @@
                             border-radius: 50%;
                             box-shadow: rgba(0, 0, 0, 0.5) 100px 0 20px;
                         }
-                        
+
                         .pulse {
                             position: absolute;
                             margin-top: -50px;
@@ -252,7 +253,7 @@
                             -webkit-transform: rotateX(55deg);
                             transform: rotateX(55deg);
                         }
-                        
+
                         .pulse::after {
                             display: block;
                             width: 100px;
@@ -269,7 +270,7 @@
                             box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.5);
                             box-shadow: 0 0 6px 3px #f93c11;
                         }
-                        
+
                         @-webkit-keyframes pulsate {
                             0% {
                                 -webkit-transform: scale(0.1, 0.1);
@@ -285,7 +286,7 @@
                                 opacity: 0;
                             }
                         }
-                        
+
                         @keyframes pulsate {
                             0% {
                                 -webkit-transform: scale(0.1, 0.1);
@@ -314,7 +315,7 @@
                             color: #f93c11;
                             background: rgba(255, 255, 255, 0.75);
                         }
-                        
+
                         h1 {
                             font-family: Raleway, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
                             font-weight: 900;
@@ -323,24 +324,24 @@
                             border-bottom: 2px dashed #f93c11;
                             display: inline-block;
                         }
-                        
+
                         .tags {
                             font-weight: 300;
                         }
-                        
+
                         .list-label {
                             font-family: Raleway, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
                             font-weight: 400;
                         }
-                        
+
                         .header li {
                             display: inline-block;
                         }
-                        
+
                         .tags a {
                             color: #f93c11;
                         }
-                        
+
                         .animations a {
                             line-height: 42px;
                             display: block;
@@ -355,7 +356,7 @@
                             -webkit-transition: background-color 0.3s, color 0.3s;
                             transition: background-color 0.3s, color 0.3s;
                         }
-                        
+
                         .animations a:hover {
                             color: white;
                             background: #f93c11;
@@ -367,13 +368,17 @@
                         .sideNavHeaderTitle {
                             color: rgba(72, 146, 238, 1);
                         }
-                        
-                        
-                        
+                        #here {
+                          color: white;
+                          background-color: #2a7ab9;
+                        }
+
+
+
                             </style>
                         <!-- End of CSS -->
-                        
-                        
+
+
                         </head>
     <body>
         <nav>
@@ -384,13 +389,13 @@
                 <li><a id="here" href="friendsmap.html">Nearby</a></li>
             </ul>
         </nav>
-        
+
         <div class="fixed-action-btn" id="showMyCurrentLocation" style="bottom: 90px; right: 24px;">
             <a class="btn-floating btn-large red">
                 <i class="large material-icons">my_location</i>
             </a>
         </div>
-        
+
         <ul id="slide-out" class="side-nav">
             <li>
                 <h5 class="sideNavHeader sideNavHeaderTitle">Friends Map</h1>
@@ -399,14 +404,14 @@
             <li>
                 <li><div class="divider"></div></li>
                 <br>
-                
-                
+
+
                 <li><a href="#" id="hideMyMarkers">Hide My Markers</a>
                     <li><a href="#" id="showMyBuffer">Show Nearby Players</a>
                         <li><a href="#" id="showMyFriends">Show My Friends</a>
                             <li><a href="#" id="plotMeetingPlace">Plot Meeting Place</a>
                                 <li><a href="#" id="plotMeetingPlace">Get Meeting Distance</a>
-                                    
+
                                     <br>
                                     <li><div class="divider"></div></li>
                                     <li>
@@ -414,9 +419,9 @@
         <div class="fixed-action-btn" style="bottom: 30px; right: 24px;">
             <a data-activates="slide-out" class="btn-floating btn-large waves-effect waves-light blue button-collapse"><i class="material-icons">menu</i></a>
         </div>
-        
-        
-        
+
+
+
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
             <div class="modal-content">
@@ -427,17 +432,17 @@
                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
             </div>
         </div>
-        
+
         <!-- Map -->
         <div id="map"></div>
-        
-        
-        
+
+
+
         <!-- main script -->
         <script>
             var cLat,cLng;
             var friendsList = [];
-            
+
             var authKey = "rtLWvlxC0lQ0r2ejZoMg2RNAgLK2";
             var map, heatmap;
             var image1;
@@ -448,27 +453,27 @@
             var destinationA,destinationB;
             var desetinationArray = [];
             var myBuffer;
-            
+
             var customMarker;
-            
+
             var overlay;
             var myCustomLocationMarker;
-            
+
             var myCurrentLocationPosition;
             //marker image
             var image = 'https://maxcdn.icons8.com/Color/PNG/48/Gaming/pokemon-48.png';
-            
-            
-            
+
+
+
             //stored monsters
             var storedFriends = [];
-            
+
             //friends from firebase
             var firebaseFriends = [];
-            
+
             //store locatio  to firebase
             var storeLocationToFirebase = [];
-            
+
             //friends location
             var friendsLocation = [{
                                    city : 'Block R',
@@ -507,10 +512,10 @@
                                    long : 103.848600
                                    }
                                    ];
-                                   
-                                   
+
+
                                    <!-- initialise maps-->
-                                   
+
                                    function initMap() {
                                        map = new google.maps.Map(document.getElementById('map'), {
                                                                  zoom: 16,
@@ -529,9 +534,9 @@
                                                                  //listen to map click event
                                                                  map.addListener('click', function(e) {
                                                                                  addMarker(e.latLng);
-                                                                                 
+
                                                                                  })
-                                                                                 
+
                                                                                  // Adds a marker to the map and push to the array.
                                                                                  function addMarker(location) {
                                                                                      var storeLocationMarker = new google.maps.Marker({
@@ -539,14 +544,14 @@
                                                                                                                                       map: map,
                                                                                                                                       draggable :true
                                                                                                                                       });
-                                                                                                                                      
+
                                                                                                                                       //store in array
                                                                                                                                       storeLocationToFirebase.push(location);
                                                                                                                                       desetinationArray.push(location);
-                                                                                                                                      
-                                                                                                                                      
+
+
                                                                                  };
-                                                                                 
+
                                                                                  //end of init function
                                                                                  var infoWindow = new google.maps.InfoWindow({map: map});
                                                                                  // Try HTML5 geolocation.
@@ -556,7 +561,7 @@
                                                                                                                               lat: position.coords.latitude,
                                                                                                                               lng: position.coords.longitude
                                                                                                                               };
-                                                                                                                              
+
                                                                                                                               infoWindow.setPosition(pos);
                                                                                                                               infoWindow.setContent('Location found.');
                                                                                                                               map.setCenter(pos);
@@ -564,10 +569,10 @@
                                                                                                                               console.log(pos.lng)
                                                                                                                               cLat = pos.lat;
                                                                                                                               cLng = pos.lng;
-                                                                                                                              
+
                                                                                                                               var posf = new google.maps.LatLng(pos.lat, pos.lng);
-                                                                                                                              
-                                                                                                                              
+
+
                                                                                                                               }, function() {
                                                                                                                               handleLocationError(true, infoWindow, map.getCenter());
                                                                                                                               });
@@ -575,8 +580,8 @@
                                                                                      // Browser doesn't support Geolocation
                                                                                      handleLocationError(false, infoWindow, map.getCenter());
                                                                                  }
-                                                                                 
-                                                                                 
+
+
                                                                                  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                                                                                      infoWindow.setPosition(pos);
                                                                                      infoWindow.setContent(browserHasGeolocation ?
@@ -584,32 +589,32 @@
                                                                                                            'Error: Your browser doesn\'t support geolocation.');
                                                                                  }
                                                                                  console.log(cLat) ;
-                                                                                 
-                                                                                 
+
+
                                                                                  friendsInfoWindow = new google.maps.InfoWindow({
                                                                                                                                 content: "loading..."
                                                                                                                                 });
-                                                                                                                                
+
                                                                                                                                 //listen to map click event plot meeting place
                                                                                                                                 map.addListener('click', function(e) {
                                                                                                                                                 addMarker(e.latLng);
-                                                                                                                                                
+
                                                                                                                                                 })
-                                                                                                                                                
-                                                                                                                                                
+
+
                                                                                                                                                 //plot direction
                                                                                                                                                 directionsService = new google.maps.DirectionsService();
                                                                                                                                                 directionsDisplay = new google.maps.DirectionsRenderer();
                                                                                                                                                 directionsDisplay.setMap(map);
-                                                                                                                                                
-                                                                                                                                                
+
+
                                                                                                                                                 //start of custom marker
                                                                                                                                                 CustomMarker.prototype = new google.maps.OverlayView();
-                                                                                                                                                
+
                                                                                                                                                 function CustomMarker(opts) {
                                                                                                                                                     this.setValues(opts);
                                                                                                                                                 }
-                                                                                                                                                
+
                                                                                                                                                 CustomMarker.prototype.draw = function() {
                                                                                                                                                     var self = this;
                                                                                                                                                     var div = this.div;
@@ -640,7 +645,7 @@
                                                                                                                                                         div.style.top = point.y + 'px';
                                                                                                                                                     }
                                                                                                                                                 };
-                                                                                                                                                
+
                                                                                                                                                 CustomMarker.prototype.animateDrop = function() {
                                                                                                                                                     dynamics.stop(this.pinWrap);
                                                                                                                                                     dynamics.css(this.pinWrap, {
@@ -654,7 +659,7 @@
                                                                                                                                                                                   type: dynamics.gravity,
                                                                                                                                                                                   duration: 1800,
                                                                                                                                                                                   });
-                                                                                                                                                                                  
+
                                                                                                                                                                                   dynamics.stop(this.pin);
                                                                                                                                                                                   dynamics.css(this.pin, {
                                                                                                                                                                                                'transform': 'none',
@@ -666,7 +671,7 @@
                                                                                                                                                                                                                 duration: 1800,
                                                                                                                                                                                                                 bounciness: 600,
                                                                                                                                                                                                                 })
-                                                                                                                                                                                                                
+
                                                                                                                                                                                                                 dynamics.stop(this.pinShadow);
                                                                                                                                                                                                                 dynamics.css(this.pinShadow, {
                                                                                                                                                                                                                              'transform': 'scale(0,0)',
@@ -678,7 +683,7 @@
                                                                                                                                                                                                                                               duration: 1800,
                                                                                                                                                                                                                                               });
                                                                                                                                                 }
-                                                                                                                                                
+
                                                                                                                                                 CustomMarker.prototype.animateBounce = function() {
                                                                                                                                                     dynamics.stop(this.pinWrap);
                                                                                                                                                     dynamics.css(this.pinWrap, {
@@ -692,7 +697,7 @@
                                                                                                                                                                                   duration: 500,
                                                                                                                                                                                   delay: 150,
                                                                                                                                                                                   });
-                                                                                                                                                                                  
+
                                                                                                                                                                                   dynamics.stop(this.pin);
                                                                                                                                                                                   dynamics.css(this.pin, {
                                                                                                                                                                                                'transform': 'none',
@@ -712,7 +717,7 @@
                                                                                                                                                                                                                                  bounciness: 600,
                                                                                                                                                                                                                                  delay: 650,
                                                                                                                                                                                                                                  });
-                                                                                                                                                                                                                                 
+
                                                                                                                                                                                                                                  dynamics.stop(this.pinShadow);
                                                                                                                                                                                                                                  dynamics.css(this.pinShadow, {
                                                                                                                                                                                                                                               'transform': 'none',
@@ -726,7 +731,7 @@
                                                                                                                                                                                                                                                                delay: 150,
                                                                                                                                                                                                                                                                });
                                                                                                                                                 }
-                                                                                                                                                
+
                                                                                                                                                 CustomMarker.prototype.animateWobble = function() {
                                                                                                                                                     dynamics.stop(this.pinWrap);
                                                                                                                                                     dynamics.css(this.pinWrap, {
@@ -738,7 +743,7 @@
                                                                                                                                                                                   type: dynamics.bounce,
                                                                                                                                                                                   duration: 1800,
                                                                                                                                                                                   });
-                                                                                                                                                                                  
+
                                                                                                                                                                                   dynamics.stop(this.pin);
                                                                                                                                                                                   dynamics.css(this.pin, {
                                                                                                                                                                                                'transform': 'none',
@@ -751,27 +756,27 @@
                                                                                                                                                                                                                 bounciness: 1800,
                                                                                                                                                                                                                 });
                                                                                                                                                 }
-                                                                                                                                                
-                                                                                                                                                
+
+
                                                                                                                                                 //call this function to remove markers
                                                                                                                                                 CustomMarker.prototype.remove = function () {
                                                                                                                                                     // Check if the overlay was on the map and needs to be removed.
                                                                                                                                                     if (this.div) {
-                                                                                                                                                        
+
                                                                                                                                                         this.div.style.visibility = 'hidden';
                                                                                                                                                     }
                                                                                                                                                 };
-                                                                                                                                                
+
                                                                                                                                                 CustomMarker.prototype.on = function () {
-                                                                                                                                                    
+
                                                                                                                                                     // Check if the overlay was on the map and needs to be removed.
                                                                                                                                                     if (this.div) {
-                                                                                                                                                        
+
                                                                                                                                                         this.div.style.visibility = 'visible';
                                                                                                                                                     }
                                                                                                                                                 };
-                                                                                                                                                
-                                                                                                                                                
+
+
                                                                                                                                                 //create custom obj, jQuery selector
                                                                                                                                                 $(function() {
                                                                                                                                                   var pos = new google.maps.LatLng(1.379283, 103.849829);
@@ -780,91 +785,91 @@
                                                                                                                                                                                 center: pos,
                                                                                                                                                                                 disableDefaultUI: true,
                                                                                                                                                                                 });
-                                                                                                                                                  
+
                                                                                                                                                   myCustomLocationMarker = new CustomMarker({
                                                                                                                                                                                             position: pos,
                                                                                                                                                                                             map: map,
                                                                                                                                                                                             });
-                                                                                                                                                  
+
                                                                                                                                                   google.maps.event.addListener(myCustomLocationMarker, 'click', function(e) {
                                                                                                                                                                                 myCustomLocationMarker.animateWobble();
-                                                                                                                                                                                
+
                                                                                                                                                                                 });
-                                                                                                                                                  
+
                                                                                                                                                   $('#drop').on('click', function(e) {
                                                                                                                                                                 myCustomLocationMarker.animateDrop();
                                                                                                                                                                 });
-                                                                                                                                                  
+
                                                                                                                                                   $('#wobble').on('click', function(e) {
                                                                                                                                                                   // myCustomLocationMarker.animateWobble();
                                                                                                                                                                   //myBuffer.setMap(map);
                                                                                                                                                                   });
-                                                                                                                                                  
+
                                                                                                                                                   $('#bounce').on('click', function(e) {
                                                                                                                                                                   // myCustomLocationMarker.animateBounce();
                                                                                                                                                                   //myCustomLocationMarker.remove();
                                                                                                                                                                   //myBuffer.setMap(null);
-                                                                                                                                                                  
+
                                                                                                                                                                   });
-                                                                                                                                                  
-                                                                                                                                                  
+
+
                                                                                                                                                   $('#hideMyMarkers').on('click', function(e) {
                                                                                                                                                                          // call remove function
                                                                                                                                                                          myCustomLocationMarker.remove();
                                                                                                                                                                          myBuffer.setMap(null);
                                                                                                                                                                          //hide panel
                                                                                                                                                                          $('.button-collapse').sideNav('hide');
-                                                                                                                                                                         
+
                                                                                                                                                                          });
-                                                                                                                                                  
+
                                                                                                                                                   $('#showMyCurrentLocation').on('click', function(e) {
-                                                                                                                                                                                 
+
                                                                                                                                                                                  // call remove function
                                                                                                                                                                                  myCustomLocationMarker.on();
                                                                                                                                                                                  myCustomLocationMarker.animateWobble();
                                                                                                                                                                                  //myBuffer.setMap(map);
-                                                                                                                                                                                 
+
                                                                                                                                                                                  });
-                                                                                                                                                  
-                                                                                                                                                  
+
+
                                                                                                                                                   $('#plotMeetingPlace').on('click', function(e) {
                                                                                                                                                                             console.log("plot meeting place");
-                                                                                                                                                                            
+
                                                                                                                                                                             $('.button-collapse').sideNav('hide');
-                                                                                                                                                                            
+
                                                                                                                                                                             //enable plotting on the map
-                                                                                                                                                                            
-                                                                                                                                                                            
+
+
                                                                                                                                                                             });
-                                                                                                                                                  
-                                                                                                                                                  
+
+
                                                                                                                                                   $('#showMyBuffer').on('click', function(e) {
-                                                                                                                                                                        
+
                                                                                                                                                                         myBuffer.setMap(map);
-                                                                                                                                                                        
+
                                                                                                                                                                         //var posttt = new google.maps.LatLng(1.379283, 103.849829);
-                                                                                                                                                                        
+
                                                                                                                                                                         var i = 0;
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                                                                                        for ( i= 0; i < friendsLocation.length; i++) { 
+
+
+                                                                                                                                                                        for ( i= 0; i < friendsLocation.length; i++) {
                                                                                                                                                                         var bounds = myBuffer.getBounds();
                                                                                                                                                                         var tempPos =  new google.maps.LatLng(friendsLocation[i].lat,friendsLocation[i].long)
                                                                                                                                                                         console.log( bounds.contains( tempPos ) );
-                                                                                                                                                                        
+
                                                                                                                                                                         var tempResult = bounds.contains( tempPos );
-                                                                                                                                                                        
-                                                                                                                                                                        
+
+
                                                                                                                                                                         //if found within the boundary add the marker and display
                                                                                                                                                                         if(tempResult == true){
                                                                                                                                                                         console.log(tempResult +"8899");
-                                                                                                                                                                        
+
                                                                                                                                                                         var data = friendsLocation[i];
                                                                                                                                                                         var latlng = new google.maps.LatLng(data.lat, data.long);
                                                                                                                                                                         bounds.extend(latlng);
                                                                                                                                                                         var myLatlng = new google.maps.LatLng(data.lat, data.long);
-                                                                                                                                                                        
-                                                                                                                                                                        
+
+
                                                                                                                                                                         monsterMarker = new google.maps.Marker({
                                                                                                                                                                                                                position: {lat: data.lat, lng: data.long},
                                                                                                                                                                                                                map: map,
@@ -873,9 +878,9 @@
                                                                                                                                                                                                                //icon: image
                                                                                                                                                                                                                icon: image
                                                                                                                                                                                                                });
-                                                                                                                                                                        
+
                                                                                                                                                                         monsterMarker.html = '<div>'+ data.city +'<br> </div>';
-                                                                                                                                                                        
+
                                                                                                                                                                         google.maps.event.addListener(monsterMarker, 'click', function(){
                                                                                                                                                                                                       // Set the content of the InfoBubble or InfoWindow
                                                                                                                                                                                                       // They both have a function called setContent
@@ -884,50 +889,50 @@
                                                                                                                                                                                                       map.setZoom(map.getZoom() + 1);
                                                                                                                                                                                                       map.setCenter(monsterMarker.getPosition());
                                                                                                                                                                                                       });
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                                                                                        
+
+
+
                                                                                                                                                                         google.maps.event.addListener(myBuffer, 'dragend', function(){
                                                                                                                                                                                                       console.log("aa");
-                                                                                                                                                                                                      
+
                                                                                                                                                                                                       console.log( myBuffer.getBounds().contains( monsterMarker.getPosition() ) );
                                                                                                                                                                                                       });
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                                                                                        storedFriends.push(monsterMarker)  
-                                                                                                                                                                        
-                                                                                                                                                                        } 
+
+
+                                                                                                                                                                        storedFriends.push(monsterMarker)
+
+                                                                                                                                                                        }
                                                                                                                                                                         }
                                                                                                                                                                         map.fitBounds(bounds);
                                                                                                                                                                         //end of for loop
-                                                                                                                                                                        
+
                                                                                                                                                                         //Hide the side bar when clciked
                                                                                                                                                                         $('.button-collapse').sideNav('hide');
-                                                                                                                                                                        
+
                                                                                                                                                                         });
-                                                                                                                                                  
+
                                                                                                                                                   //retrieve from firebase
                                                                                                                                                   $('#showMyFriends').on('click', function(e) {
-                                                                                                                                                                         
+
                                                                                                                                                                          Materialize.toast('Retrieving Friends List..', 1500);
-                                                                                                                                                                         
+
                                                                                                                                                                          firebase.database().ref('/Friend/'+authKey).once('value').then(function(snapshot) {
                                                                                                                                                                                                                                         snapshot.forEach(function(childSnapshot) {
-                                                                                                                                                                                                                                                         var key = childSnapshot.key; // 1 
+                                                                                                                                                                                                                                                         var key = childSnapshot.key; // 1
                                                                                                                                                                                                                                                          firebase.database().ref('/Account/'+ key).once('value').then(function(snapshot) {
-                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                      console.log(snapshot.val().Picture); 
+
+                                                                                                                                                                                                                                                                                                                      console.log(snapshot.val().Picture);
                                                                                                                                                                                                                                                                                                                       //add friend obj to arraylist
-                                                                                                                                                                                                                                                                                                                      
+
                                                                                                                                                                                                                                                                                                                       firebaseFriends.push(snapshot.val());
-                                                                                                                                                                                                                                                                                                                      });  
-                                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                      });
+
                                                                                                                                                                                                                                                          })
-                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                        }); 
-                                                                                                                                                                         
+
+                                                                                                                                                                                                                                        });
+
                                                                                                                                                                          //custom friends markers
-                                                                                                                                                                         
+
                                                                                                                                                                          function FriendsCustomMarker(latlng, map, imageSrc) {
                                                                                                                                                                          this.latlng_ = latlng;
                                                                                                                                                                          this.imageSrc = imageSrc;
@@ -935,11 +940,11 @@
                                                                                                                                                                          // trigger a call to panes_changed which should in turn call draw.
                                                                                                                                                                          this.setMap(map);
                                                                                                                                                                          }
-                                                                                                                                                                         
+
                                                                                                                                                                          FriendsCustomMarker.prototype = new google.maps.OverlayView();
-                                                                                                                                                                         
+
                                                                                                                                                                          FriendsCustomMarker.prototype.draw = function () {
-                                                                                                                                                                         
+
                                                                                                                                                                          var me = this;
                                                                                                                                                                          // Check if the div has been created.
                                                                                                                                                                          var div = this.div_;
@@ -948,144 +953,144 @@
                                                                                                                                                                          div = this.div_ = document.createElement('div');
                                                                                                                                                                          // Create the DIV representing our CustomMarker
                                                                                                                                                                          div.className = "customMarker";
-                                                                                                                                                                         
-                                                                                                                                                                         
-                                                                                                                                                                         
+
+
+
                                                                                                                                                                          var img = document.createElement("img");
                                                                                                                                                                          img.src = this.imageSrc;
                                                                                                                                                                          div.appendChild(img);
-                                                                                                                                                                         
-                                                                                                                                                                         
+
+
                                                                                                                                                                          google.maps.event.addDomListener(div, "click", function (event) {
                                                                                                                                                                                                           google.maps.event.trigger(me, "click");
-                                                                                                                                                                                                          
+
                                                                                                                                                                                                           });
-                                                                                                                                                                         
-                                                                                                                                                                         
+
+
                                                                                                                                                                          // Then add the overlay to the DOM
                                                                                                                                                                          var panes = this.getPanes();
                                                                                                                                                                          panes.overlayImage.appendChild(div);
                                                                                                                                                                          }
-                                                                                                                                                                         
-                                                                                                                                                                         // Position the overlay 
+
+                                                                                                                                                                         // Position the overlay
                                                                                                                                                                          var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
                                                                                                                                                                          if (point) {
                                                                                                                                                                          div.style.left = point.x + 'px';
                                                                                                                                                                          div.style.top = point.y + 'px';
                                                                                                                                                                          }
                                                                                                                                                                          };
-                                                                                                                                                                         
-                                                                                                                                                                         FriendsCustomMarker.prototype.remove = function () { 
+
+                                                                                                                                                                         FriendsCustomMarker.prototype.remove = function () {
                                                                                                                                                                          // Check if the overlay was on the map and needs to be removed.
-                                                                                                                                                                         if (this.div_) { 
+                                                                                                                                                                         if (this.div_) {
                                                                                                                                                                          this.div_.style.visibility = 'hidden';
                                                                                                                                                                          }
                                                                                                                                                                          };
-                                                                                                                                                                         
+
                                                                                                                                                                          FriendsCustomMarker.prototype.getPosition = function () {
                                                                                                                                                                          return this.latlng_;
                                                                                                                                                                          };
-                                                                                                                                                                         
-                                                                                                                                                                         
+
+
                                                                                                                                                                          //friends marks html contents, dynamic
                                                                                                                                                                          var i = 0;
                                                                                                                                                                          var bounds = new google.maps.LatLngBounds();
-                                                                                                                                                                         
-                                                                                                                                                                         for ( i= 0; i < firebaseFriends.length; i++) { 
+
+                                                                                                                                                                         for ( i= 0; i < firebaseFriends.length; i++) {
                                                                                                                                                                          console.log(firebaseFriends.length);
                                                                                                                                                                          var data = friendsLocation[i];
                                                                                                                                                                          var latlng = new google.maps.LatLng(data.lat, data.long);
                                                                                                                                                                          bounds.extend(latlng);
                                                                                                                                                                          var myLatlng = new google.maps.LatLng(data.lat, data.long);
-                                                                                                                                                                         
+
                                                                                                                                                                          monsterMarker = new FriendsCustomMarker(new google.maps.LatLng(friendsLocation[i].lat,friendsLocation[i].long), map,  firebaseFriends[i].Picture)
-                                                                                                                                                                         
+
                                                                                                                                                                          monsterMarker.html =  '<div id="iw-container">' +
                                                                                                                                                                          '<div class="iw-title">'+firebaseFriends[i].Name+ '</div>'  +
                                                                                                                                                                          '<div class="iw-content">' +
-                                                                                                                                                                         
+
                                                                                                                                                                          '<img align="left" src="'+firebaseFriends[i].Picture+'" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
                                                                                                                                                                          '<div class="iw-subTitle">Level : '+firebaseFriends[i].Level+'</div>'  +
                                                                                                                                                                          '<p>Monsters Kille : None Location @ : Block L  </p>' +
-                                                                                                                                                                         
+
                                                                                                                                                                          '</div>' +
                                                                                                                                                                          '<div class="iw-bottom-gradient"></div>' +
                                                                                                                                                                          '</div>';
-                                                                                                                                                                         
-                                                                                                                                                                         
+
+
                                                                                                                                                                          google.maps.event.addListener(monsterMarker, 'click', function(){
-                                                                                                                                                                                                       
-                                                                                                                                                                                                       
+
+
                                                                                                                                                                                                        // Set the content of the InfoBubble or InfoWindow
                                                                                                                                                                                                        // They both have a function called setContent
                                                                                                                                                                                                        friendsInfoWindow.setContent(this.html);
                                                                                                                                                                                                        friendsInfoWindow.open(map, this);
                                                                                                                                                                                                        map.setZoom(map.getZoom() + 1);
                                                                                                                                                                                                        map.setCenter(monsterMarker.getPosition());
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // Reference to the DIV that wraps the bottom of infowindow
                                                                                                                                                                                                        var iwOuter = $('.gm-style-iw');
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        /* Since this div is in a position prior to .gm-div style-iw.
                                                                                                                                                                                                         * We use jQuery and create a iwBackground variable,
                                                                                                                                                                                                         * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
                                                                                                                                                                                                         */
                                                                                                                                                                                                        var iwBackground = iwOuter.prev();
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // Removes background shadow DIV
                                                                                                                                                                                                        iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // Removes white background DIV
                                                                                                                                                                                                        iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // Moves the infowindow 115px to the right.
                                                                                                                                                                                                        // iwOuter.parent().parent().css({left: '115px'});
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // Moves the shadow of the arrow 76px to the left margin.
                                                                                                                                                                                                        iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 121px !important;'});
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // Moves the arrow 76px to the left margin.
                                                                                                                                                                                                        iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 121px !important;'});
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // Changes the desired tail shadow color.
                                                                                                                                                                                                        iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // Reference to the div that groups the close button elements.
                                                                                                                                                                                                        var iwCloseBtn = iwOuter.next();
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // Apply the desired effect to the close button
                                                                                                                                                                                                        //  iwCloseBtn.css({opacity: '1', right: '38px', top: '3px', border: '1px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9'});
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
                                                                                                                                                                                                        if($('.iw-content').height() < 140){
                                                                                                                                                                                                        $('.iw-bottom-gradient').css({display: 'none'});
                                                                                                                                                                                                        }
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
                                                                                                                                                                                                        iwCloseBtn.mouseout(function(){
                                                                                                                                                                                                                            $(this).css({opacity: '1'});
                                                                                                                                                                                                                            });
-                                                                                                                                                                                                       
+
                                                                                                                                                                                                        });
-                                                                                                                                                                         
-                                                                                                                                                                         storedFriends.push(monsterMarker)  
-                                                                                                                                                                         
+
+                                                                                                                                                                         storedFriends.push(monsterMarker)
+
                                                                                                                                                                          }
                                                                                                                                                                          map.fitBounds(bounds);
                                                                                                                                                                          //end of for loop
-                                                                                                                                                                         
-                                                                                                                                                                         
+
+
                                                                                                                                                                          //hide side nav
                                                                                                                                                                          $('.button-collapse').sideNav('hide');
-                                                                                                                                                                         
+
                                                                                                                                                                          //end of custom markers
-                                                                                                                                                                         
+
                                                                                                                                                                          });
-                                                                                                                                                  
-                                                                                                                                                  
+
+
                                                                                                                                                   //circle buffer
                                                                                                                                                   for (var city in friendsLocation) {
-                                                                                                                                                  
+
                                                                                                                                                   // Add the circle for this city to the map.
                                                                                                                                                   myBuffer = new google.maps.Circle({
                                                                                                                                                                                     strokeColor: '#FF0000',
@@ -1098,21 +1103,21 @@
                                                                                                                                                                                     radius: Math.sqrt(friendsLocation.length) * 20
                                                                                                                                                                                     });
                                                                                                                                                   };
-                                                                                                                                                  
-                                                                                                                                                  
+
+
                                                                                                                                                   });
-                                                                                                                                                  //end 
-                                                                                                                                                  
+                                                                                                                                                  //end
+
                                    };
-        
-        
+
+
             </script>
         <!--end of  main script -->
-        
-        
+
+
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIZ7ernlycehS8DLYRoPY_90aaZTXbLQ&libraries=visualization&callback=initMap">
             </script>
-        
+
     </body>
 </html>
