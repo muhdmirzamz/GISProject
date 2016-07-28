@@ -8,9 +8,6 @@ var zoom = 17;
 var radius = 30;
 var gradient = [
   'rgba(0, 0, 0, 0)',
-  'rgba(0, 0, 0, 0.4)',
-  'rgba(0, 0, 0, 0.6)',
-  'rgba(0, 0, 0, 0.8)',
   'rgba(0, 0, 0, 1)',
   'rgba(0, 0, 0, 1)',
   'rgba(0, 0, 0, 1)'
@@ -24,8 +21,6 @@ function initElectricMap() {
   firebase.database().ref('/PreviousLocation/electric').once('value').then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key;
-      console.log("electric " + "Latitude: " + childSnapshot.val().latitude);
-      console.log("electric " + "Longitude: " + childSnapshot.val().longitude);
       locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
     })
 
@@ -57,8 +52,6 @@ function initFireMap() {
   firebase.database().ref('/PreviousLocation/fire').once('value').then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key;
-      console.log("fire " + "Latitude: " + childSnapshot.val().latitude);
-      console.log("fire " + "Longitude: " + childSnapshot.val().longitude);
       locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
     })
 
@@ -90,8 +83,6 @@ function initGhostMap() {
   firebase.database().ref('/PreviousLocation/ghost').once('value').then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key;
-      console.log("ghost " + "Latitude: " + childSnapshot.val().latitude);
-      console.log("ghost " + "Longitude: " + childSnapshot.val().longitude);
       locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
     })
 
@@ -124,8 +115,6 @@ function initGrassMap() {
   firebase.database().ref('/PreviousLocation/grass').once('value').then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key;
-      console.log("grass " + "Latitude: " + childSnapshot.val().latitude);
-      console.log("grass " + "Longitude: " + childSnapshot.val().longitude);
       locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
     })
 
@@ -158,8 +147,6 @@ function initWaterMap() {
   firebase.database().ref('/PreviousLocation/water').once('value').then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key;
-      console.log("water " + "Latitude: " + childSnapshot.val().latitude);
-      console.log("water " + "Longitude: " + childSnapshot.val().longitude);
       locationArr.push(new google.maps.LatLng(childSnapshot.val().latitude, childSnapshot.val().longitude));
     })
 
