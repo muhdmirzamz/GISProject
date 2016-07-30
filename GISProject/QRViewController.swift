@@ -29,16 +29,10 @@ class QRViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBG()
-        //start timer upon successful logged in
         
+        //start timer upon successful logged in
         appDelegate.setupLocationTimer()
         appDelegate.locationManagerStart()
-       
-        
-        
-        
-        
-        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -46,8 +40,6 @@ class QRViewController: UIViewController {
         setCustomLabel()
         setBlur()
         setBG()
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,7 +49,6 @@ class QRViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-    
     
     //
     // Custom labels for user based on stats
@@ -75,7 +66,7 @@ class QRViewController: UIViewController {
         KEY_UID = uid
         onlineUserRef.child(KEY_UID).updateChildValues(["KEY_ISONLINE":true])
         
-        let dispatch_group = dispatch_group_create()
+//        let dispatch_group = dispatch_group_create()
         
 
         ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
@@ -84,8 +75,6 @@ class QRViewController: UIViewController {
                 let value = snapshot.value!["\(key)"] as? NSNumber
                 if value?.integerValue == 1 {
                     battle.uidArr?.addObject(key)
-                   
-                     
                 }
             }
             
@@ -153,39 +142,7 @@ class QRViewController: UIViewController {
     // Blur overlay
     //
     func setBlur() {
-        blurView.blurProgress = 0.5
-    }
-    
-    func updateLocation(){
-        
-        
-        
-        print("-->\(self.lat)")
-        print("-->\(self.log)")
-       
-        sendUid = KEY_UID
-        
-        
-        
-        var ref =  FIRDatabase.database().reference().child("/Account/")
-         print(KEY_UID)
-        print(ref)
-        
-        if(KEY_UID != ""){
-            
-    
-       ref.childByAppendingPath(KEY_UID).updateChildValues(["lat":self.lat])
-            ref.childByAppendingPath(KEY_UID).updateChildValues(["lng":self.log])
-    
-            
-   //ref.childByAppendingPath("Users").childByAppendingPath(self.ref.authData.ui‌​d).updateChildValues(["Email":self.EmailAddressTF.text!])
-           
-        }else{
-            print("no key yet")
-        }
-
-        
-        
+        blurView.blurProgress = 1
     }
     
     //
@@ -195,6 +152,24 @@ class QRViewController: UIViewController {
         let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("QRReaderViewController")
         self.showViewController(vc as! UIViewController, sender: vc)
 
+    }
+    
+    
+    //xingyu code
+    func updateLocation(){
+        print("-->\(self.lat)")
+        print("-->\(self.log)")
+        sendUid = KEY_UID
+        var ref =  FIRDatabase.database().reference().child("/Account/")
+        print(KEY_UID)
+        print(ref)
+        if(KEY_UID != ""){
+            ref.childByAppendingPath(KEY_UID).updateChildValues(["lat":self.lat])
+            ref.childByAppendingPath(KEY_UID).updateChildValues(["lng":self.log])
+            //ref.childByAppendingPath("Users").childByAppendingPath(self.ref.authData.ui‌​d).updateChildValues(["Email":self.EmailAddressTF.text!])
+        }else{
+            print("no key yet")
+        }
     }
 
 }

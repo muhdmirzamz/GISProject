@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D611EB31CEB466500F99494 /* ActivityLog.swift */; };
-		6D7047061D3E179E00354033 /* SimpleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7047041D3E179E00354033 /* SimpleMapViewController.swift */; };
-		6D7047071D3E179E00354033 /* SimpleMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D7047051D3E179E00354033 /* SimpleMapViewController.xib */; };
 		6D8169EA1D360A2D00AC33C6 /* heatmap.html in Resources */ = {isa = PBXBuildFile; fileRef = 6D8169E81D360A2D00AC33C6 /* heatmap.html */; };
 		6D8169EB1D360A2D00AC33C6 /* simple.html in Resources */ = {isa = PBXBuildFile; fileRef = 6D8169E91D360A2D00AC33C6 /* simple.html */; };
 		6D8169EF1D360AC700AC33C6 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8169ED1D360AC700AC33C6 /* QRViewController.swift */; };
@@ -73,8 +71,6 @@
 		027CAAD9DE2DC497261DB2FE /* Pods-GISProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.release.xcconfig"; sourceTree = "<group>"; };
 		0B061A809F4C2DBC68A79C9D /* Pods-GISProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISProject/Pods-GISProject.debug.xcconfig"; sourceTree = "<group>"; };
 		6D611EB31CEB466500F99494 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
-		6D7047041D3E179E00354033 /* SimpleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleMapViewController.swift; sourceTree = "<group>"; };
-		6D7047051D3E179E00354033 /* SimpleMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleMapViewController.xib; sourceTree = "<group>"; };
 		6D8169E81D360A2D00AC33C6 /* heatmap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = heatmap.html; sourceTree = "<group>"; };
 		6D8169E91D360A2D00AC33C6 /* simple.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = simple.html; sourceTree = "<group>"; };
 		6D8169ED1D360AC700AC33C6 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
@@ -175,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				6DADCAA01D3E12E100C2884B /* GeoVisMapViewController.swift */,
-				6DDF54DA1D3E201300C9ABEE /* WorldMap */,
 				6DDF54DB1D3E201F00C9ABEE /* HeatMap */,
 				6DDF54DC1D3E203900C9ABEE /* LayersMap */,
 				6DDF54DD1D3E204200C9ABEE /* WeatherMap */,
@@ -200,15 +195,6 @@
 				AA22DB601CE3613900F8BA43 /* Info.plist */,
 			);
 			name = PLIST;
-			sourceTree = "<group>";
-		};
-		6DDF54DA1D3E201300C9ABEE /* WorldMap */ = {
-			isa = PBXGroup;
-			children = (
-				6D7047041D3E179E00354033 /* SimpleMapViewController.swift */,
-				6D7047051D3E179E00354033 /* SimpleMapViewController.xib */,
-			);
-			name = WorldMap;
 			sourceTree = "<group>";
 		};
 		6DDF54DB1D3E201F00C9ABEE /* HeatMap */ = {
@@ -402,7 +388,6 @@
 				TargetAttributes = {
 					AA22DB501CE3613700F8BA43 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = P82H3JQVLH;
 					};
 				};
 			};
@@ -445,7 +430,6 @@
 				AA22DB5A1CE3613900F8BA43 /* Main.storyboard in Resources */,
 				6D8169EB1D360A2D00AC33C6 /* simple.html in Resources */,
 				6DDF54D51D3E1F4900C9ABEE /* WeatherMapViewController.xib in Resources */,
-				6D7047071D3E179E00354033 /* SimpleMapViewController.xib in Resources */,
 				6DC212E91D48CE8600E6E58D /* helper.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,7 +555,6 @@
 				6DADCAA11D3E12E100C2884B /* GeoVisMapViewController.swift in Sources */,
 				6DADCAA41D3E13D700C2884B /* HeatMapViewController.swift in Sources */,
 				888611BD1D3B5B1200C6F4D2 /* Camera.swift in Sources */,
-				6D7047061D3E179E00354033 /* SimpleMapViewController.swift in Sources */,
 				AA8B63791D33CB1300BF2289 /* Location.swift in Sources */,
 				881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */,
 				881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */,
@@ -726,10 +709,10 @@
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA99;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -743,10 +726,10 @@
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA99;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

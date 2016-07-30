@@ -22,10 +22,6 @@ class GeoVisMapViewController: UIViewController {
         super.viewDidLoad()
         
         // Initialize view controllers to display and place in array
-        let controller0 : SimpleMapViewController = SimpleMapViewController(nibName: "SimpleMapViewController", bundle: nil)
-        controller0.title = "WorldMap"
-        controllerArray.append(controller0)
-        
         let controller1 : HeatMapViewController = HeatMapViewController(nibName: "HeatMapViewController", bundle: nil)
         controller1.title = "HeatMap"
         controllerArray.append(controller1)

@@ -191,7 +191,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     // Blur overlay
     //
     func setBlur() {
-        blurView.blurProgress = 0.5
+        blurView.blurProgress = 1
     }
 }
 

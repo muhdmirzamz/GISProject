@@ -263,7 +263,7 @@ class ProfileViewController: UIViewController {
 //        let i = Int(arc4random_uniform(5) + 1)
 //        bgProfile.image = UIImage(named: "bg\(i)")
 
-        blurView.blurProgress = 0.5
+        blurView.blurProgress = 1
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
