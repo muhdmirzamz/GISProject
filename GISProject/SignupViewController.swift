@@ -23,6 +23,19 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Disable Auto Correct
+        UsernameLabel.autocorrectionType = .No
+        EmailLabel.autocorrectionType = .No
+        PasswordLabel.autocorrectionType = .No
+
+        
+        //Dark KB
+        UsernameLabel.keyboardAppearance = .Dark
+        EmailLabel.keyboardAppearance = .Dark
+        PasswordLabel.keyboardAppearance = .Dark
+        
+        //hide keyboard
         let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
         self.view.addGestureRecognizer(tapFunc2)
         self.ref = FIRDatabase.database().reference()

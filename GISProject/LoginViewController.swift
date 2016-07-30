@@ -27,10 +27,6 @@ class LoginViewController: UIViewController, ProfileProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Dark KB
-        Email.keyboardAppearance = .Dark
-        Password.keyboardAppearance = .Dark
-        
         //Disable Auto Correct
         Email.autocorrectionType = .No
         Password.autocorrectionType = .No
