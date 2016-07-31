@@ -21,6 +21,14 @@ class PasswordResetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Disable Auto Correct
+        EmailLabel.autocorrectionType = .No
+
+        //Dark KB
+        EmailLabel.keyboardAppearance = .Dark
+        
+        //hide keyboard
         let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
         self.view.addGestureRecognizer(tapFunc2)
     }

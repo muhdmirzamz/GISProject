@@ -238,9 +238,9 @@
 			children = (
 				6D611EB31CEB466500F99494 /* ActivityLog.swift */,
 				814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */,
-				81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */,
 				8156447A1D126CA40028D162 /* Profile.swift */,
 				6D8169F11D360B1F00AC33C6 /* ProfileViewController.swift */,
+				81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */,
 				6D8169F21D360B1F00AC33C6 /* SignupViewController.swift */,
 				6D8169F31D360B1F00AC33C6 /* LoginViewController.swift */,
 				81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */,

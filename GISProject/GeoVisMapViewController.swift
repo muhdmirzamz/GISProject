@@ -42,7 +42,7 @@ class GeoVisMapViewController: UIViewController {
         let parameters: [CAPSPageMenuOption] = [
             .ScrollMenuBackgroundColor(UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0)),
             .ViewBackgroundColor(UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0)),
-            .SelectionIndicatorColor(UIColor(red: 72/255, green: 146/255, blue: 238/255, alpha: 1)),
+            .SelectionIndicatorColor(UIColor(red: 28/255, green: 211/255, blue: 235/255, alpha: 1)),
             .BottomMenuHairlineColor(UIColor(red: 70.0/255.0, green: 70.0/255.0, blue: 80.0/255.0, alpha: 1.0)),
             .MenuItemFont(UIFont(name: "HelveticaNeue", size: 15.0)!),
             .MenuHeight(50.0),
