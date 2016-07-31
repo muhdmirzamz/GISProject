@@ -9,11 +9,15 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import SCLAlertView
 
 class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
     //declare an array of friends obj
     var friends:[Friends] = []
+    
+    //hold the key of friends
+    var friendsKey:[String] = []
     
     //refresh control
     var refreshDataControl : UIRefreshControl!
@@ -28,25 +32,39 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     //chatroom friends
     var chatRoomFriend : Friends!
     
-     //let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
+    
+    
+    
+    @IBAction func restore(sender: AnyObject) {
+        
+        var restore : [String] = [ "4TXHLACuf4NfEhvpwPaj35gf2Dg2" ,
+                                   "6qqMMHIyoMNOKUuBOtf2EwjKmRE2" ,
+                                   "J8udCnp29tNFjBWpQ3wHfIZ7Wn33" ,
+                                   "LDDPeGnJTeRP5qWSUfsgJEx1qsT2" ,
+                                   "OJs4sevBRwdIUNiagECFcqdAoys2" ,
+                                   "Rm4yWdlrRRftsfkvY7juQNPtAMh1" ,
+                                   "ZUYqAg6MbPVCa9DLZ3NiE9zMb942" ,
+                                   "hrOsNfsWbjf07zk8kZZMyz89pul1" ,
+                                   "isuKxRNebrgXwb5fKEVIXpW10Ws1" ,
+                                   "mQ28Lxcmr6YlbmqiVW06MsOwd4z1" ,
+                                   "rrGjmUqIlUgsnUv08d0mi96tQRJ3"]
+        
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        //ref to friends in firebase
+        let ref = FIRDatabase.database().reference().child("Friend/")
+        
+        for i in 0...restore.count - 1 {
+              ref.childByAppendingPath(KEY_UID).updateChildValues(["\(restore[i])":1])
+        }
+        print("restore friends")
+    }
     
     var sendRoomKey : String!
-    
-    var friendsSnapShot = [String]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //self.navigationController?.navigationBar.barTintColor = UIColor(red: 29/255, green: 233/255, blue: 182/255, alpha: 1)
-        // self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orangeColor()]
-        //self.navigationBar.tintColor =  UIColor(red: 38/255, green: 232/255, blue: 167/255, alpha: 1)
-        //background image
-        
-        
-        self.tableView.backgroundView = UIImageView(image: UIImage(named: "friendTable_bg_light")?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 10, 10, 10), resizingMode: UIImageResizingMode.Stretch))
-        
         
         //refresh control
         refreshDataControl = UIRefreshControl()
@@ -68,15 +86,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         //add search bar directly below head view
         tableView.tableHeaderView = searchController.searchBar
-        //tableView.tableHeaderView?.backgroundColor = UIColor.blackColor()
-        
-        
-        //search bar background image
-        //searchController.searchBar.setBackgroundImage(UIImage(named: "cell_blue")?.resizableImageWithCapInsets(UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5), resizingMode: UIImageResizingMode.Stretch), forBarPosition: .Any, barMetrics: .Default)
-        
-        //searchController.searchBar.backgroundColor = UIColor.blueColor()
-        //searchController.searchBar.backgroundImage = UIImage()
-        
         
         //searchController.searchBar.barTintColor = UIColor(red: 29/255, green: 233/255, blue: 182/255, alpha: 1)
         
@@ -84,47 +93,12 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         searchController.searchBar.setImage(UIImage(named: "search_icon"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
         searchController.searchBar.setSearchFieldBackgroundImage(nil, forState: UIControlState.Normal)
         
-        
-        
         //start to load data
-       
-        //loadFriendsKeySnapShot()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         loadFriends()
         
     }
-    func loadFriendsKeySnapShot(){
-        
-        FriendsDataManager.loadFriendsRoomKey ({ (friendsListFromFirebase) -> Void in
-            // This is a closure.
-            //
-            // This block of codes is executed when the
-            // async loading from Firebase is complete.
-            // What it is to reassigned the new list loaded
-            // from Firebase.
-            //
-            self.friendsSnapShot = friendsListFromFirebase
-            // Once done, call on the Table View to reload
-            // all its contents
-         
-            
-            
-        })
-       // self.loadFriends()
-        /*
-        for i in 0...self.friendsSnapShot.count {
-            print("-->\(self.friendsSnapShot[i])")
-        }
-        */
-    }
     
-    
+
     
     //UISearchBar Delegate
     //respond to the search bar
@@ -154,7 +128,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         var convertedDate = dateFormatter.stringFromDate(currentDate)
         
         
-        
         self.refreshDataControl.attributedTitle = NSAttributedString(string: "Last update: \(convertedDate)")
         loadFriends()
         
@@ -166,8 +139,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     //load friends from firebase
     func loadFriends()
     {
-      
-        
         FriendsDataManager.loadFriends ({ (friendsListFromFirebase) -> Void in
             // This is a closure.
             //
@@ -179,36 +150,13 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             self.friends = friendsListFromFirebase
             // Once done, call on the Table View to reload
             // all its contents
+            
             self.tableView.reloadData()
         })
-       
         
         
     }
-    /*
-    func loadChatRoom(getKey: Friends)
-    {
-        
-        
-        FriendsDataManager.loadChatRoom ({ (getkey) -> Void in
-            // This is a closure.
-            //
-            // This block of codes is executed when the
-            // async loading from Firebase is complete.
-            // What it is to reassigned the new list loaded
-            // from Firebase.
-            //
-            self.sendRoomKey = getKey
-            
-            print("gotten key: \(self.sendRoomKey)")
-            // Once done, call on the Table View to reload
-            // all its contents
-            // self.tableView.reloadData()
-        })
-        
-        
-    }
-    */
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -249,9 +197,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         headerView.backgroundColor = UIColor.clearColor()
         return headerView
     }
-    
-    // Set the spacing between sections
-    
     
     
     // given the row/item number of the tableview and display the data of the table cell
@@ -294,7 +239,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         
         //load and update friends avatimages asynchronous from helper class
-        FriendsDataManager.loadAndDisplayImage(nil, imageView: cell.profileImage, url: friend.ThumbnailImgUrl)
+        //FriendsDataManager.loadAndDisplayImage(nil, imageView: cell.profileImage, url: friend.ThumbnailImgUrl)
         
         return cell
         
@@ -311,17 +256,82 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
      }
      */
     
-    /*
+    
      // Override to support editing the table view.
+    //enable slide to delete option
      override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
      if editingStyle == .Delete {
-     // Delete the row from the data source
-     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont.systemFontOfSize(30, weight: UIFontWeightLight),
+            kTitleHeight: 40,
+            kButtonFont: UIFont.systemFontOfSize(18, weight: UIFontWeightLight),
+            showCloseButton: false
+        )
+         
+        //pop up alert
+        let alertView = SCLAlertView(appearance : appearance)
+        alertView.addButton("Delete") {
+            
+            print("deleting friends from firebase...")
+            
+            //current user
+            let uid = (FIRAuth.auth()?.currentUser?.uid)!
+            
+            //look for items in filtered friends array
+            //delete the items in firebase and uitableview
+            if self.searchController.active && self.searchController.searchBar.text != "" {
+                
+                var friendsTemp : String = self.filteredFriends[indexPath.row].myKey
+                 self.filteredFriends.removeAtIndex(indexPath.row)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                self.tableView.setEditing(false, animated: true)
+                
+                //remove friends using their unique key
+                let deleteFriend = FIRDatabase.database().reference().child("Friend/\(uid)/\(friendsTemp)")
+                
+                //delete reocrd from firebase
+                deleteFriend.removeValue();
+                
+                self.loadFriends()
+                 print("record in friend[]: \(self.friends.count)")
+                 print("record in filteredfriend[]: \(self.filteredFriends.count)")
+               
+            }else{
+                
+                var friendsTemp : String = self.friends[indexPath.row].myKey
+                
+                self.friends.removeAtIndex(indexPath.row)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                self.tableView.setEditing(false, animated: true)
+                
+                //remove friends using their unique key
+                let deleteFriend = FIRDatabase.database().reference().child("Friend/\(uid)/\(friendsTemp)")
+                
+                //delete reocrd from firebase
+                deleteFriend.removeValue();
+                print("record in friend[]: \(self.friends.count)")
+                 print("record in filteredfriend[]: \(self.filteredFriends.count)")
+            }
+       
+            //dismiss view
+            alertView.hideView()
+         
+        }
+        alertView.addButton("Cancel") {
+            print("cancel option")
+            alertView.hideView()
+        }
+      
+        alertView.showError("Are You Sure?", subTitle: "\n Remove \(indexPath.row) \n \(self.friends[indexPath.row].myKey))")
+       
+        
+        
      } else if editingStyle == .Insert {
      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
      }
      }
-     */
+    
     
     /*
      // Override to support rearranging the table view.
@@ -338,197 +348,57 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
      }
      */
     
-    /*
-    func lookForKey(getKey:Friends){
-        
-        refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            
-            
-            
-            
-            for record in snapshot.children {
-                 print("-------------------------")
-               print(record)
-                  print(record.value!!["Sad"] as! Bool)
-                 print(record.value!!["\(getKey.Name)"] as! Bool)
-                 print("-------------------------")
-                
-                var user1 = record.value!!["Sad"] as! Bool
-                var user2 = record.value!!["\(getKey.Name)"] as! Bool
-                
-                if(user1 == true && user2 == true){
-                    print("-------- got it-------")
-                    print(record.key!)
-                    self.sendRoomKey = record.key!
-                     print("-------- got it-------")
-                }
-            
-            
-                
-            }
-            
-            
-            
-            
-        })
-        
-        
-    }
-    */
-    
-    
-    
-    /*
-    func prepareLookForKey(){
-        
-        refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            
-            
-            
-            
-            for record in snapshot.children {
-                
-                var user1 = record.value!!["Sad"] as! Bool
-                
-                
-                for i in 0...self.friends.count {
-                    
-                    record.va
-                    
-                    
-                    var user2 = record.value!!["\(self.friends[i].Name)"] as! Bool
-                    
-                    
-                    if(user1 == true && user2 == true){
-                        print("-------- got it-------")
-                        print(record.key!)
-                        self.sendRoomKey = record.key!
-                        print("-------- got it-------")
-                    }
-                    
-                    
-                }
-                
-                
-            }
-            
-            
-            
-            
-        })
-        
-        
-    }
-    */
-    
-    
-    
- 
-    
-    
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         //hide the bottombar for friends deck view
+        //go to deck view controller
         if(segue.identifier == "ShowFriendsDeck") {
-            
             let detailViewController = segue.destinationViewController as! FriendsDeckCollectionViewController
             detailViewController.hidesBottomBarWhenPushed = true
-            
         }
         
-        /*
-         //by tapping on the chat icon, hide the bottom bar and display the chat room view accordingly
-         if(segue.identifier == "ShowChatRoom") {
-         
-         
-         let chatViewController = segue.destinationViewController as! FriendsChatViewController
-         chatViewController.friend = friend
-         chatViewController.senderId = "Alex"
-         chatViewController.senderDisplayName = friend.Name
-         print("00--> \(friend.Name)")
-         
-         }
-         */
-        
+        //go to chat room view controller
         if(segue.identifier == "ShowChatRoom") {
-          
-            let filteredfriend : Friends
             
+            let filteredfriend : Friends
             let detailViewController = segue.destinationViewController as! FriendsChatViewController
             let myIndexPath = self.tableView.indexPathForSelectedRow
-            // let friend = friends[myIndexPath!.row]
-            
-            
-           
-            
+            let uid = (FIRAuth.auth()?.currentUser?.uid)!
             
             if(myIndexPath != nil) {
-                // Set the movieItem field with the movie // object selected by the user.
+                
                 
                 if searchController.active && searchController.searchBar.text != ""
                 {
-                    
                     filteredfriend = filteredFriends[myIndexPath!.row]
-                    detailViewController.friend = filteredfriend
                     
                     detailViewController.friend = filteredfriend
-                    detailViewController.senderId = "Friend0"
-                    detailViewController.senderDisplayName = filteredfriend.Name
+                    detailViewController.senderId = uid
+                    detailViewController.senderDisplayName = uid
                     detailViewController.friendsKey = filteredfriend.myKey
-                   detailViewController.senderKey = "Friend0"
-                    print(filteredfriend.myKey)
-                      //lookForKey(filteredfriend)
-                    //loadChatRoom(filteredfriend)
-                   // detailViewController.chatRoomId = sendRoomKey
+                    detailViewController.senderKey = uid
+                    
+                    print("entering \(filteredfriend.Name)-->")
+                    
                 } else {
+                    
                     filteredfriend = friends[myIndexPath!.row]
+                    
                     detailViewController.friend = filteredfriend
-                    detailViewController.friend = filteredfriend
-                    detailViewController.senderKey = "Friend0"
-                    detailViewController.senderId = "Friend0"
-                    detailViewController.senderDisplayName = filteredfriend.Name
-                     detailViewController.friendsKey = filteredfriend.myKey
-                    print(filteredfriend.myKey)
+                    detailViewController.senderKey = uid
+                    detailViewController.senderId = uid
+                    detailViewController.senderDisplayName = uid
+                    detailViewController.friendsKey = filteredfriend.myKey
+                    
+                       print("entering \(filteredfriend.Name)-->")
                 }
-                
-                
             }
-            
-            
             detailViewController.hidesBottomBarWhenPushed = true
         }
         
-        /*
-         
-         if(segue.identifier == "ShowFriendsDetails") {
-         let detailViewController = segue.destinationViewController as! FriendsDetailViewController
-         let myIndexPath = self.tableView.indexPathForSelectedRow
-         
-         let filteredfriend : Friends
-         
-         if(myIndexPath != nil) {
-         // Set the movieItem field with the movie // object selected by the user.
-         
-         if searchController.active && searchController.searchBar.text != ""
-         {
-         
-         filteredfriend = filteredFriends[myIndexPath!.row]
-         detailViewController.friend = filteredfriend
-         } else {
-         filteredfriend = friends[myIndexPath!.row]
-         detailViewController.friend = filteredfriend
-         }
-         
-         
-         }
-         
-         
-         detailViewController.hidesBottomBarWhenPushed = true
-         }
-         */
     }
 }
 

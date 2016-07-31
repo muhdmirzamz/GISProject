@@ -57,12 +57,9 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     
-
-    
-    
-    
     var senderKey : String!
     var friendsKey : String!
+    var senderName : String!
     
     override func viewWillAppear(animated: Bool) {
         loadUserDefaults()
@@ -91,16 +88,15 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         self.senderId = senderKey
         self.senderDisplayName = friendsKey
         
+        //set chat room title
+        self.navigationItem.title = self.friend.Name
         
+        //no avatar yet
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
         
         
         self.getAvatars()
-        
-      
-        
-        
         
         
         lookForKey()
@@ -116,7 +112,15 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
            collectionView!.collectionViewLayout.springinessEnabled = true
  
+        let myKey = FIRDatabase.database().reference().child("Account/\(self.senderKey)")
         
+        myKey.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            for record in snapshot.children {
+                let username = snapshot.value!["Name"] as! String
+                self.senderName = username
+            }
+            
+        })
         
                 
     }
@@ -130,12 +134,12 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
        
             // outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey, senderName: self.senderKey, date: date, status: "Delivered", type: "text")
             
-            outgoingMessage = OutgoingMessage(message: "test text", senderId: self.friendsKey!, senderName: self.friendsKey!, date: myObject, status: "Delivered", type: "text")
+            outgoingMessage = OutgoingMessage(message: "test text", senderId: self.friendsKey!, senderName: self.senderName, date: myObject, status: "Delivered", type: "text")
       
     
         
         
-        outgoingMessage!.sendMessage("\(self.chatRoomId)", item: outgoingMessage!.messageDictionary)
+        outgoingMessage!.sendMessage("\(self.chatRoomId)", item: outgoingMessage!.messageDictionary,receiverID: self.friendsKey)
         
         
         self.tabBarController?.tabBar.items?[3].badgeValue = "8"
@@ -386,7 +390,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         if let text = text {
            // outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey, senderName: self.senderKey, date: date, status: "Delivered", type: "text")
             
-             outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey!, senderName: self.friendsKey!, date: date, status: "Delivered", type: "text")
+             outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey!, senderName: self.senderName, date: date, status: "Delivered", type: "text")
         }
         
         //send picture message
@@ -394,7 +398,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             let imageData = UIImageJPEGRepresentation(pic, 1.0)
             
-            outgoingMessage = OutgoingMessage(message: "Picture", pictureData: imageData!, senderId: self.senderKey!, senderName: self.friendsKey!, date: date, status: "Delivered", type: "picture")
+            outgoingMessage = OutgoingMessage(message: "Picture", pictureData: imageData!, senderId: self.senderKey!, senderName: self.senderName, date: date, status: "Delivered", type: "picture")
         }
         
         if let _ = location {
@@ -402,7 +406,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             let lat: NSNumber = NSNumber(double: (self.coordinate?.latitude)!)
             let lng: NSNumber = NSNumber(double: (self.coordinate?.longitude)!)
             
-            outgoingMessage = OutgoingMessage(message: "Location", latitude: lat, longitude: lng, senderId: self.senderKey!, senderName: self.senderKey!, date: date, status: "Delivered", type: "location")
+            outgoingMessage = OutgoingMessage(message: "Location", latitude: lat, longitude: lng, senderId: self.senderKey!, senderName: self.senderName, date: date, status: "Delivered", type: "location")
         }
 
         
@@ -411,7 +415,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         self.finishSendingMessage()
         
         
-        outgoingMessage!.sendMessage("\(self.chatRoomId)", item: outgoingMessage!.messageDictionary)
+        outgoingMessage!.sendMessage("\(self.chatRoomId)", item: outgoingMessage!.messageDictionary,receiverID: self.friendsKey)
     }
     
     

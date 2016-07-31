@@ -248,6 +248,15 @@
 			name = Account;
 			sourceTree = "<group>";
 		};
+		88319B771D4CA2450031F09A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */,
+				888611BC1D3B5B1200C6F4D2 /* Camera.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		8877E81A1D3BB7BF00A595DC /* Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,14 +277,13 @@
 		88EFBE1A1D213B8400577EC5 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				88319B771D4CA2450031F09A /* Utility */,
 				8877E81A1D3BB7BF00A595DC /* Messages */,
-				888611BC1D3B5B1200C6F4D2 /* Camera.swift */,
 				88EFBE141D2138EC00577EC5 /* Friends.swift */,
 				88EC59681D43A97C00075534 /* ChatMapViewController.swift */,
 				88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */,
 				88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */,
 				88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */,
-				88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */,
 				88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */,
 				889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */,
 				88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */,
@@ -388,6 +396,7 @@
 				TargetAttributes = {
 					AA22DB501CE3613700F8BA43 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = P82H3JQVLH;
 					};
 				};
 			};
@@ -709,10 +718,10 @@
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA554;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -726,10 +735,10 @@
 				INFOPLIST_FILE = GISProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA;
+				PRODUCT_BUNDLE_IDENTIFIER = GISProject.LOBA554;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

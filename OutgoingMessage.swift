@@ -51,7 +51,7 @@ class OutgoingMessage {
     
     //save to firebase
     //add
-    func sendMessage(chatRoomID: String, item: NSMutableDictionary) {
+    func sendMessage(chatRoomID: String, item: NSMutableDictionary,receiverID : String) {
         
         print("ooutoing chat romid -> \(chatRoomID)")
         
@@ -121,10 +121,10 @@ class OutgoingMessage {
                 
                 
                 let senderId : String = item["senderId"] as! String
-                let senderName: String = item["senderName"] as! String
+                let chatRoomMember: String = receiverID
                 
                 let messageMember = [ // 2
-                    "\(senderName)": true,
+                    "\(chatRoomMember)": true,
                     "\(senderId)": true
                     
                 ]

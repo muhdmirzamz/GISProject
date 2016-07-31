@@ -8,50 +8,134 @@
 
 import UIKit
 import FirebaseDatabase
+import Firebase
 
 
 class FriendsDataManager: NSObject {
     
+    
+    
+    /*
     //load friends from Firebase and converts it into [Friends] array
-          
     static func loadFriends(onComplete: ([Friends]) -> Void)
     {
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
         
         //create an empty friends list array
-        
         var friendsList : [Friends] = []
+     
+        //ref to friends in firebase
+        let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
         
-        //let ref = FIRDatabase.database().reference().child("FriendsModule/myFriend/Chats/FriendsList/")
-        let ref = FIRDatabase.database().reference().child("FriendsModule/friendList/")
-       
+        var username : String!
+        var level : Double!
+        var myKey: String!
         
         ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            
+           
             
             for record in snapshot.children {
                 
-                print(record)
-                print(record.value!!["Name"] as! String)
+                
+                let lookForFriends = FIRDatabase.database().reference().child("Account/\(record.key!)")
+                
                
-                //let levelString = record.value!!["Level"] as! String
-                //let levelDouble = Double(levelString)
+                lookForFriends.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                    // Get user value
+                     username = snapshot.value!["Name"] as! String
+                     level = snapshot.value!["Level"] as! Double
+                    //let imageUrl = snapshot.value!["Picture"] as! Double
+                      myKey = snapshot.key
+                    
+                    //print(username)
+                    
+                    friendsList.append(Friends(name: username,
+                        level: level,
+                        thumbnailImgUrl: "",
+                        myKey : myKey))
                 
-                friendsList.append(Friends(name: record.value!!["Name"] as! String,
-                    level: record.value!!["Level"] as! Double,
-                    thumbnailImgUrl: record.value!!["ThumbnailImgUrl"] as! String,
-                    myKey : record.key!!))
-                
-                
-                
-                
+                    onComplete(friendsList)
+                    
+                    // ...
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
             }
             
-            
-            onComplete(friendsList)
             
         })
         
     }
+    */
+    //load friends from Firebase and converts it into [Friends] array
+     static func loadFriends(onComplete: ([Friends]) -> Void)
+    {
+        
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+        {
+            
+            let uid = (FIRAuth.auth()?.currentUser?.uid)!
+            
+            //create an empty friends list array
+            var friendsList : [Friends] = []
+            
+            //ref to friends in firebase
+            let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
+            
+            var username : String!
+            var level : Double!
+            var myKey: String!
+            
+            
+            ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                
+                
+                for record in snapshot.children {
+                    
+                    
+                    let lookForFriends = FIRDatabase.database().reference().child("Account/\(record.key!)")
+                    
+                    
+                    lookForFriends.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                        //look for online users
+                        
+                        
+                        // Get user value
+                        username = snapshot.value!["Name"] as! String
+                        level = snapshot.value!["Level"] as! Double
+                        //let imageUrl = snapshot.value!["Picture"] as! Double
+                        myKey = snapshot.key
+                        
+                        //print(username)
+                        
+                        friendsList.append(Friends(name: username,
+                            level: level,
+                            thumbnailImgUrl: "",
+                            myKey : myKey))
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onComplete(friendsList)
+                        
+                        }
+                        // ...
+                    }) { (error) in
+                        print(error.localizedDescription)
+                    }
+                }
+                
+                
+            })
+        }
+    }
+    
+ 
+    
+    
+    
+    
+    
+    
+    
     
     static func loadFriendsRoomKey(onComplete: ([String]) -> Void)
     {
@@ -68,7 +152,7 @@ class FriendsDataManager: NSObject {
             
             for record in snapshot.children {
                 
-              
+                
                 
                 friendsList.append(record.key!!)
                 
@@ -84,7 +168,7 @@ class FriendsDataManager: NSObject {
     }
     
     
- 
+    
     
     
     
@@ -121,7 +205,7 @@ class FriendsDataManager: NSObject {
                 }
                 
                 imageView.image = img
-               // imageView.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img!, withDiameter: 78)
+                // imageView.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img!, withDiameter: 78)
                 
                 // Tells the cell, if available, to re-layout itself.
                 // This is an update to the User Interface.
@@ -137,8 +221,8 @@ class FriendsDataManager: NSObject {
     }
     
     
-     
     
     
-
+    
+    
 }
