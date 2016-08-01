@@ -45,16 +45,6 @@ class ProfileViewController: UIViewController {
 //    @IBOutlet weak var levelLabel: UILabel!
 //    @IBOutlet weak var imageProfile: UIImageView!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var cards: UILabel!
-    @IBOutlet weak var monstersLabel: UILabel!
-    @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var dmgLabel: UILabel!
-    @IBOutlet weak var ownAvailableLabel: UILabel!
-    @IBOutlet weak var imageProfile: UIImageView!
-    @IBOutlet weak var bgProfile: UIImageView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         activityLog()
@@ -80,100 +70,11 @@ class ProfileViewController: UIViewController {
     
     
     override func viewWillAppear(animated: Bool) {
-        self.activityIndicator.startAnimating()
         setProfileBG()
         
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
-        let ref = FIRDatabase.database().reference().child("/Account/\(uid)")
-        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
         let battle = Battle()
         let battle2 = Battle()
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-
-            ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                for i in snapshot.children {
-                    let key = i.key!!
-                    let value = snapshot.value!["\(key)"] as? NSNumber
-                    if value?.integerValue == 1 {
-                        battle.uidArr?.addObject(key)
-                    }
-                    if value?.integerValue == 0 {
-                        battle2.uidArr?.addObject(key)
-                    }
-                }
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.cards.text = "\((battle.uidArr?.count)!)/\((battle2.uidArr?.count)!+(battle.uidArr?.count)!)"
-                })
-            })
-
-            
-            ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                
-                let level = snapshot.value!["Level"] as! NSNumber
-                let monstersKilled = snapshot.value!["Monsters killed"] as! NSNumber
-                let damage = snapshot.value!["Base Damage"] as! NSNumber
-                let name = snapshot.value!["Name"] as! String
-                let pict = snapshot.value!["Picture"] as! NSNumber
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.nameLabel.text = name
-                    self.monstersLabel.text = String(monstersKilled.intValue)
-                    self.levelLabel.text = String(level.intValue)
-                    self.dmgLabel.text = String(damage.intValue)
-                    
-                    switch pict.intValue {
-                    case 0 :
-                        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
-                        self.imageProfile.layer.borderWidth = 2.0
-                        self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
-                        self.imageProfile.image = UIImage(named: "ProfileBlack")
-                    case 1 :
-                        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
-                        self.imageProfile.layer.borderWidth = 2.0
-                        self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
-                        self.imageProfile.image = UIImage(named: "ProfileBlue")
-                    case 2 :
-                        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
-                        self.imageProfile.layer.borderWidth = 2.0
-                        self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
-                        self.imageProfile.image = UIImage(named: "ProfileGreen")
-                    case 3 :
-                        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
-                        self.imageProfile.layer.borderWidth = 2.0
-                        self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
-                        self.imageProfile.image = UIImage(named: "ProfileOrange")
-                    case 4 :
-                        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
-                        self.imageProfile.layer.borderWidth = 2.0
-                        self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
-                        self.imageProfile.image = UIImage(named: "ProfilePurple")
-                    case 5 :
-                        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
-                        self.imageProfile.layer.borderWidth = 2.0
-                        self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
-                        self.imageProfile.image = UIImage(named: "ProfileRed")
-                    case 6 :
-                        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
-                        self.imageProfile.layer.borderWidth = 2.0
-                        self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
-                        self.imageProfile.image = UIImage(named: "ProfileSponge")
-                    default:
-                        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
-                        self.imageProfile.layer.borderWidth = 2.0
-                        self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
-                        self.imageProfile.image = UIImage(named: "ProfileBlack")
-                    }
-                    
-                    
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.hidden = true
-                    
-                })
-                
-            })
-        }
 
     }
 
@@ -271,7 +172,7 @@ class ProfileViewController: UIViewController {
     }
     
     func activityLog() {
-        let timeline = ISTimeline(frame: CGRectMake(0, 0, 350, 220))
+        let timeline = ISTimeline(frame: CGRectMake(0, 0, 350, 500))
         timeline.backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0)
         timeline.bubbleColor = .init(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         timeline.titleColor = .blackColor()
@@ -281,6 +182,7 @@ class ProfileViewController: UIViewController {
         timeline.bubbleRadius = 0.5
         
         self.scrollView.addSubview(timeline)
+        view.bringSubviewToFront(timeline)
         
         
         

@@ -12,7 +12,7 @@ import CoreData
 import MaterialCard
 import SCLAlertView
 
-class LoginViewController: UIViewController, ProfileProtocol {
+class LoginViewController: UIViewController, UITextFieldDelegate, ProfileProtocol {
 
     @IBOutlet weak var Email: UITextField!
     @IBOutlet weak var Password: UITextField!
@@ -30,6 +30,11 @@ class LoginViewController: UIViewController, ProfileProtocol {
         //Disable Auto Correct
         Email.autocorrectionType = .No
         Password.autocorrectionType = .No
+		
+		Email.delegate = self
+		Email.returnKeyType = .Next
+		Password.delegate = self
+		Password.returnKeyType = .Go
         
         //hide keyboard
         let tapFunc2 = UITapGestureRecognizer.init(target: self, action: "hideKeyboard")
@@ -113,7 +118,18 @@ class LoginViewController: UIViewController, ProfileProtocol {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		if textField.returnKeyType == .Next {
+			Password.becomeFirstResponder()
+		}
+		
+		if textField.returnKeyType == .Go {
+			self.Login(textField)
+		}
+		
+		return true
+	}
 
     @IBAction func Login(sender: AnyObject) {
         hideKeyboard()

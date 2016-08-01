@@ -22,6 +22,10 @@ class Battle {
 
     var nameuid: String?
     var monsKilled: NSNumber?
+    var i: Int
+    var monsType: String?
+    var time: String?
+    var updatedNum: Int
 	
 	var selectedAnnotation: Location?
     
@@ -36,6 +40,9 @@ class Battle {
         self.uidArr = NSMutableArray()
 		
 		self.baseDamage = 0
+        
+        self.i = 0
+        self.updatedNum = 0
     }
     
     func getMonsterHealth() -> Int {
@@ -158,13 +165,26 @@ class Battle {
             print(self.monsKilled)
 			
 			// Update activity table
-			let activityNum = Int(arc4random_uniform(5) + 1)
+			let activityNum = Int(arc4random_uniform(10) + 1)
 			let ref2 = FIRDatabase.database().reference().child("/Activity/\(activityNum)")
 			let updatedKilled = (self.monsKilled?.integerValue)! + 1
-			ref2.child("activity").setValue("has killed /\(updatedKilled) monsters")
+			ref2.child("activity").setValue("has killed \(updatedKilled) monsters")
 			ref2.child("uid").setValue(userID)
 			ref2.child("name").setValue(self.nameuid)
         })
+    }
+    
+    func updateJournal(){
+        let userID = (FIRAuth.auth()?.currentUser?.uid)!
+        let str = (self.selectedAnnotation?.imageString)!
+        let monsterType = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
+        
+        var interval = NSDate().timeIntervalSince1970
+        //Used for retrieving of date from firebase
+        //var date = NSDate(timeIntervalSince1970: interval)
+        let ref3 = FIRDatabase.database().reference().child("Journal/\(userID)")
+        ref3.child("MonsterType").setValue("has killed a \(monsterType) monster")
+        ref3.child("Time").setValue(interval)
     }
 	
 }
