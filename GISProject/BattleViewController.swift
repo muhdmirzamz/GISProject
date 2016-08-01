@@ -44,7 +44,7 @@ class BattleViewController: UIViewController {
         super.viewDidLoad()
         
 		// set up blur view
-		self.blurView.blurProgress = 0.3
+		self.blurView.blurProgress = 1.0
 		
 		// set up monster image
 		let image = UIImage.init(named: self.imageString!)
