@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var blurView: MLWLiveBlurView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView2: UIScrollView!
     
     
   
@@ -73,8 +74,6 @@ class ProfileViewController: UIViewController {
         setProfileBG()
         
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
-        let battle = Battle()
-        let battle2 = Battle()
 
     }
 
@@ -181,7 +180,18 @@ class ProfileViewController: UIViewController {
         timeline.lineWidth = 2.0
         timeline.bubbleRadius = 0.5
         
+        let timeline2 = ISTimeline(frame: CGRectMake(0, 0, 350, 500))
+        timeline2.backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0)
+        timeline2.bubbleColor = .init(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
+        timeline2.titleColor = .blackColor()
+        timeline2.descriptionColor = .lightTextColor()
+        timeline2.pointDiameter = 7.0
+        timeline2.lineWidth = 2.0
+        timeline2.bubbleRadius = 0.5
+        timeline2.bubbleArrows = false
+        
         self.scrollView.addSubview(timeline)
+        self.scrollView2.addSubview(timeline2)
         view.bringSubviewToFront(timeline)
         
         
@@ -198,10 +208,43 @@ class ProfileViewController: UIViewController {
                 
                 let point = ISPoint(title: name)
                 point.description = activity
+                point.lineColor = .greenColor()
                 timeline.points.append(point)
                 let Activity = ActivityLog.init(key: key, activity: activity, uid: uid, name: name)
                 
                 self.activityLogs.append(Activity)
+            }
+        })
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
+        
+        ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            for record in snapshot.children {
+                let key = record.key!!
+                
+                print(key)
+                
+                let ref3 = FIRDatabase.database().reference().child("/Journal/\(key)")
+                
+                ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                    let monsterType = snapshot.value![""] as! String
+                    let timeRetrieve = snapshot.value![""] as! String
+                    
+                  //  let timeConvert =
+                    
+                    let point = ISPoint(title: timeRetrieve)
+                    point.description = monsterType
+                    timeline2.points.append(point)
+                    point.lineColor = .blueColor()
+                })
+                //                let uid = record.value!!["uid"] as! String
+                //                let activity = record.value!!["activity"] as! String
+                //                let name = record.value!!["name"] as! String
+                //
+                //
+                //                let Activity = ActivityLog.init(key: key, activity: activity, uid: uid, name: name)
+                //                
+                //                self.activityLogs.append(Activity)
             }
         })
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dMH-Ja-CGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dMH-Ja-CGM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -734,15 +734,18 @@
                                                 <action selector="logout" destination="GED-Ph-YfL" eventType="touchUpInside" id="Ahv-4a-OuJ"/>
                                             </connections>
                                         </button>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXm-z1-CkP">
-                                            <rect key="frame" x="62" y="94" width="290" height="502"/>
-                                        </scrollView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity Log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEi-Yi-1oT">
                                             <rect key="frame" x="8" y="22" width="359" height="59"/>
                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ysb-dN-HH6">
+                                            <rect key="frame" x="210" y="96" width="127" height="502"/>
+                                        </scrollView>
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXm-z1-CkP">
+                                            <rect key="frame" x="38" y="96" width="130" height="502"/>
+                                        </scrollView>
                                     </subviews>
                                 </view>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -756,6 +759,7 @@
                     <connections>
                         <outlet property="blurView" destination="zVy-gk-1Me" id="WqV-BV-wRj"/>
                         <outlet property="scrollView" destination="FXm-z1-CkP" id="Sc4-p9-3Ap"/>
+                        <outlet property="scrollView2" destination="Ysb-dN-HH6" id="nax-LO-YJ1"/>
                         <outlet property="webView" destination="Ihh-9j-FVi" id="zVe-i2-sV3"/>
                     </connections>
                 </viewController>
