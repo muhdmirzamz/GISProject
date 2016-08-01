@@ -182,6 +182,7 @@ class ProfileViewController: UIViewController {
         timeline.bubbleRadius = 0.5
         
         self.scrollView.addSubview(timeline)
+        view.bringSubviewToFront(timeline)
         
         
         

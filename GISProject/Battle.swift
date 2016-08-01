@@ -161,7 +161,7 @@ class Battle {
 			let activityNum = Int(arc4random_uniform(5) + 1)
 			let ref2 = FIRDatabase.database().reference().child("/Activity/\(activityNum)")
 			let updatedKilled = (self.monsKilled?.integerValue)! + 1
-			ref2.child("activity").setValue("has killed /\(updatedKilled) monsters")
+			ref2.child("activity").setValue("has killed \(updatedKilled) monsters")
 			ref2.child("uid").setValue(userID)
 			ref2.child("name").setValue(self.nameuid)
         })

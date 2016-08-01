@@ -63,8 +63,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		
 		self.reloadData()
         
+        let battle = Battle()
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         let ref2 = FIRDatabase.database().reference().child("/Account/\(uid)")
+        let ref3 = FIRDatabase.database().reference().child("/Friend/\(uid)")
+        
+        ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            for i in snapshot.children {
+                let key = i.key!!
+                let value = snapshot.value!["\(key)"] as? NSNumber
+                if value?.integerValue == 1 {
+                    battle.uidArr?.addObject(key)
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.cardFriends.text = "\((battle.uidArr?.count)!)"
+            })
+        })
         
         ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             
