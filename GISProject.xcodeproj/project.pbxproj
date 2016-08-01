@@ -37,21 +37,8 @@
 		81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */; };
 		81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED3CC01D2B4B9700CABCCC /* TestController.swift */; };
 		81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81F1673B1D29F581009B305D /* User.xcdatamodeld */; };
-		881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F148E1D329C7F00F0F270 /* GradientView.swift */; };
-		881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14901D329CB600F0F270 /* BounceAnimationController.swift */; };
-		881F14931D329CBF00F0F270 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */; };
 		883639EC1D379D7100C99CCB /* friendsmap.html in Resources */ = {isa = PBXBuildFile; fileRef = 883639EB1D379D7100C99CCB /* friendsmap.html */; };
-		888611BD1D3B5B1200C6F4D2 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888611BC1D3B5B1200C6F4D2 /* Camera.swift */; };
-		889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */; };
 		889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */; };
-		88A39DA71D466D3D000DC593 /* OnlineUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A39DA61D466D3D000DC593 /* OnlineUser.swift */; };
-		88AFECFF1D329BC400185ED5 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */; };
-		88AFED011D329C2000185ED5 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AFED001D329C2000185ED5 /* PopOverViewController.swift */; };
-		88DD7ADF1D3BB7E500B64832 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD7ADD1D3BB7E500B64832 /* OutgoingMessage.swift */; };
-		88DD7AE41D3BE2DC00B64832 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD7AE31D3BE2DC00B64832 /* IncomingMessage.swift */; };
-		88EC59691D43A97C00075534 /* ChatMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EC59681D43A97C00075534 /* ChatMapViewController.swift */; };
-		88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */; };
-		88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */; };
 		88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */; };
 		88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */; };
 		88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE141D2138EC00577EC5 /* Friends.swift */; };
@@ -65,6 +52,22 @@
 		AA22DB5F1CE3613900F8BA43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA22DB5D1CE3613900F8BA43 /* LaunchScreen.storyboard */; };
 		AA8B63791D33CB1300BF2289 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B63781D33CB1300BF2289 /* Location.swift */; };
 		AA8B637B1D33CC1F00BF2289 /* Battle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B637A1D33CC1F00BF2289 /* Battle.swift */; };
+		AAED26771D4F904C0042DD2F /* ActivityLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26671D4F904C0042DD2F /* ActivityLogManager.swift */; };
+		AAED26781D4F904C0042DD2F /* ActivityLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26681D4F904C0042DD2F /* ActivityLogTableViewController.swift */; };
+		AAED26791D4F904C0042DD2F /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26691D4F904C0042DD2F /* ActivityLogViewController.swift */; };
+		AAED267A1D4F904C0042DD2F /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED266A1D4F904C0042DD2F /* BounceAnimationController.swift */; };
+		AAED267B1D4F904C0042DD2F /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED266B1D4F904C0042DD2F /* Camera.swift */; };
+		AAED267C1D4F904C0042DD2F /* ChatMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED266C1D4F904C0042DD2F /* ChatMapViewController.swift */; };
+		AAED267D1D4F904C0042DD2F /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED266D1D4F904C0042DD2F /* DimmingPresentationController.swift */; };
+		AAED267E1D4F904C0042DD2F /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED266E1D4F904C0042DD2F /* FriendsCell.swift */; };
+		AAED267F1D4F904C0042DD2F /* FriendsDeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED266F1D4F904C0042DD2F /* FriendsDeckCollectionViewController.swift */; };
+		AAED26801D4F904C0042DD2F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26701D4F904C0042DD2F /* FriendsTableViewController.swift */; };
+		AAED26811D4F904C0042DD2F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26711D4F904C0042DD2F /* GradientView.swift */; };
+		AAED26821D4F904C0042DD2F /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26721D4F904C0042DD2F /* IncomingMessage.swift */; };
+		AAED26831D4F904C0042DD2F /* OnlineUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26731D4F904C0042DD2F /* OnlineUser.swift */; };
+		AAED26841D4F904C0042DD2F /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26741D4F904C0042DD2F /* OutgoingMessage.swift */; };
+		AAED26851D4F904C0042DD2F /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26751D4F904C0042DD2F /* PopOverViewController.swift */; };
+		AAED26861D4F904C0042DD2F /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED26761D4F904C0042DD2F /* SlideOutAnimationController.swift */; };
 		D4A07F8CD0E5ECB803F63164 /* Pods_GISProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC7601BB8BA3643D05F7E8C /* Pods_GISProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,21 +104,8 @@
 		81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		81ED3CC01D2B4B9700CABCCC /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		81F1673C1D29F581009B305D /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
-		881F148E1D329C7F00F0F270 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		881F14901D329CB600F0F270 /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
-		881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		883639EB1D379D7100C99CCB /* friendsmap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = friendsmap.html; sourceTree = "<group>"; };
-		888611BC1D3B5B1200C6F4D2 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDeckCollectionViewController.swift; sourceTree = "<group>"; };
 		889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
-		88A39DA61D466D3D000DC593 /* OnlineUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineUser.swift; sourceTree = "<group>"; };
-		88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
-		88AFED001D329C2000185ED5 /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
-		88DD7ADD1D3BB7E500B64832 /* OutgoingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
-		88DD7AE31D3BE2DC00B64832 /* IncomingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
-		88EC59681D43A97C00075534 /* ChatMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMapViewController.swift; sourceTree = "<group>"; };
-		88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
-		88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDetailViewController.swift; path = GISProject/FriendsDetailViewController.swift; sourceTree = "<group>"; };
 		88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsChatViewController.swift; path = GISProject/FriendsChatViewController.swift; sourceTree = "<group>"; };
 		88EFBE141D2138EC00577EC5 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Friends.swift; path = GISProject/Friends.swift; sourceTree = "<group>"; };
@@ -132,6 +122,22 @@
 		AA22DB601CE3613900F8BA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA8B63781D33CB1300BF2289 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AA8B637A1D33CC1F00BF2289 /* Battle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Battle.swift; sourceTree = "<group>"; };
+		AAED26671D4F904C0042DD2F /* ActivityLogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityLogManager.swift; path = GISProject/ActivityLogManager.swift; sourceTree = "<group>"; };
+		AAED26681D4F904C0042DD2F /* ActivityLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityLogTableViewController.swift; path = GISProject/ActivityLogTableViewController.swift; sourceTree = "<group>"; };
+		AAED26691D4F904C0042DD2F /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityLogViewController.swift; path = GISProject/ActivityLogViewController.swift; sourceTree = "<group>"; };
+		AAED266A1D4F904C0042DD2F /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BounceAnimationController.swift; path = GISProject/BounceAnimationController.swift; sourceTree = "<group>"; };
+		AAED266B1D4F904C0042DD2F /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Camera.swift; path = GISProject/Camera.swift; sourceTree = "<group>"; };
+		AAED266C1D4F904C0042DD2F /* ChatMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatMapViewController.swift; path = GISProject/ChatMapViewController.swift; sourceTree = "<group>"; };
+		AAED266D1D4F904C0042DD2F /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DimmingPresentationController.swift; path = GISProject/DimmingPresentationController.swift; sourceTree = "<group>"; };
+		AAED266E1D4F904C0042DD2F /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsCell.swift; path = GISProject/FriendsCell.swift; sourceTree = "<group>"; };
+		AAED266F1D4F904C0042DD2F /* FriendsDeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDeckCollectionViewController.swift; path = GISProject/FriendsDeckCollectionViewController.swift; sourceTree = "<group>"; };
+		AAED26701D4F904C0042DD2F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsTableViewController.swift; path = GISProject/FriendsTableViewController.swift; sourceTree = "<group>"; };
+		AAED26711D4F904C0042DD2F /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientView.swift; path = GISProject/GradientView.swift; sourceTree = "<group>"; };
+		AAED26721D4F904C0042DD2F /* IncomingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingMessage.swift; path = GISProject/IncomingMessage.swift; sourceTree = "<group>"; };
+		AAED26731D4F904C0042DD2F /* OnlineUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnlineUser.swift; path = GISProject/OnlineUser.swift; sourceTree = "<group>"; };
+		AAED26741D4F904C0042DD2F /* OutgoingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutgoingMessage.swift; path = GISProject/OutgoingMessage.swift; sourceTree = "<group>"; };
+		AAED26751D4F904C0042DD2F /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopOverViewController.swift; path = GISProject/PopOverViewController.swift; sourceTree = "<group>"; };
+		AAED26761D4F904C0042DD2F /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideOutAnimationController.swift; path = GISProject/SlideOutAnimationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,8 +260,8 @@
 		88319B771D4CA2450031F09A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				AAED266B1D4F904C0042DD2F /* Camera.swift */,
 				88EFBE161D2138F100577EC5 /* FriendsDataManager.swift */,
-				888611BC1D3B5B1200C6F4D2 /* Camera.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -263,8 +269,8 @@
 		8877E81A1D3BB7BF00A595DC /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				88DD7ADD1D3BB7E500B64832 /* OutgoingMessage.swift */,
-				88DD7AE31D3BE2DC00B64832 /* IncomingMessage.swift */,
+				AAED26721D4F904C0042DD2F /* IncomingMessage.swift */,
+				AAED26741D4F904C0042DD2F /* OutgoingMessage.swift */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -283,18 +289,21 @@
 				88319B771D4CA2450031F09A /* Utility */,
 				8877E81A1D3BB7BF00A595DC /* Messages */,
 				88EFBE141D2138EC00577EC5 /* Friends.swift */,
-				88EC59681D43A97C00075534 /* ChatMapViewController.swift */,
-				88ECD9AC1D22AB9D005F3C69 /* FriendsCell.swift */,
-				88ECD9AA1D22AAEF005F3C69 /* FriendsTableViewController.swift */,
 				88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */,
 				88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */,
-				889AA4A51D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift */,
-				88AFECFE1D329BC400185ED5 /* DimmingPresentationController.swift */,
-				88AFED001D329C2000185ED5 /* PopOverViewController.swift */,
-				881F14901D329CB600F0F270 /* BounceAnimationController.swift */,
-				881F14921D329CBF00F0F270 /* SlideOutAnimationController.swift */,
-				881F148E1D329C7F00F0F270 /* GradientView.swift */,
-				88A39DA61D466D3D000DC593 /* OnlineUser.swift */,
+				AAED26671D4F904C0042DD2F /* ActivityLogManager.swift */,
+				AAED26681D4F904C0042DD2F /* ActivityLogTableViewController.swift */,
+				AAED26691D4F904C0042DD2F /* ActivityLogViewController.swift */,
+				AAED266A1D4F904C0042DD2F /* BounceAnimationController.swift */,
+				AAED266C1D4F904C0042DD2F /* ChatMapViewController.swift */,
+				AAED266D1D4F904C0042DD2F /* DimmingPresentationController.swift */,
+				AAED266E1D4F904C0042DD2F /* FriendsCell.swift */,
+				AAED266F1D4F904C0042DD2F /* FriendsDeckCollectionViewController.swift */,
+				AAED26701D4F904C0042DD2F /* FriendsTableViewController.swift */,
+				AAED26711D4F904C0042DD2F /* GradientView.swift */,
+				AAED26731D4F904C0042DD2F /* OnlineUser.swift */,
+				AAED26751D4F904C0042DD2F /* PopOverViewController.swift */,
+				AAED26761D4F904C0042DD2F /* SlideOutAnimationController.swift */,
 			);
 			name = Friends;
 			path = ..;
@@ -399,6 +408,7 @@
 				TargetAttributes = {
 					AA22DB501CE3613700F8BA43 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 5Y8ZVY4N62;
 					};
 				};
 			};
@@ -564,43 +574,46 @@
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				6DDF54D81D3E1F5700C9ABEE /* FriendsMapViewController.swift in Sources */,
 				6DADCAA11D3E12E100C2884B /* GeoVisMapViewController.swift in Sources */,
+				AAED267A1D4F904C0042DD2F /* BounceAnimationController.swift in Sources */,
+				AAED26791D4F904C0042DD2F /* ActivityLogViewController.swift in Sources */,
 				6DADCAA41D3E13D700C2884B /* HeatMapViewController.swift in Sources */,
-				888611BD1D3B5B1200C6F4D2 /* Camera.swift in Sources */,
+				AAED26861D4F904C0042DD2F /* SlideOutAnimationController.swift in Sources */,
 				AA8B63791D33CB1300BF2289 /* Location.swift in Sources */,
-				881F148F1D329C7F00F0F270 /* GradientView.swift in Sources */,
-				881F14911D329CB600F0F270 /* BounceAnimationController.swift in Sources */,
+				AAED26811D4F904C0042DD2F /* GradientView.swift in Sources */,
+				AAED267D1D4F904C0042DD2F /* DimmingPresentationController.swift in Sources */,
+				AAED26821D4F904C0042DD2F /* IncomingMessage.swift in Sources */,
 				6D8169EF1D360AC700AC33C6 /* QRViewController.swift in Sources */,
-				88EC59691D43A97C00075534 /* ChatMapViewController.swift in Sources */,
+				AAED26851D4F904C0042DD2F /* PopOverViewController.swift in Sources */,
+				AAED26771D4F904C0042DD2F /* ActivityLogManager.swift in Sources */,
 				6D8169F41D360B1F00AC33C6 /* ProfileViewController.swift in Sources */,
-				88DD7ADF1D3BB7E500B64832 /* OutgoingMessage.swift in Sources */,
 				81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
+				AAED267B1D4F904C0042DD2F /* Camera.swift in Sources */,
 				AA8B637B1D33CC1F00BF2289 /* Battle.swift in Sources */,
 				6DDF54D41D3E1F4900C9ABEE /* WeatherMapViewController.swift in Sources */,
+				AAED267C1D4F904C0042DD2F /* ChatMapViewController.swift in Sources */,
 				6D7F4C071D4F3F7200543F37 /* LastSeenLog.swift in Sources */,
 				88EFBE171D2138F100577EC5 /* FriendsDataManager.swift in Sources */,
 				8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */,
-				88ECD9AB1D22AAEF005F3C69 /* FriendsTableViewController.swift in Sources */,
 				81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */,
 				819E1AC01D3331730070BF51 /* BattleViewController.swift in Sources */,
+				AAED26801D4F904C0042DD2F /* FriendsTableViewController.swift in Sources */,
 				88EFBE151D2138EC00577EC5 /* Friends.swift in Sources */,
 				AA22DB551CE3613800F8BA43 /* AppDelegate.swift in Sources */,
 				6DDF54D01D3E1F3900C9ABEE /* LayerMapViewController.swift in Sources */,
-				88AFECFF1D329BC400185ED5 /* DimmingPresentationController.swift in Sources */,
-				889AA4A61D2D47FF004A9892 /* FriendsDeckCollectionViewController.swift in Sources */,
-				88AFED011D329C2000185ED5 /* PopOverViewController.swift in Sources */,
+				AAED267E1D4F904C0042DD2F /* FriendsCell.swift in Sources */,
 				81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */,
 				6D8169F01D360AC700AC33C6 /* QRReaderViewController.swift in Sources */,
+				AAED26781D4F904C0042DD2F /* ActivityLogTableViewController.swift in Sources */,
 				6D8169F51D360B1F00AC33C6 /* SignupViewController.swift in Sources */,
 				88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */,
 				8156447B1D126CA40028D162 /* Profile.swift in Sources */,
 				88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */,
-				88A39DA71D466D3D000DC593 /* OnlineUser.swift in Sources */,
-				881F14931D329CBF00F0F270 /* SlideOutAnimationController.swift in Sources */,
+				AAED26841D4F904C0042DD2F /* OutgoingMessage.swift in Sources */,
 				81E3D6531D2216D300F3BAF4 /* ActivityLogCell.swift in Sources */,
 				6D8169F61D360B1F00AC33C6 /* LoginViewController.swift in Sources */,
-				88ECD9AD1D22AB9D005F3C69 /* FriendsCell.swift in Sources */,
-				88DD7AE41D3BE2DC00B64832 /* IncomingMessage.swift in Sources */,
+				AAED267F1D4F904C0042DD2F /* FriendsDeckCollectionViewController.swift in Sources */,
+				AAED26831D4F904C0042DD2F /* OnlineUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

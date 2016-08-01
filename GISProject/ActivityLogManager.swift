@@ -21,8 +21,6 @@ class ActivityLogManager: NSObject {
             for record in snapshot.children {
                 let key = record.key!!
                 
-                let
-                
 //                activityLogs.append(ActivityLog(activity: record.value!!["activity"] as! String, uid: record.value!!["uid"] as! String, name: record.value!!["name"] as! String))
 //            }
 //            

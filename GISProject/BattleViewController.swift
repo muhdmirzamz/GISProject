@@ -292,7 +292,7 @@ class BattleViewController: UIViewController {
 			self.timer?.invalidate()
 			
 			// go back to map
-			self.alert = UIAlertController.init(title: "Alright", message: "Going back to the map", preferredStyle: .Alert)
+			self.alert = UIAlertController.init(title: "Awesome", message: "You have defeated the monster", preferredStyle: .Alert)
 			let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
                 // update all the things
 				self.battle?.updatePlayer()

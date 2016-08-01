@@ -37,6 +37,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var ref: FIRDatabaseReference!
 	
+	// for debugging purposes
+	@IBOutlet weak var distanceButton: UIButton!
+	var distanceLimit: Double?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -53,6 +57,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		self.mapView.zoomEnabled = true
 		self.mapView.scrollEnabled = true
 		self.mapView.delegate = self
+		
+		// for debugging purposes
+		self.distanceLimit = 1000
+		self.distanceButton.setTitle("Distance: \(Int(self.distanceLimit!))", forState: .Normal)
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -193,7 +201,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 				let distance = userLocation.distanceFromLocation(boundaryLocation)
 				
 				// follows meters
-				if distance > 1000 {
+				// for debugging purposes
+				if distance > self.distanceLimit! {
 					let alert = UIAlertController.init(title: "Hold on", message: "You have to be at least 50m in range. You are \(Int(distance))m away!", preferredStyle: .Alert)
 					let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
 					alert.addAction(okAction)
@@ -371,6 +380,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let camera = MKMapCamera.init(lookingAtCenterCoordinate: location, fromEyeCoordinate: eyeCoord, eyeAltitude: 1000)
         self.mapView.setCamera(camera, animated: true)
+	}
+	
+	// for debugging purposes
+	@IBAction func changeDistanceLimit() {
+		if self.distanceLimit! == 1000 {
+			self.distanceLimit = 50
+		} else if self.distanceLimit! == 50 {
+			self.distanceLimit = 1000
+		}
+		
+		self.distanceButton.setTitle("Distance: \(Int(self.distanceLimit!))", forState: .Normal)
 	}
 	
     override func didReceiveMemoryWarning() {
