@@ -94,8 +94,14 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         searchController.searchBar.setSearchFieldBackgroundImage(nil, forState: UIControlState.Normal)
         
         //start to load data
+        self.navigationController?.navigationBar.barTintColor =  UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0)
+        
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 28/255, green: 211/255, blue: 235/255, alpha: 1)
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 28/255, green: 211/255, blue: 235/255, alpha: 1)]
         
         
+
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -108,7 +114,9 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //ref to friends in firebase
         let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
         
-        let onlineUsers = FIRDatabase.database().reference().child("Account")
+        let refOnline = FIRDatabase.database().reference().child("Account/\(uid)")
+        
+        
         
         
          ref.observeEventType(FIRDataEventType.ChildChanged, withBlock: { (snapshot) in
@@ -165,7 +173,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         
         self.refreshDataControl.attributedTitle = NSAttributedString(string: "Last update: \(convertedDate)")
-        loadFriends()
+        self.loadFriends()
         
         refreshDataControl.endRefreshing()
         print("refresh ended")
