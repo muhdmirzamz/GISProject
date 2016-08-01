@@ -227,8 +227,8 @@ class ProfileViewController: UIViewController {
                 let ref3 = FIRDatabase.database().reference().child("/Journal/\(key)")
                 
                 ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                    let monsterType = snapshot.value![""] as! String
-                    let timeRetrieve = snapshot.value![""] as! String
+                    let monsterType = snapshot.value!["MonsterType"] as! String
+                    let timeRetrieve = snapshot.value!["Time"] as! String
                     
                   //  let timeConvert =
                     

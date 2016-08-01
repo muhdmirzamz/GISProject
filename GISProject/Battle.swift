@@ -22,11 +22,10 @@ class Battle {
 
     var nameuid: String?
     var monsKilled: NSNumber?
-    var i: Int
     var monsType: String?
     var time: String?
-    var updatedNum: Int
-	
+    var nameJournal: String
+    
 	var selectedAnnotation: Location?
     
 	init() {
@@ -41,8 +40,7 @@ class Battle {
 		
 		self.baseDamage = 0
         
-        self.i = 0
-        self.updatedNum = 0
+        self.nameJournal = ""
     }
     
     func getMonsterHealth() -> Int {
@@ -186,6 +184,10 @@ class Battle {
     
     func updateJournal(){
         let userID = (FIRAuth.auth()?.currentUser?.uid)!
+        let ref4 = FIRDatabase.database().reference().child("/Account")
+        ref4.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            self.nameJournal = snapshot.value!["Name"] as! String
+        })
         let str = (self.selectedAnnotation?.imageString)!
         let monsterType = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
         
@@ -195,6 +197,7 @@ class Battle {
         let ref3 = FIRDatabase.database().reference().child("Journal/\(userID)")
         ref3.child("MonsterType").setValue("has killed a \(monsterType) monster")
         ref3.child("Time").setValue(interval)
+        ref3.child("Name").setValue(nameJournal)
         print("Update journal")
     }
 	
