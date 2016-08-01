@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Image Picker View Controller-->
@@ -844,7 +845,7 @@
         <!--Friend-->
         <scene sceneID="75G-Fi-jWt">
             <objects>
-                <tableViewController id="8lf-Lp-A76" customClass="FriendsTableViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FriendsViewController" id="8lf-Lp-A76" customClass="FriendsTableViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="3C3-w6-rZv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -905,12 +906,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friend" id="pJ1-UG-Bkp">
-                        <barButtonItem key="leftBarButtonItem" title="restore" id="pEn-6w-1VV">
-                            <color key="tintColor" red="1" green="0.93115596909999998" blue="0.034984636270000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="restore:" destination="8lf-Lp-A76" id="maR-XW-IUT"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="restore" id="pEn-6w-1VV">
+                                <color key="tintColor" red="1" green="0.93115596909999998" blue="0.034984636270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="restore:" destination="8lf-Lp-A76" id="maR-XW-IUT"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Notice" id="DD3-uY-yd9">
+                                <connections>
+                                    <action selector="sendNotification:" destination="8lf-Lp-A76" id="RXM-ti-7Xa"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Deck" id="lad-in-zMl">
                             <color key="tintColor" red="1" green="0.93115596909999998" blue="0.034984636270000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

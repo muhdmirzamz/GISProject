@@ -66,6 +66,8 @@ class QRViewController: UIViewController {
         KEY_UID = uid
         onlineUserRef.child(KEY_UID).updateChildValues(["KEY_ISONLINE":true])
         
+        
+        
 //        let dispatch_group = dispatch_group_create()
         
 

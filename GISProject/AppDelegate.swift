@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  GISProject
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     var timer : NSTimer?
     var count = 0
     var seconds = 0
-    
+   
     
     //MARK:  LocationManger fuctions
     
@@ -39,16 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
            // locationManager!.allowsBackgroundLocationUpdates = true
         }
         
-       
-        
-        
-        
-        
         print("have location manager")
         locationManager!.startUpdatingLocation()
-        
-        
-        
         
     }
     
@@ -71,15 +64,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         //update firebase location 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
        let setCoordinateViewController = storyboard.instantiateViewControllerWithIdentifier("qrViewController") as! QRViewController
-                 
-        
-        
         
             setCoordinateViewController.lat = coordinate!.latitude
             setCoordinateViewController.log = coordinate!.longitude
             setCoordinateViewController.updateLocation()
-        
-        
         
         
     }
@@ -107,8 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
                                                        target: self,
                                                        selector: "updateLocationInterval", userInfo: nil,
                                                        repeats: true)
-        
-        
     }
     
     func stopTimer(){
@@ -119,32 +105,76 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         
         seconds--
         //print(seconds)
-        
-        
-        
-        
-        
-        
         if (seconds == 0) {
             // Optional chaining – don’t call 
             // invalidate if timer is null.
             
             timer?.invalidate()
             locationManagerStart()
-            
              setupLocationTimer()
-            
-            
         }
         
     }
+    //
+    func application(application: UIApplication,
+                     didReceiveLocalNotification notification:
+        UILocalNotification) {
+        let state = application.applicationState
+        // We will want to show an alert only when the
+        // application is still running as a foreground
+        // app when the notification is received.
+        //
+        if(state == UIApplicationState.Active)
+        {
+            
+            
+            let alert = UIAlertController(
+            title: "Reminder",
+            message: notification.alertBody,
+            preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK",
+                style: .Default, handler: nil))
+            
+            // Gets the topmost visible view controller
+            //
+            var topViewController = self.window!.rootViewController!
+            while (topViewController.presentedViewController != nil) {
+                topViewController =
+                    topViewController.presentedViewController!;
+            }
+            
+            // Present the alert on top of the topmost
+            // visible controller
+            topViewController.presentViewController(alert,
+                                                    animated: true, completion: nil) }
+        
+        // Request to reload table view data
+        NSNotificationCenter.defaultCenter()
+            .postNotificationName("reloadData", object: self)
+        // Set icon badge number to zero
+        application.applicationIconBadgeNumber = 0;
+        
+        
+    }
+    
+    
     
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		FIRApp.configure()
         
         FIRDatabase.database().persistenceEnabled = true //change
+        // set up local notification
         
-        // setupLocationTimer()
+        if (UIApplication.instancesRespondToSelector(
+                "registerUserNotificationSettings:"))
+        {
+            let notificationSettings =
+                UIUserNotificationSettings( forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            UIApplication.sharedApplication()
+                .registerUserNotificationSettings(notificationSettings)
+        }
+        application.applicationIconBadgeNumber = 0
+        
         
         return true
 	}
@@ -152,8 +182,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
 	func applicationWillResignActive(application: UIApplication) {
 		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
 		// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        
-      
         
 	}
 

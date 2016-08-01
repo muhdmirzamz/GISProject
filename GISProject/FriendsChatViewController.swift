@@ -64,6 +64,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     override func viewWillAppear(animated: Bool) {
         loadUserDefaults()
         
+        
+        
         if (CLLocationManager.locationServicesEnabled())
         {
             locationManager = CLLocationManager()
@@ -76,6 +78,27 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         locationManager!.startUpdatingLocation()
         
     }
+    func checkForChatUsersList() -> Bool{
+       
+        print("checking chat members friends list..")
+        
+        
+        var validUser : Bool = false
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        let refUsers = FIRDatabase.database().reference().child("Friend/\(self.friendsKey)")
+        
+        refUsers.observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
+            print("have?")
+            print(snapshot.hasChild("\(uid)"))
+            validUser = snapshot.hasChild("\(uid)")
+            
+            
+        })
+        
+        return validUser
+    }
+    
+    
     
     override func viewWillDisappear(animated: Bool) {
         // ClearRecentCounter(chatRoomId)
@@ -85,9 +108,16 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         self.senderId = senderKey
         self.senderDisplayName = friendsKey
         
+        
+        //before load friend, check for friends in the friendslist before able to perform any chat
+        let validUser = checkForChatUsersList()
+        
+        //exe when users are in both parties
+        if(validUser == true){
         //set chat room title
         self.navigationItem.title = self.friend.Name
         
@@ -121,6 +151,29 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             }
             
         })
+        
+        }else{
+            
+            var refreshAlert = UIAlertController(title: "Reminder", message: "\(self.friend.Name) is not in your friendsList", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Go Scan Now!", style: .Default, handler: { (action: UIAlertAction!) in
+                print("Go Scan Now!")
+                 self.dismissViewControllerAnimated(true, completion: nil)
+            }))
+            
+           
+            refreshAlert.addAction(UIAlertAction(title: "Later", style: .Cancel, handler: { (action: UIAlertAction!) in
+                print("Later")
+                
+                let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("FriendsViewController")
+                self.showViewController(vc as! UIViewController, sender: vc)
+            }))
+           
+            presentViewController(refreshAlert, animated: true, completion: nil)
+            
+            
+            
+        }
         
                 
     }

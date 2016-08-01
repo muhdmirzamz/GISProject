@@ -144,6 +144,11 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                                 self.restartCapture()
                             }
                             alertView.addButton("Done") {
+                               
+                                //friends notification
+                                //self.sendFriendsNotification()
+                                
+                                
                                 self.dismiss()
                             }
                             alertView.showSuccess("Alright!", subTitle: "\n Friend has been added \n")
@@ -172,6 +177,21 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             }
         }
     }
+    
+    //friends notifiction function
+    func sendFriendsNotification() {
+        print("send from qr view controller")
+        
+        var localNotification = UILocalNotification()
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: 5)
+        localNotification.alertBody = "You just added \(self.messageLabel.text)"
+        localNotification.timeZone = NSTimeZone.defaultTimeZone()
+        localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        
+    }
+    
     
     func addFriendToDB(ownerUIDLocal : String, friendUIDLocal : String) {
         let ref = FIRDatabase.database().reference()
