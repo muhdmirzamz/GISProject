@@ -94,11 +94,13 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         searchController.searchBar.setSearchFieldBackgroundImage(nil, forState: UIControlState.Normal)
         
         //start to load data
-        loadFriends()
+        
         
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+         loadFriends()
         
         //start oberserving
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
@@ -113,12 +115,21 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             print("there are changes")
         
            // self.friends.removeAll();
-           // self.loadFriends()
+            self.loadFriends()
             
         })
         
         ref.observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
+            self.loadFriends()
              print("there are removed")
+        })
+        
+        ref.observeEventType(FIRDataEventType.ChildAdded, withBlock: { (snapshot) in
+            print("there are changes")
+            
+          
+             self.loadFriends()
+            
         })
         
         
