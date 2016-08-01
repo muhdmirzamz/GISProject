@@ -33,23 +33,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     var chatRoomFriend : Friends!
     
     
-    @IBAction func sendNotification(sender: AnyObject) {
-        
-        print("send notification btn")
-        
-        var localNotification = UILocalNotification()
-        localNotification.fireDate = NSDate(timeIntervalSinceNow: 5)
-        localNotification.alertBody = "new Blog Posted at iOScreator.com"
-        localNotification.timeZone = NSTimeZone.defaultTimeZone()
-        localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-        
-        // Request to reload table view data
-        NSNotificationCenter.defaultCenter()
-            .postNotificationName("reloadData", object: self)
-        
-    }
+    
     
     
     @IBAction func restore(sender: AnyObject) {
@@ -117,21 +101,12 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 28/255, green: 211/255, blue: 235/255, alpha: 1)]
         
-        //register for notification
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self,
-                         selector: "loadFriends",
-                         name: "reloadData",
-                         object: nil)
+        
     
 
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-         
-        
-        
         
          loadFriends()
         
@@ -140,10 +115,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         //ref to friends in firebase
         let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
-        
-        
-        
-        
         
         
          ref.observeEventType(FIRDataEventType.ChildChanged, withBlock: { (snapshot) in
@@ -168,7 +139,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                 print("record changed---> \(snapshot.key)")
             
             
-            self.sendFriendsRequestNotification(snapshot.key)
+            //self.sendFriendsRequestNotification(snapshot.key)
           
              self.loadFriends()
             
@@ -177,29 +148,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
     }
     
-     
-    
-    
-    func  sendFriendsRequestNotification(friendsNotification : String)  {
-        
-        print("Send notification from friends table view : \(friendsNotification)")
-        
-        
-        var localNotification = UILocalNotification()
-        localNotification.fireDate = NSDate(timeIntervalSinceNow: 5)
-        localNotification.alertBody = "Receive Friends Notification \(friendsNotification)"
-        localNotification.timeZone = NSTimeZone.defaultTimeZone()
-        localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-        
-        // Request to reload table view data
-        NSNotificationCenter.defaultCenter()
-            .postNotificationName("reloadData", object: self)
-        
-        
-        
-    }
     
     //UISearchBar Delegate
     //respond to the search bar
