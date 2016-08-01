@@ -154,7 +154,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         }else{
             
-            var refreshAlert = UIAlertController(title: "Reminder", message: "Ask \(self.friend.Name) Scan ", preferredStyle: UIAlertControllerStyle.Alert)
+            var refreshAlert = UIAlertController(title: "Reminder", message: "Ask \(self.friend.Name)", preferredStyle: UIAlertControllerStyle.Alert)
             
             refreshAlert.addAction(UIAlertAction(title: "Scan My Card Now!", style: .Default, handler: { (action: UIAlertAction!) in
                 print("Go Scan Now!")
