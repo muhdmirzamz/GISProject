@@ -75,6 +75,7 @@ class Battle {
 			let prevMonstersKilled = snapshot.value!["Monsters killed"] as? NSNumber
 			currMonstersKilled = (prevMonstersKilled?.integerValue)! + 1
 			ref.child("/\(userID)/Monsters killed").setValue(currMonstersKilled)
+            print("Update player")
 		})
 	}
 	
@@ -83,18 +84,21 @@ class Battle {
 		// set 0 to it to indicate that card has been used
 		let userID = (FIRAuth.auth()?.currentUser?.uid)!
 		let ref = FIRDatabase.database().reference().child("/Friend")
-		
+
 		for i in 0 ..< (self.amountOfCardsToUse?.integerValue)! {
-			let randomIndex = Int(arc4random()) % (self.amountOfCardsToUse?.integerValue)!
-			let randomUid = self.uidArr![randomIndex] as! String
-			ref.child("/\(userID)/\(randomUid)").setValue(0)
+			let uid = self.uidArr![i] as! String
+			ref.child("/\(userID)/\(uid)").setValue(0)
+
+            print("Setting card to 0")
 		}
+        
+        print("Update cards")
 	}
     
     func updateMonster() {
         let random = Int(arc4random()) % 5
         var monsterImg: UIImage?
-        print(random)
+        print("Random monster id: \(random)")
         
         var imageString = ""
         
@@ -115,6 +119,8 @@ class Battle {
         let ref = FIRDatabase.database().reference().child("/Location")
         let key = (self.selectedAnnotation?.key)!
         ref.child("/\(key)/image string").setValue(imageString)
+        
+        print("Update monster")
     }
 	
     func updatePreviousLocation() {
@@ -123,7 +129,7 @@ class Battle {
         
         let ref = FIRDatabase.database().reference().child("/PreviousLocation")
         ref.child("/\(monsterType)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-            print("Count: \(snapshot.childrenCount)")
+            print("Previous location count: \(snapshot.childrenCount)")
 			
 			let index: Int
 			
@@ -138,6 +144,8 @@ class Battle {
 			ref.child("/\(monsterType)/\(index)/latitude").setValue((self.selectedAnnotation?.coordinate.latitude)!)
 			ref.child("/\(monsterType)/\(index)/longitude").setValue((self.selectedAnnotation?.coordinate.longitude)!)
         })
+        
+        print("Update previous location")
     }
     
 	func updateLocation() {
@@ -152,6 +160,7 @@ class Battle {
 		let key = (self.selectedAnnotation?.key)!
 		ref.child("/\(key)/latitude").setValue(latitudeRange)
 		ref.child("/\(key)/longitude").setValue(longitudeRange)
+        print("Update location")
 	}
     
     func updateActivity() {
@@ -161,8 +170,8 @@ class Battle {
         ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             self.monsKilled = snapshot.value!["Monsters killed"] as? NSNumber
             self.nameuid = snapshot.value!["Name"] as! String
-            print(self.nameuid)
-            print(self.monsKilled)
+            print(self.nameuid!)
+            print((self.monsKilled?.integerValue)!)
 			
 			// Update activity table
 			let activityNum = Int(arc4random_uniform(10) + 1)
@@ -172,6 +181,7 @@ class Battle {
 			ref2.child("uid").setValue(userID)
 			ref2.child("name").setValue(self.nameuid)
         })
+        print("Update activity")
     }
     
     func updateJournal(){
@@ -185,6 +195,7 @@ class Battle {
         let ref3 = FIRDatabase.database().reference().child("Journal/\(userID)")
         ref3.child("MonsterType").setValue("has killed a \(monsterType) monster")
         ref3.child("Time").setValue(interval)
+        print("Update journal")
     }
 	
 }
