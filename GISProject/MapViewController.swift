@@ -11,11 +11,19 @@ import CoreLocation
 import MapKit
 import Firebase
 import CoreData
+import Bluuur
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, BattleProtocol {
 	
 	@IBOutlet var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var blurView: MLWLiveBlurView!
 	@IBOutlet var mapView: MKMapView!
+    @IBOutlet weak var imageProfile: UIImageView!
+    @IBOutlet weak var cardFriends: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var imageOwnCard: UIImageView!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var damageLabel: UILabel!
 	
 	var locationManager: CLLocationManager?
 	
@@ -26,6 +34,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	
 	let userID = (FIRAuth.auth()?.currentUser?.uid)!
 	var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    var ref: FIRDatabaseReference!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,10 +57,75 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+        blurView.blurProgress = 0.6
 		
 		print("Hello MAP")
 		
 		self.reloadData()
+        
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        let ref2 = FIRDatabase.database().reference().child("/Account/\(uid)")
+        
+        ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            
+            let level = snapshot.value!["Level"] as! NSNumber
+            let monstersKilled = snapshot.value!["Monsters killed"] as! NSNumber
+            let damage = snapshot.value!["Base Damage"] as! NSNumber
+            let name = snapshot.value!["Name"] as! String
+            let pict = snapshot.value!["Picture"] as! NSNumber
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.nameLabel.text = name
+                self.levelLabel.text = String(level.intValue)
+                self.damageLabel.text = String(damage.intValue)
+                
+                switch pict.intValue {
+                case 0 :
+                    self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
+                    self.imageProfile.layer.borderWidth = 2.0
+                    self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
+                    self.imageProfile.image = UIImage(named: "ProfileBlack")
+                case 1 :
+                    self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
+                    self.imageProfile.layer.borderWidth = 2.0
+                    self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
+                    self.imageProfile.image = UIImage(named: "ProfileBlue")
+                case 2 :
+                    self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
+                    self.imageProfile.layer.borderWidth = 2.0
+                    self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
+                    self.imageProfile.image = UIImage(named: "ProfileGreen")
+                case 3 :
+                    self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
+                    self.imageProfile.layer.borderWidth = 2.0
+                    self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
+                    self.imageProfile.image = UIImage(named: "ProfileOrange")
+                case 4 :
+                    self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
+                    self.imageProfile.layer.borderWidth = 2.0
+                    self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
+                    self.imageProfile.image = UIImage(named: "ProfilePurple")
+                case 5 :
+                    self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
+                    self.imageProfile.layer.borderWidth = 2.0
+                    self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
+                    self.imageProfile.image = UIImage(named: "ProfileRed")
+                case 6 :
+                    self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
+                    self.imageProfile.layer.borderWidth = 2.0
+                    self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
+                    self.imageProfile.image = UIImage(named: "ProfileSponge")
+                default:
+                    self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
+                    self.imageProfile.layer.borderWidth = 2.0
+                    self.imageProfile.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1).CGColor
+                    self.imageProfile.image = UIImage(named: "ProfileBlack")
+                }
+                
+            })
+            
+        })
+        view.bringSubviewToFront(imageProfile)
 	}
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -86,7 +161,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 			return annotationView
 		}
 		
-		return nil
+        return nil
 	}
 	
 	func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
@@ -157,10 +232,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                             }
                             
                             userCanUseCard = true
-                            
+                            imageOwnCard.alpha = 1.0
                             break
                         } else {
                             userCanUseCard = false
+                            imageOwnCard.alpha = 0.1
                         }
                     }
                 }
