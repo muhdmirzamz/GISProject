@@ -154,15 +154,15 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         }else{
             
-            var refreshAlert = UIAlertController(title: "Reminder", message: "\(self.friend.Name) is not in your friendsList", preferredStyle: UIAlertControllerStyle.Alert)
+            var refreshAlert = UIAlertController(title: "Reminder", message: "Ask \(self.friend.Name) Scan ", preferredStyle: UIAlertControllerStyle.Alert)
             
-            refreshAlert.addAction(UIAlertAction(title: "Go Scan Now!", style: .Default, handler: { (action: UIAlertAction!) in
+            refreshAlert.addAction(UIAlertAction(title: "Scan My Card Now!", style: .Default, handler: { (action: UIAlertAction!) in
                 print("Go Scan Now!")
                  self.dismissViewControllerAnimated(true, completion: nil)
             }))
             
            
-            refreshAlert.addAction(UIAlertAction(title: "Later", style: .Cancel, handler: { (action: UIAlertAction!) in
+            refreshAlert.addAction(UIAlertAction(title: "Scan Later", style: .Cancel, handler: { (action: UIAlertAction!) in
                 print("Later")
                 
                 let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("FriendsViewController")
