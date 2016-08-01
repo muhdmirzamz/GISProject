@@ -110,8 +110,8 @@ class BattleViewController: UIViewController {
 				self.presentViewController(self.alert!, animated: true, completion: nil)
 			} else {
 				self.battle?.amountOfCardsToUse = NSNumber.init(integer: Int.init(text!)!)
-				print((self.battle?.amountOfCardsToUse!.integerValue)!)
-				print((self.battle?.uidArr?.count)!)
+//				print((self.battle?.amountOfCardsToUse!.integerValue)!)
+//				print((self.battle?.uidArr?.count)!)
 				
 				if (self.battle?.amountOfCardsToUse?.integerValue)! > (self.battle?.amountOfCardsAvailable?.integerValue)! {
 					print("Dont have enough")
@@ -185,7 +185,7 @@ class BattleViewController: UIViewController {
 				fireDate = NSCalendar.currentCalendar().dateFromComponents(components)
 			}
             
-            self.alert = UIAlertController.init(title: "Hold up", message: "You need to wait until \(dateFormatter.stringFromDate(fireDate!))\(timePeriod) tomorrow", preferredStyle: .Alert)
+            self.alert = UIAlertController.init(title: "Hold up", message: "You need to wait until \(dateFormatter.stringFromDate(fireDate!))\(timePeriod)", preferredStyle: .Alert)
             let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
             self.alert!.addAction(okAction)
             
@@ -283,8 +283,8 @@ class BattleViewController: UIViewController {
 						self.alert!.addAction(okAction)
 						
 						self.presentViewController(self.alert!, animated: true, completion: nil)
-					} else {
-						self.userCardAvailable.text = "Not available"
+					} else if self.isUserCardAvailable() == true {
+						self.userCardAvailable.text = "Available"
 					}
 				})
 			}
@@ -296,7 +296,7 @@ class BattleViewController: UIViewController {
 			let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
                 // update all the things
 				self.battle?.updatePlayer()
-				self.battle?.updateCards()
+				self.battle?.updateCards()                
 				self.battle?.updateMonster()
                 self.battle?.updatePreviousLocation()
 				self.battle?.updateLocation()
@@ -319,7 +319,7 @@ class BattleViewController: UIViewController {
                     }
                     
                     self.battle!.amountOfCardsAvailable = NSNumber(integer: Int((self.battle!.uidArr?.count)!))
-                    print((self.battle!.amountOfCardsAvailable?.integerValue)!)
+                    print("Amount of cards available: \((self.battle!.amountOfCardsAvailable?.integerValue)!)")
                     
                     // set label
                     self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)

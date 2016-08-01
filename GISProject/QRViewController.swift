@@ -159,12 +159,12 @@ class QRViewController: UIViewController {
     
     //xingyu code
     func updateLocation(){
-        print("-->\(self.lat)")
-        print("-->\(self.log)")
+//        print("-->\(self.lat)")
+//        print("-->\(self.log)")
         sendUid = KEY_UID
         var ref =  FIRDatabase.database().reference().child("/Account/")
-        print(KEY_UID)
-        print(ref)
+//        print(KEY_UID)
+//        print(ref)
         if(KEY_UID != ""){
             ref.childByAppendingPath(KEY_UID).updateChildValues(["lat":self.lat])
             ref.childByAppendingPath(KEY_UID).updateChildValues(["lng":self.log])

@@ -56,8 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         
         coordinate = newLocation.coordinate
         
-       print(coordinate!.longitude)
-        print(coordinate!.latitude)
+       //print(coordinate!.longitude)
+        //print(coordinate!.latitude)
         
         locationManagerStop()
         
