@@ -183,119 +183,126 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
 		// checks if user has enabled gps
 		if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
-			let selectedAnnotation2 = mapView.selectedAnnotations.first as? Location
-			
-		//you need this for measuring distance between battle locations and you
-		let boundaryLocation = CLLocation.init(latitude: (selectedAnnotation2?.coordinate.latitude)!, longitude: (selectedAnnotation2?.coordinate.longitude)!)
-		let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
-		let distance = userLocation.distanceFromLocation(boundaryLocation)
-		
-		// follows meters
-		if distance > 50 {
-			let alert = UIAlertController.init(title: "Hold on", message: "You have to be at least 50m in range. You are \(Int(distance))m away!", preferredStyle: .Alert)
-			let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
-			alert.addAction(okAction)
-			self.presentViewController(alert, animated: true, completion: nil)
-		} else {
-			// setting up the next view controller
-			let selectedAnnotation = mapView.selectedAnnotations.first as? Location
-			let battleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("BattleViewController") as? BattleViewController
-			battleVC?.selectedAnnotation = selectedAnnotation
-			battleVC?.imageString = selectedAnnotation?.imageString
-			battleVC?.delegate = self
-			
-			// this is used so that when the presented view controller comes on, the parent view controller stays visible in the background
-			// property set here because it is the root view for this hierarchy
-			battleVC?.definesPresentationContext = true
-			battleVC?.modalPresentationStyle = .OverCurrentContext
-			
-			// check for uid entry in Date entity of core data
-			// this checks if user has used their own card
-			var userCanUseCard = true
-			
-			let entity = NSEntityDescription.entityForName("Date", inManagedObjectContext: self.appDelegate.managedObjectContext)
-			let sortDescriptor = NSSortDescriptor.init(key: "uid", ascending: true)
-			let fetchReq = NSFetchRequest()
-			fetchReq.entity = entity
-			fetchReq.sortDescriptors = [sortDescriptor]
-			
-			let fetchResController = NSFetchedResultsController.init(fetchRequest: fetchReq, managedObjectContext: self.appDelegate.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-			
-			do {
-				try fetchResController.performFetch()
+			// user location must have a value
+			if self.userLat != nil && self.userLong != nil {
+				let selectedAnnotation = mapView.selectedAnnotations.first as? Location
 				
-				for i in fetchResController.fetchedObjects! {
-					let object = i as? NSManagedObject
-					
-					if (FIRAuth.auth()?.currentUser?.uid)! == (object?.valueForKey("uid"))! as! String {
-						let storedDate = object?.valueForKey("date") as? NSDate
-						
-						print(storedDate?.timeIntervalSinceNow)
-						
-						let dateFormatter = NSDateFormatter()
-						dateFormatter.dateFormat = "HH:mm dd-MM-yyyy"
-						print("Stored date: \(dateFormatter.stringFromDate(storedDate!))")
-						
-						// if the date has past, delete the object
-						// if stored date has passed, the time interval between now and the stored date should be a negative
-						if storedDate?.timeIntervalSinceNow < 0 {
-							self.appDelegate.managedObjectContext.deleteObject(object!)
-							
-							do {
-								try self.appDelegate.managedObjectContext.save()
-							} catch {
-								print("Unable to delete object")
-							}
-							
-							userCanUseCard = true
-							
-							break
-						} else {
-							userCanUseCard = false
-						}
-					}
-				}
-			} catch {
-				print("Unable to fetch")
-			}
-			
-			let battle = Battle()
-			
-			let ref = FIRDatabase.database().reference().child("/Friend")
-			ref.child("/\(self.userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-				for i in snapshot.children {
-					let key = i.key!!
-					let value = snapshot.value!["\(key)"] as? NSNumber
-					
-					if value?.integerValue == 1 {
-						battle.uidArr?.addObject(key)
-					}
-				}
+				//you need this for measuring distance between battle locations and you
+				let boundaryLocation = CLLocation.init(latitude: (selectedAnnotation?.coordinate.latitude)!, longitude: (selectedAnnotation?.coordinate.longitude)!)
+				let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
+				let distance = userLocation.distanceFromLocation(boundaryLocation)
 				
-				battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
-				
-				print(userCanUseCard)
-				
-				// be sure to check if own card is available too
-				if (userCanUseCard == false && (battle.amountOfCardsAvailable?.integerValue)! == 0) {
-					dispatch_async(dispatch_get_main_queue(), {
-						let alert = UIAlertController.init(title: "Hold up", message: "Sorry you don't have enough cards", preferredStyle: .Alert)
-						let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
-						alert.addAction(okAction)
-						self.presentViewController(alert, animated: true, completion: nil)
-					})
+				// follows meters
+				if distance > 50 {
+					let alert = UIAlertController.init(title: "Hold on", message: "You have to be at least 50m in range. You are \(Int(distance))m away!", preferredStyle: .Alert)
+					let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+					alert.addAction(okAction)
+					self.presentViewController(alert, animated: true, completion: nil)
 				} else {
-					dispatch_async(dispatch_get_main_queue(), {
-						battleVC?.battle = battle
+					// setting up the next view controller
+					let battleVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("BattleViewController") as? BattleViewController
+					battleVC?.selectedAnnotation = selectedAnnotation
+					battleVC?.imageString = selectedAnnotation?.imageString
+					battleVC?.delegate = self
+					
+					// this is used so that when the presented view controller comes on, the parent view controller stays visible in the background
+					// property set here because it is the root view for this hierarchy
+					battleVC?.definesPresentationContext = true
+					battleVC?.modalPresentationStyle = .OverCurrentContext
+					
+					// check for uid entry in Date entity of core data
+					// this checks if user has used their own card
+					var userCanUseCard = true
+					
+					let entity = NSEntityDescription.entityForName("Date", inManagedObjectContext: self.appDelegate.managedObjectContext)
+					let sortDescriptor = NSSortDescriptor.init(key: "uid", ascending: true)
+					let fetchReq = NSFetchRequest()
+					fetchReq.entity = entity
+					fetchReq.sortDescriptors = [sortDescriptor]
+					
+					let fetchResController = NSFetchedResultsController.init(fetchRequest: fetchReq, managedObjectContext: self.appDelegate.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+					
+					do {
+						try fetchResController.performFetch()
 						
-						// make this a clear background
-						battleVC?.view.backgroundColor = UIColor.clearColor()
+						for i in fetchResController.fetchedObjects! {
+							let object = i as? NSManagedObject
+							
+							if (FIRAuth.auth()?.currentUser?.uid)! == (object?.valueForKey("uid"))! as! String {
+								let storedDate = object?.valueForKey("date") as? NSDate
+								
+								print(storedDate?.timeIntervalSinceNow)
+								
+								let dateFormatter = NSDateFormatter()
+								dateFormatter.dateFormat = "HH:mm dd-MM-yyyy"
+								print("Stored date: \(dateFormatter.stringFromDate(storedDate!))")
+								
+								// if the date has past, delete the object
+								// if stored date has passed, the time interval between now and the stored date should be a negative
+								if storedDate?.timeIntervalSinceNow < 0 {
+									self.appDelegate.managedObjectContext.deleteObject(object!)
+									
+									do {
+										try self.appDelegate.managedObjectContext.save()
+									} catch {
+										print("Unable to delete object")
+									}
+									
+									userCanUseCard = true
+									
+									break
+								} else {
+									userCanUseCard = false
+								}
+							}
+						}
+					} catch {
+						print("Unable to fetch")
+					}
+					
+					let battle = Battle()
+					
+					let ref = FIRDatabase.database().reference().child("/Friend")
+					ref.child("/\(self.userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+						for i in snapshot.children {
+							let key = i.key!!
+							let value = snapshot.value!["\(key)"] as? NSNumber
+							
+							if value?.integerValue == 1 {
+								battle.uidArr?.addObject(key)
+							}
+						}
 						
-						self.presentViewController(battleVC!, animated: true, completion: nil)
+						battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
+						
+						print(userCanUseCard)
+						
+						// be sure to check if own card is available too
+						if (userCanUseCard == false && (battle.amountOfCardsAvailable?.integerValue)! == 0) {
+							dispatch_async(dispatch_get_main_queue(), {
+								let alert = UIAlertController.init(title: "Hold up", message: "Sorry you don't have enough cards", preferredStyle: .Alert)
+								let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+								alert.addAction(okAction)
+								self.presentViewController(alert, animated: true, completion: nil)
+							})
+						} else {
+							dispatch_async(dispatch_get_main_queue(), {
+								battleVC?.battle = battle
+								
+								// make this a clear background
+								battleVC?.view.backgroundColor = UIColor.clearColor()
+								
+								self.presentViewController(battleVC!, animated: true, completion: nil)
+							})
+						}
 					})
 				}
-			})
-		  }
+			} else {
+				let alert = UIAlertController.init(title: "Hold up", message: "Please wait for your location to stabilise in a few seconds", preferredStyle: .Alert)
+				let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
+				alert.addAction(okAction)
+				self.presentViewController(alert, animated: true, completion: nil)
+			}
 		} else {
 			let alert = UIAlertController.init(title: "Hold up", message: "Sorry, location services is not enabled. Do you want to enable it?", preferredStyle: .Alert)
 			let noAction = UIAlertAction.init(title: "No", style: .Default, handler: nil)
