@@ -193,7 +193,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 				let distance = userLocation.distanceFromLocation(boundaryLocation)
 				
 				// follows meters
-				if distance > 50 {
+				if distance > 1000 {
 					let alert = UIAlertController.init(title: "Hold on", message: "You have to be at least 50m in range. You are \(Int(distance))m away!", preferredStyle: .Alert)
 					let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
 					alert.addAction(okAction)
