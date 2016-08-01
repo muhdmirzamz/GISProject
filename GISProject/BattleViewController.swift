@@ -131,8 +131,8 @@ class BattleViewController: UIViewController {
 		}
 		let cancelAction = UIAlertAction.init(title: "Cancel", style: .Default, handler: nil)
 		
-		alert!.addAction(okAction)
 		alert!.addAction(cancelAction)
+		alert!.addAction(okAction)
 		
 		self.presentViewController(alert!, animated: true, completion: nil)
 	}
@@ -169,11 +169,23 @@ class BattleViewController: UIViewController {
 		}
 		
         if userCanUseCard == false {
-            let fireDate = object!.valueForKey("date") as? NSDate
+            var fireDate = object!.valueForKey("date") as? NSDate
             let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "HH:mm dd-MM-yyyy"
+            //dateFormatter.dateFormat = "HH:mm dd-MM-yyyy"
+			dateFormatter.dateFormat = "HH:mm"
+			
+			var timePeriod = ""
+			let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute], fromDate:fireDate!)
+			if components.hour <= 11 && components.minute <= 59 {
+				timePeriod = "am"
+			} else {
+				timePeriod = "pm"
+				
+				components.hour = components.hour - 12
+				fireDate = NSCalendar.currentCalendar().dateFromComponents(components)
+			}
             
-            self.alert = UIAlertController.init(title: "Hold up", message: "You need to wait until \(dateFormatter.stringFromDate(fireDate!))", preferredStyle: .Alert)
+            self.alert = UIAlertController.init(title: "Hold up", message: "You need to wait until \(dateFormatter.stringFromDate(fireDate!))\(timePeriod) tomorrow", preferredStyle: .Alert)
             let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
             self.alert!.addAction(okAction)
             
@@ -208,9 +220,9 @@ class BattleViewController: UIViewController {
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "decreaseMonsterHealth", userInfo: nil, repeats: true)
             }
             let noAction = UIAlertAction.init(title: "No", style: .Default, handler: nil)
-            
+			
+			alert!.addAction(noAction)
             alert!.addAction(yesAction)
-            alert!.addAction(noAction)
             
             self.presentViewController(alert!, animated: true, completion: nil)
         }
@@ -232,7 +244,7 @@ class BattleViewController: UIViewController {
 				// stop timer to avoid health bar glitch
 				self.timer?.invalidate()
 				
-                // update all the things
+                // update all the cards
 				self.battle?.updateCards()
 				
 				// update the number of extra cards
