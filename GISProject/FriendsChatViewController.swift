@@ -61,6 +61,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     var friendsKey : String!
     var senderName : String!
     
+    var validChat:Bool!
+    
     override func viewWillAppear(animated: Bool) {
         loadUserDefaults()
         
@@ -78,24 +80,12 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         locationManager!.startUpdatingLocation()
         
     }
-    func checkForChatUsersList() -> Bool{
-       
-        print("checking chat members friends list..")
+    func checkForChatUsersList(){
         
         
-        var validUser : Bool = false
-        let uid = (FIRAuth.auth()?.currentUser?.uid)!
-        let refUsers = FIRDatabase.database().reference().child("Friend/\(self.friendsKey)")
         
-        refUsers.observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
-            print("have?")
-            print(snapshot.hasChild("\(uid)"))
-            validUser = snapshot.hasChild("\(uid)")
-            
-            
-        })
         
-        return validUser
+        
     }
     
     
@@ -112,35 +102,45 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         self.senderId = senderKey
         self.senderDisplayName = friendsKey
         
+        self.validChat = false;
         
-        //before load friend, check for friends in the friendslist before able to perform any chat
-        let validUser = checkForChatUsersList()
         
-        //exe when users are in both parties
-        if(validUser == true){
+        
+        
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        let refUsers = FIRDatabase.database().reference().child("Friend/\(self.friendsKey)")
+        
+        refUsers.observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
+            print("have?")
+            print(snapshot.hasChild("\(uid)"))
+            self.validChat = snapshot.hasChild("\(uid)")
+            print("result result: \(self.validChat)")
+          
+        
+        if(self.validChat == true){
         //set chat room title
         self.navigationItem.title = self.friend.Name
         
         //no avatar yet
-        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
-        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
+        self.collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
+        self.collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
         
         
         self.getAvatars()
         
         
-        lookForKey()
+        self.lookForKey()
         //load firebase messages
         
         
         self.inputToolbar?.contentView?.textView?.placeHolder = "New Message"
         
-             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: "addTapped:")
+             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: "addTapped:")
         
   
  
         
-           collectionView!.collectionViewLayout.springinessEnabled = true
+           self.collectionView!.collectionViewLayout.springinessEnabled = true
  
         let myKey = FIRDatabase.database().reference().child("Account/\(self.senderKey)")
         
@@ -166,14 +166,16 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
                 print("Later")
                 
                 let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("FriendsViewController")
-                self.showViewController(vc as! UIViewController, sender: vc)
+                self.navigationController?.popViewControllerAnimated(true)
+            
+                
+               
             }))
            
-            presentViewController(refreshAlert, animated: true, completion: nil)
-            
-            
-            
+            self.presentViewController(refreshAlert, animated: true, completion: nil)
         }
+        })
+        
         
                 
     }
