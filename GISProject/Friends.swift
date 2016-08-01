@@ -14,15 +14,17 @@ class Friends{
     var Level: Double
     var ThumbnailImgUrl : String
     var myKey : String
+    var isOnline : Bool
     
     
     
-    init(name: String,level:Double,thumbnailImgUrl:String,myKey:String)
+    init(name: String,level:Double,thumbnailImgUrl:String,myKey:String,online:Bool)
     {
         self.Name = name
         self.Level = level
         self.ThumbnailImgUrl = thumbnailImgUrl
         self.myKey = myKey
+        self.isOnline = online
     }
 }
  

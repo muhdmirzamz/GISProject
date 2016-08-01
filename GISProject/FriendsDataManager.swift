@@ -85,7 +85,7 @@ class FriendsDataManager: NSObject {
             var username : String!
             var level : Double!
             var myKey: String!
-            
+            var online :Bool!
             
             ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
                 
@@ -103,15 +103,24 @@ class FriendsDataManager: NSObject {
                         // Get user value
                         username = snapshot.value!["Name"] as! String
                         level = snapshot.value!["Level"] as! Double
+                         online = snapshot.value!["KEY_ISONLINE"] as! Bool
                         //let imageUrl = snapshot.value!["Picture"] as! Double
                         myKey = snapshot.key
                         
                         //print(username)
                         
+                        
+                        if(online == true){
+                            print(snapshot.value!["Name"] as! String)
+                            
+                        }
+                        
+                        
                         friendsList.append(Friends(name: username,
                             level: level,
                             thumbnailImgUrl: "",
-                            myKey : myKey))
+                            myKey : myKey,
+                            online: online))
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             onComplete(friendsList)

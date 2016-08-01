@@ -97,7 +97,32 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         loadFriends()
         
     }
-    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //start oberserving
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        //ref to friends in firebase
+        let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
+        
+        let onlineUsers = FIRDatabase.database().reference().child("Account")
+        
+        
+         ref.observeEventType(FIRDataEventType.ChildChanged, withBlock: { (snapshot) in
+            print("there are changes")
+        
+           // self.friends.removeAll();
+           // self.loadFriends()
+            
+        })
+        
+        ref.observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
+             print("there are removed")
+        })
+        
+        
+    }
 
     
     //UISearchBar Delegate
@@ -236,6 +261,14 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //updating the text labels
         cell.name.text = friend.Name
         cell.level.setTitle("Lvl:\(levelString)", forState: UIControlState.Normal)
+        
+        if(friend.isOnline == true){
+            cell.friendsCurrentLocatuon.text = "Online"
+            
+        }else{
+             cell.friendsCurrentLocatuon.text = "Off"
+        }
+        
         
         
         //load and update friends avatimages asynchronous from helper class
