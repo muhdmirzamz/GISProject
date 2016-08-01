@@ -34,6 +34,7 @@ class ProfileViewController: UIViewController {
     var ref: FIRDatabaseReference!
     var delegate: ProfileProtocol?
     
+    var lastSeen: [LastSeenLog] = []
     var activityLogs: [ActivityLog] = []
     var i = 0
     var boolActivity = true
@@ -215,39 +216,40 @@ class ProfileViewController: UIViewController {
                 self.activityLogs.append(Activity)
             }
         })
-        let uid = (FIRAuth.auth()?.currentUser?.uid)!
-        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
-        
-        ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-            for record in snapshot.children {
-                let key = record.key!!
-                
-                print(key)
-                
-                let ref3 = FIRDatabase.database().reference().child("/Journal/\(key)")
-                
-                ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                    let monsterType = snapshot.value!["MonsterType"] as! String
-                    let timeRetrieve = snapshot.value!["Time"] as! String
-                    
-                  //  let timeConvert =
-                    
-                    let point = ISPoint(title: timeRetrieve)
-                    point.description = monsterType
-                    timeline2.points.append(point)
-                    point.lineColor = .blueColor()
-                })
-                //                let uid = record.value!!["uid"] as! String
-                //                let activity = record.value!!["activity"] as! String
-                //                let name = record.value!!["name"] as! String
-                //
-                //
-                //                let Activity = ActivityLog.init(key: key, activity: activity, uid: uid, name: name)
-                //                
-                //                self.activityLogs.append(Activity)
-            }
-        })
     }
+   //     let uid = (FIRAuth.auth()?.currentUser?.uid)!
+//        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
+//        
+//        ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+//            for record in snapshot.children {
+//                let key = record.key!!
+//                
+//                print(key)
+//        
+//                let ref3 = FIRDatabase.database().reference().child("/Journal/1gpYuTJr13OPfGPkmvlQSCUI5jI3")
+//                
+//                ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+//                    let monsterType = snapshot.value!["MonsterType"] as! String
+//                    let timeRetrieve = snapshot.value!["Time"] as! NSNumber
+//                    let nameRetrieve = snapshot.value!["Name"] as! String
+//                    
+//                    //let timeConvert = timeRetrieve.integerValue
+//                    let timeConvert = String(timeRetrieve)
+//                    
+//                    let point = ISPoint(title: nameRetrieve)
+//                    point.description = monsterType
+//                    timeline2.points.append(point)
+//                    point.lineColor = .blueColor()
+//                    let lastSeen = LastSeenLog.init(monsterType: monsterType, time: timeConvert, name: nameRetrieve)
+//                    self.lastSeen.append(lastSeen)
+//                
+//                //                let uid = record.value!!["uid"] as! String
+//                //                let activity = record.value!!["activity"] as! String
+//                //                let name = record.value!!["name"] as! String
+//        
+//                //                self.activityLogs.append(Activity)
+//        })
+//    }
 
-
+    
 }
