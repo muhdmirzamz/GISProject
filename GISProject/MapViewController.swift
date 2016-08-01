@@ -57,7 +57,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-        blurView.blurProgress = 0.6
+        blurView.blurProgress = 0.5
 		
 		print("Hello MAP")
 		

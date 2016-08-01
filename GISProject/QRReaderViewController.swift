@@ -144,9 +144,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                                 self.restartCapture()
                             }
                             alertView.addButton("Done") {
-                               
-                                
-                                
                                 self.dismiss()
                             }
                             alertView.showSuccess("Alright!", subTitle: "\n Friend has been added \n")
@@ -176,9 +173,9 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         }
     }
     
- 
-    
-    
+    //
+    // Add friend to DB
+    //
     func addFriendToDB(ownerUIDLocal : String, friendUIDLocal : String) {
         let ref = FIRDatabase.database().reference()
         ref.child("/Friend/\(ownerUIDLocal)/\(friendUIDLocal)").setValue(1)
@@ -199,6 +196,14 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     func setBlur() {
         blurView.blurProgress = 1
     }
+    
+    //
+    // Jump user to settings to enable camera permissions
+    //
+    @IBAction func enableCamera(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+    }
+    
 }
 
 
