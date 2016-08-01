@@ -302,6 +302,7 @@ class BattleViewController: UIViewController {
 				self.battle?.updateLocation()
                 
                 self.battle?.updateActivity()
+                self.battle?.updateJournal()
                 
                 // update the number of extra cards
                 let ref2 = FIRDatabase.database().reference().child("/Friend")
