@@ -850,7 +850,7 @@
             </objects>
             <point key="canvasLocation" x="1191" y="-774"/>
         </scene>
-        <!--Friend-->
+        <!--Friends-->
         <scene sceneID="75G-Fi-jWt">
             <objects>
                 <tableViewController storyboardIdentifier="FriendsViewController" id="8lf-Lp-A76" customClass="FriendsTableViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -881,7 +881,7 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SlA-Bl-OBL">
                                             <rect key="frame" x="124" y="16" width="128" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -891,6 +891,9 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_announcement" translatesAutoresizingMaskIntoConstraints="NO" id="14f-VM-StI" userLabel="message Image View">
+                                            <rect key="frame" x="245" y="40" width="42" height="40"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="XCb-Yn-KJ0" firstAttribute="leading" secondItem="3sI-OU-92k" secondAttribute="leadingMargin" constant="14" id="njN-mv-OBo"/>
@@ -900,6 +903,7 @@
                                 <connections>
                                     <outlet property="friendsCurrentLocatuon" destination="F0e-kx-NIA" id="zQ2-hr-GaQ"/>
                                     <outlet property="level" destination="6U7-q0-i8V" id="1LQ-px-7am"/>
+                                    <outlet property="msgLabel" destination="14f-VM-StI" id="ok9-0w-m8D"/>
                                     <outlet property="name" destination="SlA-Bl-OBL" id="DM9-zb-F8i"/>
                                     <outlet property="profileImage" destination="XCb-Yn-KJ0" id="rY1-W7-liY"/>
                                     <segue destination="nrl-2I-sPV" kind="push" identifier="ShowChatRoom" id="yeE-09-K6u"/>
@@ -911,7 +915,7 @@
                             <outlet property="delegate" destination="8lf-Lp-A76" id="RZL-ES-6PJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friend" id="pJ1-UG-Bkp">
+                    <navigationItem key="navigationItem" title="Friends" id="pJ1-UG-Bkp">
                         <barButtonItem key="leftBarButtonItem" title="restore" id="pEn-6w-1VV">
                             <color key="tintColor" red="1" green="0.93115596909999998" blue="0.034984636270000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -1237,12 +1241,13 @@
         <image name="card" width="24" height="24"/>
         <image name="friends" width="59" height="53"/>
         <image name="front" width="585" height="741"/>
+        <image name="ic_announcement" width="48" height="48"/>
         <image name="ic_contacts" width="24" height="24"/>
         <image name="ic_gamepad" width="24" height="24"/>
         <image name="ic_map" width="24" height="24"/>
         <image name="ic_person_2x" width="24" height="24"/>
         <image name="ic_person_add" width="24" height="24"/>
-        <image name="loading" width="414" height="415"/>
+        <image name="loading" width="412" height="412"/>
         <image name="login" width="750" height="1334"/>
         <image name="loginBG" width="750" height="1334"/>
         <image name="loginBG2" width="750" height="466"/>

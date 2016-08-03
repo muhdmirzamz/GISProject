@@ -15,6 +15,7 @@ class FriendsCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var name: UILabel!
  
+    @IBOutlet weak var msgLabel: UIImageView!
     @IBOutlet weak var level: UILabel!
     @IBOutlet weak var friendsCurrentLocatuon: UILabel!
     
@@ -28,6 +29,9 @@ class FriendsCell: UITableViewCell {
         
         var img : UIImage! =  UIImage(named: "loading.png")
         self.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80)
+        
+        //hide msg label
+        self.msgLabel.hidden = true
     }
     
     //customize cell background images

@@ -306,6 +306,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //and can be reused for a new table cell that need to be display
         var cell : FriendsCell! = tableView.dequeueReusableCellWithIdentifier("FriendsCell") as! FriendsCell
         
+        
         //if we don't find it, then we create a new FriendsCell by loading the nib
         //"FriendsCell" from the main bundle
         if(cell == nil){
@@ -325,6 +326,58 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         } else {
             
             friend = friends[indexPath.row]
+            var passkey: String = friend.myKey
+         
+            /*
+            //check for valid msg label
+             displayMsgLabel = FriendsDataManager.displayMsgLabel(passkey)
+            print("return back: \(displayMsgLabel)")
+            
+            if(displayMsgLabel == true){
+                cell.msgLabel.hidden = true
+            }
+             */
+            
+            
+            var inMyFriendsList :Bool = false
+          
+            
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+            {
+                
+                let uid = (FIRAuth.auth()?.currentUser?.uid)!
+                
+                //ref to friends in firebase
+                let ref = FIRDatabase.database().reference().child("Friend/\(passkey)")
+                
+                ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                    
+                    
+                    
+                    //closure
+                    dispatch_async(dispatch_get_main_queue()) {
+                        print("-------------------")
+                        print(snapshot.hasChild("\(uid)"))
+                        inMyFriendsList = snapshot.hasChild("\(uid)")
+                        print("-------------------")
+                        if(inMyFriendsList == false){
+                            print("caught you: \(snapshot.key)")
+                            cell.msgLabel.hidden = false
+                        }
+                    }
+                    
+                    
+                })
+                
+                
+                
+                
+            }//end of dispath
+            
+            
+            
+            
+ 
         }
         
         //by using the re-used cell, or newly created one
@@ -345,12 +398,21 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
          }
          */
         
+        
+       
+        
+        
+        
+        
+        
         //load and update friends avatimages asynchronous from helper class
         //FriendsDataManager.loadAndDisplayImage(nil, imageView: cell.profileImage, url: friend.ThumbnailImgUrl)
         
         return cell
         
     }
+    
+    
     
     
     /*

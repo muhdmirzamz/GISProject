@@ -214,9 +214,55 @@ class FriendsDataManager: NSObject {
         
     }
     
+    static func displayMsgLabel(displayLabel: String) -> Bool
+    {
+        
+        var inMyFriendsList :Bool = false
+         print("---------aaaa----------")
+        
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+        {
+            
+            let uid = (FIRAuth.auth()?.currentUser?.uid)!
+            
+            //ref to friends in firebase
+            let ref = FIRDatabase.database().reference().child("Friend/\(displayLabel)")
+          
+            ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                
+            
+                
+                //closure
+                dispatch_async(dispatch_get_main_queue()) {
+                    print("-------------------")
+                    print(snapshot.hasChild("\(uid)"))
+                    inMyFriendsList = snapshot.hasChild("\(uid)")
+                    print("-------------------")
+                    if(inMyFriendsList == true){
+                        print("caught you: \(snapshot.key)")
+                    }
+                }
+                
+                
+                })
+            
+            
+            
+            
+          }//end of dispath
+        
+        
+        return inMyFriendsList
+        
+        }//end of function
+    
+        
+    }
     
     
     
     
     
-}
+    
+    
+
