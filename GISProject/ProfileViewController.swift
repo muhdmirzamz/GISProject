@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import CoreData
-import Bluuur
 import ISTimeline
 import SCLAlertView
 
@@ -20,7 +19,6 @@ protocol ProfileProtocol {
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var blurView: MLWLiveBlurView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollView2: UIScrollView!
     
@@ -60,14 +58,6 @@ class ProfileViewController: UIViewController {
     
     @IBAction func takePhotoBtn(sender: AnyObject) {
         print("aa")
-    }
-   
-    func setBlur() {
-        blurView.blurProgress = 1
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        setBlur()
     }
 
     override func didReceiveMemoryWarning() {
@@ -156,7 +146,6 @@ class ProfileViewController: UIViewController {
 //        let i = Int(arc4random_uniform(5) + 1)
 //        bgProfile.image = UIImage(named: "bg\(i)")
 
-        blurView.blurProgress = 1
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

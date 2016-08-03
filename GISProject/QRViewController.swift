@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import QRCode
 import MaterialCard
-import Bluuur
 import BFPaperButton
 
 class QRViewController: UIViewController {
@@ -18,7 +17,6 @@ class QRViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var cardLabel: UILabel!
-    @IBOutlet weak var blurView: MLWLiveBlurView!
     
     var sendUid :String!
     var lat : Double! = 0
@@ -38,8 +36,6 @@ class QRViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         generateQRCode()
         setCustomLabel()
-        setBlur()
-        setBG()
     }
     
     override func didReceiveMemoryWarning() {
@@ -120,11 +116,12 @@ class QRViewController: UIViewController {
         QRCodeImageView.frame = CGRectMake(62.5, 157, 250, 250)
     
         // material design button
-        let button = BFPaperButton(frame: CGRectMake(112, 550, 150, 40), raised: true)
-        button.setTitle("Add Card", forState: .Normal)
-        button.titleFont = UIFont.systemFontOfSize(22, weight: UIFontWeightLight)
+        let button = BFPaperButton(frame: CGRectMake(156, 530, 65, 65), raised: true)
+//        button.setTitle("=", forState: .Normal)
+        button.setImage(UIImage(named: "ic_person_add_white"), forState: .Normal)
+        button.titleFont = UIFont.systemFontOfSize(40, weight: UIFontWeightUltraLight)
         button.backgroundColor = UIColor(red: 28/255, green: 211/255, blue: 235/255, alpha: 1)
-        button.cornerRadius = 3
+        button.cornerRadius = button.frame.size.width / 2
         button.rippleFromTapLocation = true
         button.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(button)
@@ -138,13 +135,6 @@ class QRViewController: UIViewController {
         let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
         let myRequest = NSURLRequest(URL: localfilePath!);
         webView.loadRequest(myRequest);
-    }
-    
-    //
-    // Blur overlay
-    //
-    func setBlur() {
-        blurView.blurProgress = 1
     }
     
     //

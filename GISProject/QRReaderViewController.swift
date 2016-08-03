@@ -14,13 +14,11 @@ import UIKit
 import AVFoundation
 import MaterialCard
 import Firebase
-import Bluuur
 import SCLAlertView
 
 class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var blurView: MLWLiveBlurView!
     
     var ref : FIRDatabaseReference!
     
@@ -96,11 +94,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        setBlur()
-        setBG()
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
@@ -188,13 +181,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
         let myRequest = NSURLRequest(URL: localfilePath!);
         webView.loadRequest(myRequest);
-    }
-    
-    //
-    // Blur overlay
-    //
-    func setBlur() {
-        blurView.blurProgress = 1
     }
     
     //
