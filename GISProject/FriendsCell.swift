@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import JSQMessagesViewController
 
 class FriendsCell: UITableViewCell {
     
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var level: UIButton!
+ 
+    @IBOutlet weak var level: UILabel!
     @IBOutlet weak var friendsCurrentLocatuon: UILabel!
     
     
@@ -24,19 +26,17 @@ class FriendsCell: UITableViewCell {
         //friend avatar styling
         self.name.textColor = UIColor.blackColor()
         
+        var img : UIImage! =  UIImage(named: "loading.png")
+        self.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80)
     }
     
     //customize cell background images
     func cellDisplay(){
         //translucent effect
         self.backgroundColor = UIColor.whiteColor()
-        
     }
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         //display cusomized cell appearance
         cellDisplay()
     }

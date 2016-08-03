@@ -51,14 +51,14 @@ class IncomingMessage {
         return JSQMessage(senderId: userId, senderDisplayName: name, date: date, text: text)
     }
     
-
+    
     func createLocationMessage(item : NSDictionary) -> JSQMessage {
         
         let name = item["senderName"] as? String
         let userId = item["senderId"] as? String
         
         let date = dateFormatter().dateFromString((item["date"] as? String)!)
-
+        
         let latitude = item["latitude"] as? Double
         let longitude = item["longitude"] as? Double
         
@@ -92,7 +92,7 @@ class IncomingMessage {
         let userId = item["senderId"] as? String
         
         let date = dateFormatter().dateFromString((item["date"] as? String)!)
-
+        
         let mediaItem = JSQPhotoMediaItem(image: nil)
         mediaItem.appliesMediaViewMaskAsOutgoing = returneOutgoingStatusFromUser(userId!)
         

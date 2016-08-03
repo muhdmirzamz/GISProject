@@ -22,17 +22,13 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-  let kAVATARSTATE = "avatarState"
-   let kFIRSTRUN = "firstRun"
+    let kAVATARSTATE = "avatarState"
+    let kFIRSTRUN = "firstRun"
     
     
     var locationManager: CLLocationManager!
     var coordinate: CLLocationCoordinate2D!
     
-    //chaged
-    //let ref = Firebase(url: "https://quickchataplication.firebaseio.com/Message")
-    let ref = FIRDatabase.database().reference().child("FriendsModule/messages/")
-    let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
     
     var messages: [JSQMessage] = []
     var objects: [NSDictionary] = []
@@ -44,28 +40,25 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     var showAvatars: Bool = false
     var firstLoad: Bool?
     
-    
-    // var withUser: BackendlessUser?
     var recent: NSDictionary?
-    
     var chatRoomId: String!
-    
     var initialLoadComlete: Bool = false
-    
-    
-    let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
-    
-    let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     
     var senderKey : String!
     var friendsKey : String!
     var senderName : String!
-    
     var validChat:Bool!
+    
+    //firebase reference
+    let ref = FIRDatabase.database().reference().child("FriendsModule/messages/")
+    let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
+    let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
+    let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         loadUserDefaults()
-        
         
         
         if (CLLocationManager.locationServicesEnabled())
@@ -80,14 +73,6 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         locationManager!.startUpdatingLocation()
         
     }
-    func checkForChatUsersList(){
-        
-        
-        
-        
-        
-    }
-    
     
     
     override func viewWillDisappear(animated: Bool) {
@@ -98,129 +83,119 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        //initialize sendder key
         self.senderId = senderKey
         self.senderDisplayName = friendsKey
         
+        //initialize if chat member has mine key in his friends list
         self.validChat = false;
-        
-        
         
         
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         let refUsers = FIRDatabase.database().reference().child("Friend/\(self.friendsKey)")
         
+        //start looking into the chat members friends list
+        //look for once
         refUsers.observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
+            
+            //assign return value
             print("have?")
             print(snapshot.hasChild("\(uid)"))
             self.validChat = snapshot.hasChild("\(uid)")
             print("result result: \(self.validChat)")
-          
-        
-        if(self.validChat == true){
-        //set chat room title
-        self.navigationItem.title = self.friend.Name
-        
-        //no avatar yet
-        self.collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
-        self.collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
-        
-        
-        self.getAvatars()
-        
-        
-        self.lookForKey()
-        //load firebase messages
-        
-        
-        self.inputToolbar?.contentView?.textView?.placeHolder = "New Message"
-        
-             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: "addTapped:")
-        
-  
- 
-        
-           self.collectionView!.collectionViewLayout.springinessEnabled = true
- 
-        let myKey = FIRDatabase.database().reference().child("Account/\(self.senderKey)")
-        
-        myKey.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            for record in snapshot.children {
-                let username = snapshot.value!["Name"] as! String
-                self.senderName = username
+            
+            
+            if(self.validChat == true){
+                //set chat room title
+                self.navigationItem.title = self.friend.Name
+                
+                //no avatar yet
+                self.collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
+                self.collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
+                
+                //get avatar from firebase db or datastorage
+                self.getAvatars()
+                
+                //look for room key
+                self.lookForKey()
+                
+                self.inputToolbar?.contentView?.textView?.placeHolder = "New Message"
+                
+                //testing purposes
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_person_2x"), style: UIBarButtonItemStyle.Plain, target: self, action: "addTapped:")
+                
+                //enable spring effect
+                self.collectionView!.collectionViewLayout.springinessEnabled = true
+                
+                //look for my name
+                let myKey = FIRDatabase.database().reference().child("Account/\(self.senderKey)")
+                myKey.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                    for record in snapshot.children {
+                        let username = snapshot.value!["Name"] as! String
+                        self.senderName = username
+                    }
+                })
+                
+            }else{
+                //create aleart
+                var refreshAlert = UIAlertController(title: "Reminder", message: "Ask \(self.friend.Name)", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                //pop back to friends detail view controller
+                refreshAlert.addAction(UIAlertAction(title: "Scan Later", style: .Cancel, handler: { (action: UIAlertAction!) in
+                    print("Later")
+                    
+                    let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("FriendsViewController")
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                }))
+                
+                //change to qr code view and allow for scanning
+                refreshAlert.addAction(UIAlertAction(title: "Scan My Card Now!", style: .Default, handler: { (action: UIAlertAction!) in
+                    print("Go Scan Now!")
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }))
+                
+                self.presentViewController(refreshAlert, animated: true, completion: nil)
             }
-            
-        })
-        
-        }else{
-            
-            var refreshAlert = UIAlertController(title: "Reminder", message: "Ask \(self.friend.Name)", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            refreshAlert.addAction(UIAlertAction(title: "Scan My Card Now!", style: .Default, handler: { (action: UIAlertAction!) in
-                print("Go Scan Now!")
-                 self.dismissViewControllerAnimated(true, completion: nil)
-            }))
-            
-           
-            refreshAlert.addAction(UIAlertAction(title: "Scan Later", style: .Cancel, handler: { (action: UIAlertAction!) in
-                print("Later")
-                
-                let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("FriendsViewController")
-                self.navigationController?.popViewControllerAnimated(true)
-            
-                
-               
-            }))
-           
-            self.presentViewController(refreshAlert, animated: true, completion: nil)
-        }
         })
         
         
-                
+        
     }
     func addTapped (sender:UIButton) {
         print("add pressed")
         
+        //create send date
         var myObject = NSDate()
+        
+        //create outgoing msg obj
         var outgoingMessage = OutgoingMessage?()
         
         //if text message
-       
-            // outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey, senderName: self.senderKey, date: date, status: "Delivered", type: "text")
-            
-            outgoingMessage = OutgoingMessage(message: "test text", senderId: self.friendsKey!, senderName: self.senderName, date: myObject, status: "Delivered", type: "text")
-      
-    
+        outgoingMessage = OutgoingMessage(message: "test text", senderId: self.friendsKey!, senderName: self.senderName, date: myObject, status: "Delivered", type: "text")
         
         
         outgoingMessage!.sendMessage("\(self.chatRoomId)", item: outgoingMessage!.messageDictionary,receiverID: self.friendsKey)
         
-        
+        //set new msg badge
         self.tabBarController?.tabBar.items?[3].badgeValue = "8"
         
     }
-    //MARK:  LocationManger fuctions
-    
-    
-    
+    //LocationManger fuctions
     func locationManagerStop() {
         locationManager!.stopUpdatingLocation()
     }
     
-    //MARK: CLLocationManager Delegate
-    
+    //CLLocationManager Delegate
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         
         coordinate = newLocation.coordinate
-        
         print(coordinate?.longitude)
         print(coordinate?.latitude)
         
     }
     
-    
-    
+    //look for chatroom key
     func lookForKey(){
         
         refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
@@ -231,11 +206,6 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             for record in snapshot.children {
                 
-                
-                
-                
-                
-                //print(record.value!!["\(self.friendsKey)"] as? Bool)
                 
                 var user1Temp : Bool = false
                 var user2Temp : Bool = false
@@ -261,14 +231,18 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
                 
                 
                 print("aaaaaaaaaa")
+                
+                //if both chat members exist in the chat room record
                 if(user1 == true && user2 == true){
                     print("-------- got it-------")
                     print(record.key!)
                     self.chatRoomId = record.key!
                     self.chatRoomId = record.key!
                     print("-------- got it-------")
-                     self.loadmessages()
+                    self.loadmessages()
                 }else{
+                    
+                    //here can improve on the user experience, add no chat yet message
                     print("no chat yet")
                 }
                 
@@ -286,13 +260,17 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: JSQMessages dataSource functions
+    //JSQMessages dataSource functions
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        //define cell as JSQMessage cell, confirm with the datasource
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
         
+        //look into message array
         let data = messages[indexPath.row]
         
+        //if the message id is the sender, use white text color
+        //else use black for receiver
         if data.senderId == self.senderKey {
             cell.textView?.textColor = UIColor.whiteColor()
         } else {
@@ -309,11 +287,14 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         return data
     }
     
+    //return total number of messages
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return messages.count
     }
     
+    //JSQMessage bubble image data source
+    //differentiate if the msg is incoming or outgoing
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         
         let data = messages[indexPath.row]
@@ -325,6 +306,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         }
     }
     
+    //display the date label when there are 3 msg
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         
         if indexPath.item % 3 == 0 {
@@ -336,6 +318,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         return nil
     }
     
+    
+    //display the label height at the correct index path with correct height
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         
         if indexPath.item % 3 == 0 {
@@ -344,14 +328,14 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         return 0.0
     }
     
-    
+    //display if the msg are being delivered
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         
         let message = objects[indexPath.row]
         
-       let status = message["status"] as! String
+        let status = message["status"] as! String
         
-   
+        
         if indexPath.row == (messages.count - 1) {
             return NSAttributedString(string: status)
         } else {
@@ -359,6 +343,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         }
     }
     
+    //display the deliver msg for the sender
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         
         if outgoing(objects[indexPath.row]) {
@@ -368,43 +353,53 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         }
     }
     
+    //assign the correct avatar for sender or receiver
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
         
         let message = messages[indexPath.row]
-       
-   
+        
+        
         let avatar = avatarDictionary!.objectForKey(message.senderId) as! JSQMessageAvatarImageDataSource
         
         return avatar
     }
     
     
-    //MARK: JSQMessages Delegate function
-    
+    //send message button
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         
+        //check if the messsage is empty
+        
+        //there are 3 types of message
+        //normal text
+        //photo image
+        //location map
         if text != "" {
             sendMessage(text, date: date, picture: nil, location: nil)
         }
         
     }
     
+    //accessory button
     override func didPressAccessoryButton(sender: UIButton!) {
         
         let camera = Camera(delegate_: self)
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
         
+        //take photo option
         let takePhoto = UIAlertAction(title: "Take Photo", style: .Default) { (alert: UIAlertAction!) -> Void in
             camera.PresentPhotoCamera(self, canEdit: true)
         }
         
+        //choose photo from album
         let sharePhoto = UIAlertAction(title: "Photo Library", style: .Default) { (alert: UIAlertAction!) -> Void in
             camera.PresentPhotoLibrary(self, canEdit: true)
         }
         
+        //share your current location
         let shareLoction = UIAlertAction(title: "Share Location", style: .Default) { (alert: UIAlertAction!) -> Void in
-          
+            
             if self.haveAccessToLocation() {
                 self.sendMessage(nil, date: NSDate(), picture: nil, location: "location")
             }
@@ -412,7 +407,6 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alert : UIAlertAction!) -> Void in
-            
             print("Cancel")
         }
         
@@ -435,27 +429,28 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         }
     }
     
-    //MARK: Send Message
-    
+    // Send Message
     func sendMessage(text: String?, date: NSDate, picture: UIImage?, location: String?) {
         
         var outgoingMessage = OutgoingMessage?()
         
         //if text message
         if let text = text {
-           // outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey, senderName: self.senderKey, date: date, status: "Delivered", type: "text")
             
-             outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey!, senderName: self.senderName, date: date, status: "Delivered", type: "text")
+            outgoingMessage = OutgoingMessage(message: text, senderId: self.senderKey!, senderName: self.senderName, date: date, status: "Delivered", type: "text")
         }
         
         //send picture message
         if let pic = picture {
             
+            //The quality of the resulting JPEG image, expressed as a value from 0.0 to 1.0.
+            // 1 is the highest quality
             let imageData = UIImageJPEGRepresentation(pic, 1.0)
             
             outgoingMessage = OutgoingMessage(message: "Picture", pictureData: imageData!, senderId: self.senderKey!, senderName: self.senderName, date: date, status: "Delivered", type: "picture")
         }
         
+        //send location
         if let _ = location {
             
             let lat: NSNumber = NSNumber(double: (self.coordinate?.latitude)!)
@@ -463,7 +458,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             outgoingMessage = OutgoingMessage(message: "Location", latitude: lat, longitude: lng, senderId: self.senderKey!, senderName: self.senderName, date: date, status: "Delivered", type: "location")
         }
-
+        
         
         //play message sent sound
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
@@ -481,24 +476,26 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
         let messagesQuery = FIRDatabase.database().reference().child("FriendsModule/messages/\(self.chatRoomId)").queryLimitedToLast(25)
         print(ref)
-      
-         ref.child("\(self.chatRoomId)").observeEventType(.ChildAdded, withBlock: {
+        
+        ref.child("\(self.chatRoomId)").observeEventType(.ChildAdded, withBlock: {
             snapshot in
             
-             print("chatroom id \(self.chatRoomId)")
+            print("chatroom id \(self.chatRoomId)")
+            
+            //check for snapshot exists
             if snapshot.exists() {
                 let item = (snapshot.value as? NSDictionary)!
                 
-               
+                
                 
                 if self.initialLoadComlete {
                     let incoming = self.insertMessage(item)
                     
-                    
+                    //play incoming sound
                     if incoming {
                         JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                     }
-                    
+                    //finish sending msg
                     self.finishReceivingMessageAnimated(true)
                     
                 } else {
@@ -508,24 +505,24 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             }else{
                 print("no snapshot")
             }
-         
+            
         })
- 
-
-       ref.child("\(self.chatRoomId)").observeEventType(.ChildChanged, withBlock: {
+        
+        
+        ref.child("\(self.chatRoomId)").observeEventType(.ChildChanged, withBlock: {
             snapshot in
             
             //updated message
         })
         
         
-       ref.child("\(self.chatRoomId)").observeEventType(.ChildRemoved, withBlock: {
+        ref.child("\(self.chatRoomId)").observeEventType(.ChildRemoved, withBlock: {
             snapshot in
             
             //Deleted message
         })
         
-      ref.child("\(self.chatRoomId)").observeSingleEventOfType(.Value, withBlock:{
+        ref.child("\(self.chatRoomId)").observeSingleEventOfType(.Value, withBlock:{
             snapshot in
             print("00--> insert msg")
             self.insertMessages()
@@ -581,29 +578,29 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     
     //MARK: Helper functions
-  
+    
     
     func getAvatars() {
         
-       
-            
-            print("showAvatar")
-            collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(30, 30)
-            collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(30, 30)
-            
-            //download avatars
-          avatarImageFromBackendlessUser(self.senderId!)
-         avatarImageFromBackendlessUser(self.friendsKey!)
-            
-            //create avatars
-            createAvatars(avatarImagesDictionary)
+        print("showAvatar")
+        collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(30, 30)
+        collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(30, 30)
+        
+        //download avatars
+        avatarImageFromBackend(self.senderId!)
+        avatarImageFromBackend(self.friendsKey!)
+        
+        //create avatars
+        createAvatars(avatarImagesDictionary)
         
     }
     
-    func avatarImageFromBackendlessUser(user: String) {
+    //need to use grand central dispatch
+    func avatarImageFromBackend(user: String) {
         
         print("avatoar from backend function")
         
+        //use smiley face first
         let nurl = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png")
         var imageBinary : NSData?
         if nurl != nil
@@ -636,13 +633,13 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         
     }
     
-    
+    //start creating avatar
     func createAvatars(avatars: NSMutableDictionary?) {
         
         var currentUserAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "avatarPlaceholder"), diameter: 70)
         var withUserAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "avatarPlaceholder"), diameter: 70)
         
-        
+        //current user avatar
         if let avat = avatars {
             if let currentUserAvatarImage = avat.objectForKey(self.senderId!) {
                 
@@ -650,7 +647,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
                 self.collectionView?.reloadData()
             }
         }
-        
+        //chat room user avatar
         if let avat = avatars {
             if let withUserAvatarImage = avat.objectForKey(self.friendsKey!) {
                 
@@ -662,10 +659,9 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         avatarDictionary = [self.senderId! : currentUserAvatar, self.friendsKey! : withUserAvatar]
     }
     
-
     
-    //MARK: JSQDelegate functions
     
+    //JSQDelegate functions
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
         
         let object = objects[indexPath.row]
@@ -676,12 +672,13 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             let mediaItem = message.media as! JSQPhotoMediaItem
             
-             let photos = IDMPhoto.photosWithImages([mediaItem.image])
-             let browser = IDMPhotoBrowser(photos: photos)
+            let photos = IDMPhoto.photosWithImages([mediaItem.image])
+            let browser = IDMPhotoBrowser(photos: photos)
             
-              self.presentViewController(browser, animated: true, completion: nil)
+            self.presentViewController(browser, animated: true, completion: nil)
         }
         
+        //type location and view it in a different controller
         if object["type"] as! String == "location" {
             
             self.performSegueWithIdentifier("chatToMapSeg", sender: indexPath)
@@ -690,8 +687,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     }
     
     
-    //MARK: UIIMagePickerController functions
-    
+    //UIIMagePickerController functions
+    //allow to choose images from photo library
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         let picture = info[UIImagePickerControllerEditedImage] as! UIImage
@@ -713,7 +710,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             let mediaItem = message.media as! JSQLocationMediaItem
             
             let mapView = segue.destinationViewController as! ChatMapViewController
-              mapView.location = mediaItem.location
+            mapView.location = mediaItem.location
         }
     }
     

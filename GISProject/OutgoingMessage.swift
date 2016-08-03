@@ -9,7 +9,7 @@ import Firebase
 class OutgoingMessage {
     
     //change
-   
+    
     let refChats = FIRDatabase.database().reference().child("FriendsModule/chats")
     let refMembers = FIRDatabase.database().reference().child("FriendsModule/members")
     let refMessages = FIRDatabase.database().reference().child("FriendsModule/messages")
@@ -65,10 +65,9 @@ class OutgoingMessage {
                 let lastMessage : String = item["message"] as! String
                 var timeStamp = item["date"] as! String
                 var type = item["type"] as! String
-                 let senderId : String = item["senderId"] as! String
+                let senderId : String = item["senderId"] as! String
                 
                 //chats
-                
                 
                 //messages
                 
@@ -86,9 +85,7 @@ class OutgoingMessage {
                     "type" : type
                     
                 ]
-                //itemMessage.setValue(conversation)
                 itemMessage.child("/\(randomChatKey.key)").setValue(item)
-                
                 
                 
             }else{
@@ -107,13 +104,9 @@ class OutgoingMessage {
                     "title" : title,
                     "lastMessage": lastMessage,
                     "timestamp": timeStamp
-                    
                 ]
                 
-                
                 itemChat.setValue(chat) // 3
-                
-                
                 
                 //members
                 //same as chat key
@@ -129,7 +122,6 @@ class OutgoingMessage {
                     
                 ]
                 itemMember.setValue(messageMember) // 3
-                
                 
                 
                 //messages
@@ -151,6 +143,39 @@ class OutgoingMessage {
                 //itemMessage.setValue(conversation)
                 itemMessage.child("/\(randomChatKey.key)").setValue(item)
                 
+            }
+        })
+    }
+    func sendPhoto(chatRoomID: String, item: NSMutableDictionary) {
+        let usersRef = FIRDatabase.database().reference().child("/Account")
+        
+        print("ooutoing chat romid -> \(chatRoomID)")
+        
+        refChats.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            if snapshot.hasChild("\(chatRoomID)"){
+                
+                print("true rooms exist")
+                
+                
+                //messages
+                
+                //  let itemMessage = self.refMessages.child("\(chatRoomID)")// 1
+                
+                // let message : String = item["message"] as! String
+                
+                //random key for individual chat room
+                //  let randomChatKey = itemMessage.childByAutoId()
+                
+                //itemMessage.setValue(conversation)
+                // itemMessage.child("/\(randomChatKey.key)").setValue(item)
+                
+                
+                
+                var hopperRef = usersRef.child("\(chatRoomID)")
+                var nickname = ["Picture": item["picture"] as! String]
+                
+                hopperRef.updateChildValues(nickname)
                 
             }
             
@@ -158,128 +183,11 @@ class OutgoingMessage {
         })
         
         
-        /*
-        
-         //chats
-         let itemChat = refChats.childByAutoId() // 1
-        
-        
-        let title : String = item["message"] as! String
-        let lastMessage : String = item["message"] as! String
-        var timeStamp = item["date"] as! String
-        var type = item["type"] as! String
-        
-        let chat = [ // 2
-            "title" : title,
-            "lastMessage": lastMessage,
-            "timestamp": timeStamp
-            
-        ]
-        
-        
-        itemChat.setValue(chat) // 3
         
         
         
-         //members
-        //same as chat key
-         let itemMember = refMembers.child(itemChat.key)// 1
         
         
-        let senderId : String = item["senderId"] as! String
-        let senderName: String = item["senderName"] as! String
-         
-         let messageMember = [ // 2
-         "\(senderName)": true,
-         "\(senderId)": true
-         
-         ]
-         itemMember.setValue(messageMember) // 3
-        
-        
-         
-         //messages
-        
-         let itemMessage = refMessages.child(itemChat.key)// 1
-        
-        let message : String = item["message"] as! String
-         
-         //random key for individual chat room
-         let randomChatKey = itemMessage.childByAutoId()
-         
-         let conversation = [ // 2
-         "name" : senderId,
-         "message": message,
-         "timestamp": timeStamp,
-         "type" : type
-         
-         ]
-         //itemMessage.setValue(conversation)
-         itemMessage.child("/\(randomChatKey.key)").setValue(conversation)
-        
-        
-         
- */
- 
-       
-        /*
-       
-        let reference = refMessages.child(chatRoomID).childByAutoId()
-        
-        item["messageId"] = reference.key
-        
-        reference.setValue(item) { (error, ref) -> Void in
-            if error != nil {
-                print("Error, couldnt send message")
-            }
-        }
-*/
-        
-       // SendPushNotification(chatRoomID, message: (item["message"] as? String)!)
-       // UpdateRecents(chatRoomID, lastMessage: (item["message"] as? String)!)
-    }
-func sendPhoto(chatRoomID: String, item: NSMutableDictionary) {
-   let usersRef = FIRDatabase.database().reference().child("/Account")
-    
-    print("ooutoing chat romid -> \(chatRoomID)")
-    
-    refChats.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-        
-        if snapshot.hasChild("\(chatRoomID)"){
-            
-            print("true rooms exist")
-       
-            
-            //messages
-            
-          //  let itemMessage = self.refMessages.child("\(chatRoomID)")// 1
-            
-           // let message : String = item["message"] as! String
-            
-            //random key for individual chat room
-          //  let randomChatKey = itemMessage.childByAutoId()
-     
-            //itemMessage.setValue(conversation)
-           // itemMessage.child("/\(randomChatKey.key)").setValue(item)
-            
-            
-            
-            var hopperRef = usersRef.child("\(chatRoomID)")
-            var nickname = ["Picture": item["picture"] as! String]
-            
-            hopperRef.updateChildValues(nickname)
-            
-        }
-        
-        
-    })
-    
-    
-    
-    
-    
-    
-    
     }
     
     

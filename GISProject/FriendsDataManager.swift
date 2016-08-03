@@ -16,59 +16,61 @@ class FriendsDataManager: NSObject {
     
     
     /*
+     //load friends from Firebase and converts it into [Friends] array
+     static func loadFriends(onComplete: ([Friends]) -> Void)
+     {
+     let uid = (FIRAuth.auth()?.currentUser?.uid)!
+     
+     //create an empty friends list array
+     var friendsList : [Friends] = []
+     
+     //ref to friends in firebase
+     let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
+     
+     var username : String!
+     var level : Double!
+     var myKey: String!
+     
+     ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+     
+     
+     for record in snapshot.children {
+     
+     
+     let lookForFriends = FIRDatabase.database().reference().child("Account/\(record.key!)")
+     
+     
+     lookForFriends.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+     // Get user value
+     username = snapshot.value!["Name"] as! String
+     level = snapshot.value!["Level"] as! Double
+     //let imageUrl = snapshot.value!["Picture"] as! Double
+     myKey = snapshot.key
+     
+     //print(username)
+     
+     friendsList.append(Friends(name: username,
+     level: level,
+     thumbnailImgUrl: "",
+     myKey : myKey))
+     
+     onComplete(friendsList)
+     
+     // ...
+     }) { (error) in
+     print(error.localizedDescription)
+     }
+     }
+     
+     
+     })
+     
+     }
+     */
+    
+    
     //load friends from Firebase and converts it into [Friends] array
     static func loadFriends(onComplete: ([Friends]) -> Void)
-    {
-        let uid = (FIRAuth.auth()?.currentUser?.uid)!
-        
-        //create an empty friends list array
-        var friendsList : [Friends] = []
-     
-        //ref to friends in firebase
-        let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
-        
-        var username : String!
-        var level : Double!
-        var myKey: String!
-        
-        ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-           
-            
-            for record in snapshot.children {
-                
-                
-                let lookForFriends = FIRDatabase.database().reference().child("Account/\(record.key!)")
-                
-               
-                lookForFriends.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                    // Get user value
-                     username = snapshot.value!["Name"] as! String
-                     level = snapshot.value!["Level"] as! Double
-                    //let imageUrl = snapshot.value!["Picture"] as! Double
-                      myKey = snapshot.key
-                    
-                    //print(username)
-                    
-                    friendsList.append(Friends(name: username,
-                        level: level,
-                        thumbnailImgUrl: "",
-                        myKey : myKey))
-                
-                    onComplete(friendsList)
-                    
-                    // ...
-                }) { (error) in
-                    print(error.localizedDescription)
-                }
-            }
-            
-            
-        })
-        
-    }
-    */
-    //load friends from Firebase and converts it into [Friends] array
-     static func loadFriends(onComplete: ([Friends]) -> Void)
     {
         
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
@@ -83,7 +85,7 @@ class FriendsDataManager: NSObject {
             let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
             
             var username : String!
-            var level : Double!
+            var level : Int!
             var myKey: String!
             var online :Bool!
             
@@ -97,34 +99,30 @@ class FriendsDataManager: NSObject {
                     
                     
                     lookForFriends.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                        //look for online users
-                        
                         
                         // Get user value
                         username = snapshot.value!["Name"] as! String
-                        level = snapshot.value!["Level"] as! Double
-                         online = snapshot.value!["KEY_ISONLINE"] as! Bool
+                        level = snapshot.value!["Level"] as! Int
+                        online = snapshot.value!["KEY_ISONLINE"] as! Bool
                         //let imageUrl = snapshot.value!["Picture"] as! Double
                         myKey = snapshot.key
-                        
-                        //print(username)
                         
                         
                         if(online == true){
                             print(snapshot.value!["Name"] as! String)
-                            
                         }
                         
-                        
+                        //add to arraylist
                         friendsList.append(Friends(name: username,
                             level: level,
                             thumbnailImgUrl: "",
                             myKey : myKey,
                             online: online))
                         
+                        //closure
                         dispatch_async(dispatch_get_main_queue()) {
                             onComplete(friendsList)
-                        
+                            
                         }
                         // ...
                     }) { (error) in
@@ -136,13 +134,6 @@ class FriendsDataManager: NSObject {
             })
         }
     }
-    
- 
-    
-    
-    
-    
-    
     
     
     
@@ -161,12 +152,7 @@ class FriendsDataManager: NSObject {
             
             for record in snapshot.children {
                 
-                
-                
                 friendsList.append(record.key!!)
-                
-                
-                
             }
             
             
@@ -199,7 +185,6 @@ class FriendsDataManager: NSObject {
             {
                 imageBinary = NSData(contentsOfURL: nurl!)
             }
-            
             
             dispatch_async(dispatch_get_main_queue()) {
                 

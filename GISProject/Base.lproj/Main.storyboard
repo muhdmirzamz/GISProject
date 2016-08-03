@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dMH-Ja-CGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dMH-Ja-CGM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -866,14 +866,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hH9-vL-LjC">
-                                            <rect key="frame" x="194" y="0.0" width="93" height="30"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <inset key="contentEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
-                                            <state key="normal" title="lvl" backgroundImage="Lvl_bg">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@ Koufu | 2km" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0e-kx-NIA">
                                             <rect key="frame" x="124" y="59" width="112" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -893,6 +885,12 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6U7-q0-i8V">
+                                            <rect key="frame" x="245" y="16" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="XCb-Yn-KJ0" firstAttribute="leading" secondItem="3sI-OU-92k" secondAttribute="leadingMargin" constant="14" id="njN-mv-OBo"/>
@@ -901,7 +899,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="friendsCurrentLocatuon" destination="F0e-kx-NIA" id="zQ2-hr-GaQ"/>
-                                    <outlet property="level" destination="hH9-vL-LjC" id="y8l-uH-UG0"/>
+                                    <outlet property="level" destination="6U7-q0-i8V" id="1LQ-px-7am"/>
                                     <outlet property="name" destination="SlA-Bl-OBL" id="DM9-zb-F8i"/>
                                     <outlet property="profileImage" destination="XCb-Yn-KJ0" id="rY1-W7-liY"/>
                                     <segue destination="nrl-2I-sPV" kind="push" identifier="ShowChatRoom" id="yeE-09-K6u"/>
@@ -1233,7 +1231,6 @@
         <image name="CameraPermission" width="725" height="92"/>
         <image name="CloseButton" width="15" height="15"/>
         <image name="Life" width="61" height="57"/>
-        <image name="Lvl_bg" width="148" height="58"/>
         <image name="ProfileBlack" width="400" height="400"/>
         <image name="ProfileRed" width="400" height="400"/>
         <image name="button" width="128" height="93"/>

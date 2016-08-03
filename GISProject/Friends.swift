@@ -11,14 +11,14 @@ import Foundation
 class Friends{
     
     var Name : String
-    var Level: Double
+    var Level: Int
     var ThumbnailImgUrl : String
     var myKey : String
     var isOnline : Bool
     
     
     
-    init(name: String,level:Double,thumbnailImgUrl:String,myKey:String,online:Bool)
+    init(name: String,level:Int,thumbnailImgUrl:String,myKey:String,online:Bool)
     {
         self.Name = name
         self.Level = level

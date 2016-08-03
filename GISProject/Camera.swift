@@ -5,13 +5,16 @@ import UIKit
 import MobileCoreServices
 
 class Camera {
-
+    
+    
+    //delegate to self
     var delegate: protocol<UINavigationControllerDelegate, UIImagePickerControllerDelegate>?
     
     init(delegate_: protocol<UINavigationControllerDelegate, UIImagePickerControllerDelegate>?) {
         delegate = delegate_
     }
     
+    //handle choose photo
     func PresentPhotoLibrary(target: UIViewController, canEdit: Bool) {
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) && !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) {
             
@@ -21,6 +24,7 @@ class Camera {
         let type = kUTTypeImage as String
         let imagePicker = UIImagePickerController()
         
+        //photo library
         if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
             
             imagePicker.sourceType = .PhotoLibrary
@@ -53,6 +57,7 @@ class Camera {
         
     }
     
+    //handle photo camera
     func PresentPhotoCamera(target: UIViewController, canEdit: Bool) {
         
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -88,5 +93,5 @@ class Camera {
         imagePicker.showsCameraControls = true
         imagePicker.delegate = delegate
         target.presentViewController(imagePicker, animated: true, completion: nil)
-        }
     }
+}
