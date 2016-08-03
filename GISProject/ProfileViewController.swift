@@ -31,7 +31,6 @@ class ProfileViewController: UIViewController {
     
     var lastSeen: [LastSeenLog] = []
     var activityLogs: [ActivityLog] = []
-    var i = 0
     var boolActivity = true
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -43,6 +42,7 @@ class ProfileViewController: UIViewController {
 //    @IBOutlet weak var imageProfile: UIImageView!
     
     override func viewDidLoad() {
+        activityLog()
         super.viewDidLoad()
         
         
@@ -62,12 +62,12 @@ class ProfileViewController: UIViewController {
         print("aa")
     }
    
-    
-
-    
+    func setBlur() {
+        blurView.blurProgress = 1
+    }
     
     override func viewWillAppear(animated: Bool) {
-        activityLog()
+        setBlur()
     }
 
     override func didReceiveMemoryWarning() {
@@ -216,29 +216,32 @@ class ProfileViewController: UIViewController {
                 let key = record.key!!
                 self.friendsTable.append(key)
                 print(key)
-        
-                for friends in self.friendsTable {
-                    var ref3 = FIRDatabase.database().reference().child("/Journal/\(friends)")
-                    ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                        let monsterType = snapshot.value!["MonsterType"] as! String
-                        let timeRetrieve = snapshot.value!["Time"] as! String
-                        let nameRetrieve = snapshot.value!["Name"] as! String
-                        
-                        let timeRetrieveDouble = Double(timeRetrieve)
-                        var date = NSDate(timeIntervalSince1970: timeRetrieveDouble!)
-                        
-                        let point = ISPoint(title: nameRetrieve)
-                        point.description = monsterType
-                        timeline2.points.append(point)
-                        point.lineColor = .blueColor()
-                        
-                        let LastSeen = LastSeenLog.init(monsterType: monsterType, time: timeRetrieve, name: nameRetrieve)
-                        self.lastSeen.append(LastSeen)
-                    
-                    })
-                }
             }
-        })
-}
-
+            var i = 1
+                while i < 10{
+                let ref3 = FIRDatabase.database().reference().child("/Journal/\(self.friendsTable[i])")
+                ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                    let monsterType = snapshot.value!["MonsterType"] as! String
+                    let hourRetrieve = snapshot.value!["Hour"] as! NSNumber
+                    let minuteRetrieve = snapshot.value!["Minutes"] as! NSNumber
+                    let nameRetrieve = snapshot.value!["Name"] as! String
+                    
+                    let timeRetrieve = String(hourRetrieve) + " / " + String(minuteRetrieve)
+                    
+                    print("Journal Test")
+                    print(monsterType)
+                    print(timeRetrieve)
+                    print(nameRetrieve)
+                    let point = ISPoint(title: timeRetrieve)
+                    point.description = monsterType
+                    point.lineColor = .blueColor()
+                    timeline2.points.append(point)
+                    
+                    let LastSeen = LastSeenLog.init(monsterType: monsterType, time: timeRetrieve, name: nameRetrieve)
+                    self.lastSeen.append(LastSeen)
+                    })
+                    i = i + 1
+                }
+            })
+        }
 }
