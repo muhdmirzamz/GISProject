@@ -24,7 +24,7 @@ class Battle {
     var monsKilled: NSNumber?
     var monsType: String?
     var time: String?
-    var nameJournal: String
+    var nameJournal: String?
     
 	var selectedAnnotation: Location?
     
@@ -40,7 +40,6 @@ class Battle {
 		
 		self.baseDamage = 0
         
-        self.nameJournal = ""
     }
     
     func getMonsterHealth() -> Int {
@@ -187,18 +186,25 @@ class Battle {
         let ref4 = FIRDatabase.database().reference().child("/Account")
         ref4.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             self.nameJournal = snapshot.value!["Name"] as! String
+            
+            let str = (self.selectedAnnotation?.imageString)!
+            let monsterType = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
+            
+            let date = NSDate()
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components([ .Hour, .Minute, .Second], fromDate: date)
+            let hour = components.hour
+            let minutes = components.minute
+            //Used for retrieving of date from firebase
+            //var date = NSDate(timeIntervalSince1970: interval)
+            let ref3 = FIRDatabase.database().reference().child("Journal/\(userID)")
+            ref3.child("MonsterType").setValue("has killed a \(monsterType) monster")
+            ref3.child("Hour").setValue(hour)
+            ref3.child("Minutes").setValue(minutes)
+            ref3.child("Name").setValue(self.nameJournal)
+            print("Update journal")
         })
-        let str = (self.selectedAnnotation?.imageString)!
-        let monsterType = str.substringWithRange(Range<String.Index>(start: str.startIndex, end: str.endIndex.advancedBy(-8)))
         
-        var interval = NSDate().timeIntervalSince1970
-        //Used for retrieving of date from firebase
-        //var date = NSDate(timeIntervalSince1970: interval)
-        let ref3 = FIRDatabase.database().reference().child("Journal/\(userID)")
-        ref3.child("MonsterType").setValue("has killed a \(monsterType) monster")
-        ref3.child("Time").setValue(interval)
-        ref3.child("Name").setValue(nameJournal)
-        print("Update journal")
     }
 	
 }

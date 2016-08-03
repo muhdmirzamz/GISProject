@@ -25,12 +25,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var scrollView2: UIScrollView!
     
     
-  
-    
-    var name : String = ""
-    var monstersKilled : Int = 0
-    var level : Int = 0
-    var card : Int = 0
+    var friendsTable: [String] = []
     var ref: FIRDatabaseReference!
     var delegate: ProfileProtocol?
     
@@ -49,7 +44,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityLog()
+        
         
         
         let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
@@ -72,10 +67,7 @@ class ProfileViewController: UIViewController {
     
     
     override func viewWillAppear(animated: Bool) {
-        setProfileBG()
-        
-        let uid = (FIRAuth.auth()?.currentUser?.uid)!
-
+        activityLog()
     }
 
     override func didReceiveMemoryWarning() {
@@ -216,40 +208,37 @@ class ProfileViewController: UIViewController {
                 self.activityLogs.append(Activity)
             }
         })
-    }
-   //     let uid = (FIRAuth.auth()?.currentUser?.uid)!
-//        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
-//        
-//        ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-//            for record in snapshot.children {
-//                let key = record.key!!
-//                
-//                print(key)
-//        
-//                let ref3 = FIRDatabase.database().reference().child("/Journal/1gpYuTJr13OPfGPkmvlQSCUI5jI3")
-//                
-//                ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-//                    let monsterType = snapshot.value!["MonsterType"] as! String
-//                    let timeRetrieve = snapshot.value!["Time"] as! NSNumber
-//                    let nameRetrieve = snapshot.value!["Name"] as! String
-//                    
-//                    //let timeConvert = timeRetrieve.integerValue
-//                    let timeConvert = String(timeRetrieve)
-//                    
-//                    let point = ISPoint(title: nameRetrieve)
-//                    point.description = monsterType
-//                    timeline2.points.append(point)
-//                    point.lineColor = .blueColor()
-//                    let lastSeen = LastSeenLog.init(monsterType: monsterType, time: timeConvert, name: nameRetrieve)
-//                    self.lastSeen.append(lastSeen)
-//                
-//                //                let uid = record.value!!["uid"] as! String
-//                //                let activity = record.value!!["activity"] as! String
-//                //                let name = record.value!!["name"] as! String
-//        
-//                //                self.activityLogs.append(Activity)
-//        })
-//    }
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
+        
+        ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            for record in snapshot.children {
+                let key = record.key!!
+                self.friendsTable.append(key)
+                print(key)
+        
+                for friends in self.friendsTable {
+                    var ref3 = FIRDatabase.database().reference().child("/Journal/\(friends)")
+                    ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                        let monsterType = snapshot.value!["MonsterType"] as! String
+                        let timeRetrieve = snapshot.value!["Time"] as! String
+                        let nameRetrieve = snapshot.value!["Name"] as! String
+                        
+                        let timeRetrieveDouble = Double(timeRetrieve)
+                        var date = NSDate(timeIntervalSince1970: timeRetrieveDouble!)
+                        
+                        let point = ISPoint(title: nameRetrieve)
+                        point.description = monsterType
+                        timeline2.points.append(point)
+                        point.lineColor = .blueColor()
+                        
+                        let LastSeen = LastSeenLog.init(monsterType: monsterType, time: timeRetrieve, name: nameRetrieve)
+                        self.lastSeen.append(LastSeen)
+                    
+                    })
+                }
+            }
+        })
+}
 
-    
 }
