@@ -172,6 +172,7 @@ class ProfileViewController: UIViewController {
         timeline.pointDiameter = 7.0
         timeline.lineWidth = 2.0
         timeline.bubbleRadius = 0.5
+        timeline.bubbleArrows = false
         
         let timeline2 = ISTimeline(frame: CGRectMake(0, 0, 350, 400))
         timeline2.backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0)
@@ -210,7 +211,6 @@ class ProfileViewController: UIViewController {
         })
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
-        
         ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             for record in snapshot.children {
                 let key = record.key!!
@@ -218,7 +218,7 @@ class ProfileViewController: UIViewController {
                 print(key)
             }
             var i = 1
-                while i < 10{
+                while i < self.friendsTable.count{
                 let ref3 = FIRDatabase.database().reference().child("/Journal/\(self.friendsTable[i])")
                 ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
                     let monsterType = snapshot.value!["MonsterType"] as! String
@@ -226,14 +226,10 @@ class ProfileViewController: UIViewController {
                     let minuteRetrieve = snapshot.value!["Minutes"] as! NSNumber
                     let nameRetrieve = snapshot.value!["Name"] as! String
                     
-                    let timeRetrieve = String(hourRetrieve) + " / " + String(minuteRetrieve)
+                    let timeRetrieve = String(hourRetrieve) + " : " + String(minuteRetrieve)
                     
-                    print("Journal Test")
-                    print(monsterType)
-                    print(timeRetrieve)
-                    print(nameRetrieve)
                     let point = ISPoint(title: timeRetrieve)
-                    point.description = monsterType
+                    point.description = nameRetrieve + " " + monsterType
                     point.lineColor = .blueColor()
                     timeline2.points.append(point)
                     
