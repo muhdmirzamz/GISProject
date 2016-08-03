@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import CoreData
-import Bluuur
 import ISTimeline
 import SCLAlertView
 
@@ -20,7 +19,6 @@ protocol ProfileProtocol {
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var blurView: MLWLiveBlurView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollView2: UIScrollView!
     
@@ -31,7 +29,6 @@ class ProfileViewController: UIViewController {
     
     var lastSeen: [LastSeenLog] = []
     var activityLogs: [ActivityLog] = []
-    var i = 0
     var boolActivity = true
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -43,6 +40,7 @@ class ProfileViewController: UIViewController {
 //    @IBOutlet weak var imageProfile: UIImageView!
     
     override func viewDidLoad() {
+        activityLog()
         super.viewDidLoad()
         
         
@@ -60,14 +58,6 @@ class ProfileViewController: UIViewController {
     
     @IBAction func takePhotoBtn(sender: AnyObject) {
         print("aa")
-    }
-   
-    
-
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        activityLog()
     }
 
     override func didReceiveMemoryWarning() {
@@ -156,7 +146,6 @@ class ProfileViewController: UIViewController {
 //        let i = Int(arc4random_uniform(5) + 1)
 //        bgProfile.image = UIImage(named: "bg\(i)")
 
-        blurView.blurProgress = 1
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -172,6 +161,7 @@ class ProfileViewController: UIViewController {
         timeline.pointDiameter = 7.0
         timeline.lineWidth = 2.0
         timeline.bubbleRadius = 0.5
+        timeline.bubbleArrows = false
         
         let timeline2 = ISTimeline(frame: CGRectMake(0, 0, 350, 400))
         timeline2.backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0)
@@ -210,35 +200,33 @@ class ProfileViewController: UIViewController {
         })
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
-        
         ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             for record in snapshot.children {
                 let key = record.key!!
                 self.friendsTable.append(key)
                 print(key)
-        
-                for friends in self.friendsTable {
-                    var ref3 = FIRDatabase.database().reference().child("/Journal/\(friends)")
-                    ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                        let monsterType = snapshot.value!["MonsterType"] as! String
-                        let timeRetrieve = snapshot.value!["Time"] as! String
-                        let nameRetrieve = snapshot.value!["Name"] as! String
-                        
-                        let timeRetrieveDouble = Double(timeRetrieve)
-                        var date = NSDate(timeIntervalSince1970: timeRetrieveDouble!)
-                        
-                        let point = ISPoint(title: nameRetrieve)
-                        point.description = monsterType
-                        timeline2.points.append(point)
-                        point.lineColor = .blueColor()
-                        
-                        let LastSeen = LastSeenLog.init(monsterType: monsterType, time: timeRetrieve, name: nameRetrieve)
-                        self.lastSeen.append(LastSeen)
-                    
-                    })
-                }
             }
-        })
-}
-
+            var i = 1
+                while i < self.friendsTable.count{
+                let ref3 = FIRDatabase.database().reference().child("/Journal/\(self.friendsTable[i])")
+                ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                    let monsterType = snapshot.value!["MonsterType"] as! String
+                    let hourRetrieve = snapshot.value!["Hour"] as! NSNumber
+                    let minuteRetrieve = snapshot.value!["Minutes"] as! NSNumber
+                    let nameRetrieve = snapshot.value!["Name"] as! String
+                    
+                    let timeRetrieve = String(hourRetrieve) + " : " + String(minuteRetrieve)
+                    
+                    let point = ISPoint(title: timeRetrieve)
+                    point.description = nameRetrieve + " " + monsterType
+                    point.lineColor = .blueColor()
+                    timeline2.points.append(point)
+                    
+                    let LastSeen = LastSeenLog.init(monsterType: monsterType, time: timeRetrieve, name: nameRetrieve)
+                    self.lastSeen.append(LastSeen)
+                    })
+                    i = i + 1
+                }
+            })
+        }
 }
