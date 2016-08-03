@@ -172,7 +172,7 @@ class ProfileViewController: UIViewController {
     }
     
     func activityLog() {
-        let timeline = ISTimeline(frame: CGRectMake(0, 0, 350, 500))
+        let timeline = ISTimeline(frame: CGRectMake(0, 0, 350, 400))
         timeline.backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0)
         timeline.bubbleColor = .init(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         timeline.titleColor = .blackColor()
@@ -181,7 +181,7 @@ class ProfileViewController: UIViewController {
         timeline.lineWidth = 2.0
         timeline.bubbleRadius = 0.5
         
-        let timeline2 = ISTimeline(frame: CGRectMake(0, 0, 350, 500))
+        let timeline2 = ISTimeline(frame: CGRectMake(0, 0, 350, 400))
         timeline2.backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0)
         timeline2.bubbleColor = .init(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         timeline2.titleColor = .blackColor()
