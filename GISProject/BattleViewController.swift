@@ -35,6 +35,8 @@ class BattleViewController: UIViewController {
     
     var delegate: BattleProtocol?
     var battle: Battle?
+	var userUseExtraCards: Bool?
+	var localCardCount: Int?
 	var timer: NSTimer?
 	
 	let userID = (FIRAuth.auth()?.currentUser?.uid)!
@@ -58,6 +60,9 @@ class BattleViewController: UIViewController {
 		
 		// set up battle entity
 		self.battle!.selectedAnnotation = self.selectedAnnotation
+		
+		// set up local card count
+		self.localCardCount = 0
 		
         // UI stuff
         self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
@@ -94,6 +99,10 @@ class BattleViewController: UIViewController {
     }
 	
 	func useExtraCards() {
+		// reset local card count here too to avoid accumulating counts if user has not defeated monster yet
+		self.localCardCount = 0
+		self.userUseExtraCards = true
+	
 		self.alert = UIAlertController.init(title: "How many do you want to use?", message: "", preferredStyle: .Alert)
 		self.alert?.addTextFieldWithConfigurationHandler({ (textfield) in
 			textfield.keyboardType = .NumberPad
@@ -140,6 +149,7 @@ class BattleViewController: UIViewController {
 	func useOwnCard() {
 		// reset amount of cards to use because it will cause a bug when updating cards
 		self.battle?.amountOfCardsToUse = 0
+		self.userUseExtraCards = false
 		
 		// this does not use the self-provided method because I need the NSManagedObject to display the date
 		var userCanUseCard = true
@@ -236,6 +246,12 @@ class BattleViewController: UIViewController {
 	func decreaseMonsterHealth() {
 		// the health loop - to decrease health
 		if self.battle?.getMonsterHealth() > 0 {
+			if self.userUseExtraCards == true {
+				// reuse the same card variable after setting expected monster health
+				// so user does not waste cards
+				self.localCardCount = self.localCardCount! + 1
+			}
+		
 			if self.battle?.getMonsterHealth() > self.battle?.getExpectedMonsterHealth() {
 				self.battle?.monsterHealth = (self.battle?.monsterHealth)! - 1
 				self.monsterHealthLabel.text = "\(String(Int((self.battle?.monsterHealth)!)))/\(String(self.battle!.getInitialMonsterHealth()))"
@@ -244,7 +260,6 @@ class BattleViewController: UIViewController {
 				// stop timer to avoid health bar glitch
 				self.timer?.invalidate()
 				
-                // update all the cards
 				self.battle?.updateCards()
 				
 				// update the number of extra cards
@@ -264,7 +279,6 @@ class BattleViewController: UIViewController {
 					}
 					
 					self.battle!.amountOfCardsAvailable = NSNumber(integer: Int((self.battle!.uidArr?.count)!))
-					print((self.battle!.amountOfCardsAvailable?.integerValue)!)
                     
                     // set label
                     self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
@@ -285,6 +299,8 @@ class BattleViewController: UIViewController {
 						self.presentViewController(self.alert!, animated: true, completion: nil)
 					} else if self.isUserCardAvailable() == true {
 						self.userCardAvailable.text = "Available"
+					} else if self.isUserCardAvailable() == false {
+						self.userCardAvailable.text = "Not available"
 					}
 				})
 			}
@@ -296,7 +312,14 @@ class BattleViewController: UIViewController {
 			let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
                 // update all the things
 				self.battle?.updatePlayer()
-				self.battle?.updateCards()                
+				
+				// this only applies if the monster dies
+				if self.userUseExtraCards == true {
+					// update all the cards
+					self.battle?.amountOfCardsToUse = self.localCardCount
+					self.battle?.updateCards()
+				}
+				
 				self.battle?.updateMonster()
                 self.battle?.updatePreviousLocation()
 				self.battle?.updateLocation()
