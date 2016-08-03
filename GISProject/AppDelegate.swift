@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     
     func setupLocationTimer(){
         count = 0
-        seconds = 10
+        seconds = 180
         
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0,

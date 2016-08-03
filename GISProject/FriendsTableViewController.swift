@@ -140,9 +140,18 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //listen to login and logout
         refOnline.observeEventType(FIRDataEventType.ChildChanged, withBlock: { (snapshot) in
             print("online offline changes")
-           
-            //reload friends where there are new record added
-            self.loadFriends()
+       
+            //whenenver there are changes in accounts
+            //start looking into your friends array
+            for index in 0...self.friends.count - 1 {
+                
+                if(self.friends[index].myKey == snapshot.key){
+                    print("only your friends status changed: \(snapshot.key)")
+                   
+                    //only refresh the table if changes are your friends
+                    self.loadFriends()
+                }
+            }
         })
         
     }
@@ -386,6 +395,15 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                             
                         }
                         
+                        //by using the re-used cell, or newly created one
+                        //we update the FriendsCell images and text accordingly
+                        let levelInt = friend.Level
+                        let levelString = String(levelInt)
+                        
+                        //updating the text labels
+                        cell.name.text = friend.Name
+                        cell.level.text = "Lvl: \(levelString)"
+                        
                         
                     }
                     
@@ -402,28 +420,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             
  
          
-        
-        //by using the re-used cell, or newly created one
-        //we update the FriendsCell images and text accordingly
-        let levelInt = friend.Level
-        let levelString = String(levelInt)
-        
-        //updating the text labels
-        cell.name.text = friend.Name
-        cell.level.text = "Lvl: \(levelString)"
-        
-        /*
-         if(friend.isOnline == true){
-         cell.friendsCurrentLocatuon.text = "Online"
-         
-         }else{
-         cell.friendsCurrentLocatuon.text = "Off"
-         }
-         */
-        
-        
-       
-        
         
         
         
