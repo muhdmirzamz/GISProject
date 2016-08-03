@@ -59,7 +59,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		self.mapView.delegate = self
 		
 		// for debugging purposes
-		self.distanceLimit = 1000
+		self.distanceLimit = 50
 		self.distanceButton.setTitle("Distance: \(Int(self.distanceLimit!))", forState: .Normal)
 	}
 	
@@ -69,7 +69,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		
 		print("Hello MAP")
 		
-		self.reloadData()
+		self.reloadMap()
         
         let battle = Battle()
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
@@ -157,6 +157,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		
 		self.userLat = userLocation.coordinate.latitude
 		self.userLong = userLocation.coordinate.longitude
+		
+		self.reloadMap()
 	}
 	
 	func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -325,33 +327,39 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	}
 	
 	func reloadMap() {
-		self.reloadData()
-	}
-	
-	func reloadData() {
 		self.mapView.selectedAnnotations.removeAll()
 		self.mapView.removeAnnotations(self.mapView.annotations)
 	
 		let ref = FIRDatabase.database().reference().child("/Location")
 		
-		ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-			for record in snapshot.children {
-				let key = record.key!!
-				var coordinate = CLLocationCoordinate2D()
-				
-				let latitude = record.value!!["latitude"] as! NSNumber
-				let longitude = record.value!!["longitude"] as! NSNumber
-				
-				coordinate.latitude = latitude.doubleValue
-				coordinate.longitude = longitude.doubleValue
-				
-				let imageString = record.value!!["image string"] as! String
-				
-				let locationModel = Location.init(key: key, coordinate: coordinate, imageString: imageString)
-				
-				self.mapView.addAnnotation(locationModel)
-			}
-		})
+		// make sure user location is not nil
+		if self.userLat != nil && self.userLong != nil {
+			ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+				for record in snapshot.children {
+					let key = record.key!!
+					var coordinate = CLLocationCoordinate2D()
+					
+					let latitude = record.value!!["latitude"] as! NSNumber
+					let longitude = record.value!!["longitude"] as! NSNumber
+					
+					coordinate.latitude = latitude.doubleValue
+					coordinate.longitude = longitude.doubleValue
+					
+					let imageString = record.value!!["image string"] as! String
+					
+					let locationModel = Location.init(key: key, coordinate: coordinate, imageString: imageString)
+					
+					// compare distance on reload so you only download necessary models
+					let boundaryLocation = CLLocation.init(latitude: locationModel.coordinate.latitude, longitude: locationModel.coordinate.longitude)
+					let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
+					let distance = userLocation.distanceFromLocation(boundaryLocation)
+					
+					if distance < self.distanceLimit! {
+						self.mapView.addAnnotation(locationModel)
+					}
+				}
+			})
+		}
 		
 		// center view within region
 		var span = MKCoordinateSpan()
@@ -384,11 +392,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	
 	// for debugging purposes
 	@IBAction func changeDistanceLimit() {
-		if self.distanceLimit! == 1000 {
+		if self.distanceLimit! == 80000 {
 			self.distanceLimit = 50
 		} else if self.distanceLimit! == 50 {
-			self.distanceLimit = 1000
+			self.distanceLimit = 80000
 		}
+		
+		self.reloadMap()
 		
 		self.distanceButton.setTitle("Distance: \(Int(self.distanceLimit!))", forState: .Normal)
 	}
