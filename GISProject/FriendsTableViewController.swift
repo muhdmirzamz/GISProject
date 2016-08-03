@@ -111,6 +111,9 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //ref to friends in firebase
         let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
         
+        //ref to users
+        let refOnline = FIRDatabase.database().reference().child("/Account/")
+        
         
         ref.observeEventType(FIRDataEventType.ChildChanged, withBlock: { (snapshot) in
             print("there are changes")
@@ -128,12 +131,20 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         ref.observeEventType(FIRDataEventType.ChildAdded, withBlock: { (snapshot) in
             print("there are childAdded")
-            print("record changed---> \(snapshot.key)")
             //self.sendFriendsRequestNotification(snapshot.key)
             
             //reload friends where there are new record added
             self.loadFriends()
         })
+        
+        //listen to login and logout
+        refOnline.observeEventType(FIRDataEventType.ChildChanged, withBlock: { (snapshot) in
+            print("online offline changes")
+           
+            //reload friends where there are new record added
+            self.loadFriends()
+        })
+        
     }
     
     
@@ -153,6 +164,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //reload tableview to display the search result
         tableView.reloadData()
     }
+    
+    
     
     //pull to refresh contents
     func refreshControlAction()
@@ -326,6 +339,9 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         } else {
             
             friend = friends[indexPath.row]
+            
+            
+        }
             var passkey: String = friend.myKey
          
             /*
@@ -353,17 +369,24 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                 ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
                     
                     
-                    
                     //closure
                     dispatch_async(dispatch_get_main_queue()) {
-                        print("-------------------")
-                        print(snapshot.hasChild("\(uid)"))
+                      
                         inMyFriendsList = snapshot.hasChild("\(uid)")
-                        print("-------------------")
+                        
+                        //show valid chat label
                         if(inMyFriendsList == false){
                             print("caught you: \(snapshot.key)")
                             cell.msgLabel.hidden = false
                         }
+                        
+                        //show online label
+                        if(friend.isOnline == true){
+                            cell.onlineLabel.hidden = false
+                            
+                        }
+                        
+                        
                     }
                     
                     
@@ -378,7 +401,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             
             
  
-        }
+         
         
         //by using the re-used cell, or newly created one
         //we update the FriendsCell images and text accordingly

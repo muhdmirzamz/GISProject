@@ -200,6 +200,7 @@ class ProfileViewController: UIViewController {
         })
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
+        
         ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             for record in snapshot.children {
                 let key = record.key!!
@@ -207,6 +208,7 @@ class ProfileViewController: UIViewController {
                 print(key)
             }
             var i = 1
+            /*
                 while i < self.friendsTable.count{
                 let ref3 = FIRDatabase.database().reference().child("/Journal/\(self.friendsTable[i])")
                 ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
@@ -227,6 +229,8 @@ class ProfileViewController: UIViewController {
                     })
                     i = i + 1
                 }
+            
+            */
             })
         }
 }

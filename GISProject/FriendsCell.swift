@@ -14,7 +14,8 @@ class FriendsCell: UITableViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var name: UILabel!
- 
+
+    @IBOutlet weak var onlineLabel: UIImageView!
     @IBOutlet weak var msgLabel: UIImageView!
     @IBOutlet weak var level: UILabel!
     @IBOutlet weak var friendsCurrentLocatuon: UILabel!
@@ -32,6 +33,8 @@ class FriendsCell: UITableViewCell {
         
         //hide msg label
         self.msgLabel.hidden = true
+        self.onlineLabel.hidden = true
+        
     }
     
     //customize cell background images
