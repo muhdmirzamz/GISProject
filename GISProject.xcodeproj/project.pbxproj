@@ -100,6 +100,7 @@
 		814575491D1A5F1E00375E6B /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		8156447A1D126CA40028D162 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		819E1ABF1D3331730070BF51 /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
+		81D87E721D51A1E5005BCAC2 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Location.gpx; path = ../../Location.gpx; sourceTree = "<group>"; };
 		81DA778A1D17AD4300CB0EB6 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		81E3D6521D2216D300F3BAF4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		81ED3CC01D2B4B9700CABCCC /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
@@ -355,6 +356,7 @@
 				AA130BFA1CE6D6BD003D0E6A /* MapViewController.swift */,
 				819E1ABF1D3331730070BF51 /* BattleViewController.swift */,
 				AA8B637A1D33CC1F00BF2289 /* Battle.swift */,
+				81D87E721D51A1E5005BCAC2 /* Location.gpx */,
 				AA8B63781D33CB1300BF2289 /* Location.swift */,
 			);
 			name = Battle;
