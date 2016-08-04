@@ -942,64 +942,6 @@
             </objects>
             <point key="canvasLocation" x="1667" y="-798"/>
         </scene>
-        <!--Friends Deck-->
-        <scene sceneID="4sF-bB-3Fw">
-            <objects>
-                <collectionViewController id="HbG-ti-DWE" customClass="FriendsDeckCollectionViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="s6f-bb-rG5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b6F-TM-Gy5">
-                            <size key="itemSize" width="174" height="209"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="FriendsDeckCell" id="qSs-ed-JHj">
-                                <rect key="frame" x="73" y="0.0" width="174" height="209"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="174" height="209"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="azH-qB-kSS" userLabel="lockView">
-                                            <rect key="frame" x="0.0" y="41" width="174" height="128"/>
-                                            <color key="backgroundColor" red="0.37748822770000001" green="1" blue="0.16046102700000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="front" translatesAutoresizingMaskIntoConstraints="NO" id="YI3-bP-mkP">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="azH-qB-kSS" secondAttribute="trailing" id="7kY-SV-Tc4"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="YI3-bP-mkP" secondAttribute="bottom" id="Pfs-1C-Nvs"/>
-                                    <constraint firstItem="YI3-bP-mkP" firstAttribute="leading" secondItem="qSs-ed-JHj" secondAttribute="leadingMargin" id="azy-Mn-TQ5"/>
-                                    <constraint firstItem="azH-qB-kSS" firstAttribute="top" secondItem="qSs-ed-JHj" secondAttribute="topMargin" id="f4c-4r-zws"/>
-                                    <constraint firstItem="YI3-bP-mkP" firstAttribute="top" secondItem="qSs-ed-JHj" secondAttribute="topMargin" id="hsY-W3-BbC"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="YI3-bP-mkP" secondAttribute="trailing" id="xTG-4Q-yT4"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="azH-qB-kSS" secondAttribute="bottom" id="xVH-GS-Kgz"/>
-                                    <constraint firstItem="azH-qB-kSS" firstAttribute="leading" secondItem="qSs-ed-JHj" secondAttribute="leadingMargin" id="xjJ-5X-UXC"/>
-                                </constraints>
-                                <size key="customSize" width="174" height="209"/>
-                                <connections>
-                                    <segue destination="PXt-JB-A6B" kind="modal" identifier="ShowDetail" id="UrR-5n-K9e"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="HbG-ti-DWE" id="j9B-MQ-GtJ"/>
-                            <outlet property="delegate" destination="HbG-ti-DWE" id="bDD-Ky-wyD"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Friends Deck" id="822-R6-uc7"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="njP-Sb-0Jq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1683" y="-1459"/>
-        </scene>
         <!--Pop Over View Controller-->
         <scene sceneID="cuz-oO-Ecc">
             <objects>
@@ -1358,7 +1300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zO7-vC-K1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1267" y="-1472"/>
+            <point key="canvasLocation" x="1667" y="-1516"/>
         </scene>
     </scenes>
     <resources>
