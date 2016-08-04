@@ -60,8 +60,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		self.mapView.delegate = self
 		
 		// for debugging purposes
-		self.distanceLimit = 50
-		self.distanceButton.setTitle("Distance: \(Int(self.distanceLimit!))", forState: .Normal)
+		self.distanceLimit = 100
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -394,19 +393,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let camera = MKMapCamera.init(lookingAtCenterCoordinate: location, fromEyeCoordinate: eyeCoord, eyeAltitude: 1000)
         self.mapView.setCamera(camera, animated: true)
-	}
-	
-	// for debugging purposes
-	@IBAction func changeDistanceLimit() {
-		if self.distanceLimit! == 80000 {
-			self.distanceLimit = 50
-		} else if self.distanceLimit! == 50 {
-			self.distanceLimit = 80000
-		}
-		
-		self.reloadMap()
-		
-		self.distanceButton.setTitle("Distance: \(Int(self.distanceLimit!))", forState: .Normal)
 	}
 	
     override func didReceiveMemoryWarning() {
