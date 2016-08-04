@@ -1259,10 +1259,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ve7-ja-ewb">
-                                            <rect key="frame" x="0.0" y="87" width="600" height="452"/>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ve7-ja-ewb">
+                                            <rect key="frame" x="0.0" y="85" width="600" height="452"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="10" id="WJx-qW-PUB">
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="WJx-qW-PUB">
                                                 <size key="itemSize" width="160" height="209"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1328,6 +1328,12 @@
                                             </connections>
                                         </collectionView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ve7-ja-ewb" firstAttribute="leading" secondItem="dq6-2k-XgV" secondAttribute="leading" id="239-If-4lp"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ve7-ja-ewb" secondAttribute="trailing" id="fvg-Kd-d8x"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ve7-ja-ewb" secondAttribute="bottom" id="rfx-Hu-UZw"/>
+                                        <constraint firstItem="Ve7-ja-ewb" firstAttribute="top" secondItem="dq6-2k-XgV" secondAttribute="top" constant="85" id="sBn-th-g8r"/>
+                                    </constraints>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
