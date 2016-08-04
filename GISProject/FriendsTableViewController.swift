@@ -246,6 +246,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         return 1
     }
     
+    /*
     //this function used to triggered empty friendslist messages
     //msg : you have no friends yet
     override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String {
@@ -305,7 +306,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         return message
     }
-    
+    */
     
     //returns the number of items in the tableview
     //display all friends and search friends accordingly
