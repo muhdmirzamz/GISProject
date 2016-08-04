@@ -21,6 +21,7 @@ class HomeViewController: UIViewController
     var selected : Bool = true
     var initialPoint : CGPoint!
     var count : Int = 0
+    var selectedItem : Int = 0
     
     // MARK: - UICollectionViewDataSource
     private var interests : [Interest] = []
@@ -110,6 +111,7 @@ extension HomeViewController : UICollectionViewDataSource
         print("tapped-->\(indexPath.row)")
         
         
+        
         var cell: InterestCollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! InterestCollectionViewCell
         
         //self.animateZoomforCell(cell)
@@ -118,19 +120,20 @@ extension HomeViewController : UICollectionViewDataSource
         //0 : add
         //1 : dont add
         if(count == 0){
+         
          //initialPoint = CGPoint(x: realCenter.x, y: realCenter.y)
              count++
+            //selected item
+            selectedItem = indexPath.row
         }
-        
-        
-        
-        
-        
-        print("initital point : \(initialPoint)")
+  
         
         //true to zoom in
         
+        if(selectedItem == indexPath.row){
+        
         if(selected == true){
+           
             print("true--> : \(cell.center)")
             initialPoint = cell.center
             collectionView.bringSubviewToFront(cell)
@@ -174,10 +177,13 @@ extension HomeViewController : UICollectionViewDataSource
             
             //set to false
             selected = true
+            count = 0
             
             
         }
-        
+        }else{
+            print("not the same item")
+        }
         
 
         
