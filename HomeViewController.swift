@@ -1,16 +1,9 @@
-//
-//  HomeViewController.swift
-//  Interests
-//
-//  Created by Duc Tran on 6/13/15.
-//  Copyright © 2015 Developer Inspirus. All rights reserved.
-//
-
+ 
 import UIKit
 
 class HomeViewController: UIViewController
 {
-    // MARK: - IBOutlets
+    
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -23,8 +16,7 @@ class HomeViewController: UIViewController
     var count : Int = 0
     var selectedItem : Int = 0
     
-    // MARK: - UICollectionViewDataSource
-    private var interests : [Interest] = []
+   
     
     //declare an array of friends obj
     var friends:[Friends] = []
@@ -102,6 +94,10 @@ extension HomeViewController : UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Storyboard.CellIdentifier, forIndexPath: indexPath) as! InterestCollectionViewCell
         
         cell.interestTitleLabel.text = self.friends[indexPath.item].Name
+        
+        //if the card is valid, dont display lock label
+        
+        
         
         return cell
     }

@@ -1,10 +1,4 @@
-//
-//  InterestCollectionViewCell.swift
-//  Interests
-//
-//  Created by Duc Tran on 6/13/15.
-//  Copyright © 2015 Developer Inspirus. All rights reserved.
-//
+ 
 
 import UIKit
 
@@ -12,10 +6,10 @@ class InterestCollectionViewCell: UICollectionViewCell
 {
     
     
-    // MARK: - Private
-    
+  
     @IBOutlet weak var featuredImageView: UIImageView!
     @IBOutlet weak var interestTitleLabel: UILabel!
+    @IBOutlet weak var lockLabel: UIImageView!
     
    
     
@@ -24,6 +18,7 @@ class InterestCollectionViewCell: UICollectionViewCell
         
         self.layer.cornerRadius = 10.0
         self.clipsToBounds = true
+        self.lockLabel.hidden = true
     }
 }
 
