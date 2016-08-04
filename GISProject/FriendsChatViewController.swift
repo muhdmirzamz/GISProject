@@ -445,7 +445,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             //The quality of the resulting JPEG image, expressed as a value from 0.0 to 1.0.
             // 1 is the highest quality
-            let imageData = UIImageJPEGRepresentation(pic, 1.0)
+            let imageData = UIImageJPEGRepresentation(pic, 0.3)
             
             outgoingMessage = OutgoingMessage(message: "Picture", pictureData: imageData!, senderId: self.senderKey!, senderName: self.senderName, date: date, status: "Delivered", type: "picture")
         }
@@ -618,7 +618,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             img = UIImage(data: imageBinary!)
         }
         
-        let imageData = UIImageJPEGRepresentation(img!, 1.0)
+        let imageData = UIImageJPEGRepresentation(img!, 0.3)
         
         
         if self.avatarImagesDictionary != nil {

@@ -101,7 +101,14 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 28/255, green: 211/255, blue: 235/255, alpha: 1)]
         
+     
+        
     }
+    
+   
+   
+    
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -636,7 +643,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //hide the bottombar for friends deck view
         //go to deck view controller
         if(segue.identifier == "ShowFriendsDeck") {
-            let detailViewController = segue.destinationViewController as! HomeViewController
+            let detailViewController = segue.destinationViewController as! FriendsDeckHomeViewController
             detailViewController.hidesBottomBarWhenPushed = true
         }
         

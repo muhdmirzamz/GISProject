@@ -15,6 +15,7 @@ class Friends{
     var ThumbnailImgUrl : String
     var myKey : String
     var isOnline : Bool
+  
     
     
     
