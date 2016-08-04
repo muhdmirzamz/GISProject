@@ -84,10 +84,23 @@ class FriendsDataManager: NSObject {
             //ref to friends in firebase
             let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
             
-            var username : String!
-            var level : Int!
-            var myKey: String!
+            
+            
+            
+            
+            var baseDamage : Int!
             var online :Bool!
+            var monstersKilled : Int!
+            var username : String!
+            var ThumbnailImgUrl : String = "kk"
+            var level : Int!
+            var lat : Double!
+            var lng : Double!
+            var myKey: String!
+            
+            
+            
+            
             
             ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
                 
@@ -101,9 +114,15 @@ class FriendsDataManager: NSObject {
                     lookForFriends.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                         
                         // Get user value
+                         baseDamage = snapshot.value!["Base Damage"] as! Int
+                         online = snapshot.value!["KEY_ISONLINE"] as! Bool
+                         monstersKilled = snapshot.value!["Monsters killed"] as! Int
                         username = snapshot.value!["Name"] as! String
+                        ThumbnailImgUrl = snapshot.value!["profileImage"] as! String
                         level = snapshot.value!["Level"] as! Int
-                        online = snapshot.value!["KEY_ISONLINE"] as! Bool
+                        lat = snapshot.value!["lat"] as! Double
+                        lng = snapshot.value!["lng"] as! Double
+                        
                         //let imageUrl = snapshot.value!["Picture"] as! Double
                         myKey = snapshot.key
                         
@@ -112,12 +131,25 @@ class FriendsDataManager: NSObject {
                             print(snapshot.value!["Name"] as! String)
                         }
                         
+                        
                         //add to arraylist
-                        friendsList.append(Friends(name: username,
+                        
+                        friendsList.append(Friends(bDamage: baseDamage,
+                            online: online,
+                            monstKilled: monstersKilled,
+                            name: username,
+                            thumbnailImgUrl: ThumbnailImgUrl,
                             level: level,
-                            thumbnailImgUrl: "",
-                            myKey : myKey,
-                            online: online))
+                            latitude: lat,
+                            longtitude: lng,
+                            myKey: myKey)
+                            
+                            
+                            
+                        )
+                        
+                        
+                        
                         
                         //closure
                         dispatch_async(dispatch_get_main_queue()) {

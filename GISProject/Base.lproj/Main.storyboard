@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Image Picker View Controller-->
@@ -930,14 +929,11 @@
                                 <action selector="restore:" destination="8lf-Lp-A76" id="maR-XW-IUT"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="ic_credit_card" id="lad-in-zMl">
-                                <connections>
-                                    <segue destination="mng-rs-OKD" kind="push" identifier="ShowFriendsDeck" id="VSc-xO-LIZ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="add" id="CFm-BC-Lh6"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="ic_credit_card" id="lad-in-zMl">
+                            <connections>
+                                <segue destination="mng-rs-OKD" kind="push" identifier="ShowFriendsDeck" id="VSc-xO-LIZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPh-w4-ulP" userLabel="First Responder" sceneMemberID="firstResponder"/>

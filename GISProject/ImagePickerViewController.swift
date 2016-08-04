@@ -40,7 +40,7 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
         
         let camera = Camera(delegate_: self)
         
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
         
         let takePhoto = UIAlertAction(title: "Take Photo", style: .Default) { (alert: UIAlertAction!) -> Void in
             camera.PresentPhotoCamera(self, canEdit: true)
@@ -85,12 +85,35 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
         //send picture message
         if let pic = picture {
             
-            let imageData = UIImageJPEGRepresentation(pic, 1.0)
+            let imageData = UIImageJPEGRepresentation(pic, 0.1)
             
-            outgoingMessage = OutgoingMessage(message: "testing pc", pictureData: imageData!)
+            let pic = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+            
+            
+            
+            let usersRef = FIRDatabase.database().reference().child("/Account/\(uid)")
+            
+                     
+            usersRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                    
+                    print("true rooms exist")
+                
+                    var updatePicture = ["profileImage": pic as! String]
+                    
+                   usersRef.updateChildValues(updatePicture)
+                
+                     //print(pic)
+                            var image: UIImage?
+                            
+                            let decodedData = NSData(base64EncodedString: (snapshot.value!["profileImage"] as! String), options: NSDataBase64DecodingOptions(rawValue: 0))
+                            
+                            image = UIImage(data: decodedData!)
+                            
+                            self.imageView.image = image
+            })
         }
         
-        outgoingMessage!.sendPhoto("\(uid)", item: outgoingMessage!.messageDictionary)
+      
         print("done")
         
         picker.dismissViewControllerAnimated(true, completion: nil)

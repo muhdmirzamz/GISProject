@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import SCLAlertView
+import JSQMessagesViewController
 
 class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
@@ -397,6 +398,12 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                 //ref to friends in firebase
                 let ref = FIRDatabase.database().reference().child("Friend/\(passkey)")
                 
+                var image: UIImage?
+                
+                let decodedData = NSData(base64EncodedString: (friend.ThumbnailImgUrl), options: NSDataBase64DecodingOptions(rawValue: 0))
+                
+                image = UIImage(data: decodedData!)
+                
                 
                 
                 ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
@@ -506,10 +513,20 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                         cell.name.text = friend.Name
                         cell.level.text = "Lvl: \(levelString)"
                         
+                        //load and update friends avatimages asynchronous from helper class
+                       // FriendsDataManager.loadAndDisplayImage(nil, imageView: cell.profileImage, url: friend.ThumbnailImgUrl)
+                     
+                        
+                        if(friend.ThumbnailImgUrl == "profileImage"){
+                            var img : UIImage! =  UIImage(named: "loading.png")
+                           cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80)
+                        }else{
+                             
+                            cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 80)
+                        }
                         
                         
                       
-                        
                     }
                     
                     
@@ -527,8 +544,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         
         
-        //load and update friends avatimages asynchronous from helper class
-        //FriendsDataManager.loadAndDisplayImage(nil, imageView: cell.profileImage, url: friend.ThumbnailImgUrl)
+        
         
         return cell
         

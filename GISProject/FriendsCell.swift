@@ -28,8 +28,7 @@ class FriendsCell: UITableViewCell {
         //friend avatar styling
         self.name.textColor = UIColor.blackColor()
         
-        var img : UIImage! =  UIImage(named: "loading.png")
-        self.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80)
+        
         
         //hide msg label
         self.msgLabel.hidden = true

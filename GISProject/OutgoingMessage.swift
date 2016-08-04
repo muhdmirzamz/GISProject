@@ -146,6 +146,7 @@ class OutgoingMessage {
             }
         })
     }
+    
     func sendPhoto(chatRoomID: String, item: NSMutableDictionary) {
         let usersRef = FIRDatabase.database().reference().child("/Account")
         
