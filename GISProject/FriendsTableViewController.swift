@@ -635,7 +635,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //hide the bottombar for friends deck view
         //go to deck view controller
         if(segue.identifier == "ShowFriendsDeck") {
-            let detailViewController = segue.destinationViewController as! FriendsDeckCollectionViewController
+            let detailViewController = segue.destinationViewController as! HomeViewController
             detailViewController.hidesBottomBarWhenPushed = true
         }
         

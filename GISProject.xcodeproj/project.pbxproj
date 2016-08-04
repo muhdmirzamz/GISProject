@@ -38,6 +38,9 @@
 		81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED3CC01D2B4B9700CABCCC /* TestController.swift */; };
 		81F1673D1D29F581009B305D /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81F1673B1D29F581009B305D /* User.xcdatamodeld */; };
 		883639EC1D379D7100C99CCB /* friendsmap.html in Resources */ = {isa = PBXBuildFile; fileRef = 883639EB1D379D7100C99CCB /* friendsmap.html */; };
+		88544F4D1D533F9300AA8090 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88544F4C1D533F9300AA8090 /* InterestCollectionViewCell.swift */; };
+		88544F4F1D533F9A00AA8090 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88544F4E1D533F9A00AA8090 /* Interest.swift */; };
+		88544F511D533FAC00AA8090 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88544F501D533FAC00AA8090 /* HomeViewController.swift */; };
 		889AA4A91D2D6A90004A9892 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */; };
 		88EFBE111D2138E000577EC5 /* FriendsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */; };
 		88EFBE131D2138E600577EC5 /* FriendsChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */; };
@@ -105,6 +108,9 @@
 		81ED3CC01D2B4B9700CABCCC /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		81F1673C1D29F581009B305D /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		883639EB1D379D7100C99CCB /* friendsmap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = friendsmap.html; sourceTree = "<group>"; };
+		88544F4C1D533F9300AA8090 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
+		88544F4E1D533F9A00AA8090 /* Interest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
+		88544F501D533FAC00AA8090 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		889AA4A81D2D6A90004A9892 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
 		88EFBE101D2138E000577EC5 /* FriendsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDetailViewController.swift; path = GISProject/FriendsDetailViewController.swift; sourceTree = "<group>"; };
 		88EFBE121D2138E600577EC5 /* FriendsChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsChatViewController.swift; path = GISProject/FriendsChatViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +263,16 @@
 			name = Account;
 			sourceTree = "<group>";
 		};
+		881FBA4E1D53307200DAEEA2 /* FriendsDeck */ = {
+			isa = PBXGroup;
+			children = (
+				88544F4E1D533F9A00AA8090 /* Interest.swift */,
+				88544F501D533FAC00AA8090 /* HomeViewController.swift */,
+				88544F4C1D533F9300AA8090 /* InterestCollectionViewCell.swift */,
+			);
+			name = FriendsDeck;
+			sourceTree = "<group>";
+		};
 		88319B771D4CA2450031F09A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +302,7 @@
 		88EFBE1A1D213B8400577EC5 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				881FBA4E1D53307200DAEEA2 /* FriendsDeck */,
 				88319B771D4CA2450031F09A /* Utility */,
 				8877E81A1D3BB7BF00A595DC /* Messages */,
 				88EFBE141D2138EC00577EC5 /* Friends.swift */,
@@ -569,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88544F4D1D533F9300AA8090 /* InterestCollectionViewCell.swift in Sources */,
 				6D611EB41CEB466500F99494 /* ActivityLog.swift in Sources */,
 				AA22DB571CE3613800F8BA43 /* ViewController.swift in Sources */,
 				6DDF54D81D3E1F5700C9ABEE /* FriendsMapViewController.swift in Sources */,
@@ -587,12 +605,14 @@
 				6D8169F41D360B1F00AC33C6 /* ProfileViewController.swift in Sources */,
 				81ED3CC11D2B4B9700CABCCC /* TestController.swift in Sources */,
 				AA130BFB1CE6D6BD003D0E6A /* MapViewController.swift in Sources */,
+				88544F511D533FAC00AA8090 /* HomeViewController.swift in Sources */,
 				AAED267B1D4F904C0042DD2F /* Camera.swift in Sources */,
 				AA8B637B1D33CC1F00BF2289 /* Battle.swift in Sources */,
 				6DDF54D41D3E1F4900C9ABEE /* WeatherMapViewController.swift in Sources */,
 				AAED267C1D4F904C0042DD2F /* ChatMapViewController.swift in Sources */,
 				6D7F4C071D4F3F7200543F37 /* LastSeenLog.swift in Sources */,
 				88EFBE171D2138F100577EC5 /* FriendsDataManager.swift in Sources */,
+				88544F4F1D533F9A00AA8090 /* Interest.swift in Sources */,
 				8145754A1D1A5F1E00375E6B /* ImagePickerViewController.swift in Sources */,
 				81DA778B1D17AD4300CB0EB6 /* PasswordResetViewController.swift in Sources */,
 				819E1AC01D3331730070BF51 /* BattleViewController.swift in Sources */,
