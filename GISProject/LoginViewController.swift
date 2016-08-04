@@ -23,6 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, ProfileProtoco
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var myid : String = ""
+    var nameJournal : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +132,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, ProfileProtoco
 		return true
 	}
 
+    //
+    //Login Code
+    //
     @IBAction func Login(sender: AnyObject) {
         hideKeyboard()
         self.login.enabled = false
@@ -174,8 +178,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate, ProfileProtoco
                 self.presentViewController(tabBarController!, animated: true, completion: nil)
                 self.Email.text! = ""
                 self.Password.text! = ""
+                self.updateJournal()
             }
         })
+    }
+    
+    func updateJournal(){
+        let userID = (FIRAuth.auth()?.currentUser?.uid)!
+        let ref4 = FIRDatabase.database().reference().child("/Account")
+        ref4.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            self.nameJournal = snapshot.value!["Name"] as! String
+            
+            let date = NSDate()
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components([ .Hour, .Minute, .Second], fromDate: date)
+            let hour = components.hour
+            let minutes = components.minute
+            //Used for retrieving of date from firebase
+            //var date = NSDate(timeIntervalSince1970: interval)
+            let ref3 = FIRDatabase.database().reference().child("Journal/\(userID)")
+            ref3.child("MonsterType").setValue("has logged in")
+            ref3.child("Hour").setValue(hour)
+            ref3.child("Minutes").setValue(minutes)
+            ref3.child("Name").setValue(self.nameJournal)
+            print("Update journal")
+        })
+        
     }
 
 

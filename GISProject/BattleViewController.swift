@@ -98,6 +98,10 @@ class BattleViewController: UIViewController {
 		self.view.addGestureRecognizer(cardAttack2)
     }
 	
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
 	func useExtraCards() {
 		// reset local card count here too to avoid accumulating counts if user has not defeated monster yet
 		self.localCardCount = 0
@@ -389,6 +393,8 @@ class BattleViewController: UIViewController {
 	}
 	
 	@IBAction func dismissBattle() {
+        self.delegate?.reloadMap()
+        
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 }

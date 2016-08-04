@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollView2: UIScrollView!
     
-    
+    var friendsTable2: [String] = []
     var friendsTable: [String] = []
     var ref: FIRDatabaseReference!
     var delegate: ProfileProtocol?
@@ -153,6 +153,7 @@ class ProfileViewController: UIViewController {
     }
     
     func activityLog() {
+        friendsTable.removeAll()
         let timeline = ISTimeline(frame: CGRectMake(0, 0, 350, 400))
         timeline.backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0)
         timeline.bubbleColor = .init(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
@@ -181,31 +182,13 @@ class ProfileViewController: UIViewController {
         
         let ref = FIRDatabase.database().reference().child("/Activity")
         
-        ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-            for record in snapshot.children {
-                let key = record.key!!
-                
-                let uid = record.value!!["uid"] as! String
-                let activity = record.value!!["activity"] as! String
-                let name = record.value!!["name"] as! String
-                
-                let point = ISPoint(title: name)
-                point.description = activity
-                point.lineColor = .greenColor()
-                timeline.points.append(point)
-                let Activity = ActivityLog.init(key: key, activity: activity, uid: uid, name: name)
-                
-                self.activityLogs.append(Activity)
-            }
-        })
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
-        let ref2 = FIRDatabase.database().reference().child("/Friend/\(uid)")
-        
-        ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+        let ref4 = FIRDatabase.database().reference().child("/Friend/\(uid)")
+        ref4.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             for record in snapshot.children {
                 let key = record.key!!
                 self.friendsTable.append(key)
-                print(key)
+                self.friendsTable2.append(key)
             }
             var i = 1
             /*
@@ -217,10 +200,12 @@ class ProfileViewController: UIViewController {
                     let minuteRetrieve = snapshot.value!["Minutes"] as! NSNumber
                     let nameRetrieve = snapshot.value!["Name"] as! String
                     
-                    let timeRetrieve = String(hourRetrieve) + " : " + String(minuteRetrieve)
+                    let stringMinute = String(format: "%02d", minuteRetrieve)
                     
-                    let point = ISPoint(title: timeRetrieve)
-                    point.description = nameRetrieve + " " + monsterType
+                    let timeRetrieve = String(hourRetrieve) + ":" + String(minuteRetrieve)
+                    
+                    let point = ISPoint(title: nameRetrieve)
+                    point.description = monsterType + " at " + timeRetrieve
                     point.lineColor = .blueColor()
                     timeline2.points.append(point)
                     

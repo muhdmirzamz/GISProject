@@ -147,13 +147,6 @@
                                     <segue destination="oaN-E3-sex" kind="modal" id="x5V-r2-Zfh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptV-gS-t7Y">
-                                <rect key="frame" x="228" y="499" width="135" height="30"/>
-                                <state key="normal" title="Distance"/>
-                                <connections>
-                                    <action selector="changeDistanceLimit" destination="nVO-O5-cgz" eventType="touchUpInside" id="hQh-jX-gbD"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -172,7 +165,6 @@
                         <outlet property="cancelButton" destination="50q-ds-T01" id="4Bg-uX-FRV"/>
                         <outlet property="cardFriends" destination="dyd-wi-Rn9" id="loW-6g-yQl"/>
                         <outlet property="damageLabel" destination="CqL-OC-bw8" id="pmI-JM-LrN"/>
-                        <outlet property="distanceButton" destination="ptV-gS-t7Y" id="cRh-a1-AiZ"/>
                         <outlet property="imageOwnCard" destination="SrR-ZB-tPm" id="EMK-6W-7RV"/>
                         <outlet property="imageProfile" destination="7ZD-sE-Jzv" id="5e9-ib-6jB"/>
                         <outlet property="levelLabel" destination="4FG-Q0-zmt" id="byc-Rn-LQ2"/>
@@ -775,11 +767,8 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ysb-dN-HH6">
-                                            <rect key="frame" x="205" y="103" width="139" height="426"/>
-                                        </scrollView>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXm-z1-CkP">
-                                            <rect key="frame" x="26" y="103" width="137" height="426"/>
+                                            <rect key="frame" x="8" y="103" width="134" height="426"/>
                                         </scrollView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Seen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vg-u1-b25">
                                             <rect key="frame" x="197" y="41" width="155" height="59"/>
@@ -787,6 +776,9 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ysb-dN-HH6">
+                                            <rect key="frame" x="182" y="103" width="170" height="426"/>
+                                        </scrollView>
                                     </subviews>
                                 </view>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -860,7 +852,7 @@
                                 <rect key="frame" x="0.0" y="92" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6do-5K-lp3" id="3sI-OU-92k">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@ Koufu | 2km" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0e-kx-NIA">
@@ -1106,7 +1098,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="132" height="32"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friends" translatesAutoresizingMaskIntoConstraints="NO" id="SOT-sq-yKg">
-                                                <rect key="frame" x="137" y="0.0" width="131" height="32"/>
+                                                <rect key="frame" x="137" y="0.0" width="132" height="32"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
@@ -1119,7 +1111,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Friends : 15" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5J-qs-CtD">
-                                                <rect key="frame" x="137" y="0.0" width="131" height="32"/>
+                                                <rect key="frame" x="137" y="0.0" width="132" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -1132,7 +1124,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="132" height="32"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Swc-i1-7tF">
-                                                <rect key="frame" x="137" y="0.0" width="131" height="32"/>
+                                                <rect key="frame" x="137" y="0.0" width="132" height="32"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
@@ -1145,7 +1137,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="d" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4d1-jW-85w">
-                                                <rect key="frame" x="137" y="0.0" width="131" height="32"/>
+                                                <rect key="frame" x="137" y="0.0" width="132" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>

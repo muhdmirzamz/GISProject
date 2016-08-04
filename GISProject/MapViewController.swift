@@ -48,6 +48,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		self.locationManager?.delegate = self
 		self.locationManager?.desiredAccuracy = kCLLocationAccuracyBestForNavigation
 		self.locationManager?.requestWhenInUseAuthorization()
+        self.locationManager?.distanceFilter = 50
 		
 		// you need this for user location
 		self.locationManager?.startUpdatingLocation()
@@ -59,8 +60,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		self.mapView.delegate = self
 		
 		// for debugging purposes
-		self.distanceLimit = 50
-		self.distanceButton.setTitle("Distance: \(Int(self.distanceLimit!))", forState: .Normal)
+		self.distanceLimit = 100
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -153,6 +153,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	}
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("LOCATION UPDATE")
+        
 		let userLocation = locations.last!
 		
 		self.userLat = userLocation.coordinate.latitude
@@ -174,6 +176,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 			let annotationView = MKAnnotationView.init(annotation: annotation, reuseIdentifier: "pin")
 			
 			let currAnnotation = annotation as? Location
+            
 			let image = UIImage.init(named: (currAnnotation?.imageString)!)
 			
 			// resize image using a new image graphics context
@@ -191,6 +194,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	}
 	
 	func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        print("Selected")
+        
 		// checks if user has enabled gps
 		if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
 			// user location must have a value
@@ -348,7 +353,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 					let imageString = record.value!!["image string"] as! String
 					
 					let locationModel = Location.init(key: key, coordinate: coordinate, imageString: imageString)
-					
+                    
 					// compare distance on reload so you only download necessary models
 					let boundaryLocation = CLLocation.init(latitude: locationModel.coordinate.latitude, longitude: locationModel.coordinate.longitude)
 					let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
@@ -388,19 +393,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let camera = MKMapCamera.init(lookingAtCenterCoordinate: location, fromEyeCoordinate: eyeCoord, eyeAltitude: 1000)
         self.mapView.setCamera(camera, animated: true)
-	}
-	
-	// for debugging purposes
-	@IBAction func changeDistanceLimit() {
-		if self.distanceLimit! == 80000 {
-			self.distanceLimit = 50
-		} else if self.distanceLimit! == 50 {
-			self.distanceLimit = 80000
-		}
-		
-		self.reloadMap()
-		
-		self.distanceButton.setTitle("Distance: \(Int(self.distanceLimit!))", forState: .Normal)
 	}
 	
     override func didReceiveMemoryWarning() {
