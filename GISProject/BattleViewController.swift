@@ -389,6 +389,8 @@ class BattleViewController: UIViewController {
 	}
 	
 	@IBAction func dismissBattle() {
+        self.delegate?.reloadMap()
+        
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 }
