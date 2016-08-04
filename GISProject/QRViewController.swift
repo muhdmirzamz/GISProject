@@ -116,12 +116,11 @@ class QRViewController: UIViewController {
         QRCodeImageView.frame = CGRectMake(62.5, 157, 250, 250)
     
         // material design button
-        let button = BFPaperButton(frame: CGRectMake(156, 530, 65, 65), raised: true)
-//        button.setTitle("=", forState: .Normal)
-        button.setImage(UIImage(named: "ic_person_add_white"), forState: .Normal)
-        button.titleFont = UIFont.systemFontOfSize(40, weight: UIFontWeightUltraLight)
+        let button = BFPaperButton(frame: CGRectMake(112, 550, 150, 40), raised: true)
+        button.setTitle("Add Card", forState: .Normal)
+        button.titleFont = UIFont.systemFontOfSize(22, weight: UIFontWeightLight)
         button.backgroundColor = UIColor(red: 28/255, green: 211/255, blue: 235/255, alpha: 1)
-        button.cornerRadius = button.frame.size.width / 2
+        button.cornerRadius = 3
         button.rippleFromTapLocation = true
         button.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(button)
