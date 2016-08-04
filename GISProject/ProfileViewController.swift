@@ -216,13 +216,10 @@ class ProfileViewController: UIViewController {
                     }
                 }
             })
-            print("Journal Test")
             var i = 0
-            print(self.friendsTable2[i])
             while i < self.friendsTable2.count{
                 let ref3 = FIRDatabase.database().reference().child("/Journal/\(self.friendsTable2[i])")
                 ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                    print("Journal Last Seen")
                     let monsterType = snapshot.value!["MonsterType"] as! String
                     let hourRetrieve = snapshot.value!["Hour"] as! NSNumber
                     let minuteRetrieve = snapshot.value!["Minutes"] as! NSNumber
