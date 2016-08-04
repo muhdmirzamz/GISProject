@@ -198,7 +198,7 @@ class Battle {
             //Used for retrieving of date from firebase
             //var date = NSDate(timeIntervalSince1970: interval)
             let ref3 = FIRDatabase.database().reference().child("Journal/\(userID)")
-            ref3.child("MonsterType").setValue("has killed a \(monsterType) monster")
+            ref3.child("MonsterType").setValue("killed a \(monsterType) monster")
             ref3.child("Hour").setValue(hour)
             ref3.child("Minutes").setValue(minutes)
             ref3.child("Name").setValue(self.nameJournal)
