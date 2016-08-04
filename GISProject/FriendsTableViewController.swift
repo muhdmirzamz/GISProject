@@ -32,6 +32,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     //chatroom friends
     var chatRoomFriend : Friends!
     
+    //count for total number of messages
+    var totalMsgCount : Int = 0
     
     //this function is used for testing purposes
     @IBAction func restore(sender: AnyObject) {
@@ -114,6 +116,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //ref to users
         let refOnline = FIRDatabase.database().reference().child("/Account/")
         
+       
+       
         
         ref.observeEventType(FIRDataEventType.ChildChanged, withBlock: { (snapshot) in
             print("there are changes")
@@ -141,18 +145,28 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         refOnline.observeEventType(FIRDataEventType.ChildChanged, withBlock: { (snapshot) in
             print("online offline changes")
        
-            //whenenver there are changes in accounts
-            //start looking into your friends array
-            for index in 0...self.friends.count - 1 {
-                
-                if(self.friends[index].myKey == snapshot.key){
-                    print("only your friends status changed: \(snapshot.key)")
-                   
-                    //only refresh the table if changes are your friends
-                    self.loadFriends()
+            
+            //validate for 0 friends
+            if(self.friends.count != 0){
+                //whenenver there are changes in accounts
+                //start looking into your friends array
+                for index in 0...self.friends.count - 1 {
+                    
+                    if(self.friends[index].myKey == snapshot.key){
+                        print("only your friends status changed: \(snapshot.key)")
+                        
+                        //only refresh the table if changes are your friends
+                        self.loadFriends()
+                    }
                 }
+                
+            }else{
+                print("no friends in the arraylist")
             }
         })
+        
+       
+        
         
     }
     
@@ -365,8 +379,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
             
             
             var inMyFriendsList :Bool = false
-          
-            
+        
+        
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
             {
                 
@@ -375,7 +389,86 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                 //ref to friends in firebase
                 let ref = FIRDatabase.database().reference().child("Friend/\(passkey)")
                 
+                
+                
                 ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                 
+                    //start ref to members
+                    let refMembers = FIRDatabase.database().reference().child("FriendsModule/members/")
+                    
+                    let uid = (FIRAuth.auth()?.currentUser?.uid)!
+                    
+                    
+                    //look into members
+                    refMembers.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                      
+                        for record in snapshot.children {
+                            
+                            var user1Temp : Bool = false
+                            var user2Temp : Bool = false
+                            
+                            var user1 = record.value!!["\(uid)"] as? Bool
+                            
+                            if(user1 != nil){
+                                user1Temp = true
+                            }else{
+                                print("user 1 not found")
+                            }
+                            
+                            var user2 = record.value!!["\(friend.myKey)"] as? Bool
+                            
+                            if(user2 != nil){
+                                user2Temp = true
+                            }else{
+                                print("user 2 not found")
+                            }
+                   
+                            
+                            //if both chat members exist in the chat room record
+                            if(user1 == true && user2 == true){
+                                print("-------- got chat room-------")
+                                print(record.key!)
+                                //chatKey = record.key!
+                                print("-------- got chat room-------")
+                                
+                        let refMessages = FIRDatabase.database().reference().child("FriendsModule/messages/\(record.key!)")
+                                
+                                //look for number of messages
+                                refMessages.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                                     var count = snapshot.childrenCount
+                                    
+                                    print("How many msg??: \(count)")
+                                   
+                                    cell.msgCountLabel.hidden = false
+                                    
+                                    let msgCount = String(count)
+                                    
+                                    //set msg count label
+                                    cell.msgCountLabel.text = msgCount
+                                    
+                                    //convert to Int
+                                    //self.totalMsgCount = self.totalMsgCount + (Int(msgCount)!)/(Int(msgCount)!)
+                                    
+                                   // print("total count: \(self.totalMsgCount)")
+                                    
+                                    
+                                })
+                                
+                                
+                              
+                            }else{
+                                
+                                //here can improve on the user experience, add no chat yet message
+                                print("no chat yet")
+                            }
+                            
+                        }
+                        
+                    })
+                    //end of look for chatroom
+                    
+                    
+                    
                     
                     
                     //closure
@@ -400,10 +493,14 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                         let levelInt = friend.Level
                         let levelString = String(levelInt)
                         
+                        
                         //updating the text labels
                         cell.name.text = friend.Name
                         cell.level.text = "Lvl: \(levelString)"
                         
+                        
+                        
+                      
                         
                     }
                     
@@ -414,9 +511,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                 
                 
             }//end of dispath
-            
-            
-            
+      
             
  
          
