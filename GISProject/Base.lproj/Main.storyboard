@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dMH-Ja-CGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="7p8-Ku-1Ee">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -276,6 +277,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agC-Sn-Pmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="689.5" y="1609.5"/>
+        </scene>
+        <!--Intro View Controller-->
+        <scene sceneID="CKS-pF-w8T">
+            <objects>
+                <viewController storyboardIdentifier="HelloViewController" id="7p8-Ku-1Ee" customClass="IntroViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j1N-1B-sgO"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Yk-RX-aDy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JYr-qb-Ght">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id5-Tl-ced">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginBG2" translatesAutoresizingMaskIntoConstraints="NO" id="HMs-vV-wPR">
+                                        <rect key="frame" x="-6" y="0.0" width="381" height="239"/>
+                                        <color key="backgroundColor" red="0.29411764709999999" green="0.72156862749999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="scrollView" destination="id5-Tl-ced" id="pti-JY-s8e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hao-Pm-Vxs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2296.5" y="294.5"/>
+        </scene>
+        <!--IntroQR View Controller-->
+        <scene sceneID="NRB-Be-x7d">
+            <objects>
+                <viewController storyboardIdentifier="IntroQRViewController" id="IrR-av-mM6" customClass="IntroQRViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="frn-pb-FjQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="GjQ-Ko-SaQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1MW-Yc-ThG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfw-ly-Yc9">
+                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
+                                <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="scrollToLogin" destination="IrR-av-mM6" eventType="touchUpInside" id="1Fd-CW-Kbh"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginBG2" translatesAutoresizingMaskIntoConstraints="NO" id="Hap-cJ-8TZ">
+                                <rect key="frame" x="-6" y="0.0" width="381" height="239"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.72156862749999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SS_QR" translatesAutoresizingMaskIntoConstraints="NO" id="GkE-fk-fEk">
+                                <rect key="frame" x="113" y="155" width="143" height="254"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add friends by scanning the QR code on their phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-6s-610">
+                                <rect key="frame" x="45" y="483" width="284" height="64"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvQ-Hi-8jx">
+                                <rect key="frame" x="308" y="26" width="48" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="right_arrow"/>
+                                <connections>
+                                    <action selector="scroll" destination="IrR-av-mM6" eventType="touchUpInside" id="jVz-1M-6VN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xBQ-v5-YPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1794.5" y="294.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="FTr-lg-ub0">
@@ -631,10 +714,10 @@
             </objects>
             <point key="canvasLocation" x="1746.5" y="-69.5"/>
         </scene>
-        <!--Custom Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="O9m-qi-Nh8">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarControllerMain" id="ikb-RR-q33" customClass="CustomTabBarController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarControllerMain" id="ikb-RR-q33" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="PMU-mr-pTm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1153,11 +1236,176 @@
             </objects>
             <point key="canvasLocation" x="1667" y="-1516"/>
         </scene>
+        <!--Intro Activity View Controller-->
+        <scene sceneID="cio-nR-gmv">
+            <objects>
+                <viewController storyboardIdentifier="IntroActivityViewController" id="TJe-4V-rA7" customClass="IntroActivityViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hWe-fa-Ddm"/>
+                        <viewControllerLayoutGuide type="bottom" id="pi5-fl-JNR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kUW-0v-fPA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginBG2" translatesAutoresizingMaskIntoConstraints="NO" id="rXd-BZ-MTr">
+                                <rect key="frame" x="-6" y="0.0" width="381" height="239"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.72156862749999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHa-sT-h8o">
+                                <rect key="frame" x="308" y="26" width="48" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="right_arrow"/>
+                                <connections>
+                                    <action selector="scroll" destination="TJe-4V-rA7" eventType="touchUpInside" id="3je-FD-Yjq"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SS_Activity" translatesAutoresizingMaskIntoConstraints="NO" id="atw-TD-lFa">
+                                <rect key="frame" x="113" y="155" width="143" height="254"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="View what your friends are up to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyL-F6-bji">
+                                <rect key="frame" x="43" y="483" width="288" height="64"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-TQ-ckS">
+                                <rect key="frame" x="13" y="26" width="48" height="60"/>
+                                <state key="normal" image="left_arrow"/>
+                                <connections>
+                                    <action selector="scrollBack" destination="TJe-4V-rA7" eventType="touchUpInside" id="fCx-Ph-qEu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VnG-fO-ICf">
+                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
+                                <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="scrollToLogin" destination="TJe-4V-rA7" eventType="touchUpInside" id="GFx-JL-dDS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o1C-5A-WIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1298.5" y="294.5"/>
+        </scene>
+        <!--Intro Battle View Controller-->
+        <scene sceneID="47X-to-yyB">
+            <objects>
+                <viewController storyboardIdentifier="IntroBattleViewController" id="iTA-A5-vN3" customClass="IntroBattleViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7V2-z5-m2X"/>
+                        <viewControllerLayoutGuide type="bottom" id="mjE-e4-32Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fpb-JW-jjo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginBG2" translatesAutoresizingMaskIntoConstraints="NO" id="jCQ-gq-AUM">
+                                <rect key="frame" x="-6" y="0.0" width="381" height="239"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.72156862749999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfP-Rv-xf4">
+                                <rect key="frame" x="13" y="26" width="48" height="60"/>
+                                <state key="normal" image="left_arrow"/>
+                                <connections>
+                                    <action selector="scrollBack" destination="iTA-A5-vN3" eventType="touchUpInside" id="g4J-gx-XiH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAH-pS-Uov">
+                                <rect key="frame" x="308" y="26" width="48" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="right_arrow"/>
+                                <connections>
+                                    <action selector="scroll" destination="iTA-A5-vN3" eventType="touchUpInside" id="Yhx-D9-lPq"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SS_Map" translatesAutoresizingMaskIntoConstraints="NO" id="fmc-yf-XH2">
+                                <rect key="frame" x="113" y="155" width="143" height="254"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Battle against different monsters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwM-8M-TcP">
+                                <rect key="frame" x="42" y="483" width="291" height="64"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhv-3Q-Zz9">
+                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
+                                <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="scrollToLogin" destination="iTA-A5-vN3" eventType="touchUpInside" id="VjY-Q9-he6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lmP-VW-pLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-776.5" y="294.5"/>
+        </scene>
+        <!--Intro Stats View Controller-->
+        <scene sceneID="soA-tK-5Va">
+            <objects>
+                <viewController storyboardIdentifier="IntroStatsViewController" id="CkY-Is-yZz" customClass="IntroStatsViewController" customModule="GISProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FeT-Il-DZY"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nzw-gk-xNv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kfi-bN-kEO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginBG2" translatesAutoresizingMaskIntoConstraints="NO" id="a9K-tc-tlm">
+                                <rect key="frame" x="-6" y="0.0" width="381" height="239"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.72156862749999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBh-Tm-DiR">
+                                <rect key="frame" x="13" y="26" width="48" height="60"/>
+                                <state key="normal" image="left_arrow"/>
+                                <connections>
+                                    <action selector="scrollBack" destination="CkY-Is-yZz" eventType="touchUpInside" id="Ree-Zu-4dI"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SS_Stats" translatesAutoresizingMaskIntoConstraints="NO" id="uSN-Gz-rbY">
+                                <rect key="frame" x="113" y="155" width="143" height="254"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="See data related to your battles" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOd-IP-Ed2">
+                                <rect key="frame" x="42" y="483" width="291" height="64"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1u-Ub-KvT">
+                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
+                                <state key="normal" title="Got it!"/>
+                                <connections>
+                                    <action selector="scroll" destination="CkY-Is-yZz" eventType="touchUpInside" id="I9C-jv-BEZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EDw-JI-Div" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-302.5" y="294.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CameraPermission" width="725" height="92"/>
         <image name="ProfileBlack" width="400" height="400"/>
         <image name="ProfileRed" width="400" height="400"/>
+        <image name="SS_Activity" width="750" height="1334"/>
+        <image name="SS_Map" width="750" height="1334"/>
+        <image name="SS_QR" width="750" height="1334"/>
+        <image name="SS_Stats" width="750" height="1334"/>
+        <image name="button" width="128" height="93"/>
         <image name="card" width="24" height="24"/>
         <image name="ic_announcement" width="48" height="48"/>
         <image name="ic_contacts" width="24" height="24"/>
@@ -1166,12 +1414,14 @@
         <image name="ic_list" width="24" height="24"/>
         <image name="ic_map" width="24" height="24"/>
         <image name="ic_person_add" width="24" height="24"/>
+        <image name="left_arrow" width="48" height="48"/>
         <image name="loading" width="412" height="412"/>
         <image name="lock" width="417" height="458"/>
         <image name="login" width="750" height="1334"/>
         <image name="loginBG" width="750" height="1334"/>
         <image name="loginBG2" width="750" height="466"/>
         <image name="r1" width="1500" height="1026"/>
+        <image name="right_arrow" width="48" height="48"/>
         <image name="special_card" width="24" height="24"/>
         <image name="user_online" width="256" height="256"/>
     </resources>
