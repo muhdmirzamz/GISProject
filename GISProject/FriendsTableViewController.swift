@@ -507,7 +507,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                     
                     //closure
                     dispatch_async(dispatch_get_main_queue()) {
-                      
+                       
                         inMyFriendsList = snapshot.hasChild("\(uid)")
                         
                         //show valid chat label
@@ -535,16 +535,20 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                         //load and update friends avatimages asynchronous from helper class
                        // FriendsDataManager.loadAndDisp layImage(nil, imageView: cell.profileImage, url: friend.ThumbnailImgUrl)
                      
-                        
+                        if cell != nil
+                        {
                         if(friend.ThumbnailImgUrl == "profileImage"){
                             var img : UIImage! =  UIImage(named: "loading.png")
                            cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80)
+                            
                         }else{
                              
                             cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 80)
                         }
                         
-                        
+                         cell.setNeedsDisplay()
+                            
+                        }
                       
                     }
                     

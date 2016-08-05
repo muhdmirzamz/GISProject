@@ -152,7 +152,10 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
                 //change to qr code view and allow for scanning
                 refreshAlert.addAction(UIAlertAction(title: "Scan My Card Now!", style: .Default, handler: { (action: UIAlertAction!) in
                     print("Go Scan Now!")
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    //self.dismissViewControllerAnimated(true, completion: nil)
+                    let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("qrViewController")
+                      self.showViewController(vc as! UIViewController, sender: vc)
+                    
                 }))
                 
                 self.presentViewController(refreshAlert, animated: true, completion: nil)
@@ -177,14 +180,36 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             hideWhenBackgroundViewIsTapped: true
         )
         // let appearance = SCLAlertView.SCLAppearance(kDefaultShadowOpacity: <#T##CGFloat#>, kCircleTopPosition: <#T##CGFloat#>, kCircleBackgroundTopPosition: <#T##CGFloat#>, kCircleHeight: <#T##CGFloat#>, kCircleIconHeight: <#T##CGFloat#>, kTitleTop: <#T##CGFloat#>, kTitleHeight: <#T##CGFloat#>, kWindowWidth: <#T##CGFloat#>, kWindowHeight: <#T##CGFloat#>, kTextHeight: <#T##CGFloat#>, kTextFieldHeight: <#T##CGFloat#>, kTextViewdHeight: <#T##CGFloat#>, kButtonHeight: <#T##CGFloat#>, kTitleFont: <#T##UIFont#>, kTextFont: <#T##UIFont#>, kButtonFont: <#T##UIFont#>, showCloseButton: <#T##Bool#>, showCircularIcon: <#T##Bool#>, shouldAutoDismiss: <#T##Bool#>, contentViewCornerRadius: <#T##CGFloat#>, fieldCornerRadius: <#T##CGFloat#>, buttonCornerRadius: <#T##CGFloat#>, hideWhenBackgroundViewIsTapped: <#T##Bool#>, contentViewColor: <#T##UIColor#>, contentViewBorderColor: <#T##UIColor#>, titleColor: <#T##UIColor#>)
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+        {
+            
+       let profileImage = FIRDatabase.database().reference().child("Account/\(self.friendsKey)")
+            var image: UIImage?
+            
+            let decodedData = NSData(base64EncodedString: (self.friend.ThumbnailImgUrl), options: NSDataBase64DecodingOptions(rawValue: 0))
+            
+            image = UIImage(data: decodedData!)
+            
+            
+        profileImage.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+          
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                 let alertView = SCLAlertView(appearance : appearance)
+                
+                if(self.friend.ThumbnailImgUrl == "profileImage"){
+                    var img : UIImage! =  UIImage(named: "loading.png")
+                     alertView.showInfo("\(self.friend.Name)", subTitle: "****", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80))
+                }else{
+                     alertView.showInfo("\(self.friend.Name)", subTitle: "****", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 80))
+                    
+                } 
+
+            })
+        })
+        }
         
-        
-        
-        let alertView = SCLAlertView(appearance : appearance)
-        let alertViewIcon = UIImage(named: "loading.png") //Replace the IconImage text with the image name
-         
-       alertView.showInfo("\(self.friend.Name)", subTitle: "This is a nice alert with a custom icon you choose", circleIconImage: alertViewIcon)
- 
         
     }
     //LocationManger fuctions
