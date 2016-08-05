@@ -13,7 +13,7 @@ import FirebaseStorage
 import Firebase
 import Photos
 import IDMPhotoBrowser
-
+import SCLAlertView
 
 class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate {
     
@@ -165,20 +165,26 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     func addTapped (sender:UIButton) {
         print("add pressed")
         
-        //create send date
-        var myObject = NSDate()
+        //display profile images
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont.systemFontOfSize(30, weight: UIFontWeightLight),
+            kTitleHeight: 60,
+            kButtonFont: UIFont.systemFontOfSize(18, weight: UIFontWeightLight),
+            showCloseButton: false,
+             showCircularIcon: true,
+            kCircleIconHeight: 80,
+            kCircleHeight: 85,
+            hideWhenBackgroundViewIsTapped: true
+        )
+        // let appearance = SCLAlertView.SCLAppearance(kDefaultShadowOpacity: <#T##CGFloat#>, kCircleTopPosition: <#T##CGFloat#>, kCircleBackgroundTopPosition: <#T##CGFloat#>, kCircleHeight: <#T##CGFloat#>, kCircleIconHeight: <#T##CGFloat#>, kTitleTop: <#T##CGFloat#>, kTitleHeight: <#T##CGFloat#>, kWindowWidth: <#T##CGFloat#>, kWindowHeight: <#T##CGFloat#>, kTextHeight: <#T##CGFloat#>, kTextFieldHeight: <#T##CGFloat#>, kTextViewdHeight: <#T##CGFloat#>, kButtonHeight: <#T##CGFloat#>, kTitleFont: <#T##UIFont#>, kTextFont: <#T##UIFont#>, kButtonFont: <#T##UIFont#>, showCloseButton: <#T##Bool#>, showCircularIcon: <#T##Bool#>, shouldAutoDismiss: <#T##Bool#>, contentViewCornerRadius: <#T##CGFloat#>, fieldCornerRadius: <#T##CGFloat#>, buttonCornerRadius: <#T##CGFloat#>, hideWhenBackgroundViewIsTapped: <#T##Bool#>, contentViewColor: <#T##UIColor#>, contentViewBorderColor: <#T##UIColor#>, titleColor: <#T##UIColor#>)
         
-        //create outgoing msg obj
-        var outgoingMessage = OutgoingMessage?()
-        
-        //if text message
-        outgoingMessage = OutgoingMessage(message: "test text", senderId: self.friendsKey!, senderName: self.senderName, date: myObject, status: "Delivered", type: "text")
         
         
-        outgoingMessage!.sendMessage("\(self.chatRoomId)", item: outgoingMessage!.messageDictionary,receiverID: self.friendsKey)
-        
-        //set new msg badge
-        self.tabBarController?.tabBar.items?[3].badgeValue = "8"
+        let alertView = SCLAlertView(appearance : appearance)
+        let alertViewIcon = UIImage(named: "loading.png") //Replace the IconImage text with the image name
+         
+       alertView.showInfo("\(self.friend.Name)", subTitle: "This is a nice alert with a custom icon you choose", circleIconImage: alertViewIcon)
+ 
         
     }
     //LocationManger fuctions

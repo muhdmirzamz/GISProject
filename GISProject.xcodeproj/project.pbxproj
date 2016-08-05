@@ -54,7 +54,6 @@
 		AA8B637B1D33CC1F00BF2289 /* Battle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B637A1D33CC1F00BF2289 /* Battle.swift */; };
 		AA8BE9021D54BF6F004F6844 /* FriendsDeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8BE9001D54BF6F004F6844 /* FriendsDeckCollectionViewCell.swift */; };
 		AA8BE9031D54BF6F004F6844 /* FriendsDeckHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8BE9011D54BF6F004F6844 /* FriendsDeckHomeViewController.swift */; };
-		AA8BE9051D54BF83004F6844 /* customCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8BE9041D54BF83004F6844 /* customCollectionViewCell.swift */; };
 		AAB096CA1D5466FF003F97B3 /* IntroBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB096C91D5466FF003F97B3 /* IntroBattleViewController.swift */; };
 		AAB096CD1D546773003F97B3 /* IntroStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB096CC1D546773003F97B3 /* IntroStatsViewController.swift */; };
 		AACB051C1D53A9FA003F99F3 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACB051B1D53A9FA003F99F3 /* IntroViewController.swift */; };
@@ -127,7 +126,6 @@
 		AA8B637A1D33CC1F00BF2289 /* Battle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Battle.swift; sourceTree = "<group>"; };
 		AA8BE9001D54BF6F004F6844 /* FriendsDeckCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDeckCollectionViewCell.swift; path = GISProject/FriendsDeckCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA8BE9011D54BF6F004F6844 /* FriendsDeckHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsDeckHomeViewController.swift; path = GISProject/FriendsDeckHomeViewController.swift; sourceTree = "<group>"; };
-		AA8BE9041D54BF83004F6844 /* customCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = customCollectionViewCell.swift; path = GISProject/customCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAB096C91D5466FF003F97B3 /* IntroBattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroBattleViewController.swift; sourceTree = "<group>"; };
 		AAB096CC1D546773003F97B3 /* IntroStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroStatsViewController.swift; sourceTree = "<group>"; };
 		AACB051B1D53A9FA003F99F3 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 				881FBA4E1D53307200DAEEA2 /* FriendsDeck */,
 				88319B771D4CA2450031F09A /* Utility */,
 				8877E81A1D3BB7BF00A595DC /* Messages */,
-				AA8BE9041D54BF83004F6844 /* customCollectionViewCell.swift */,
 				88EFBE141D2138EC00577EC5 /* Friends.swift */,
 				AAED266C1D4F904C0042DD2F /* ChatMapViewController.swift */,
 				AAED266E1D4F904C0042DD2F /* FriendsCell.swift */,
@@ -641,7 +638,6 @@
 				6D8169F61D360B1F00AC33C6 /* LoginViewController.swift in Sources */,
 				AAED267F1D4F904C0042DD2F /* FriendsDeckCollectionViewController.swift in Sources */,
 				AAED26831D4F904C0042DD2F /* OnlineUser.swift in Sources */,
-				AA8BE9051D54BF83004F6844 /* customCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -254,7 +254,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
             self.friends = friendsListFromFirebase
             // Once done, call on the Table View to reload
             // all its contents
-            
+            self.refreshDataControl.endRefreshing()
             self.tableView.reloadData()
         })
     }
@@ -533,7 +533,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                         cell.level.text = "Lvl: \(levelString)"
                         
                         //load and update friends avatimages asynchronous from helper class
-                       // FriendsDataManager.loadAndDisplayImage(nil, imageView: cell.profileImage, url: friend.ThumbnailImgUrl)
+                       // FriendsDataManager.loadAndDisp layImage(nil, imageView: cell.profileImage, url: friend.ThumbnailImgUrl)
                      
                         
                         if(friend.ThumbnailImgUrl == "profileImage"){
