@@ -12,7 +12,7 @@ import FirebaseDatabase
 import SCLAlertView
 import JSQMessagesViewController
 
-class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
+class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,UISearchControllerDelegate{
     
     //declare an array of friends obj
     var friends:[Friends] = []
@@ -35,6 +35,9 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     
     //count for total number of messages
     var totalMsgCount : Int = 0
+    
+    //counter for end row editing
+    var endRowEditing : Int = 0
     
     //this function is used for testing purposes
     @IBAction func restore(sender: AnyObject) {
@@ -68,10 +71,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         }
         print("restore friends")
     }
-    
-    
-    
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,6 +85,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         //allow class to be inform when search bar text changes
         searchController.searchResultsUpdater = self
+        
+     searchController.delegate = self
         
         //use current view to show the search result,don't dim the view
         searchController.dimsBackgroundDuringPresentation = false
@@ -102,11 +104,14 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 28/255, green: 211/255, blue: 235/255, alpha: 1)]
         
-     
-        
     }
     
-   
+    //update after searching
+    func didDismissSearchController(searchController: UISearchController){
+         print("ended dimiss")
+        self.tableView.reloadData()
+    }
+    
    
     
     
@@ -177,6 +182,19 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         
         
     }
+    
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .Left) {
+            print("Swipe Left")
+          
+        }
+        
+        if (sender.direction == .Right) {
+            print("Swipe Right")
+          
+        }
+    }
+    
     
     
     //UISearchBar Delegate
@@ -351,6 +369,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
         //and can be reused for a new table cell that need to be display
         var cell : FriendsCell! = tableView.dequeueReusableCellWithIdentifier("FriendsCell") as! FriendsCell
         
+      
         
         //if we don't find it, then we create a new FriendsCell by loading the nib
         //"FriendsCell" from the main bundle
@@ -537,19 +556,29 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                 
             }//end of dispath
       
-            
- 
-         
-        
-        
-        
-        
         
         
         return cell
         
     }
     
+    override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
+        print("begining editing...: \(indexPath.row)")
+        self.endRowEditing = 1
+        
+    }
+    
+    override func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+        if(self.endRowEditing == 1){
+             print("reset editing...: \(indexPath.row)")
+           self.endRowEditing = 0
+            
+            //refresh table
+            self.tableView.reloadData()
+        }
+        
+        
+    }
     
     
     
@@ -565,7 +594,13 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
     // Override to support editing the table view.
     //enable slide to delete option
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        
+        
+        
+        
         if editingStyle == .Delete {
+            print("editing????? \(self.editing)")
             
             let appearance = SCLAlertView.SCLAppearance(
                 kTitleFont: UIFont.systemFontOfSize(30, weight: UIFontWeightLight),
@@ -602,6 +637,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                     print("record in friend[]: \(self.friends.count)")
                     print("record in filteredfriend[]: \(self.filteredFriends.count)")
                     
+                    
                 }else{
                     
                     var friendsTemp : String = self.friends[indexPath.row].myKey
@@ -615,24 +651,33 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating{
                     
                     //delete reocrd from firebase
                     deleteFriend.removeValue();
+                    
                     print("record in friend[]: \(self.friends.count)")
                     print("record in filteredfriend[]: \(self.filteredFriends.count)")
+                    
                 }
                 
                 //dismiss view
                 alertView.hideView()
                 
-            }
+            }//end of alertview
             alertView.addButton("Cancel") {
                 print("cancel option")
+                
+                
+                 self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                self.tableView.reloadData()
                 alertView.hideView()
+                
             }
             
             alertView.showError("Are You Sure?", subTitle: "\n Remove \(indexPath.row) \n \(self.friends[indexPath.row].myKey))")
             
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
+            
+        }//end of.delete style
+        
+         print("editing?????--> \(self.editing)")
+        
     }
     
     
