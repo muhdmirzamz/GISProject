@@ -97,7 +97,7 @@ class ProfileViewController: UIViewController {
             
             self.logoutSeq()
         }
-        alertView.addButton("ABORT!!1!") {
+        alertView.addButton("Abort") {
             alertView.hideView()
         }
         alertView.showNotice("Logging Out", subTitle: "\n Are you sure? \n")
