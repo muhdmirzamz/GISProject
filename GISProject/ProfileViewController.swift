@@ -11,6 +11,7 @@ import Firebase
 import CoreData
 import ISTimeline
 import SCLAlertView
+import BFPaperButton
 
 protocol ProfileProtocol {
     func makeViewVisible()
@@ -33,40 +34,39 @@ class ProfileViewController: UIViewController {
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-//    @IBOutlet var activityIndicator: UIActivityIndicatorView!
-//    @IBOutlet weak var nameLabel: UILabel!
-//    @IBOutlet weak var monstersLabel: UILabel!
-//    @IBOutlet weak var levelLabel: UILabel!
-//    @IBOutlet weak var imageProfile: UIImageView!
-    
     override func viewDidLoad() {
         activityLog()
         super.viewDidLoad()
-        
-        
         
         let localfilePath = NSBundle.mainBundle().URLForResource("simple", withExtension: "html");
         let myRequest = NSURLRequest(URL: localfilePath!);
         webView.loadRequest(myRequest);
         
-        //DatabaseManager.retrieveAccount("XHPcy86H9gbGHsYYfs4FWqOtbvE")
-        // Do any additional setup after loading the view.
-        
         self.delegate?.makeViewVisible()
+        
+        // material design button
+        let button = BFPaperButton(frame: CGRectMake(112, 550, 150, 40), raised: true)
+        button.setTitle("Logout", forState: .Normal)
+        button.titleFont = UIFont.systemFontOfSize(22, weight: UIFontWeightLight)
+        button.backgroundColor = UIColor(red: 244/255, green: 67/255, blue: 54/255, alpha: 1)
+        button.cornerRadius = 3
+        button.rippleFromTapLocation = true
+        button.addTarget(self, action: "logout", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(button)
     }
     
     
     @IBAction func takePhotoBtn(sender: AnyObject) {
         print("aa")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func dismiss(){
-       self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func logout() {
@@ -103,7 +103,7 @@ class ProfileViewController: UIViewController {
         alertView.showNotice("Logging Out", subTitle: "\n Are you sure? \n")
         
     }
-
+    
     func logoutSeq () {
         let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: self.appDelegate.managedObjectContext)
         let sortDescriptor = NSSortDescriptor.init(key: "username", ascending: true)
@@ -143,9 +143,9 @@ class ProfileViewController: UIViewController {
     }
     
     func setProfileBG(){
-//        let i = Int(arc4random_uniform(5) + 1)
-//        bgProfile.image = UIImage(named: "bg\(i)")
-
+        //        let i = Int(arc4random_uniform(5) + 1)
+        //        bgProfile.image = UIImage(named: "bg\(i)")
+        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -190,11 +190,39 @@ class ProfileViewController: UIViewController {
                 self.friendsTable.append(key)
                 self.friendsTable2.append(key)
             }
-            var i = 1
-            /*
-                while i < self.friendsTable.count{
-                let ref3 = FIRDatabase.database().reference().child("/Journal/\(self.friendsTable[i])")
+            ref.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                for record in snapshot.children {
+                    let key = record.key!!
+                    
+                    let uid = record.value!!["uid"] as! String
+                    let activity = record.value!!["activity"] as! String
+                    let name = record.value!!["name"] as! String
+                    
+                    var j = 0
+                    while j < self.friendsTable.count{
+                        if uid == self.friendsTable[j]{
+                            let point = ISPoint(title: name)
+                            point.description = activity
+                            point.lineColor = .greenColor()
+                            timeline.points.append(point)
+                            let Activity = ActivityLog.init(key: key, activity: activity, uid: uid, name: name)
+                            
+                            self.activityLogs.append(Activity)
+                            j = j + 1
+                        }
+                        else{
+                            j = j + 1
+                        }
+                    }
+                }
+            })
+            print("Journal Test")
+            var i = 0
+            print(self.friendsTable2[i])
+            while i < self.friendsTable2.count{
+                let ref3 = FIRDatabase.database().reference().child("/Journal/\(self.friendsTable2[i])")
                 ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                    print("Journal Last Seen")
                     let monsterType = snapshot.value!["MonsterType"] as! String
                     let hourRetrieve = snapshot.value!["Hour"] as! NSNumber
                     let minuteRetrieve = snapshot.value!["Minutes"] as! NSNumber
@@ -211,11 +239,9 @@ class ProfileViewController: UIViewController {
                     
                     let LastSeen = LastSeenLog.init(monsterType: monsterType, time: timeRetrieve, name: nameRetrieve)
                     self.lastSeen.append(LastSeen)
-                    })
-                    i = i + 1
-                }
- */
-            
-            })
-        }
+                })
+                i = i + 1
+            }
+        })
+    }
 }

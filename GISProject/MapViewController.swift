@@ -60,7 +60,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		self.mapView.delegate = self
 		
 		// for debugging purposes
-		self.distanceLimit = 100
+		self.distanceLimit = 1000
 	}
 	
 	override func viewWillAppear(animated: Bool) {
