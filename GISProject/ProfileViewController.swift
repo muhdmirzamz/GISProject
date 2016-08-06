@@ -218,30 +218,45 @@ class ProfileViewController: UIViewController {
             })
             print("Journal Test")
             var i = 0
+            if(self.friendsTable2.count != 0){
+            
             print(self.friendsTable2[i])
             while i < self.friendsTable2.count{
                 let ref3 = FIRDatabase.database().reference().child("/Journal/\(self.friendsTable2[i])")
                 ref3.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
                     print("Journal Last Seen")
-                    let monsterType = snapshot.value!["MonsterType"] as! String
-                    let hourRetrieve = snapshot.value!["Hour"] as! NSNumber
-                    let minuteRetrieve = snapshot.value!["Minutes"] as! NSNumber
-                    let nameRetrieve = snapshot.value!["Name"] as! String
                     
-                    let stringMinute = String(format: "%02d", minuteRetrieve)
+                    if(snapshot.hasChild("MonsterType")){
+                        let monsterType = snapshot.value!["MonsterType"] as! String
+                        
+                        
+                        let hourRetrieve = snapshot.value!["Hour"] as! NSNumber
+                        let minuteRetrieve = snapshot.value!["Minutes"] as! NSNumber
+                        let nameRetrieve = snapshot.value!["Name"] as! String
+                        
+                        let stringMinute = String(format: "%02d", minuteRetrieve)
+                        
+                        let timeRetrieve = String(hourRetrieve) + ":" + String(minuteRetrieve)
+                        
+                        let point = ISPoint(title: nameRetrieve)
+                        point.description = monsterType + " at " + timeRetrieve
+                        point.lineColor = .blueColor()
+                        timeline2.points.append(point)
+                        
+                        let LastSeen = LastSeenLog.init(monsterType: monsterType, time: timeRetrieve, name: nameRetrieve)
+                        self.lastSeen.append(LastSeen)
+                    }else{
+                        print("no monster type")
+                    }
                     
-                    let timeRetrieve = String(hourRetrieve) + ":" + String(minuteRetrieve)
                     
-                    let point = ISPoint(title: nameRetrieve)
-                    point.description = monsterType + " at " + timeRetrieve
-                    point.lineColor = .blueColor()
-                    timeline2.points.append(point)
-                    
-                    let LastSeen = LastSeenLog.init(monsterType: monsterType, time: timeRetrieve, name: nameRetrieve)
-                    self.lastSeen.append(LastSeen)
                 })
                 i = i + 1
+            }//end of while loop
+            }else{
+                print("self.friendsTable2.count is empty")
             }
+            
         })
     }
 }

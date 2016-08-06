@@ -202,6 +202,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
 	func applicationDidBecomeActive(application: UIApplication) {
 		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
          locationManagerStart()
+        
+        if KEY_UID != "" {
+            onlineUserRef.child(KEY_UID).updateChildValues(["KEY_ISONLINE":true])
+        }
 	}
 
 	func applicationWillTerminate(application: UIApplication) {

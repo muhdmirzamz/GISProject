@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var PickerView: UIPickerView!
     @IBOutlet weak var buttonSelect: UIButton!
@@ -24,19 +24,16 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
         PickerView.dataSource = self
         PickerView.delegate = self
         self.ref = FIRDatabase.database().reference()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func takePhotoBtn(sender: AnyObject) {
-        
-        print("test egg")
-        
         
         let camera = Camera(delegate_: self)
         
@@ -46,24 +43,11 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
             camera.PresentPhotoCamera(self, canEdit: true)
         }
         
-        let sharePhoto = UIAlertAction(title: "Photo Library", style: .Default) { (alert: UIAlertAction!) -> Void in
-            camera.PresentPhotoLibrary(self, canEdit: true)
-        }
-        
-        let shareLoction = UIAlertAction(title: "Share Location", style: .Default) { (alert: UIAlertAction!) -> Void in
-            
-           
-            
-        }
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alert : UIAlertAction!) -> Void in
-            
             print("Cancel")
         }
         
         optionMenu.addAction(takePhoto)
-        optionMenu.addAction(sharePhoto)
-        optionMenu.addAction(shareLoction)
         optionMenu.addAction(cancelAction)
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
@@ -75,13 +59,11 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
         
         let picture = info[UIImagePickerControllerEditedImage] as? UIImage
         
-        var outgoingMessage = OutgoingMessage?()
-        
         print("saved to firebase")
         
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         print("saving to \(uid)")
-       
+        
         //send picture message
         if let pic = picture {
             
@@ -93,41 +75,41 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
             
             let usersRef = FIRDatabase.database().reference().child("/Account/\(uid)")
             
-                     
+            
             usersRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                    
-                    print("true rooms exist")
                 
-                    var updatePicture = ["profileImage": pic as! String]
-                    
-                   usersRef.updateChildValues(updatePicture)
+                print("true rooms exist")
                 
-                     //print(pic)
-                            var image: UIImage?
-                            
-                            let decodedData = NSData(base64EncodedString: (snapshot.value!["profileImage"] as! String), options: NSDataBase64DecodingOptions(rawValue: 0))
-                            
-                            image = UIImage(data: decodedData!)
-                            
-                            self.imageView.image = image
+                var updatePicture = ["profileImage": pic as! String]
+                
+                usersRef.updateChildValues(updatePicture)
+                
+                //print(pic)
+                var image: UIImage?
+                
+                let decodedData = NSData(base64EncodedString: (snapshot.value!["profileImage"] as! String), options: NSDataBase64DecodingOptions(rawValue: 0))
+                
+                image = UIImage(data: decodedData!)
+                
+                // self.imageView.image = image
             })
         }
         
-      
+        
         print("done")
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     //MARK: - Delegates and data sources
     //MARK: Data Sources
@@ -166,7 +148,7 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
         default:
             imageView.image = UIImage(named: "ProfileBlack")
         }
-
+        
     }
     
     @IBAction func dismiss(){
@@ -199,7 +181,7 @@ class ImagePickerViewController: ViewController,UIPickerViewDataSource,UIPickerV
             self.ref.child("/Account/\(uid)/Picture").setValue(0)
             dismiss()
         }
-
+        
         
     }
 }

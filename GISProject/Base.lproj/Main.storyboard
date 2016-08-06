@@ -42,9 +42,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ProfileBlack" translatesAutoresizingMaskIntoConstraints="NO" id="FvG-I7-zEV">
                                 <rect key="frame" x="62" y="91" width="250" height="250"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CN-R8-fu4">
-                                <rect key="frame" x="258" y="53" width="62" height="30"/>
-                                <state key="normal" title="Take Me!"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CN-R8-fu4">
+                                <rect key="frame" x="259" y="38" width="53" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="6e3-RE-O4t"/>
+                                    <constraint firstAttribute="height" constant="45" id="ujU-S9-BW2"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="ic_camera_enhance"/>
                                 <connections>
                                     <action selector="takePhotoBtn:" destination="oaN-E3-sex" eventType="touchUpInside" id="lFk-OV-1Az"/>
                                 </connections>
@@ -1406,6 +1410,7 @@
         <image name="SS_Stats" width="750" height="1334"/>
         <image name="card" width="24" height="24"/>
         <image name="ic_announcement" width="48" height="48"/>
+        <image name="ic_camera_enhance" width="24" height="24"/>
         <image name="ic_contacts" width="24" height="24"/>
         <image name="ic_credit_card" width="24" height="24"/>
         <image name="ic_gamepad" width="24" height="24"/>
