@@ -437,6 +437,15 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
             UIImageRenderingMode.AlwaysTemplate)
         cell.msgLabel.tintColor = UIColor(red: 255/255.0, green: 152/255.0, blue: 0/255.0, alpha: 1.0)
         
+   
+        
+        cell.msgCountLabel.textAlignment = .Center
+        cell.msgCountLabel.textColor = UIColor.whiteColor()
+        cell.msgCountLabel.backgroundColor = UIColor.redColor()
+        
+        
+        
+        
         //if we don't find it, then we create a new FriendsCell by loading the nib
         //"FriendsCell" from the main bundle
         if(cell == nil){
@@ -541,16 +550,30 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                                 
                                 cell.msgCountLabel.hidden = false
                                 
-                                let msgCount = String(count)
+                                //let msgCount = String(count)
                                 
                                 //set msg count label
-                                cell.msgCountLabel.text = msgCount
+                                //cell.msgCountLabel.text = msgCount
                                 
                                 //convert to Int
                                 //self.totalMsgCount = self.totalMsgCount + (Int(msgCount)!)/(Int(msgCount)!)
                                 
                                 // print("total count: \(self.totalMsgCount)")
                                 
+                                // Add count to label and size to fit
+                                cell.msgCountLabel.text = "\(count)"
+                                cell.msgCountLabel.sizeToFit()
+                                // Adjust frame to be square for single digits or elliptical for numbers > 9
+                                var frame: CGRect = cell.msgCountLabel.frame
+                                frame.size.height += CGFloat(0.4 * 20)
+                                frame.size.width = (count <= 9) ? frame.size.height : frame.size.width + CGFloat(14)
+                                cell.msgCountLabel.frame = frame
+                                // Set radius and clip to bounds
+                                cell.msgCountLabel.layer.cornerRadius = frame.size.height / 2
+                                cell.msgCountLabel.clipsToBounds = true
+                                
+                                cell.accessoryView =  cell.msgCountLabel
+                                cell.accessoryType = .None
                                 
                             })
                             
@@ -607,9 +630,11 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                             var img : UIImage! =  UIImage(named: "loading.png")
                             cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80)
                             
+                            
                         }else{
                             
                             cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 80)
+                            
                         }
                         
                         cell.setNeedsDisplay()
@@ -631,6 +656,45 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
         return cell
         
     }
+    
+    
+    func updateTableViewCell(cell: UITableViewCell, forCount count: Int) {
+        // Count > 0, show count
+        if count > 0 {
+            // Create label
+            var fontSize: CGFloat = 14
+            var label: UILabel = UILabel()
+            label.font = UIFont.systemFontOfSize(fontSize)
+            label.textAlignment = .Center
+            label.textColor = UIColor.whiteColor()
+            label.backgroundColor = UIColor.redColor()
+            // Add count to label and size to fit
+            label.text = "\(count)"
+            label.sizeToFit()
+            // Adjust frame to be square for single digits or elliptical for numbers > 9
+            var frame: CGRect = label.frame
+            frame.size.height += CGFloat(0.4 * fontSize)
+            frame.size.width = (count <= 9) ? frame.size.height : frame.size.width + CGFloat(fontSize)
+            label.frame = frame
+            // Set radius and clip to bounds
+            label.layer.cornerRadius = frame.size.height / 2.0
+            label.clipsToBounds = true
+            
+            cell.accessoryView = label
+            cell.accessoryType = .None
+            
+            
+        }else{
+            cell.accessoryView = nil
+            cell.accessoryType = .DisclosureIndicator
+        }
+        
+        
+            cell.setNeedsLayout()
+       
+        
+    
+        }
     
     override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
        // print("begining editing...: \(indexPath.row)")
