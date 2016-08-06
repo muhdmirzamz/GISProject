@@ -21,36 +21,8 @@ class FriendsCell: UITableViewCell {
     @IBOutlet weak var friendsCurrentLocatuon: UILabel!
     
     
-    // customize the appearance of table cell
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        //friend avatar styling
-        self.name.textColor = UIColor.blackColor()
-        
-        
-        
-        //hide msg label
-        self.msgLabel.hidden = true
-        self.onlineLabel.hidden = true
-        self.msgCountLabel.hidden = true
-        
-        
-        msgLabel.image = UIImage(named:"ic_announcement")?.imageWithRenderingMode(
-            UIImageRenderingMode.AlwaysTemplate)
-        msgLabel.tintColor = UIColor(red: 255/255.0, green: 152/255.0, blue: 0/255.0, alpha: 1.0)
-       // msgLabel.tintColor = UIColor(red: 59/255.0, green: 163/255.0, blue: 208/255.0, alpha: 1.0)
-    }
+ 
     
-    //customize cell background images
-    func cellDisplay(){
-        //translucent effect
-        self.backgroundColor = UIColor.whiteColor()
-    }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        //display cusomized cell appearance
-        cellDisplay()
-    }
+
     
 }

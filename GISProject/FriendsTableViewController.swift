@@ -422,7 +422,20 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
         //and can be reused for a new table cell that need to be display
         var cell : FriendsCell! = tableView.dequeueReusableCellWithIdentifier("FriendsCell") as! FriendsCell
         
+        //friend avatar styling
+        cell.name.textColor = UIColor.blackColor()
         
+        
+        
+        //hide msg label
+        cell.msgLabel.hidden = true
+        cell.onlineLabel.hidden = true
+        cell.msgCountLabel.hidden = true
+        
+        
+        cell.msgLabel.image = UIImage(named:"ic_announcement")?.imageWithRenderingMode(
+            UIImageRenderingMode.AlwaysTemplate)
+        cell.msgLabel.tintColor = UIColor(red: 255/255.0, green: 152/255.0, blue: 0/255.0, alpha: 1.0)
         
         //if we don't find it, then we create a new FriendsCell by loading the nib
         //"FriendsCell" from the main bundle
