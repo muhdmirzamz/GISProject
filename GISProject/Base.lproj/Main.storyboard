@@ -954,7 +954,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_announcement" translatesAutoresizingMaskIntoConstraints="NO" id="14f-VM-StI" userLabel="message Image View">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14f-VM-StI" userLabel="message Image View">
                                             <rect key="frame" x="245" y="40" width="42" height="40"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="user_online" translatesAutoresizingMaskIntoConstraints="NO" id="CUy-ho-eAB">
@@ -1409,7 +1409,6 @@
         <image name="SS_QR" width="750" height="1334"/>
         <image name="SS_Stats" width="750" height="1334"/>
         <image name="card" width="24" height="24"/>
-        <image name="ic_announcement" width="48" height="48"/>
         <image name="ic_camera_enhance" width="24" height="24"/>
         <image name="ic_contacts" width="24" height="24"/>
         <image name="ic_credit_card" width="24" height="24"/>

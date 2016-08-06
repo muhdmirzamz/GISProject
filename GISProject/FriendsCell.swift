@@ -35,6 +35,11 @@ class FriendsCell: UITableViewCell {
         self.onlineLabel.hidden = true
         self.msgCountLabel.hidden = true
         
+        
+        msgLabel.image = UIImage(named:"ic_announcement")?.imageWithRenderingMode(
+            UIImageRenderingMode.AlwaysTemplate)
+        msgLabel.tintColor = UIColor(red: 255/255.0, green: 152/255.0, blue: 0/255.0, alpha: 1.0)
+       // msgLabel.tintColor = UIColor(red: 59/255.0, green: 163/255.0, blue: 208/255.0, alpha: 1.0)
     }
     
     //customize cell background images

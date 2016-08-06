@@ -13,61 +13,7 @@ import Firebase
 
 class FriendsDataManager: NSObject {
     
-    
-    
-    /*
-     //load friends from Firebase and converts it into [Friends] array
-     static func loadFriends(onComplete: ([Friends]) -> Void)
-     {
-     let uid = (FIRAuth.auth()?.currentUser?.uid)!
-     
-     //create an empty friends list array
-     var friendsList : [Friends] = []
-     
-     //ref to friends in firebase
-     let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
-     
-     var username : String!
-     var level : Double!
-     var myKey: String!
-     
-     ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-     
-     
-     for record in snapshot.children {
-     
-     
-     let lookForFriends = FIRDatabase.database().reference().child("Account/\(record.key!)")
-     
-     
-     lookForFriends.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-     // Get user value
-     username = snapshot.value!["Name"] as! String
-     level = snapshot.value!["Level"] as! Double
-     //let imageUrl = snapshot.value!["Picture"] as! Double
-     myKey = snapshot.key
-     
-     //print(username)
-     
-     friendsList.append(Friends(name: username,
-     level: level,
-     thumbnailImgUrl: "",
-     myKey : myKey))
-     
-     onComplete(friendsList)
-     
-     // ...
-     }) { (error) in
-     print(error.localizedDescription)
-     }
-     }
-     
-     
-     })
-     
-     }
-     */
-    
+   
     
     //load friends from Firebase and converts it into [Friends] array
     static func loadFriends(onComplete: ([Friends]) -> Void)
@@ -84,10 +30,6 @@ class FriendsDataManager: NSObject {
             //ref to friends in firebase
             let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
             
-            
-            
-            
-            
             var baseDamage : Int!
             var online :Bool!
             var monstersKilled : Int!
@@ -97,9 +39,6 @@ class FriendsDataManager: NSObject {
             var lat : Double!
             var lng : Double!
             var myKey: String!
-            
-            
-            
             
             
             ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
@@ -114,9 +53,9 @@ class FriendsDataManager: NSObject {
                     lookForFriends.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                         
                         // Get user value
-                         baseDamage = snapshot.value!["Base Damage"] as! Int
-                         online = snapshot.value!["KEY_ISONLINE"] as! Bool
-                         monstersKilled = snapshot.value!["Monsters killed"] as! Int
+                        baseDamage = snapshot.value!["Base Damage"] as! Int
+                        online = snapshot.value!["KEY_ISONLINE"] as! Bool
+                        monstersKilled = snapshot.value!["Monsters killed"] as! Int
                         username = snapshot.value!["Name"] as! String
                         ThumbnailImgUrl = snapshot.value!["profileImage"] as! String
                         level = snapshot.value!["Level"] as! Int
@@ -128,12 +67,11 @@ class FriendsDataManager: NSObject {
                         
                         
                         if(online == true){
-                            print(snapshot.value!["Name"] as! String)
+                           // print(snapshot.value!["Name"] as! String)
                         }
                         
                         
                         //add to arraylist
-                        
                         friendsList.append(Friends(bDamage: baseDamage,
                             online: online,
                             monstKilled: monstersKilled,
@@ -143,18 +81,11 @@ class FriendsDataManager: NSObject {
                             latitude: lat,
                             longtitude: lng,
                             myKey: myKey)
-                            
-                            
-                            
                         )
-                        
-                        
-                        
                         
                         //closure
                         dispatch_async(dispatch_get_main_queue()) {
                             onComplete(friendsList)
-                            
                         }
                         // ...
                     }) { (error) in
@@ -181,15 +112,10 @@ class FriendsDataManager: NSObject {
         
         ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             
-            
             for record in snapshot.children {
-                
                 friendsList.append(record.key!!)
             }
-            
-            
             onComplete(friendsList)
-            
         })
         
     }
@@ -250,7 +176,7 @@ class FriendsDataManager: NSObject {
     {
         
         var inMyFriendsList :Bool = false
-         print("---------aaaa----------")
+        print("---------aaaa----------")
         
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         {
@@ -259,10 +185,10 @@ class FriendsDataManager: NSObject {
             
             //ref to friends in firebase
             let ref = FIRDatabase.database().reference().child("Friend/\(displayLabel)")
-          
+            
             ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
                 
-            
+                
                 
                 //closure
                 dispatch_async(dispatch_get_main_queue()) {
@@ -275,26 +201,22 @@ class FriendsDataManager: NSObject {
                     }
                 }
                 
-                
-                })
+            })
             
-            
-            
-            
-          }//end of dispath
+        }//end of dispath
         
         
         return inMyFriendsList
         
-        }//end of function
-    
-        
-    }
+    }//end of function
     
     
-    
-    
-    
-    
-    
+}
+
+
+
+
+
+
+
 
