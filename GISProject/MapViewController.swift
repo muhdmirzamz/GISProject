@@ -37,8 +37,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var ref: FIRDatabaseReference!
 	
-	// for debugging purposes
-	@IBOutlet weak var distanceButton: UIButton!
 	var distanceLimit: Double?
 	
     override func viewDidLoad() {
@@ -59,7 +57,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		self.mapView.scrollEnabled = true
 		self.mapView.delegate = self
 		
-		// for debugging purposes
 		self.distanceLimit = 1000
 	}
 	
@@ -153,8 +150,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 	}
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("LOCATION UPDATE")
-        
 		let userLocation = locations.last!
 		
 		self.userLat = userLocation.coordinate.latitude
@@ -202,13 +197,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 			if self.userLat != nil && self.userLong != nil {
 				let selectedAnnotation = mapView.selectedAnnotations.first as? Location
 				
-				//you need this for measuring distance between battle locations and you
+				// you need this for measuring distance between battle locations and you
 				let boundaryLocation = CLLocation.init(latitude: (selectedAnnotation?.coordinate.latitude)!, longitude: (selectedAnnotation?.coordinate.longitude)!)
 				let userLocation = CLLocation.init(latitude: self.userLat!, longitude: self.userLong!)
 				let distance = userLocation.distanceFromLocation(boundaryLocation)
 				
 				// follows meters
-				// for debugging purposes
 				if distance > self.distanceLimit! {
 					let alert = UIAlertController.init(title: "Hold on", message: "You have to be at least 50m in range. You are \(Int(distance))m away!", preferredStyle: .Alert)
 					let okAction = UIAlertAction.init(title: "Ok", style: .Default, handler: nil)
@@ -291,9 +285,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 						
 						battle.amountOfCardsAvailable = NSNumber(integer: Int((battle.uidArr?.count)!))
 						
-						print(userCanUseCard)
-						
-						// be sure to check if own card is available too
 						if (userCanUseCard == false && (battle.amountOfCardsAvailable?.integerValue)! == 0) {
 							dispatch_async(dispatch_get_main_queue(), {
 								let alert = UIAlertController.init(title: "Hold up", message: "Sorry you don't have enough cards", preferredStyle: .Alert)
@@ -371,7 +362,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 		span.latitudeDelta = 0.004
 		span.longitudeDelta = 0.004
 		
-        // coordinate limits
+        // nyp coordinate limits
 		// 1.382414, 103.848156 - top left
 		// 1.377431, 103.850278 - bottom right
 		

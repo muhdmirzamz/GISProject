@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     var timer : NSTimer?
     var count = 0
     var seconds = 0
-   
     
     //MARK:  LocationManger fuctions
     
@@ -74,8 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("error: \(error)")
-        
-      
     }
     
     func locationManagerDidPauseLocationUpdates(manager: CLLocationManager) {
@@ -90,7 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         count = 0
         seconds = 180
         
-        
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0,
                                                        target: self,
                                                        selector: "updateLocationInterval", userInfo: nil,
@@ -98,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     }
     
     func stopTimer(){
-          timer?.invalidate()
+		timer?.invalidate()
     }
     
     func updateLocationInterval(){
@@ -115,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         }
         
     }
-    //
+
     func application(application: UIApplication,
                      didReceiveLocalNotification notification:
         UILocalNotification) {

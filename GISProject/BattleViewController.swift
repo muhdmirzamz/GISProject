@@ -30,7 +30,7 @@ class BattleViewController: UIViewController {
 	
 	var imageString: String?
 	
-    // to change the annotation location after killing monster
+    // get a reference so you can change the annotation location after killing monster
     var selectedAnnotation: Location?
     
     var delegate: BattleProtocol?
@@ -62,6 +62,7 @@ class BattleViewController: UIViewController {
 		self.battle!.selectedAnnotation = self.selectedAnnotation
 		
 		// set up local card count
+		// needed to not waste your cards
 		self.localCardCount = 0
 		
         // UI stuff
@@ -80,11 +81,11 @@ class BattleViewController: UIViewController {
 		} else {
 			self.userCardAvailable.text = "Not available"
 		}
-		
-        // get the base damage
+
 		let userID = (FIRAuth.auth()?.currentUser?.uid)!
 		ref = FIRDatabase.database().reference().child("/Account")
 		ref.child("/\(userID)").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+			// get the base damage
 			self.battle?.baseDamage = snapshot.value!["Base Damage"] as? NSNumber
 		})
 		
@@ -112,7 +113,6 @@ class BattleViewController: UIViewController {
 			textfield.keyboardType = .NumberPad
 		})
 		let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
-			// get the text
 			let text = self.alert?.textFields![0].text
 			
 			// validate the input
@@ -123,8 +123,6 @@ class BattleViewController: UIViewController {
 				self.presentViewController(self.alert!, animated: true, completion: nil)
 			} else {
 				self.battle?.amountOfCardsToUse = NSNumber.init(integer: Int.init(text!)!)
-//				print((self.battle?.amountOfCardsToUse!.integerValue)!)
-//				print((self.battle?.uidArr?.count)!)
 				
 				if (self.battle?.amountOfCardsToUse?.integerValue)! > (self.battle?.amountOfCardsAvailable?.integerValue)! {
 					print("Dont have enough")
@@ -152,6 +150,7 @@ class BattleViewController: UIViewController {
 	
 	func useOwnCard() {
 		// reset amount of cards to use because it will cause a bug when updating cards
+		// it will accumulate
 		self.battle?.amountOfCardsToUse = 0
 		self.userUseExtraCards = false
 		
@@ -185,7 +184,6 @@ class BattleViewController: UIViewController {
         if userCanUseCard == false {
             var fireDate = object!.valueForKey("date") as? NSDate
             let dateFormatter = NSDateFormatter()
-            //dateFormatter.dateFormat = "HH:mm dd-MM-yyyy"
 			dateFormatter.dateFormat = "HH:mm"
 			
 			var timePeriod = ""
@@ -216,7 +214,6 @@ class BattleViewController: UIViewController {
 				components.minute += 2
                 
                 let fireDate = NSCalendar.currentCalendar().dateFromComponents(components)
-				print(fireDate)
 				
 				// save the date
 				let entity = NSEntityDescription.entityForName("Date", inManagedObjectContext: self.appDelegate.managedObjectContext)
@@ -283,8 +280,6 @@ class BattleViewController: UIViewController {
 					}
 					
 					self.battle!.amountOfCardsAvailable = NSNumber(integer: Int((self.battle!.uidArr?.count)!))
-                    
-                    // set label
                     self.amountOfCardAvailable.text = String((self.battle?.amountOfCardsAvailable?.integerValue)!)
 					
 					if self.isUserCardAvailable() == false &&
@@ -294,7 +289,6 @@ class BattleViewController: UIViewController {
 						// go back to map
 						self.alert = UIAlertController.init(title: "Hold up", message: "You do not have enough cards to continue", preferredStyle: .Alert)
 						let okAction = UIAlertAction.init(title: "Ok", style: .Default) { (alert) in
-							// dismiss view controller
 							self.delegate?.reloadMap()
 							self.dismissViewControllerAnimated(true, completion: nil)
 						}
