@@ -38,7 +38,7 @@ class GeoVisMapViewController: UIViewController {
         controller4.title = "FriendsMap"
         controllerArray.append(controller4)
 
-        // Customize menu (Optional)
+        // Customize menu
         let parameters: [CAPSPageMenuOption] = [
             .ScrollMenuBackgroundColor(UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0)),
             .ViewBackgroundColor(UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0)),

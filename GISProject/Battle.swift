@@ -130,8 +130,6 @@ class Battle {
 			
 			let index: Int
 			
-            // index 9 still works because the last added index is going to be 10
-            // first if statement can be deleted actually
             if snapshot.childrenCount < 10 {
                 index = Int(snapshot.childrenCount) + 1
             } else {

@@ -61,11 +61,6 @@ class QRViewController: UIViewController {
         
         KEY_UID = uid
         onlineUserRef.child(KEY_UID).updateChildValues(["KEY_ISONLINE":true])
-        
-        
-        
-//        let dispatch_group = dispatch_group_create()
-        
 
         ref2.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             for i in snapshot.children {
@@ -145,19 +140,13 @@ class QRViewController: UIViewController {
 
     }
     
-    
-    //xingyu code
+    //Xingyu's code
     func updateLocation(){
-//        print("-->\(self.lat)")
-//        print("-->\(self.log)")
         sendUid = KEY_UID
         var ref =  FIRDatabase.database().reference().child("/Account/")
-//        print(KEY_UID)
-//        print(ref)
         if(KEY_UID != ""){
             ref.childByAppendingPath(KEY_UID).updateChildValues(["lat":self.lat])
             ref.childByAppendingPath(KEY_UID).updateChildValues(["lng":self.log])
-            //ref.childByAppendingPath("Users").childByAppendingPath(self.ref.authData.ui‌​d).updateChildValues(["Email":self.EmailAddressTF.text!])
         }else{
             print("no key yet")
         }

@@ -29,7 +29,6 @@ class SignupViewController: UIViewController {
         EmailLabel.autocorrectionType = .No
         PasswordLabel.autocorrectionType = .No
 
-        
         //Dark KB
         UsernameLabel.keyboardAppearance = .Dark
         EmailLabel.keyboardAppearance = .Dark
@@ -57,6 +56,9 @@ class SignupViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //
+    // Create Account on button click
+    //
     @IBAction func CreateAccount(sender: AnyObject) {
         self.registerBtn.enabled = false
         self.cancelBtn.enabled = false

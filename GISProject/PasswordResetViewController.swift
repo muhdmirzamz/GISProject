@@ -45,6 +45,9 @@ class PasswordResetViewController: UIViewController {
         view.endEditing(true)
     }
     
+    //
+    // Password reset on button click
+    //
     @IBAction func PasswordReset(sender: AnyObject) {
         hideKeyboard()
         activityIndicator.startAnimating()

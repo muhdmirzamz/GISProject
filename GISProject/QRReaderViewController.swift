@@ -46,16 +46,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         captureSession?.startRunning()
     }
     
-//    func restartCapture (addedAlert: UIAlertAction!) {
-//        captureSession?.startRunning()
-//    }
-
-    
-//    //Functions made just for UIAlerts
-//    func dismissAlert (addedAlert: UIAlertAction!) {
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBG()
@@ -96,6 +86,9 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         super.didReceiveMemoryWarning()
     }
     
+    //
+    // Image processing
+    //
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
         if metadataObjects == nil || metadataObjects.count == 0 {

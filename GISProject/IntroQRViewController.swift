@@ -32,14 +32,7 @@ class IntroQRViewController: UIViewController {
 		self.scrollView?.setContentOffset(CGPointMake(4 * self.view.frame.width, 0), animated: true)
 	}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
-    */
-
 }

@@ -32,6 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Email.autocorrectionType = .No
         Password.autocorrectionType = .No
 		
+        //Keyboard navigation
 		Email.delegate = self
 		Email.returnKeyType = .Next
 		Password.delegate = self
@@ -57,7 +58,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -123,6 +123,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    //
+    // Update journal (Irfan's Code)
+    //
     func updateJournal(){
         let userID = (FIRAuth.auth()?.currentUser?.uid)!
         let ref4 = FIRDatabase.database().reference().child("/Account")
