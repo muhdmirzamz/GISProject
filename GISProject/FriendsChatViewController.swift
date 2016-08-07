@@ -62,6 +62,54 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     override func viewWillAppear(animated: Bool) {
         loadUserDefaults()
         
+     
+        
+        
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        // ClearRecentCounter(chatRoomId)
+        ref.removeAllObservers()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //initialize sendder key
+        self.senderId = senderKey
+        self.senderDisplayName = friendsKey
+        
+        //initialize if chat member has mine key in his friends list
+        self.validChat = false;
+        
+        //look for my name
+        let myKey = FIRDatabase.database().reference().child("Account/\(self.senderKey)")
+        myKey.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            for record in snapshot.children {
+                // Get user value
+                let baseDamage = snapshot.value!["Base Damage"] as! Int
+                let online = snapshot.value!["KEY_ISONLINE"] as! Bool
+                let monstersKilled = snapshot.value!["Monsters killed"] as! Int
+                let username = snapshot.value!["Name"] as! String
+                let ThumbnailImgUrl = snapshot.value!["profileImage"] as! String
+                let level = snapshot.value!["Level"] as! Int
+                let lat = snapshot.value!["lat"] as! Double
+                let lng = snapshot.value!["lng"] as! Double
+                let myKey = snapshot.key
+                
+                self.me = Friends(bDamage: baseDamage,
+                    online: online,
+                    monstKilled: monstersKilled,
+                    name: username,
+                    thumbnailImgUrl: ThumbnailImgUrl,
+                    level: level,
+                    latitude: lat,
+                    longtitude: lng,
+                    myKey: myKey)
+            }
+        })
+        
         
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         let refUsers = FIRDatabase.database().reference().child("Friend/\(self.friendsKey)")
@@ -125,9 +173,9 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
                 //change to qr code view and allow for scanning
                 refreshAlert.addAction(UIAlertAction(title: "Scan My Card Now!", style: .Default, handler: { (action: UIAlertAction!) in
                     print("Go Scan Now!")
-                    //self.dismissViewControllerAnimated(true, completion: nil)
-                    let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("qrViewController")
-                    self.showViewController(vc as! UIViewController, sender: vc)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                   // let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("qrViewController")
+                   // self.showViewController(vc as! UIViewController, sender: vc)
                     
                 }))
                 
@@ -149,50 +197,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         locationManager!.startUpdatingLocation()
         
         
-    }
-    
-    
-    override func viewWillDisappear(animated: Bool) {
-        // ClearRecentCounter(chatRoomId)
-        ref.removeAllObservers()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        //initialize sendder key
-        self.senderId = senderKey
-        self.senderDisplayName = friendsKey
-        
-        //initialize if chat member has mine key in his friends list
-        self.validChat = false;
-        
-        //look for my name
-        let myKey = FIRDatabase.database().reference().child("Account/\(self.senderKey)")
-        myKey.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            for record in snapshot.children {
-                // Get user value
-                let baseDamage = snapshot.value!["Base Damage"] as! Int
-                let online = snapshot.value!["KEY_ISONLINE"] as! Bool
-                let monstersKilled = snapshot.value!["Monsters killed"] as! Int
-                let username = snapshot.value!["Name"] as! String
-                let ThumbnailImgUrl = snapshot.value!["profileImage"] as! String
-                let level = snapshot.value!["Level"] as! Int
-                let lat = snapshot.value!["lat"] as! Double
-                let lng = snapshot.value!["lng"] as! Double
-                let myKey = snapshot.key
-                
-                self.me = Friends(bDamage: baseDamage,
-                    online: online,
-                    monstKilled: monstersKilled,
-                    name: username,
-                    thumbnailImgUrl: ThumbnailImgUrl,
-                    level: level,
-                    latitude: lat,
-                    longtitude: lng,
-                    myKey: myKey)
-            }
-        })
         
     }
     func addTapped (sender:UIButton) {
@@ -232,9 +237,9 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
                     
                     if(self.friend.ThumbnailImgUrl == "profileImage"){
                         var img : UIImage! =  UIImage(named: "loading.png")
-                        alertView.showInfo("\(self.friend.Name)", subTitle: "\(self.friend.Level)", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80))
+                        alertView.showInfo("\(self.friend.Name)", subTitle: "Lvl : \(self.friend.Level)", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80))
                     }else{
-                        alertView.showInfo("\(self.friend.Name)", subTitle: "\(self.friend.Level)", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 80))
+                        alertView.showInfo("\(self.friend.Name)", subTitle: "Lvl : \(self.friend.Level)", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 80))
                         
                     }
                     
@@ -261,7 +266,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     //look for chatroom key
     func lookForKey(){
         
-        refMembers.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+        refMembers.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
             
             print("sender : \(self.senderKey)")
             print("sender : \(self.friendsKey)")

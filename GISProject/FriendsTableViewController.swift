@@ -314,7 +314,8 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
         cell.msgCountLabel.textAlignment = .Center
         cell.msgCountLabel.textColor = UIColor.whiteColor()
         cell.msgCountLabel.backgroundColor = UIColor.redColor()
-      
+        cell.msgCountLabel.layer.cornerRadius = 5.0
+        cell.msgCountLabel.layer.masksToBounds = true
         
         //if we don't find it, then we create a new FriendsCell by loading the nib
         //"FriendsCell" from the main bundle
@@ -578,7 +579,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                 alertView.hideView() 
             }
             
-            alertView.showError("Are You Sure?", subTitle: "\n Remove \(indexPath.row) \n \(self.friends[indexPath.row].myKey))")
+            alertView.showError("Are You Sure?", subTitle: "\n Remove \(self.friends[indexPath.row].Name)")
             
             
         }//end of.delete style
