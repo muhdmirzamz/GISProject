@@ -13,7 +13,10 @@ class FriendsDeckCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var featuredImageView: UIImageView!
     @IBOutlet weak var interestTitleLabel: UILabel!
     @IBOutlet weak var lockLabel: UIImageView!
-    
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var level: UILabel!
+    @IBOutlet weak var kills: UILabel!
+    @IBOutlet weak var colorGenerator: UIView!
     
     
     override func layoutSubviews() {

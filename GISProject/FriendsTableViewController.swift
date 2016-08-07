@@ -39,49 +39,12 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
     //counter for end row editing
     var endRowEditing : Int = 0
     
-    //this function is used for testing purposes
-    @IBAction func restore(sender: AnyObject) {
-        
-         var restore : [String] = [ "4TXHLACuf4NfEhvpwPaj35gf2Dg2" ,
-         "6qqMMHIyoMNOKUuBOtf2EwjKmRE2" ,
-         "J8udCnp29tNFjBWpQ3wHfIZ7Wn33" ,
-         "LDDPeGnJTeRP5qWSUfsgJEx1qsT2" ,
-         "OJs4sevBRwdIUNiagECFcqdAoys2" ,
-         "Rm4yWdlrRRftsfkvY7juQNPtAMh1" ,
-         "ZUYqAg6MbPVCa9DLZ3NiE9zMb942" ,
-         "hrOsNfsWbjf07zk8kZZMyz89pul1" ,
-         "isuKxRNebrgXwb5fKEVIXpW10Ws1" ,
-         "mQ28Lxcmr6YlbmqiVW06MsOwd4z1" ,
-         "rrGjmUqIlUgsnUv08d0mi96tQRJ3"]
-         
- 
-        //var restore : [String] = [ "4TXHLACuf4NfEhvpwPaj35gf2Dg2" ,
-         //                          "6qqMMHIyoMNOKUuBOtf2EwjKmRE2" ,
-         //                          "J8udCnp29tNFjBWpQ3wHfIZ7Wn33" ,
-         //                          ]
-        
-        
-        let uid = (FIRAuth.auth()?.currentUser?.uid)!
-        
-        //ref to friends in firebase
-        let ref = FIRDatabase.database().reference().child("Friend/")
-        
-        for i in 0...restore.count - 1 {
-            ref.childByAppendingPath(KEY_UID).updateChildValues(["\(restore[i])":1])
-        }
-        print("restore friends")
-    }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //refresh control
         refreshDataControl = UIRefreshControl()
         refreshDataControl.addTarget(self, action: "refreshControlAction", forControlEvents: .ValueChanged)
-        //refreshDataControl.backgroundColor = UIColor.purpleColor()
-        //refreshDataControl.tintColor = UIColor.whiteColor()
         tableView.addSubview(refreshDataControl)
         
         
@@ -114,9 +77,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
         self.tableView.reloadData()
     }
     
-    
-    
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
        
@@ -131,27 +91,10 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
         
         //ref to users
         let refOnline = FIRDatabase.database().reference().child("/Account/")
-        
-        
-        
-        /*
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
-        {
-          
-            
-                
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                   
-                })
-            
-        }
-        */
+       
  
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         {
-            
-            
             ref.observeEventType(FIRDataEventType.ChildChanged, withBlock: { (snapshot) in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -223,17 +166,10 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                     }else{
                         print("no friends in the arraylist")
                     }
-                    
-                    
-                    
                 })
             })
             
         }
-       
-       
-        
-        
     }
     
     func handleSwipes(sender:UISwipeGestureRecognizer) {
@@ -324,68 +260,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
-    /*
-     //this function used to triggered empty friendslist messages
-     //msg : you have no friends yet
-     override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String {
-     
-     var message: String = ""
-     
-     var numberOfRowsInSection: Int = self.tableView(self.tableView, numberOfRowsInSection: section)
-     if numberOfRowsInSection == 0 {
-     message = ""
-     
-     /*
-     // Display a message when the table is empty
-     var messageLabel: UILabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
-     messageLabel.text = "No data is currently available. Please pull down to refresh."
-     messageLabel.textColor = UIColor.blackColor()
-     messageLabel.numberOfLines = 0
-     messageLabel.textAlignment = .Center
-     messageLabel.font = UIFont(name: "Palatino-Italic", size: 20)
-     messageLabel.sizeToFit()
-     messageLabel.tag = 900
-     self.tableView.backgroundView = messageLabel
-     self.tableView.separatorStyle = .None
-     */
-     
-     //start define the uiview according to the width and height of the uitableview
-     var testView: UIView = UIView(frame: CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
-     //tag an id to the view so that can be reference easily
-     testView.tag = 900
-     
-     //set message properties
-     var label = UILabel(frame: CGRectMake(0, 0, 200, 21))
-     label.textColor = UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0)
-     label.center = CGPointMake(testView.bounds.size.width/2, testView.bounds.size.height/2)
-     label.font = UIFont(name: "Palatino-Italic", size: 20)
-     label.text = "You have no friends yet."
-     
-     //add text to the custom view
-     testView.addSubview(label)
-     
-     //add custom view to current view
-     self.view.addSubview(testView)
-     self.tableView.separatorStyle = .None
-     
-     
-     }else{
-     
-     //if table cell is not empty,start removing subview
-     if let viewWithTag = self.view.viewWithTag(900) {
-     viewWithTag.removeFromSuperview()
-     //add single line to the view
-     self.tableView.separatorStyle = .SingleLine
-     }else{
-     print("Friends List not empty!")
-     }
-     
-     }
-     
-     return message
-     }
-     */
+  
     
     //returns the number of items in the tableview
     //display all friends and search friends accordingly
@@ -425,8 +300,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
         //friend avatar styling
         cell.name.textColor = UIColor.blackColor()
         
-        
-        
         //hide msg label
         cell.msgLabel.hidden = true
         cell.onlineLabel.hidden = true
@@ -437,14 +310,11 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
             UIImageRenderingMode.AlwaysTemplate)
         cell.msgLabel.tintColor = UIColor(red: 255/255.0, green: 152/255.0, blue: 0/255.0, alpha: 1.0)
         
-   
-        
+       
         cell.msgCountLabel.textAlignment = .Center
         cell.msgCountLabel.textColor = UIColor.whiteColor()
         cell.msgCountLabel.backgroundColor = UIColor.redColor()
-        
-        
-        
+      
         
         //if we don't find it, then we create a new FriendsCell by loading the nib
         //"FriendsCell" from the main bundle
@@ -455,8 +325,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
         
         //declare an friends instance to make use of the objects easily
         var friend : Friends!
-        
-        
         
         //check for any search inputs and use the corrent friends array data
         if searchController.active && searchController.searchBar.text != "" {
@@ -470,17 +338,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
         }
         var passkey: String = friend.myKey
         
-        /*
-         //check for valid msg label
-         displayMsgLabel = FriendsDataManager.displayMsgLabel(passkey)
-         print("return back: \(displayMsgLabel)")
-         
-         if(displayMsgLabel == true){
-         cell.msgLabel.hidden = true
-         }
-         */
-        
-        
+      
         var inMyFriendsList :Bool = false
         
         
@@ -535,11 +393,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                         
                         //if both chat members exist in the chat room record
                         if(user1 == true && user2 == true){
-                           // print("-------- got chat room-------")
-                           // print(record.key!)
-                            //chatKey = record.key!
-                           // print("-------- got chat room-------")
-                            
+                       
                             let refMessages = FIRDatabase.database().reference().child("FriendsModule/messages/\(record.key!)")
                             
                             //look for number of messages
@@ -550,34 +404,12 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                                 
                                 cell.msgCountLabel.hidden = false
                                 
-                                //let msgCount = String(count)
-                                
+                              let msgCount = String(count)
+                               
                                 //set msg count label
-                                //cell.msgCountLabel.text = msgCount
-                                
-                                //convert to Int
-                                //self.totalMsgCount = self.totalMsgCount + (Int(msgCount)!)/(Int(msgCount)!)
-                                
-                                // print("total count: \(self.totalMsgCount)")
-                                
-                                // Add count to label and size to fit
-                                cell.msgCountLabel.text = "\(count)"
-                                cell.msgCountLabel.sizeToFit()
-                                // Adjust frame to be square for single digits or elliptical for numbers > 9
-                                var frame: CGRect = cell.msgCountLabel.frame
-                                frame.size.height += CGFloat(0.4 * 20)
-                                frame.size.width = (count <= 9) ? frame.size.height : frame.size.width + CGFloat(14)
-                                cell.msgCountLabel.frame = frame
-                                // Set radius and clip to bounds
-                                cell.msgCountLabel.layer.cornerRadius = frame.size.height / 2
-                                cell.msgCountLabel.clipsToBounds = true
-                                
-                                cell.accessoryView =  cell.msgCountLabel
-                                cell.accessoryType = .None
-                                
+                               cell.msgCountLabel.text = msgCount
+                              
                             })
-                            
-                            
                             
                         }else{
                             
@@ -589,9 +421,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                     
                 })
                 //end of look for chatroom
-                
-                
-                
                 
                 
                 //closure
@@ -630,24 +459,14 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
                             var img : UIImage! =  UIImage(named: "loading.png")
                             cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80)
                             
-                            
                         }else{
-                            
                             cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 80)
-                            
                         }
                         
                         cell.setNeedsDisplay()
-                        
                     }
-                    
                 }
-                
-                
             })
-            
-            
-            
             
         }//end of dispath
         
@@ -657,44 +476,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
         
     }
     
-    
-    func updateTableViewCell(cell: UITableViewCell, forCount count: Int) {
-        // Count > 0, show count
-        if count > 0 {
-            // Create label
-            var fontSize: CGFloat = 14
-            var label: UILabel = UILabel()
-            label.font = UIFont.systemFontOfSize(fontSize)
-            label.textAlignment = .Center
-            label.textColor = UIColor.whiteColor()
-            label.backgroundColor = UIColor.redColor()
-            // Add count to label and size to fit
-            label.text = "\(count)"
-            label.sizeToFit()
-            // Adjust frame to be square for single digits or elliptical for numbers > 9
-            var frame: CGRect = label.frame
-            frame.size.height += CGFloat(0.4 * fontSize)
-            frame.size.width = (count <= 9) ? frame.size.height : frame.size.width + CGFloat(fontSize)
-            label.frame = frame
-            // Set radius and clip to bounds
-            label.layer.cornerRadius = frame.size.height / 2.0
-            label.clipsToBounds = true
-            
-            cell.accessoryView = label
-            cell.accessoryType = .None
-            
-            
-        }else{
-            cell.accessoryView = nil
-            cell.accessoryType = .DisclosureIndicator
-        }
-        
-        
-            cell.setNeedsLayout()
-       
-        
-    
-        }
+ 
     
     override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
        // print("begining editing...: \(indexPath.row)")
@@ -710,11 +492,7 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
             //refresh table
             self.tableView.reloadData()
         }
-        
-        
     }
-    
-    
     
     /*
      // Override to support conditional editing of the table view.
@@ -728,9 +506,6 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
     // Override to support editing the table view.
     //enable slide to delete option
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
-        
         
         
         if editingStyle == .Delete {
@@ -798,11 +573,9 @@ class FriendsTableViewController: UITableViewController,UISearchResultsUpdating,
             alertView.addButton("Cancel") {
                 print("cancel option")
                 
-                
                 //self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 self.tableView.reloadData()
-                alertView.hideView()
-                
+                alertView.hideView() 
             }
             
             alertView.showError("Are You Sure?", subTitle: "\n Remove \(indexPath.row) \n \(self.friends[indexPath.row].myKey))")

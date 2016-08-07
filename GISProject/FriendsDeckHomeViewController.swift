@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Firebase
+import JSQMessagesViewController
 
 class FriendsDeckHomeViewController: UIViewController {
-
+    
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var currentUserProfileImageButton: UIButton!
     @IBOutlet weak var currentUserFullNameButton: UIButton!
     
@@ -26,13 +27,12 @@ class FriendsDeckHomeViewController: UIViewController {
     var friends:[Friends] = []
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -63,26 +63,11 @@ class FriendsDeckHomeViewController: UIViewController {
         })
     }
     
-    
-    
-    
     private struct Storyboard {
         static let CellIdentifier = "Deck Cell"
     }
     
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 extension FriendsDeckHomeViewController : UICollectionViewDataSource
 {
@@ -102,21 +87,62 @@ extension FriendsDeckHomeViewController : UICollectionViewDataSource
         cell.interestTitleLabel.text = self.friends[indexPath.item].Name
         
         //if the card is valid, dont display lock label
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
         
+        //ref to friends in firebase
+        let ref = FIRDatabase.database().reference().child("Friend/\(uid)/\(self.friends[indexPath.item].myKey)")
         
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+        {
+            
+            var image: UIImage?
+            
+            let decodedData = NSData(base64EncodedString: (self.friends[indexPath.item].ThumbnailImgUrl), options: NSDataBase64DecodingOptions(rawValue: 0))
+            
+            image = UIImage(data: decodedData!)
+            
+            ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    if(self.friends[indexPath.item].ThumbnailImgUrl == "profileImage"){
+                        var img : UIImage! =  UIImage(named: "loading.png")
+                        cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 90)
+                        cell.profileImage.layer.borderColor = UIColor.whiteColor().CGColor
+                        cell.profileImage.layer.masksToBounds = true
+                        
+                    }else{
+                        cell.profileImage.image = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 90)
+                    }
+                    
+                    cell.level.text = String("        Lvl: \(self.friends[indexPath.item].Level)")
+                    cell.kills.text = String("Monster Killed : \(self.friends[indexPath.item].monstersKilled)")
+                    
+                    //a little bug here
+                    //once zoomed in it will disappear
+                    if(snapshot.value as! Int == 0){
+                        //cell.lockLabel.hidden = false
+                    }
+                })
+            })
+        }
         
         return cell
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        
         print("tapped-->\(indexPath.row)")
         
         var cell: FriendsDeckCollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! FriendsDeckCollectionViewCell
         
+        //var frame1: CGRect = collectionView.convertRect(cell.frame, toView: nil)
+        var frame: CGRect = CGRectMake(0.0, 0.0, cell.frame.size.width, cell.frame.size.height)
+        frame.origin = cell.convertPoint(cell.frame.origin, toView: self.view!)
         
-        let realCenter = collectionView.convertPoint(cell.center, toView: collectionView.superview)
         
+        var visibleRect: CGRect = CGRectMake(collectionView.contentOffset.x, collectionView.contentOffset.y, collectionView.contentOffset.x + collectionView.bounds.size.width, collectionView.contentOffset.y + collectionView.bounds.size.height)
+        
+        var centerPoint: CGPoint = CGPointMake(visibleRect.size.width / 2, visibleRect.size.height / 2)
         //0 : add
         //1 : dont add
         if(count == 0){
@@ -124,8 +150,6 @@ extension FriendsDeckHomeViewController : UICollectionViewDataSource
             //selected item
             selectedItem = indexPath.row
         }
-        
-        
         //true to zoom in
         if(selectedItem == indexPath.row){
             
@@ -134,16 +158,18 @@ extension FriendsDeckHomeViewController : UICollectionViewDataSource
                 print("true--> : \(cell.center)")
                 initialPoint = cell.center
                 collectionView.bringSubviewToFront(cell)
-               
+                
                 cell.contentView.bringSubviewToFront(collectionView)
                 
+                //center point for visible screen
                 var t: CGAffineTransform = CGAffineTransformMakeScale(1.6, 1.6)
-                var center: CGPoint = self.collectionView.center
+                var center: CGPoint = CGPointMake(self.collectionView.center.x + self.collectionView.contentOffset.x,
+                                                  self.collectionView.center.y + self.collectionView.contentOffset.y);
                 
                 UIView.animateWithDuration(1.0) { () -> Void in
                     cell.transform = t
                     cell.center = center
-                
+                    
                 }
                 //set to false
                 selected = false
@@ -152,7 +178,6 @@ extension FriendsDeckHomeViewController : UICollectionViewDataSource
                 print("zoom out \(selected)")
                 print("initital point : \(cell.center)")
                 collectionView.bringSubviewToFront(cell)
-                //collectionView.transform = CGAffineTransformMake(1, 3, 3, 1, 3, 3)
                 
                 cell.contentView.bringSubviewToFront(collectionView)
                 

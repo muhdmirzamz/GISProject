@@ -20,10 +20,6 @@ class Friends{
     var lng : Double
     var myKey : String
     
-  
-    
-    
-    
     init(bDamage:Int,
          online:Bool,
          monstKilled: Int,

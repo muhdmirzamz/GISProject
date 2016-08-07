@@ -13,7 +13,7 @@ import Firebase
 
 class FriendsDataManager: NSObject {
     
-   
+    
     
     //load friends from Firebase and converts it into [Friends] array
     static func loadFriends(onComplete: ([Friends]) -> Void)
@@ -67,9 +67,8 @@ class FriendsDataManager: NSObject {
                         
                         
                         if(online == true){
-                           // print(snapshot.value!["Name"] as! String)
+                            // print(snapshot.value!["Name"] as! String)
                         }
-                        
                         
                         //add to arraylist
                         friendsList.append(Friends(bDamage: baseDamage,
@@ -102,13 +101,11 @@ class FriendsDataManager: NSObject {
     
     static func loadFriendsRoomKey(onComplete: ([String]) -> Void)
     {
-        
         //create an empty friends list array
         
         var friendsList : [String] = []
         
         let ref = FIRDatabase.database().reference().child("FriendsModule/friendList/")
-        
         
         ref.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             
@@ -119,9 +116,6 @@ class FriendsDataManager: NSObject {
         })
         
     }
-    
-    
-    
     
     
     
@@ -188,8 +182,6 @@ class FriendsDataManager: NSObject {
             
             ref.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
                 
-                
-                
                 //closure
                 dispatch_async(dispatch_get_main_queue()) {
                     print("-------------------")
@@ -204,8 +196,7 @@ class FriendsDataManager: NSObject {
             })
             
         }//end of dispath
-        
-        
+         
         return inMyFriendsList
         
     }//end of function

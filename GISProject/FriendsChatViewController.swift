@@ -19,6 +19,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     var friend : Friends!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -48,6 +49,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     var friendsKey : String!
     var senderName : String!
     var validChat:Bool!
+    var me : Friends!
     
     //firebase reference
     let ref = FIRDatabase.database().reference().child("FriendsModule/messages/")
@@ -59,36 +61,6 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     
     override func viewWillAppear(animated: Bool) {
         loadUserDefaults()
-        
-        
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation()
-        }
-        print("have location manager")
-        locationManager!.startUpdatingLocation()
-        
-    }
-    
-    
-    override func viewWillDisappear(animated: Bool) {
-        // ClearRecentCounter(chatRoomId)
-        ref.removeAllObservers()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //initialize sendder key
-        self.senderId = senderKey
-        self.senderDisplayName = friendsKey
-        
-        //initialize if chat member has mine key in his friends list
-        self.validChat = false;
         
         
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
@@ -106,6 +78,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             
             
             if(self.validChat == true){
+                
                 //set chat room title
                 self.navigationItem.title = self.friend.Name
                 
@@ -154,7 +127,7 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
                     print("Go Scan Now!")
                     //self.dismissViewControllerAnimated(true, completion: nil)
                     let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("qrViewController")
-                      self.showViewController(vc as! UIViewController, sender: vc)
+                    self.showViewController(vc as! UIViewController, sender: vc)
                     
                 }))
                 
@@ -163,6 +136,63 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         })
         
         
+        //location manager
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        print("have location manager")
+        locationManager!.startUpdatingLocation()
+        
+        
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        // ClearRecentCounter(chatRoomId)
+        ref.removeAllObservers()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //initialize sendder key
+        self.senderId = senderKey
+        self.senderDisplayName = friendsKey
+        
+        //initialize if chat member has mine key in his friends list
+        self.validChat = false;
+        
+        //look for my name
+        let myKey = FIRDatabase.database().reference().child("Account/\(self.senderKey)")
+        myKey.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            for record in snapshot.children {
+                // Get user value
+                let baseDamage = snapshot.value!["Base Damage"] as! Int
+                let online = snapshot.value!["KEY_ISONLINE"] as! Bool
+                let monstersKilled = snapshot.value!["Monsters killed"] as! Int
+                let username = snapshot.value!["Name"] as! String
+                let ThumbnailImgUrl = snapshot.value!["profileImage"] as! String
+                let level = snapshot.value!["Level"] as! Int
+                let lat = snapshot.value!["lat"] as! Double
+                let lng = snapshot.value!["lng"] as! Double
+                let myKey = snapshot.key
+                
+                self.me = Friends(bDamage: baseDamage,
+                    online: online,
+                    monstKilled: monstersKilled,
+                    name: username,
+                    thumbnailImgUrl: ThumbnailImgUrl,
+                    level: level,
+                    latitude: lat,
+                    longtitude: lng,
+                    myKey: myKey)
+            }
+        })
         
     }
     func addTapped (sender:UIButton) {
@@ -174,16 +204,18 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             kTitleHeight: 60,
             kButtonFont: UIFont.systemFontOfSize(18, weight: UIFontWeightLight),
             showCloseButton: false,
-             showCircularIcon: true,
+            showCircularIcon: true,
             kCircleIconHeight: 80,
             kCircleHeight: 85,
             hideWhenBackgroundViewIsTapped: true
+            
         )
-        // let appearance = SCLAlertView.SCLAppearance(kDefaultShadowOpacity: <#T##CGFloat#>, kCircleTopPosition: <#T##CGFloat#>, kCircleBackgroundTopPosition: <#T##CGFloat#>, kCircleHeight: <#T##CGFloat#>, kCircleIconHeight: <#T##CGFloat#>, kTitleTop: <#T##CGFloat#>, kTitleHeight: <#T##CGFloat#>, kWindowWidth: <#T##CGFloat#>, kWindowHeight: <#T##CGFloat#>, kTextHeight: <#T##CGFloat#>, kTextFieldHeight: <#T##CGFloat#>, kTextViewdHeight: <#T##CGFloat#>, kButtonHeight: <#T##CGFloat#>, kTitleFont: <#T##UIFont#>, kTextFont: <#T##UIFont#>, kButtonFont: <#T##UIFont#>, showCloseButton: <#T##Bool#>, showCircularIcon: <#T##Bool#>, shouldAutoDismiss: <#T##Bool#>, contentViewCornerRadius: <#T##CGFloat#>, fieldCornerRadius: <#T##CGFloat#>, buttonCornerRadius: <#T##CGFloat#>, hideWhenBackgroundViewIsTapped: <#T##Bool#>, contentViewColor: <#T##UIColor#>, contentViewBorderColor: <#T##UIColor#>, titleColor: <#T##UIColor#>)
+        
+        //show profile images
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         {
             
-       let profileImage = FIRDatabase.database().reference().child("Account/\(self.friendsKey)")
+            let profileImage = FIRDatabase.database().reference().child("Account/\(self.friendsKey)")
             var image: UIImage?
             
             let decodedData = NSData(base64EncodedString: (self.friend.ThumbnailImgUrl), options: NSDataBase64DecodingOptions(rawValue: 0))
@@ -191,23 +223,23 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
             image = UIImage(data: decodedData!)
             
             
-        profileImage.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-          
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            profileImage.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
                 
-                 let alertView = SCLAlertView(appearance : appearance)
                 
-                if(self.friend.ThumbnailImgUrl == "profileImage"){
-                    var img : UIImage! =  UIImage(named: "loading.png")
-                     alertView.showInfo("\(self.friend.Name)", subTitle: "****", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80))
-                }else{
-                     alertView.showInfo("\(self.friend.Name)", subTitle: "****", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 80))
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
-                } 
-
+                    let alertView = SCLAlertView(appearance : appearance)
+                    
+                    if(self.friend.ThumbnailImgUrl == "profileImage"){
+                        var img : UIImage! =  UIImage(named: "loading.png")
+                        alertView.showInfo("\(self.friend.Name)", subTitle: "\(self.friend.Level)", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(img, withDiameter: 80))
+                    }else{
+                        alertView.showInfo("\(self.friend.Name)", subTitle: "\(self.friend.Level)", circleIconImage: JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: 80))
+                        
+                    }
+                    
+                })
             })
-        })
         }
         
         
@@ -618,8 +650,8 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(30, 30)
         
         //download avatars
-        avatarImageFromBackend(self.senderId!)
-        avatarImageFromBackend(self.friendsKey!)
+        avatarImageFromBackend(self.me)
+        avatarImageFromBackend(self.friend)
         
         //create avatars
         createAvatars(avatarImagesDictionary)
@@ -627,40 +659,50 @@ class FriendsChatViewController: JSQMessagesViewController,UIImagePickerControll
     }
     
     //need to use grand central dispatch
-    func avatarImageFromBackend(user: String) {
+    func avatarImageFromBackend(user: Friends) {
         
-        print("avatoar from backend function")
-        
-        //use smiley face first
-        let nurl = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png")
-        var imageBinary : NSData?
-        if nurl != nil
-        {
-            imageBinary = NSData(contentsOfURL: nurl!)
+        if(user.ThumbnailImgUrl != "profileImage"){
+            getImageFromURL(user.ThumbnailImgUrl as! String, result: { (image) -> Void in
+                
+                let imageData = UIImageJPEGRepresentation(image!, 1.0)
+                
+                if self.avatarImagesDictionary != nil {
+                    
+                    self.avatarImagesDictionary!.removeObjectForKey(user.myKey)
+                    self.avatarImagesDictionary!.setObject(imageData!, forKey: user.myKey)
+                } else {
+                    self.avatarImagesDictionary = [user.myKey : imageData!]
+                }
+                self.createAvatars(self.avatarImagesDictionary)
+                
+            })
         }
         
-        // After retrieving the image data, we convert
-        // it to an UIImage object. This is an update
-        // to the User Interface.
-        //
-        var img : UIImage!
-        if imageBinary != nil
+    }
+    
+    //get images from firebase and decode
+    func getImageFromURL(url: String, result: (image: UIImage?) ->Void) {
+        
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         {
-            img = UIImage(data: imageBinary!)
-        }
-        
-        let imageData = UIImageJPEGRepresentation(img!, 0.2)
-        
-        
-        if self.avatarImagesDictionary != nil {
             
-            self.avatarImagesDictionary!.removeObjectForKey(self.senderId!)
-            self.avatarImagesDictionary!.setObject(imageData!, forKey: self.senderId!)
-        } else {
-            self.avatarImagesDictionary = [self.senderId! : imageData!]
-        }
-        self.createAvatars(self.avatarImagesDictionary)
-        
+            let profileImage = FIRDatabase.database().reference().child("Account/\(url)")
+            var image: UIImage?
+            
+            let decodedData = NSData(base64EncodedString: (url), options: NSDataBase64DecodingOptions(rawValue: 0))
+            
+            image = UIImage(data: decodedData!)
+            
+            
+            profileImage.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    result(image: image)
+                    
+                })
+            })
+        } 
         
     }
     

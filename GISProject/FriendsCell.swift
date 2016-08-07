@@ -19,10 +19,6 @@ class FriendsCell: UITableViewCell {
     @IBOutlet weak var msgLabel: UIImageView!
     @IBOutlet weak var level: UILabel!
     @IBOutlet weak var friendsCurrentLocatuon: UILabel!
-    
-    
- 
-    
-
+     
     
 }
