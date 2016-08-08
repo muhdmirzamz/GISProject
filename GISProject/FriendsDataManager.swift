@@ -30,7 +30,7 @@ class FriendsDataManager: NSObject {
             //ref to friends in firebase
             let ref = FIRDatabase.database().reference().child("Friend/\(uid)")
             
-            var baseDamage : Int!
+            var baseDamage : Int! = 0
             var online :Bool!
             var monstersKilled : Int!
             var username : String!
